@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  task: "作業内容",
+  taskName: "作業内容",
 };
 
 export const Default: Story = {
