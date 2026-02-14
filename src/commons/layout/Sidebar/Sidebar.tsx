@@ -1,15 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Sidebar.module.css";
+import { content } from "./types/content";
 
 type Props = {
   contents: content[];
-};
-
-type content = {
-  text: string;
-  icon: string;
-  path: string;
 };
 
 const Sidebar = ({ contents }: Props) => {

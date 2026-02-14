@@ -14,6 +14,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    contents: ["Today", "Dashboard"],
+    contents: [
+      { text: "Timeline", icon: "today", path: "Timeline" },
+      { text: "Dashboard", icon: "dashboard", path: "Dashboard" },
+    ],
   },
 };
