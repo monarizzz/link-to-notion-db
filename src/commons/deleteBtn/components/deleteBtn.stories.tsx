@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import deleteBtn from "./deleteBtn";
+import DeleteBtn from "./DeleteBtn";
 
 const meta = {
-  component: deleteBtn,
+  component: DeleteBtn,
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof deleteBtn>;
+} satisfies Meta<typeof DeleteBtn>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
