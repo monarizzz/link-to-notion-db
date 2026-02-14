@@ -1,13 +1,22 @@
+import calcWorkTime from "@/features/notion/utils/workTime";
+import toRecord from "@/features/notion/utils/toRecord";
 import getDatabaseRecords from "@/infra/notion/repositories/getDatabaseRecords";
+import Link from "next/link";
 
 const Home = async () => {
-  const data = await getDatabaseRecords();
+  const allRecords = await getDatabaseRecords();
 
-  console.log(data);
+  const data = allRecords.results.map((record) => toRecord(record));
+  // data.map((record) => console.log(calcWorkTime(record.start, record.end)));
+
   return (
     <div>
-      {data.results.map((record) => (
-        <div key={record.id}>{record.object}</div>
+      {data.map((record) => (
+        <div key={record.id}>
+          <div>作業内容：{record.taskName}</div>
+          <div>作業時間：{calcWorkTime(record.start, record.end)}</div>
+          <Link href={record.url}>GO NOTION</Link>
+        </div>
       ))}
     </div>
   );
