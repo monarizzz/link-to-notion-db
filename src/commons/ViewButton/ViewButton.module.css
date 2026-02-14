@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+}
+
+.name {
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 13px;
+
+}
+
+.name:hover {
+  background-color: #eaeaea;
+}
