@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
-import timeLabel from "./timeLabel";
+import TimeLabel from "./TimeLabel";
 
 const meta = {
-  component: timeLabel,
+  component: TimeLabel,
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof timeLabel>;
+} satisfies Meta<typeof TimeLabel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

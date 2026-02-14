@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./taskLabel.module.css";
+import styles from "./TaskLabel.module.css";
 import notionColorMap from "@/libs/notion/constants/colorMap";
 
 type Props = {
@@ -16,7 +16,7 @@ const TaskLabel = ({ taskName, size, color = "default" }: Props) => {
       style={{ backgroundColor: bg, borderColor: border }}
     >
       <Image src="label.svg" alt="task name" width={size} height={size} />
-      <p className={styles.text}>{taskName}</p>
+      <span className={styles.text}>{taskName}</span>
     </div>
   );
 };
