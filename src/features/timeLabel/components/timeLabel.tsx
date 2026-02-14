@@ -1,6 +1,6 @@
 import workTime from "../utils/workTime";
 import Image from "next/image";
-import styles from "./workTimeLabel.module.css";
+import styles from "./timeLabel.module.css";
 
 type Props = {
   start: string;
@@ -8,7 +8,7 @@ type Props = {
   size: number;
 };
 
-const workTimeLabel = ({ start, end, size }: Props) => {
+const timeLabel = ({ start, end, size }: Props) => {
   return (
     <div className={styles.root}>
       <Image src="work-time.svg" alt="tag icon" width={size} height={size} />
@@ -17,4 +17,4 @@ const workTimeLabel = ({ start, end, size }: Props) => {
   );
 };
 
-export default workTimeLabel;
+export default timeLabel;
