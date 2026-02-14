@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
   size: 10,
+  pageId: "1",
 };
 
 export const Default: Story = {
