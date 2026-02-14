@@ -4,6 +4,7 @@
   background-color: #f9f9f9;
   height: 100vh;
   width: max(20vw, 200px);
+  position: fixed;
 }
 
 .contentGroup {

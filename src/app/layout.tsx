@@ -31,7 +31,9 @@ export default function RootLayout({
         style={{ display: "flex" }}
       >
         <Sidebar contents={contents} />
-        {children}
+        <main style={{ marginLeft: "max(20vw, 200px)", flex: 1 }}>
+          {children}
+        </main>
       </body>
     </html>
   );
