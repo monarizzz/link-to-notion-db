@@ -1,7 +1,7 @@
 // Replace your-framework with nextjs or nextjs-vite
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import taskButton from "./taskButton";
+import taskButton from "./TaskButton";
 
 const meta = {
   component: taskButton,
