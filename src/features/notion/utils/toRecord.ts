@@ -4,6 +4,7 @@ const toRecord = (records) => ({
   start: records.properties.workTime.date?.start,
   end: records.properties.workTime.date?.end,
   url: records.url,
+  color: records.properties.select?.select?.color,
 });
 
 export default toRecord;
