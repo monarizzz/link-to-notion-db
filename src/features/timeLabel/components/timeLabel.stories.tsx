@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
-import DeleteBtn from "./DeleteBtn";
+import TimeLabel from "./TimeLabel";
 
 const meta = {
-  component: DeleteBtn,
+  component: TimeLabel,
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof DeleteBtn>;
+} satisfies Meta<typeof TimeLabel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  size: 10,
-  pageId: "1",
+  start: "2026-02-14T09:00:00",
+  end: "2026-02-14T10:30:00",
+  size: 20,
 };
 
 export const Default: Story = {

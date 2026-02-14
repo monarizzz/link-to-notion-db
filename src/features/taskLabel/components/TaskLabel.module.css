@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+.text {
+  margin: 0 0 0 5px;
+  font-size: 12px;
+}

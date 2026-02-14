@@ -1,7 +1,7 @@
 import calcWorkTime from "@/features/notion/utils/workTime";
 import toRecord from "@/features/notion/utils/toRecord";
 import getDBRecords from "@/infra/notion/repositories/getDBRecords";
-import DeleteBtn from "@/commons/deleteBtn/components/deleteBtn";
+import DeleteBtn from "@/commons/deleteBtn/components/DeleteBtn";
 import Link from "next/link";
 
 const Home = async () => {
