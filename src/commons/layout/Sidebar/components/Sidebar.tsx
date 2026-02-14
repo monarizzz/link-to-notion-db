@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Sidebar.module.css";
-import { content } from "./types/content";
+import { content } from "../types/content";
 
 type Props = {
   contents: content[];
