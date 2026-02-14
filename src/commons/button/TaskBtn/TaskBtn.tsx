@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./taskButton.module.css";
+import styles from "./taskBtn.module.css";
 
 type Props = {
   taskName: string;
