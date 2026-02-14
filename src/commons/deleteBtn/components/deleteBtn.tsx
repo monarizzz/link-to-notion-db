@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import recordDel from "../utils/recordDel";
+import pageDel from "../utils/pageDel";
 
 type Props = {
   size: number;
@@ -10,7 +10,7 @@ type Props = {
 const DeleteBtn = ({ size, pageId }: Props) => {
   const handleClick = async () => {
     if (!window.confirm("本当に削除しますか？")) return;
-    await recordDel(pageId);
+    await pageDel(pageId);
   };
 
   return (
