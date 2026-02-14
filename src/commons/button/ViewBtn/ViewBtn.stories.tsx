@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import ViewButton from "./ViewButton";
+import ViewBtn from "./ViewBtn";
 
 const meta = {
-  component: ViewButton,
+  component: ViewBtn,
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof ViewButton>;
+} satisfies Meta<typeof ViewBtn>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
