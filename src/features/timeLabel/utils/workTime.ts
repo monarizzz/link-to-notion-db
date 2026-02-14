@@ -4,8 +4,9 @@ import duration from "dayjs/plugin/duration";
 dayjs.extend(duration);
 
 const workTime = (start: string, end: string) => {
-  const diff = dayjs(end).diff(dayjs(start));
-  return dayjs.duration(diff).format("H時間 mm分");
+  const d = dayjs.duration(dayjs(end).diff(dayjs(start)));
+  const hours = Math.floor(d.asHours());
+  return hours > 0 ? `${hours}時間 ${d.format("mm")}分` : `${d.format("m")}分`;
 };
 
 export default workTime;
