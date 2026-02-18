@@ -4,12 +4,10 @@ import styles from "./HomePageMain.module.css";
 import AddWork from "@/commons/addWork/components/AddWork";
 
 type Props = {
+  selects: string[];
   records: ToRecord[];
 };
-const HomePageMain = ({ records }: Props) => {
-  //TODO:fix
-  const selects = ["インターン", "雑務"];
-
+const HomePageMain = ({ selects, records }: Props) => {
   return (
     <div className={styles.root}>
       <div className={styles.card}>
