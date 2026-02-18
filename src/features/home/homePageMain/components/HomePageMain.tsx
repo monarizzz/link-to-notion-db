@@ -1,6 +1,6 @@
 import WorkLogCard from "@/commons/workLogCard/components/WorkLogCard";
 import { ToRecord } from "@/features/notion/types/toRecord";
-import styles from "./Home.module.css";
+import styles from "./HomePageMain.module.css";
 import AddWork from "@/commons/addWork/components/AddWork";
 
 type Props = {
