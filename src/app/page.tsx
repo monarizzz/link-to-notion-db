@@ -1,15 +1,21 @@
 import toRecord from "@/features/notion/utils/toRecord";
 import getDBRecords from "@/infra/notion/repositories/getDBRecords";
-import WorkLogDateGroup from "@/features/home/WorkLogDateGroup/components/WorkLogDateGroup";
+import HomePageMain from "@/features/home/homePageMain/components/HomePageMain";
+import getDBSchema from "@/infra/notion/repositories/getDBSchema";
 
 const Home = async () => {
   const allRecords = await getDBRecords();
   const data = allRecords.results.map((record) => toRecord(record));
+  const allSchema = await getDBSchema();
+
+  const selects = allSchema.properties.select.select.options.map(
+    (option) => option.name,
+  );
 
   return (
-    <div>
-      <WorkLogDateGroup records={data} />
-    </div>
+    <>
+      <HomePageMain selects={selects} records={data} />
+    </>
   );
 };
 
