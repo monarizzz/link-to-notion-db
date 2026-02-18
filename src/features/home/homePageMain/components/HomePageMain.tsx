@@ -1,7 +1,7 @@
 import WorkLogCard from "@/commons/workLogCard/components/WorkLogCard";
 import { ToRecord } from "@/features/notion/types/toRecord";
 import styles from "./Home.module.css";
-import AddPage from "@/commons/addPage/components/AddPage";
+import AddWork from "@/commons/addWork/components/AddWork";
 
 type Props = {
   records: ToRecord[];
@@ -12,7 +12,7 @@ const HomePageMain = ({ records }: Props) => {
 
   return (
     <>
-      <AddPage selects={selects} />
+      <AddWork selects={selects} />
       {records.map((record) => (
         <div key={record.id} className={styles.card}>
           <WorkLogCard record={record}></WorkLogCard>
