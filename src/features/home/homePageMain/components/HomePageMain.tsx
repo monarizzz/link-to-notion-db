@@ -8,17 +8,19 @@ type Props = {
 };
 const HomePageMain = ({ records }: Props) => {
   //TODO:fix
-  const selects = ["開発", "インターン", "雑務"];
+  const selects = ["インターン", "雑務"];
 
   return (
-    <>
-      <AddWork selects={selects} />
+    <div className={styles.root}>
+      <div className={styles.card}>
+        <AddWork selects={selects} />
+      </div>
       {records.map((record) => (
         <div key={record.id} className={styles.card}>
           <WorkLogCard record={record}></WorkLogCard>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

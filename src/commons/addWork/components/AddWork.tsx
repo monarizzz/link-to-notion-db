@@ -32,7 +32,7 @@ const AddPage = ({ selects }) => {
   } = useForm<From>({
     defaultValues: {
       detail: "",
-      select: "",
+      select: selects[0],
       date: defaultDate,
       start: defaultTime,
       end: defaultWorkTime,
@@ -63,14 +63,14 @@ const AddPage = ({ selects }) => {
           {...register("detail", { required: true })}
           placeholder="作業内容を入力..."
         />
-        {errors.detail && "作業内容を入力してください"}
+        {errors.detail && (
+          <p className={styles.error}>作業内容を入力してください</p>
+        )}
         <div className={styles.group}>
           <select
             className={styles.input}
             {...register("select", { required: true })}
           >
-            {errors.select && "作業の種類を選択してください"}
-
             {selects.map((select) => (
               <option key={select} value={select}>
                 {select}
@@ -82,19 +82,25 @@ const AddPage = ({ selects }) => {
             type="date"
             {...register("date", { required: true })}
           />
-          {errors.start && "作業日を選択してください"}
+          {errors.start && (
+            <p className={styles.error}>作業日を選択してください</p>
+          )}
           <input
             className={styles.input}
             type="time"
             {...register("start", { required: true })}
           />
-          {errors.start && "開始時間を選択してください"}
+          {errors.start && (
+            <p className={styles.error}>開始時間を選択してください</p>
+          )}
           <input
             className={styles.input}
             type="time"
             {...register("end", { required: true })}
           />
-          {errors.start && "終了時間を選択してください"}
+          {errors.start && (
+            <p className={styles.error}>終了時間を選択してください</p>
+          )}
         </div>
         <input type="submit" value="記録を追加" className={styles.btn} />
       </form>
