@@ -17,7 +17,12 @@ type From = {
   start: string;
   end: string;
 };
-const AddPage = ({ selects }) => {
+
+type Props = {
+  selects: string[];
+};
+
+const AddPage = ({ selects }: Props) => {
   const defaultDate = dayjs().tz("Asia/Tokyo").format("YYYY-MM-DD");
   const defaultTime = dayjs().tz("Asia/Tokyo").format("HH:mm");
   const defaultWorkTime = dayjs()
