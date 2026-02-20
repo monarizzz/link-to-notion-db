@@ -8,16 +8,17 @@ type Props = {
   records: ToRecord[];
 };
 const HomePageMain = ({ selects, records }: Props) => {
+  console.log(records);
   return (
     <div className={styles.root}>
       <div className={styles.card}>
         <AddWork selects={selects} />
       </div>
-      {records.map((record) => (
-        <div key={record.id} className={styles.card}>
-          <WorkLogCard record={record}></WorkLogCard>
-        </div>
-      ))}
+      <div className={styles.card}>
+        {records.map((record) => (
+          <WorkLogCard key={record.id} record={record}></WorkLogCard>
+        ))}
+      </div>
     </div>
   );
 };

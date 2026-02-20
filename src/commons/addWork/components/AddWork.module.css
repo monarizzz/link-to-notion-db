@@ -1,8 +1,8 @@
 .root {
+  width: 800px;
   border-radius: 10px;
-
   padding: 13px;
-  background-color: #ededed;
+  background-color: #fffcfc;
 }
 
 .title {
@@ -17,17 +17,21 @@
   margin: 5px 0;
 }
 
-.group {
+.inputGroup {
   display: flex;
   gap: 8px;
+}
+
+.group {
+  width: 100%;
 }
 
 .btn {
   width: 100%;
   background-color: #c3d2ff;
   margin: 6px 0;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .error {
