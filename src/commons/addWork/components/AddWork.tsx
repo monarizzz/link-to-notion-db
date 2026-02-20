@@ -60,7 +60,7 @@ const AddPage = ({ selects }: Props) => {
 
   return (
     <div className={styles.root}>
-      <p className={styles.detail}>作業内容を記録</p>
+      <p className={styles.title}>作業内容を記録</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           className={styles.input}
@@ -71,41 +71,47 @@ const AddPage = ({ selects }: Props) => {
         {errors.detail && (
           <p className={styles.error}>作業内容を入力してください</p>
         )}
-        <div className={styles.group}>
-          <select
-            className={styles.input}
-            {...register("select", { required: true })}
-          >
-            {selects.map((select) => (
-              <option key={select} value={select}>
-                {select}
-              </option>
-            ))}
-          </select>
-          <input
-            className={styles.input}
-            type="date"
-            {...register("date", { required: true })}
-          />
-          {errors.start && (
-            <p className={styles.error}>作業日を選択してください</p>
-          )}
-          <input
-            className={styles.input}
-            type="time"
-            {...register("start", { required: true })}
-          />
-          {errors.start && (
-            <p className={styles.error}>開始時間を選択してください</p>
-          )}
-          <input
-            className={styles.input}
-            type="time"
-            {...register("end", { required: true })}
-          />
-          {errors.start && (
-            <p className={styles.error}>終了時間を選択してください</p>
-          )}
+        <div>
+          <div className={styles.inputGroup}>
+            <div className={styles.group}>
+              <select
+                className={styles.input}
+                {...register("select", { required: true })}
+              >
+                {selects.map((select) => (
+                  <option key={select} value={select}>
+                    {select}
+                  </option>
+                ))}
+              </select>
+              <input
+                className={styles.input}
+                type="date"
+                {...register("date", { required: true })}
+              />
+              {errors.start && (
+                <p className={styles.error}>作業日を選択してください</p>
+              )}
+            </div>
+            <div className={styles.group}>
+              <input
+                className={styles.input}
+                type="time"
+                {...register("start", { required: true })}
+              />
+              {errors.start && (
+                <p className={styles.error}>開始時間を選択してください</p>
+              )}
+              <input
+                className={styles.input}
+                type="time"
+                {...register("end", { required: true })}
+              />
+              {errors.start && (
+                <p className={styles.error}>終了時間を選択してください</p>
+              )}
+            </div>
+          </div>
         </div>
         <input type="submit" value="記録を追加" className={styles.btn} />
       </form>
