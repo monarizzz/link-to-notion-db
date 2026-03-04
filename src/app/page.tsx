@@ -12,11 +12,7 @@ const Home = async () => {
     (option) => option.name,
   );
 
-  return (
-    <>
-      <HomePageMain selects={selects} records={data} />
-    </>
-  );
+  return <HomePageMain selects={selects} records={data} />;
 };
 
 export default Home;
