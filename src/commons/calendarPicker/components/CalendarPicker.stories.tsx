@@ -18,7 +18,7 @@ export const Default: Story = {
     date: undefined,
     setDate: () => {},
   },
-  render: () => {
+  render: (args) => {
     const [date, setDate] = useState<Date | undefined>();
     const handleChange = (date: Date | undefined) => {
       console.log(date);
