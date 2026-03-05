@@ -1,4 +1,3 @@
-// Replace your-framework with nextjs or nextjs-vite
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import TaskBtn from "./TaskBtn";
@@ -14,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  taskName: "作業内容",
+  select: "作業内容",
 };
 
 export const Default: Story = {
