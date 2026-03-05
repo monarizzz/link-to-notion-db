@@ -1,5 +1,5 @@
-import CalendarPicker from "@/commons/calendarPicker/components/CalendarPicker";
-import DateDisplay from "@/commons/dateDisplay/components/DateDisplay";
+import CalendarPicker from "@/features/calendarPicker/components/CalendarPicker";
+import DateDisplay from "@/features/addData/components/DateDisplay/DateDisplay";
 import { Separator } from "@/libs/shadcn/assets/ui/separator";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   setDate: (date: Date | undefined) => void;
 };
 
-const DatePicker = ({ date, setDate }: Props) => {
+const DateGroup = ({ date, setDate }: Props) => {
   return (
     <div className="bg-background-2">
       <div className="mb-3">
@@ -20,4 +20,4 @@ const DatePicker = ({ date, setDate }: Props) => {
   );
 };
 
-export default DatePicker;
+export default DateGroup;

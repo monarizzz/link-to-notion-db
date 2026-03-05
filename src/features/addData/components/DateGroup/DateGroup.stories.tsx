@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 
-import DatePicker from "./DatePicker";
+import DateGroup from "./DateGroup";
 
 const meta = {
-  component: DatePicker,
+  component: DateGroup,
   parameters: {
     layout: "fullscreen",
   },
-} satisfies Meta<typeof DatePicker>;
+} satisfies Meta<typeof DateGroup>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -20,6 +20,6 @@ export const Default: Story = {
   },
   render: () => {
     const [date, setDate] = useState<Date | undefined>(new Date());
-    return <DatePicker date={date} setDate={setDate} />;
+    return <DateGroup date={date} setDate={setDate} />;
   },
 };
