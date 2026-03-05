@@ -13,11 +13,11 @@
   "iconLibrary": "lucide",
   "rtl": false,
   "aliases": {
-    "components": "@/libs/chadcn/assets/components",
-    "utils": "@/libs/chadcn/assets/lib/utils",
-    "ui": "@/libs/chadcn/assets/components/ui",
-    "lib": "@/libs/chadcn/assets/lib",
-    "hooks": "@/libs/chadcn/assets/hooks"
+    "components": "@/libs/shadcn/assets/components",
+    "utils": "@/libs/shadcn/assets/lib/utils",
+    "ui": "@/libs/shadcn/assets/components/ui",
+    "lib": "@/libs/shadcn/assets/lib",
+    "hooks": "@/libs/shadcn/assets/hooks"
   },
   "registries": {}
 }
