@@ -15,13 +15,6 @@ const CalendarPicker = ({ date, setDate }: Props) => {
         className="text-xs w-full"
         selected={date}
         onSelect={setDate}
-        classNames={
-          {
-            // caption_label: "text-sm font-bold",
-            // today: "font-bold",
-            // day_button: "font-dm-mono",
-          }
-        }
       />
     </>
   );
