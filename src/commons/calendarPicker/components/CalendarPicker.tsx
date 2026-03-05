@@ -9,14 +9,12 @@ type Props = {
 
 const CalendarPicker = ({ date, setDate }: Props) => {
   return (
-    <>
-      <Calendar
-        mode="single"
-        className="text-xs w-full"
-        selected={date}
-        onSelect={setDate}
-      />
-    </>
+    <Calendar
+      mode="single"
+      className="text-xs w-full"
+      selected={date}
+      onSelect={setDate}
+    />
   );
 };
 
