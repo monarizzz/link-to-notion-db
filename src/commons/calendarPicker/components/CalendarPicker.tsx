@@ -1,0 +1,23 @@
+"use client";
+
+import { Calendar } from "@/libs/shadcn/assets/ui/calendar";
+
+type Props = {
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+};
+
+const CalendarPicker = ({ date, setDate }: Props) => {
+  return (
+    <>
+      <Calendar
+        mode="single"
+        className="rounded-lg border"
+        selected={date}
+        onSelect={setDate}
+      />
+    </>
+  );
+};
+
+export default CalendarPicker;
