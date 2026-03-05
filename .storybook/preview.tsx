@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/nextjs-vite'
-import { DM_Mono } from 'next/font/google'
+import { DM_Mono, DM_Sans } from 'next/font/google'
 import { spyOn } from 'storybook/test'
 import '../src/app/globals.css'
 
@@ -9,9 +9,14 @@ const dmMono = DM_Mono({
   variable: '--font-dm-mono',
 })
 
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+})
+
 export const decorators: Preview['decorators'] = [
   (Story) => (
-    <div className={dmMono.variable}>
+    <div className={`${dmMono.variable} ${dmSans.variable}`}>
       <Story />
     </div>
   ),
