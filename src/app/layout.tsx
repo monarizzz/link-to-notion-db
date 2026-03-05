@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="jp">
+    <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${dmMono.variable} antialiased`}
         style={{ display: "flex" }}
