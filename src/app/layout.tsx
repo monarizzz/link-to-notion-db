@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Mono, Geist, Geist_Mono } from "next/font/google";
+import { DM_Mono, DM_Sans, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/commons/layout/Sidebar/components/Sidebar";
 import { contents } from "@/commons/layout/Sidebar/constants/contents";
@@ -11,6 +11,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
@@ -33,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${dmMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dmMono.variable} ${dmSans.variable} antialiased`}
         style={{ display: "flex" }}
       >
         <Sidebar contents={contents} />
