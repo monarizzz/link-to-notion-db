@@ -1,6 +1,21 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { DM_Mono } from 'next/font/google'
 import { spyOn } from 'storybook/test'
 import '../src/app/globals.css'
+
+const dmMono = DM_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-dm-mono',
+})
+
+export const decorators: Preview['decorators'] = [
+  (Story) => (
+    <div className={dmMono.variable}>
+      <Story />
+    </div>
+  ),
+]
 
 const preview: Preview = {
   parameters: {
