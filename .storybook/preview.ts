@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { spyOn } from 'storybook/test'
 import '../src/app/globals.css'
 
 const preview: Preview = {
@@ -17,6 +18,10 @@ const preview: Preview = {
       test: 'todo'
     }
   },
+};
+
+export const beforeEach = () => {
+  spyOn(console, 'log').mockName('console.log');
 };
 
 export default preview;
