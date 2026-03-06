@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
   label: "作業内容",
-  setLabel: "false",
+  setLabel: false,
   onClick: "",
 };
 
