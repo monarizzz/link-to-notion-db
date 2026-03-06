@@ -7,12 +7,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
-  FieldLegend,
-  FieldSet,
 } from "@/libs/shadcn/assets/ui/field";
 import { Input } from "@/libs/shadcn/assets/ui/input";
 import dayjs from "dayjs";
@@ -29,7 +26,7 @@ dayjs.extend(timezone);
 
 type From = {
   title: string;
-  select: string;
+  label: string;
   date: string;
   start: string;
   end: string;
@@ -59,7 +56,7 @@ const AddData = ({ labels }: Props) => {
   } = useForm<From>({
     defaultValues: {
       title: "",
-      select: labels[0],
+      label: labels[0],
       date: defaultDateFormat,
       start: defaultTime,
       end: defaultWorkTime,
@@ -78,7 +75,7 @@ const AddData = ({ labels }: Props) => {
           end: `${data.date}T${data.end}:00+09:00`,
         },
       },
-      select: { select: { name: data.select } },
+      label: { label: { name: data.label } },
       // detail: { rich_text: [{ text: { content: data.detail } }] },
     };
     // addDataAction(properties);
@@ -90,10 +87,9 @@ const AddData = ({ labels }: Props) => {
     setValue("date", dayjs(d).tz("Asia/Tokyo").format("YYYY-MM-DD"));
   };
 
-  const selectedValue = watch("select");
+  const labelValue = watch("label");
   const startValue = watch("start");
   const endValue = watch("end");
-
   const workingTime = diffTime(startValue, endValue);
 
   return (
@@ -124,18 +120,19 @@ const AddData = ({ labels }: Props) => {
             </Field>
             <Field>
               <FieldLabel htmlFor="label">種類</FieldLabel>
-              <div
-                {...register("select", { required: true })}
-                className="gap-x-1.5 flex"
-              >
+              <div className="gap-x-1.5 flex">
                 {labels.map((label) => (
                   <TaskBtn
+                    {...register("label", { required: true })}
                     key={label}
                     label={label}
-                    setLabel={label === selectedValue}
-                    onClick={() => setValue("select", label)}
+                    setLabel={label === labelValue}
+                    onClick={() => setValue("label", label)}
                   />
                 ))}
+                {errors.label && (
+                  <FieldError>種類を選択してください</FieldError>
+                )}
               </div>
             </Field>
             <Field className="my-auto">
