@@ -7,4 +7,4 @@
 
 ## Storybook
 
-- Storyの `parameters.layout` は基本的に `"fullscreen"` を使うこと
+- 原則はStoryの `parameters.layout` は基本的に `"fullscreen"` を使うこと

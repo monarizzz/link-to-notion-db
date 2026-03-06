@@ -24,7 +24,7 @@ import Line from "@/commons/layout/line/components/Line";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-type From = {
+type Form = {
   title: string;
   label: string;
   date: string;
@@ -53,7 +53,7 @@ const AddData = ({ labels }: Props) => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<From>({
+  } = useForm<Form>({
     defaultValues: {
       title: "",
       label: labels[0],
@@ -66,7 +66,7 @@ const AddData = ({ labels }: Props) => {
   const timeText =
     "p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1";
 
-  const onSubmit = (data: From) => {
+  const onSubmit = (data: Form) => {
     const properties = {
       title: { title: [{ text: { content: data.title } }] },
       workTime: {
