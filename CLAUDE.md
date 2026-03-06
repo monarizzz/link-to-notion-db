@@ -7,4 +7,4 @@
 
 ## Storybook
 
-- 原則ClaudeがStoryを作成する際は `parameters.layout` は基本的に `"fullscreen"` を使うこと
+- Claudeが自分でStoryを書く際は `parameters.layout` に基本的に `"fullscreen"` を設定すること（レビュー指摘としては不要）
