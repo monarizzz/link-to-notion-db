@@ -75,7 +75,7 @@ const AddData = ({ labels }: Props) => {
           end: `${data.date}T${data.end}:00+09:00`,
         },
       },
-      label: { label: { name: data.label } },
+      label: { select: { name: data.label } },
       // detail: { rich_text: [{ text: { content: data.detail } }] },
     };
     // addDataAction(properties);
