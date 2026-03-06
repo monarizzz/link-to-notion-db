@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { addWorkAction } from "@/commons/addData/entities/addData";
+import { addWorkAction } from "@/commons/addData/entities/addDataAction";
 
 import {
   Field,
