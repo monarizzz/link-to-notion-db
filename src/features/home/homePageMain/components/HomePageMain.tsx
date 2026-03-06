@@ -8,7 +8,6 @@ type Props = {
   records: ToRecord[];
 };
 const HomePageMain = ({ labels, records }: Props) => {
-  console.log(records);
   return (
     <div className={styles.root}>
       <div className={styles.card}>
