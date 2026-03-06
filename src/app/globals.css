@@ -17,6 +17,15 @@
   /* text size */
   --text-2xs: 0.625rem; /* 10px */
 
+  /* badge colors */
+  --color-badge-today:     var(--badge-today);
+  --color-badge-yesterday: var(--badge-yesterday);
+  --color-badge-tomorrow:  var(--badge-tomorrow);
+  --color-badge-last-week: var(--badge-last-week);
+  --color-badge-next-week: var(--badge-next-week);
+  --color-badge-past:      var(--badge-past);
+  --color-badge-future:    var(--badge-future);
+
   /* color */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -66,6 +75,15 @@ a {
 }
 
 :root {
+  /* badge colors */
+  --badge-today:     #D4A853;
+  --badge-yesterday: #7A9E7E;
+  --badge-tomorrow:  #6B8FBF;
+  --badge-last-week: #B07AA8;
+  --badge-next-week: #C2714F;
+  --badge-past:      #9A9A9A;
+  --badge-future:    #9A9A9A;
+
   --radius: 0.625rem;
   --background: #ffffff;
   --background-2: #f5f3ef;

@@ -116,7 +116,7 @@ const AddData = ({ labels }: Props) => {
                 id="title"
                 {...register("title", { required: true })}
                 placeholder="何をしていましたか？"
-                className="bg-background-2 text-sm"
+                className="bg-background-2 text-sm py-5 px-3.25"
               />
               {errors.title && (
                 <FieldError>作業内容を入力してください</FieldError>
