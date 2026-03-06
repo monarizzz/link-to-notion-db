@@ -13,7 +13,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  select: "作業内容",
+  label: "作業内容",
+  setLabel: "false",
+  onClick: "",
 };
 
 export const Default: Story = {

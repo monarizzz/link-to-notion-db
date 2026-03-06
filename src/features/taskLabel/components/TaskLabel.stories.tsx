@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  taskName: "Storybookの設定",
+  title: "Storybookの設定",
   size: 20,
 };
 
@@ -38,7 +38,7 @@ export const Colors: Story = {
           "pink",
           "red",
         ].map((color) => (
-          <TaskLabel key={color} taskName={color} size={20} color={color} />
+          <TaskLabel key={color} title={color} size={20} color={color} />
         ))}
       </div>
     ),

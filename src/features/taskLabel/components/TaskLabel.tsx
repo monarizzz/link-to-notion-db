@@ -3,12 +3,12 @@ import styles from "./TaskLabel.module.css";
 import notionColorMap from "@/libs/notion/constants/colorMap";
 
 type Props = {
-  taskName: string;
+  title: string;
   size: number;
   color?: string;
 };
 
-const TaskLabel = ({ taskName, size, color = "default" }: Props) => {
+const TaskLabel = ({ title, size, color = "default" }: Props) => {
   const { bg, border } = notionColorMap[color] ?? notionColorMap.default;
   return (
     <div
@@ -16,7 +16,7 @@ const TaskLabel = ({ taskName, size, color = "default" }: Props) => {
       style={{ backgroundColor: bg, borderColor: border }}
     >
       <Image src="label.svg" alt="task name" width={size} height={size} />
-      <span className={styles.text}>{taskName}</span>
+      <span className={styles.text}>{title}</span>
     </div>
   );
 };

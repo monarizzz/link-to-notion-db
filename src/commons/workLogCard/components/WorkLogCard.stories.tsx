@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 const defaultArgs = {
   record: {
     id: "dummy-page-id-123",
-    taskName: "Storybookの設定",
+    title: "Storybookの設定",
     start: "2026-02-14T09:00:00",
     end: "2026-02-14T10:30:00",
     url: "https://www.notion.so/dummy-page-id-123",

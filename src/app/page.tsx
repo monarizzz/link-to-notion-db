@@ -8,11 +8,11 @@ const Home = async () => {
   const data = allRecords.results.map((record) => toRecord(record));
   const allSchema = await getDBSchema();
 
-  const selects = allSchema.properties.select.select.options.map(
+  const labels = allSchema.properties.select.select.options.map(
     (option) => option.name,
   );
 
-  return <HomePageMain selects={selects} records={data} />;
+  return <HomePageMain labels={labels} records={data} />;
 };
 
 export default Home;
