@@ -4,18 +4,15 @@ type Props = {
 
 const DateDisplay = ({ date }: Props) => {
   //TODO: 今日の場合のラベルを追加する
+  const year = date.getFullYear();
+  const month = " " + String(date.getMonth() + 1);
+  const day = " " + String(date.getDate());
+  const weekday = date.toLocaleDateString("ja-JP", { weekday: "short" });
+
   return (
     <div className="w-full">
       <div className="font-dm-sans text-sm">
-        {date
-          ?.toLocaleDateString("ja-JP", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            weekday: "short",
-          })
-          .replace("(", "（")
-          .replace(")", "）")}
+        {`${year}年${month}月${day}日（${weekday}）`}
       </div>
     </div>
   );

@@ -138,7 +138,7 @@ const AddData = ({ labels }: Props) => {
                 ))}
               </div>
             </Field>
-            <Field>
+            <Field className="my-auto">
               <FieldLabel htmlFor="time">作業時間</FieldLabel>
               <div className="bg-background-2 rounded-2xl  border-[1.5px]">
                 <div className="flex justify-between">
@@ -184,8 +184,8 @@ const AddData = ({ labels }: Props) => {
             </Field>
           </FieldGroup>
           <Line vertical />
-          <div className="bg-background-2 w-[320px]">
-            <Field className="pt-5 px-5 pb-7">
+          <div className="bg-background-2 w-[320px] min-h-113.25">
+            <Field className="pt-6 px-5">
               <FieldLabel htmlFor="date">日付</FieldLabel>
               <DateGroup date={date} setDate={handleSetDate} />
             </Field>

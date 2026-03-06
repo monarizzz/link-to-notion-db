@@ -11,13 +11,15 @@ type Props = {
 const DateGroup = ({ date, setDate }: Props) => {
   return (
     <div className="w-fit!">
-      <div className="mb-5">
-        <DateDisplay date={date} />
-        <div className="my-2">
+      <div className="mb-3">
+        <div className="ml-1">
+          <DateDisplay date={date} />
+        </div>
+        <div className="my-1.5 ml-0.5">
           <DateLabel date={date} />
         </div>
       </div>
-      <Separator className="mb-3.5" />
+      <Separator className="mb-2" />
       <CalendarPicker date={date} setDate={setDate} />
     </div>
   );
