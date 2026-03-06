@@ -5,7 +5,7 @@ import DateLabel from "./DateLabel";
 const meta = {
   component: DateLabel,
   parameters: {
-    layout: "center",
+    layout: "centered",
   },
 } satisfies Meta<typeof DateLabel>;
 
