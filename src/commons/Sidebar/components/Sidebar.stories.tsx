@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 const meta = {
   component: Sidebar,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
 } satisfies Meta<typeof Sidebar>;
 

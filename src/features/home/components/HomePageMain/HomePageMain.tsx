@@ -1,4 +1,4 @@
-import WorkLogCard from "@/commons/workLogCard/components/WorkLogCard";
+import WorkLogCard from "@/commons/other/components/workLogCard/WorkLogCard";
 import { ToRecord } from "@/features/notion/types/toRecord";
 import styles from "./HomePageMain.module.css";
 import AddData from "@/commons/addData/components/AddData";
