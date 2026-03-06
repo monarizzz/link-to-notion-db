@@ -71,7 +71,7 @@ const AddData = ({ labels }: Props) => {
 
   const onSubmit = (data: From) => {
     const properties = {
-      title: { title: [{ text: { content: data.select } }] },
+      title: { title: [{ text: { content: data.title } }] },
       workTime: {
         date: {
           start: `${data.date}T${data.start}:00+09:00`,
