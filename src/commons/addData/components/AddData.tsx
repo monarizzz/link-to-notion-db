@@ -51,6 +51,7 @@ const AddData = ({ labels }: Props) => {
     register,
     handleSubmit,
     watch,
+    reset,
     setValue,
     formState: { errors },
   } = useForm<Form>({
@@ -121,7 +122,10 @@ const AddData = ({ labels }: Props) => {
             <Field>
               <FieldLabel htmlFor="label">種類</FieldLabel>
               <div className="gap-x-1.5 flex">
-                <input type="hidden" {...register("label", { required: true })} />
+                <input
+                  type="hidden"
+                  {...register("label", { required: true })}
+                />
                 {labels.map((label) => (
                   <TaskBtn
                     key={label}
@@ -196,7 +200,8 @@ const AddData = ({ labels }: Props) => {
             className="rounded-lg py-2.5 w-full px-5 bg-primary text-background text-[14px] font-medium cursor-pointer"
           />
           <input
-            type="reset"
+            type="button"
+            onClick={() => reset()}
             value="キャンセル"
             className="rounded-lg py-2.5 px-5 border border-border text-foreground text-[14px] font-medium cursor-pointer max-w-30"
           />
