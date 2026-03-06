@@ -39,11 +39,8 @@ type Props = {
 const AddData = ({ labels }: Props) => {
   const defaultDate = dayjs().tz("Asia/Tokyo");
   const defaultDateFormat = defaultDate.format("YYYY-MM-DD");
-  const defaultTime = dayjs().tz("Asia/Tokyo").format("HH:mm");
-  const defaultWorkTime = dayjs()
-    .tz("Asia/Tokyo")
-    .add(20, "minute")
-    .format("HH:mm");
+  const defaultTime = defaultDate.format("HH:mm");
+  const defaultWorkTime = defaultDate.add(20, "minute").format("HH:mm");
 
   const [date, setDate] = useState<Date>(defaultDate.toDate());
 
