@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import TaskBtn from "./TaskBtn";
 
+/* この場合はcenteredで良い */
 const meta = {
   component: TaskBtn,
   parameters: {
@@ -15,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 const defaultArgs = {
   label: "作業内容",
   setLabel: false,
-  onClick: "",
+  onClick: () => {},
 };
 
 export const Default: Story = {
