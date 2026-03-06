@@ -1,3 +1,4 @@
+import { calcDayDiff } from "./entities/calcDayDiff";
 import { calcBgColor, calcDate, calcTextColor } from "./utils/DateLabel.utils";
 
 type Props = {
@@ -5,12 +6,13 @@ type Props = {
 };
 
 const DateLabel = ({ date }: Props) => {
+  const diff = calcDayDiff(date);
   return (
-    <div className={`${calcBgColor(date)} flex rounded-[30px] items-center`}>
+    <div className={`${calcBgColor(diff)} flex rounded-[30px] items-center`}>
       <span
-        className={`text-2xs py-0.5 px-2 font-bold  ${calcTextColor(date)}`}
+        className={`text-2xs py-0.5 px-2 font-bold  ${calcTextColor(diff)}`}
       >
-        {calcDate(date)}
+        {calcDate(diff)}
       </span>
     </div>
   );

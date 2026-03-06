@@ -1,8 +1,4 @@
-import { calcDayDiff } from "../entities/calcDayDiff";
-
-export const calcBgColor = (date: Date): string => {
-  const diff = calcDayDiff(date);
-
+export const calcBgColor = (diff: number): string => {
   if (diff === 0) return "bg-badge-today/25";
   if (diff === 1) return "bg-badge-tomorrow/25";
   if (diff === -1) return "bg-badge-yesterday/25";
@@ -12,9 +8,7 @@ export const calcBgColor = (date: Date): string => {
   return "bg-badge-past/25";
 };
 
-export const calcTextColor = (date: Date): string => {
-  const diff = calcDayDiff(date);
-
+export const calcTextColor = (diff: number): string => {
   if (diff === 0) return "text-badge-today";
   if (diff === 1) return "text-badge-tomorrow";
   if (diff === -1) return "text-badge-yesterday";
@@ -24,9 +18,7 @@ export const calcTextColor = (date: Date): string => {
   return "text-badge-past";
 };
 
-export const calcDate = (date: Date): string => {
-  const diff = calcDayDiff(date);
-
+export const calcDate = (diff: number): string => {
   if (diff === 0) return "今日";
   if (diff === 1) return "明日";
   if (diff === -1) return "昨日";
