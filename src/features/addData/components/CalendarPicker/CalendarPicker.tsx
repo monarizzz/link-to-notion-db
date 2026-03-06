@@ -3,7 +3,7 @@
 import { Calendar } from "@/libs/shadcn/assets/ui/calendar";
 
 type Props = {
-  date: Date;
+  date: Date | undefined;
   setDate: (date: Date | undefined) => void;
 };
 
