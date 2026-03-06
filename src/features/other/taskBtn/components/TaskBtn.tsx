@@ -1,15 +1,23 @@
 type Props = {
-  select: string;
+  label: string;
+  setLabel: boolean;
+  onClick?: () => void;
 };
 
-const TaskButton = ({ select }: Props) => {
+const TaskBtn = ({ label, setLabel, onClick }: Props) => {
   return (
-    <div>
-      <div className="text-xs rounded-full text-muted-foreground py-1.5 px-3 bg-background-2 border-[1.5px] border-border hover:border-border-hover hover:text-foreground">
-        {select}
-      </div>
-    </div>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`text-xs rounded-full py-2 px-4 border-[1.5px] transition-colors whitespace-nowrap ${
+        setLabel
+          ? "bg-foreground text-background border-foreground"
+          : "bg-background-2 text-muted-foreground border-border hover:border-border-hover hover:text-foreground"
+      }`}
+    >
+      {label}
+    </button>
   );
 };
 
-export default TaskButton;
+export default TaskBtn;

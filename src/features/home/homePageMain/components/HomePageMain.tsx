@@ -1,18 +1,17 @@
 import WorkLogCard from "@/commons/workLogCard/components/WorkLogCard";
 import { ToRecord } from "@/features/notion/types/toRecord";
 import styles from "./HomePageMain.module.css";
-import AddWork from "@/commons/addWork/components/AddWork";
+import AddData from "@/commons/addData/components/AddData";
 
 type Props = {
-  selects: string[];
+  labels: string[];
   records: ToRecord[];
 };
-const HomePageMain = ({ selects, records }: Props) => {
-  console.log(records);
+const HomePageMain = ({ labels, records }: Props) => {
   return (
     <div className={styles.root}>
-      <div className={styles.card}>
-        <AddWork selects={selects} />
+      <div className="w-full">
+        <AddData labels={labels} />
       </div>
       <div className={styles.card}>
         {records.map((record) => (

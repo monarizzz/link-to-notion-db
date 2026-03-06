@@ -3,7 +3,7 @@
 import { Calendar } from "@/libs/shadcn/assets/ui/calendar";
 
 type Props = {
-  date: Date | undefined;
+  date: Date;
   setDate: (date: Date | undefined) => void;
 };
 
@@ -11,7 +11,7 @@ const CalendarPicker = ({ date, setDate }: Props) => {
   return (
     <Calendar
       mode="single"
-      className="text-xs w-full"
+      className="text-xs"
       selected={date}
       onSelect={setDate}
     />

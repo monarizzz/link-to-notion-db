@@ -31,7 +31,7 @@ const WorkLogCard = ({ record }: Props) => {
         </div>
         <div className={styles.label}>
           <TaskLabel
-            taskName={record.taskName}
+            title={record.title}
             size={size * 0.7}
             color={record.color}
           />

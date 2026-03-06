@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import AddWork from "./AddWork";
+import AddData from "./AddData";
 
 const meta = {
-  component: AddWork,
+  component: AddData,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
-} satisfies Meta<typeof AddWork>;
+} satisfies Meta<typeof AddData>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  selects: ["開発", "インターン", "雑務"],
+  labels: ["開発", "インターン", "雑務"],
 };
 
 export const Default: Story = {
