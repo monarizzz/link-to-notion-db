@@ -121,9 +121,9 @@ const AddData = ({ labels }: Props) => {
             <Field>
               <FieldLabel htmlFor="label">種類</FieldLabel>
               <div className="gap-x-1.5 flex">
+                <input type="hidden" {...register("label", { required: true })} />
                 {labels.map((label) => (
                   <TaskBtn
-                    {...register("label", { required: true })}
                     key={label}
                     label={label}
                     setLabel={label === labelValue}
