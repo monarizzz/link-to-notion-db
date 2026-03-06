@@ -1,10 +1,10 @@
 import Image from "next/image";
 import styles from "./WorkLogCard.module.css";
-import DeleteBtn from "@/commons/deleteBtn/components/DeleteBtn";
-import TaskLabel from "@/features/taskLabel/components/TaskLabel";
-import TimeLabel from "@/features/timeLabel/components/TimeLabel";
 import ToNotionBtn from "@/features/toNotionBtn/components/ToNotionBtn";
 import { ToRecord } from "@/features/notion/types/toRecord";
+import DeleteBtn from "@/commons/other/components/DeleteBtn/DeleteBtn";
+import TaskLabel from "@/features/other/components/TaskLabel/TaskLabel";
+import TimeLabel from "@/features/other/components/TimeLabel/TimeLabel";
 
 type Props = {
   record: ToRecord;

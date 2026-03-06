@@ -1,5 +1,5 @@
-import { calcDayDiff } from "./entities/calcDayDiff";
-import { calcDateLabelStyle } from "./utils/DateLabel.utils";
+import { calcDayDiff } from "../../entities/calcDayDiff";
+import { calcDateLabelStyle } from "../../utils/DateLabel.utils";
 
 type Props = {
   date: Date;

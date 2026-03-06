@@ -1,6 +1,6 @@
-import workTime from "../utils/workTime";
 import Image from "next/image";
 import styles from "./TimeLabel.module.css";
+import workTime from "./utils/workTime";
 
 type Props = {
   start: string;

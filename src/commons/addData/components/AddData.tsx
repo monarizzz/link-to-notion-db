@@ -15,11 +15,11 @@ import { Input } from "@/libs/shadcn/assets/ui/input";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import TaskBtn from "@/features/other/taskBtn/components/TaskBtn";
+import TaskBtn from "@/features/addData/components/TaskBtn/TaskBtn";
 
 import Image from "next/image";
 import TimeField from "@/features/addData/components/TimeField/TimeField";
-import Line from "@/commons/layout/line/components/Line";
+import Line from "@/commons/layout/components/Line/Line";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
