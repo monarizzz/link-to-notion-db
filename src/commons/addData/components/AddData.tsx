@@ -168,7 +168,7 @@ const AddData = ({ labels }: Props) => {
                       {workingTime}
                     </span>
                     <Image
-                      src="pen.svg"
+                      src="/pen.svg"
                       alt="pen"
                       width={10}
                       height={10}
