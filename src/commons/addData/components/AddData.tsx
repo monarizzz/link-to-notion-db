@@ -161,7 +161,7 @@ const AddData = ({ labels }: Props) => {
                     className={timeText}
                   />
                 </div>
-                <Line />
+                <Line dashed />
                 <div className="flex justify-between items-center px-3.5 py-2.25">
                   <div className="text-2xs font-medium uppercase text-subtle-foreground">
                     合計
