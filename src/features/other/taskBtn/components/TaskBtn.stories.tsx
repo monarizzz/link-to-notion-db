@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import TaskBtn from "./TaskBtn";
 
-/* この場合はcenteredで良い */
 const meta = {
   component: TaskBtn,
   parameters: {
