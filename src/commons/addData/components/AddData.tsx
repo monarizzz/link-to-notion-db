@@ -1,6 +1,7 @@
 "use client";
 
 import { addDataAction } from "@/commons/addData/entities/addDataAction";
+import { diffTime } from "@/commons/addData/entities/diffTime";
 import DateGroup from "@/features/addData/components/DateGroup/DateGroup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,8 +19,10 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import TaskBtn from "@/features/other/taskBtn/components/TaskBtn";
-import { Separator } from "@/libs/shadcn/assets/ui/separator";
+
 import Image from "next/image";
+import TimeField from "@/features/addData/components/TimeField/TimeField";
+import Line from "@/commons/layout/line/components/Line";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -63,6 +66,9 @@ const AddData = ({ labels }: Props) => {
     },
   });
 
+  const timeText =
+    "p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1";
+
   const onSubmit = (data: From) => {
     const properties = {
       title: { title: [{ text: { content: data.select } }] },
@@ -85,6 +91,10 @@ const AddData = ({ labels }: Props) => {
   };
 
   const selectedValue = watch("select");
+  const startValue = watch("start");
+  const endValue = watch("end");
+
+  const workingTime = diffTime(startValue, endValue);
 
   return (
     <div className="w-full max-w-225 bg-background rounded-4xl border-[1.5px]">
@@ -96,7 +106,7 @@ const AddData = ({ labels }: Props) => {
           作業を記録
         </span>
       </div>
-      <Separator />
+      <Line />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex">
           <FieldGroup className="py-6 px-7">
@@ -132,58 +142,56 @@ const AddData = ({ labels }: Props) => {
               <FieldLabel htmlFor="time">作業時間</FieldLabel>
               <div className="bg-background-2 rounded-2xl  border-[1.5px]">
                 <div className="flex justify-between">
-                  <div className="flex gap-2.5 px-3.5 items-center">
-                    <Image src="time.svg" width={10} height={10} alt="time" />
-                    <span className="text-2xs font-medium uppercase text-subtle-foreground pr-3.5">
-                      開始
-                    </span>
-                    <div className="self-stretch h-auto py-4 ">
-                      <Separator orientation="vertical" />
-                    </div>
-                  </div>
+                  <TimeField text={"開始"} />
                   <input
                     type="time"
                     id="start"
                     {...register("start", { required: true })}
-                    className="p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1"
+                    className={timeText}
                   />
                 </div>
-                <Separator />
+                <Line />
                 <div className="flex justify-between">
-                  <div className="flex gap-2.5 px-3.5 items-center">
-                    <Image src="time.svg" width={10} height={10} alt="time" />
-                    <span className="text-2xs font-medium uppercase text-subtle-foreground pr-3.5">
-                      終了
-                    </span>
-                    <div className="self-stretch h-auto py-4">
-                      <Separator orientation="vertical" />
-                    </div>
-                  </div>
+                  <TimeField text={"終了"} />
                   <input
                     type="time"
                     id="end"
                     {...register("end", { required: true })}
-                    className="p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1"
+                    className={timeText}
                   />
                 </div>
-                <Separator />
-                <div className="text-2xs font-medium uppercase text-subtle-foreground py-2.5 px-3.5">
-                  合計
+                <Line />
+                <div className="flex justify-between items-center px-3.5 py-2.25">
+                  <div className="text-2xs font-medium uppercase text-subtle-foreground">
+                    合計
+                  </div>
+                  {/* <button> */}
+                  <div className="flex gap-5 items-center">
+                    <span className="font-dm-mono text-sm text-muted-foreground font-medium">
+                      {workingTime}
+                    </span>
+                    <Image
+                      src="pen.svg"
+                      alt="pen"
+                      width={10}
+                      height={10}
+                      className="pb-0.5"
+                    />
+                    {/* </button> */}
+                  </div>
                 </div>
               </div>
             </Field>
           </FieldGroup>
-          <div className="self-stretch h-auto">
-            <Separator orientation="vertical" />
-          </div>
+          <Line vertical />
           <div className="bg-background-2 w-[320px]">
-            <Field className="  pt-5 px-5 pb-7">
+            <Field className="pt-5 px-5 pb-7">
               <FieldLabel htmlFor="date">日付</FieldLabel>
               <DateGroup date={date} setDate={handleSetDate} />
             </Field>
           </div>
         </div>
-        <Separator />
+        <Line />
         <div className="flex w-full px-7 py-4.5 gap-2.5 justify-between">
           <input
             type="submit"
