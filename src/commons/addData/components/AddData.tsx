@@ -28,8 +28,8 @@ type Form = {
   label: string;
   sDate: string;
   eDate: string;
-  start: string;
-  end: string;
+  sTime: string;
+  eTime: string;
 };
 
 type Props = {
@@ -60,8 +60,8 @@ const AddData = ({ labels }: Props) => {
       label: labels[0],
       sDate: defaultDateFormat,
       eDate: defaultDateFormat,
-      start: defaultTime,
-      end: defaultWorkTime,
+      sTime: defaultTime,
+      eTime: defaultWorkTime,
     },
   });
 
@@ -70,8 +70,8 @@ const AddData = ({ labels }: Props) => {
       title: { title: [{ text: { content: data.title } }] },
       workTime: {
         date: {
-          start: `${data.sDate}T${data.start}:${TZ_OFFSET_JP}`,
-          end: `${data.eDate}T${data.end}:${TZ_OFFSET_JP}`,
+          start: `${data.sDate}T${data.sTime}:${TZ_OFFSET_JP}`,
+          end: `${data.eDate}T${data.sTime}:${TZ_OFFSET_JP}`,
         },
       },
       select: { select: { name: data.label } },
@@ -80,15 +80,15 @@ const AddData = ({ labels }: Props) => {
     reset();
   };
 
-  const [startValue, endValue, sDateValue, eDateValue] = useWatch({
+  const [sTimeValue, eTimeValue, sDateValue, eDateValue] = useWatch({
     control,
-    name: ["start", "end", "sDate", "eDate"],
+    name: ["sTime", "sTime", "sDate", "eDate"],
   });
   const labelValue = useWatch({ control, name: "label" });
 
   const workingTime = diffTime(
-    `${sDateValue}T${startValue}`,
-    `${eDateValue}T${endValue}`,
+    `${sDateValue}T${sTimeValue}`,
+    `${eDateValue}T${eTimeValue}`,
   );
 
   const handleSetDate = (date: Date | undefined) => {
@@ -149,8 +149,8 @@ const AddData = ({ labels }: Props) => {
                   <TimeField text={"開始"} />
                   <input
                     type="time"
-                    id="start"
-                    {...register("start", { required: true })}
+                    id="sTime"
+                    {...register("sTime", { required: true })}
                     className={timeTextCn}
                   />
                 </div>
@@ -159,8 +159,8 @@ const AddData = ({ labels }: Props) => {
                   <TimeField text={"終了"} />
                   <input
                     type="time"
-                    id="end"
-                    {...register("end", { required: true })}
+                    id="eTime"
+                    {...register("eTime", { required: true })}
                     className={timeTextCn}
                   />
                 </div>
