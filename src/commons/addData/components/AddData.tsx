@@ -66,18 +66,22 @@ const AddData = ({ labels }: Props) => {
   });
 
   const onSubmit = async (data: Form) => {
-    const properties = {
-      title: { title: [{ text: { content: data.title } }] },
-      workTime: {
-        date: {
-          start: `${data.sDate}T${data.sTime}:${TZ_OFFSET_JP}`,
-          end: `${data.eDate}T${data.sTime}:${TZ_OFFSET_JP}`,
+    try {
+      const properties = {
+        title: { title: [{ text: { content: data.title } }] },
+        workTime: {
+          date: {
+            start: `${data.sDate}T${data.sTime}:${TZ_OFFSET_JP}`,
+            end: `${data.eDate}T${data.sTime}:${TZ_OFFSET_JP}`,
+          },
         },
-      },
-      select: { select: { name: data.label } },
-    };
-    await addDataAction(properties);
-    reset();
+        select: { select: { name: data.label } },
+      };
+      await addDataAction(properties);
+      reset();
+    } catch (error) {
+      console.error(error); // TODO:errorハンドリングを考える
+    }
   };
 
   const [sTimeValue, eTimeValue, sDateValue, eDateValue] = useWatch({
