@@ -12,10 +12,6 @@ const Home = async () => {
     (option) => option.name,
   );
 
-  // allRecords.results.map((record) => {
-  //   console.log(record.properties);
-  // });
-
   return <HomePageMain labels={labels} records={data} />;
 };
 
