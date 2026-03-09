@@ -1,3 +1,4 @@
+/* TimeZoneを含まない形式で計算する */
 export const diffTime = (start: string, end: string): string => {
   const diff = Math.floor(
     (new Date(end).getTime() - new Date(start).getTime()) / 60000,
