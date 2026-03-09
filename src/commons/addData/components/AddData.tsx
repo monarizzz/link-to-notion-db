@@ -3,8 +3,7 @@
 import { addDataAction } from "@/commons/addData/entities/addDataAction";
 import { diffTime } from "@/commons/addData/entities/diffTime";
 import DateGroup from "@/features/addData/components/DateGroup/DateGroup";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import {
   Field,
   FieldError,
@@ -27,7 +26,8 @@ dayjs.extend(timezone);
 type Form = {
   title: string;
   label: string;
-  date: string;
+  sDate: string;
+  eDate: string;
   start: string;
   end: string;
 };
@@ -36,18 +36,21 @@ type Props = {
   labels: string[];
 };
 
+const timeTextCn =
+  "p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1";
+const TZ_OFFSET_JP = "00+09:00";
+
+/* 現状TimeZoneは日本のみを想定 */
 const AddData = ({ labels }: Props) => {
   const defaultDate = dayjs().tz("Asia/Tokyo");
   const defaultDateFormat = defaultDate.format("YYYY-MM-DD");
   const defaultTime = defaultDate.format("HH:mm");
   const defaultWorkTime = defaultDate.add(20, "minute").format("HH:mm");
 
-  const [date, setDate] = useState<Date>(defaultDate.toDate());
-
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     reset,
     setValue,
     formState: { errors },
@@ -55,43 +58,46 @@ const AddData = ({ labels }: Props) => {
     defaultValues: {
       title: "",
       label: labels[0],
-      date: defaultDateFormat,
+      sDate: defaultDateFormat,
+      eDate: defaultDateFormat,
       start: defaultTime,
       end: defaultWorkTime,
     },
   });
 
-  const timeText =
-    "p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1";
-
-  const onSubmit = (data: Form) => {
+  const onSubmit = async (data: Form) => {
     const properties = {
       title: { title: [{ text: { content: data.title } }] },
       workTime: {
         date: {
-          start: `${data.date}T${data.start}:00+09:00`,
-          end: `${data.date}T${data.end}:00+09:00`,
+          start: `${data.sDate}T${data.start}:${TZ_OFFSET_JP}`,
+          end: `${data.eDate}T${data.end}:${TZ_OFFSET_JP}`,
         },
       },
-      label: { select: { name: data.label } },
-      // detail: { rich_text: [{ text: { content: data.detail } }] },
+      select: { select: { name: data.label } },
     };
-    // addDataAction(properties);
-    console.log(properties);
-  };
-  const handleSetDate = (d: Date | undefined) => {
-    if (!d) return;
-    setDate(d);
-    setValue("date", dayjs(d).tz("Asia/Tokyo").format("YYYY-MM-DD"));
+    await addDataAction(properties);
+    reset();
   };
 
-  const labelValue = watch("label");
-  const startValue = watch("start");
-  const endValue = watch("end");
-  const workingTime = diffTime(startValue, endValue);
+  const [startValue, endValue, sDateValue, eDateValue] = useWatch({
+    control,
+    name: ["start", "end", "sDate", "eDate"],
+  });
+  const labelValue = useWatch({ control, name: "label" });
+
+  const workingTime = diffTime(
+    `${sDateValue}T${startValue}`,
+    `${eDateValue}T${endValue}`,
+  );
+
+  const handleSetDate = (date: Date | undefined) => {
+    if (date)
+      setValue("sDate", dayjs(date).tz("Asia/Tokyo").format("YYYY-MM-DD"));
+  };
 
   return (
-    <div className="w-full max-w-225 bg-background rounded-4xl border-[1.5px]">
+    <div className="w-full bg-background rounded-4xl border-[1.5px]">
       <div className="items-center py-6 px-7 flex gap-2.5">
         <div className="bg-primary rounded-lg p-2">
           <Image src="/document.svg" width={15} height={15} alt="document" />
@@ -145,7 +151,7 @@ const AddData = ({ labels }: Props) => {
                     type="time"
                     id="start"
                     {...register("start", { required: true })}
-                    className={timeText}
+                    className={timeTextCn}
                   />
                 </div>
                 <Line />
@@ -155,7 +161,7 @@ const AddData = ({ labels }: Props) => {
                     type="time"
                     id="end"
                     {...register("end", { required: true })}
-                    className={timeText}
+                    className={timeTextCn}
                   />
                 </div>
                 <Line dashed />
@@ -163,7 +169,6 @@ const AddData = ({ labels }: Props) => {
                   <div className="text-2xs font-medium uppercase text-subtle-foreground">
                     合計
                   </div>
-                  {/* <button> */}
                   <div className="flex gap-5 items-center">
                     <span className="font-dm-mono text-sm text-muted-foreground font-medium">
                       {workingTime}
@@ -175,7 +180,6 @@ const AddData = ({ labels }: Props) => {
                       height={10}
                       className="pb-0.5"
                     />
-                    {/* </button> */}
                   </div>
                 </div>
               </div>
@@ -185,7 +189,7 @@ const AddData = ({ labels }: Props) => {
           <div className="bg-background-2 w-[320px] min-h-113.25">
             <Field className="pt-6 px-5">
               <FieldLabel htmlFor="date">日付</FieldLabel>
-              <DateGroup date={date} setDate={handleSetDate} />
+              <DateGroup date={sDateValue} setDate={handleSetDate} />
             </Field>
           </div>
         </div>
