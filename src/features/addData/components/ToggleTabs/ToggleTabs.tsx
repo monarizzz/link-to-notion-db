@@ -2,8 +2,6 @@ import { Tabs, TabsList, TabsTrigger } from "@/libs/shadcn/assets/ui/tabs";
 
 const ToggleTabs = ({}) => {
   return (
-    //   bg-muted-foreground
-
     <Tabs defaultValue="start">
       <TabsList className="h-6">
         <TabsTrigger
