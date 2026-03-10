@@ -1,6 +1,6 @@
 import { Tabs, TabsList, TabsTrigger } from "@/libs/shadcn/assets/ui/tabs";
 
-const ToggleTabs = ({}) => {
+const ToggleTabs = () => {
   return (
     <Tabs defaultValue="start">
       <TabsList className="h-8! rounded-sm">

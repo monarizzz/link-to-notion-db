@@ -10,7 +10,7 @@ type Props = {
 const HomePageMain = ({ labels, records }: Props) => {
   return (
     <div className={styles.root}>
-      <div className="w-full">
+      <div className="w-[90%] my-6">
         <AddData labels={labels} />
       </div>
       <div className={styles.card}>
