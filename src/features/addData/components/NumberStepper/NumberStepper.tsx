@@ -7,17 +7,16 @@ import { useState } from "react";
 type Props = {
   defaultValue: number;
   max?: number;
-  digits?: number;
 };
 
-const NumberStepper = ({ defaultValue, max, digits }: Props) => {
+const NumberStepper = ({ defaultValue, max }: Props) => {
   const [count, setCount] = useState(defaultValue);
 
   return (
     <ButtonGroup
       orientation="horizontal"
       aria-label="Media controls"
-      className="h-fit border border-input rounded-md overflow-hidden"
+      className="h-fit border border-input rounded-md overflow-hidden bg-background"
     >
       <Button
         variant="ghost"
@@ -28,13 +27,9 @@ const NumberStepper = ({ defaultValue, max, digits }: Props) => {
         <MinusIcon />
       </Button>
       <Input
-        type="text"
-        inputMode="numeric"
-        value={String(count).padStart(digits ?? 1, "0")}
-        onChange={(e) => {
-          const val = Number(e.target.value);
-          if (!isNaN(val)) setCount(val);
-        }}
+        type="number"
+        value={count}
+        onChange={(e) => setCount(Number(e.target.value))}
         min={0}
         max={max}
         className="font-dm-mono w-6.5 h-7.5 px-0 text-center border-none shadow-none focus-visible:ring-0 focus-visible:border-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none hover:bg-background-2"
