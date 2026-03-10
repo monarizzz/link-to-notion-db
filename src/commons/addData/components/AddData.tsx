@@ -20,6 +20,7 @@ import Image from "next/image";
 import TimeField from "@/features/addData/components/TimeField/TimeField";
 import Line from "@/commons/layout/components/Line/Line";
 import ToggleTabs from "@/features/addData/components/ToggleTabs/ToggleTabs";
+import NumberStepper from "@/features/addData/components/NumberStepper/NumberStepper";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -129,7 +130,7 @@ const AddData = ({ labels }: Props) => {
             </Field>
             <Field>
               <FieldLabel htmlFor="label">種類</FieldLabel>
-              <div className="gap-x-1.5 flex">
+              <div className="gap-x-1.5 flex overflow-hidden mask-[linear-gradient(to_right,black_80%,transparent)]">
                 <input
                   type="hidden"
                   {...register("label", { required: true })}
@@ -149,8 +150,8 @@ const AddData = ({ labels }: Props) => {
             </Field>
             <Field className="my-auto">
               <FieldLabel htmlFor="time">作業時間</FieldLabel>
-              <div className="bg-background-2 rounded-2xl  border-[1.5px]">
-                <div className="flex justify-between">
+              <div className="bg-background-2 rounded-2xl  border-[1.5px] overflow-hidden">
+                <div className="flex justify-between ">
                   <TimeField text={"開始"} />
                   <input
                     type="time"
@@ -170,8 +171,8 @@ const AddData = ({ labels }: Props) => {
                   />
                 </div>
                 <Line dashed />
-                <div className="flex justify-between items-center px-3.5 py-2.25">
-                  <div className="text-2xs font-medium uppercase text-subtle-foreground">
+                <div className="flex justify-between items-center px-6 py-2.25">
+                  <div className="text-2xs font-medium text-subtle-foreground">
                     合計
                   </div>
                   <div className="flex gap-5 items-center">
@@ -189,7 +190,7 @@ const AddData = ({ labels }: Props) => {
                 </div>
                 <div>
                   <Line dashed />
-                  <div className="py-3 px-3.5 flex gap-2.5">
+                  <div className="py-3 px-5 flex gap-2.5 justify-between overflow-hidden">
                     <ToggleTabs />
                     <Image
                       src={"/arrow-right.svg"}
@@ -197,6 +198,16 @@ const AddData = ({ labels }: Props) => {
                       width={13}
                       height={13}
                     />
+                    <div className="flex gap-2.5 items-center">
+                      <NumberStepper defaultValue={0} digits={1} />
+                      <span className="text-2xs font-medium text-subtle-foreground">
+                        時間
+                      </span>
+                      <NumberStepper defaultValue={0} max={60} digits={2} />
+                      <span className="text-2xs font-medium uppercase text-subtle-foreground">
+                        分
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
