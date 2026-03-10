@@ -30,9 +30,7 @@ const EditContainer = ({
           digits={2}
           // onChange={onMinutesChange}
         />
-        <span className="text-2xs font-medium uppercase text-subtle-foreground">
-          分
-        </span>
+        <span className="text-2xs font-medium text-subtle-foreground">分</span>
       </div>
     </div>
   );
