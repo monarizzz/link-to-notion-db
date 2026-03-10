@@ -7,9 +7,10 @@ import { useState } from "react";
 type Props = {
   defaultValue: number;
   max?: number;
+  digits?: number;
 };
 
-const NumberStepper = ({ defaultValue, max }: Props) => {
+const NumberStepper = ({ defaultValue, max, digits }: Props) => {
   const [count, setCount] = useState(defaultValue);
 
   return (
@@ -27,9 +28,13 @@ const NumberStepper = ({ defaultValue, max }: Props) => {
         <MinusIcon />
       </Button>
       <Input
-        type="number"
-        value={count}
-        onChange={(e) => setCount(Number(e.target.value))}
+        type="text"
+        inputMode="numeric"
+        value={String(count).padStart(digits ?? 1, "0")}
+        onChange={(e) => {
+          const val = Number(e.target.value);
+          if (!isNaN(val)) setCount(val);
+        }}
         min={0}
         max={max}
         className="font-dm-mono w-6.5 h-7.5 px-0 text-center border-none shadow-none focus-visible:ring-0 focus-visible:border-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none hover:bg-background-2"
