@@ -72,7 +72,7 @@ const AddData = ({ labels }: Props) => {
         workTime: {
           date: {
             start: `${data.sDate}T${data.sTime}:${TZ_OFFSET_JP}`,
-            end: `${data.eDate}T${data.sTime}:${TZ_OFFSET_JP}`,
+            end: `${data.eDate}T${data.eTime}:${TZ_OFFSET_JP}`,
           },
         },
         select: { select: { name: data.label } },
