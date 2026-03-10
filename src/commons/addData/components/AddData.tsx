@@ -4,6 +4,7 @@ import { addDataAction } from "@/commons/addData/entities/addDataAction";
 import { diffTime } from "@/commons/addData/entities/diffTime";
 import DateGroup from "@/features/addData/components/DateGroup/DateGroup";
 import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
 import {
   Field,
@@ -54,6 +55,16 @@ const AddData = ({ labels }: Props) => {
   const defaultTime = defaultDate.format("HH:mm");
   const defaultWorkTime = defaultDate.add(20, "minute").format("HH:mm");
 
+  /* バリデーション */
+  const formSchema = z.object({
+    title: z.string(),
+    label: z.string(),
+    sDate: z,
+    eDate: z,
+    sTime: z,
+    eTime: z,
+  });
+
   const {
     register,
     handleSubmit,
@@ -61,7 +72,8 @@ const AddData = ({ labels }: Props) => {
     reset,
     setValue,
     formState: { errors },
-  } = useForm<Form>({
+  } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       label: labels[0],
@@ -69,6 +81,14 @@ const AddData = ({ labels }: Props) => {
       eDate: defaultDateFormat,
       sTime: defaultTime,
       eTime: defaultWorkTime,
+    },
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      description: "",
     },
   });
 
