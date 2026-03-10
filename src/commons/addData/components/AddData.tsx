@@ -45,6 +45,8 @@ const TZ_OFFSET_JP = "09:00";
 
 /* 現状TimeZoneは日本のみを想定 */
 const AddData = ({ labels }: Props) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const defaultDate = dayjs().tz("Asia/Tokyo");
   const defaultDateFormat = defaultDate.format("YYYY-MM-DD");
   const defaultTime = defaultDate.format("HH:mm");
@@ -102,7 +104,6 @@ const AddData = ({ labels }: Props) => {
     if (date)
       setValue("sDate", dayjs(date).tz("Asia/Tokyo").format("YYYY-MM-DD"));
   };
-  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="w-full bg-background rounded-4xl border-[1.5px]">

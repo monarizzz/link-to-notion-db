@@ -12,7 +12,7 @@ const EditBtn = ({ onClick }: Props) => {
         alt="pen"
         width={10}
         height={10}
-        className="pb-0.5 cursor-pointer"
+        className="pb-0.5"
       />
     </button>
   );
