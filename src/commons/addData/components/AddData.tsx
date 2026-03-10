@@ -86,7 +86,7 @@ const AddData = ({ labels }: Props) => {
 
   const [sTimeValue, eTimeValue, sDateValue, eDateValue] = useWatch({
     control,
-    name: ["sTime", "sTime", "sDate", "eDate"],
+    name: ["sTime", "eTime", "sDate", "eDate"],
   });
   const labelValue = useWatch({ control, name: "label" });
 
