@@ -28,6 +28,7 @@ const NumberStepper = ({ defaultValue, max, digits, onChange }: Props) => {
       <Button
         variant="ghost"
         size="icon-xs"
+        aria-label="減らす"
         onClick={() => handleChange(count > 0 ? count - 1 : count)}
         className="text-muted-foreground"
       >
@@ -43,15 +44,15 @@ const NumberStepper = ({ defaultValue, max, digits, onChange }: Props) => {
             handleChange(val);
           }
         }}
-        min={0}
-        max={max}
-        className="font-dm-mono w-6.5 h-7.5 flex-none px-0 text-center border-none shadow-none focus-visible:ring-0 focus-visible:border-transparent hover:bg-background-2"
+        className="font-dm-mono text-[13px]
+        w-6.5 h-7.5 flex-none px-0 text-center border-none shadow-none focus-visible:ring-0 focus-visible:border-transparent hover:bg-background-2"
       />
       <Button
         variant="ghost"
         size="icon-xs"
+        aria-label="増やす"
         onClick={() =>
-          handleChange(max !== undefined && count > max - 1 ? count : count + 1)
+          handleChange(max !== undefined && count >= max ? count : count + 1)
         }
         className="text-muted-foreground"
       >
