@@ -3,6 +3,7 @@
 import { addDataAction } from "@/commons/addData/entities/addDataAction";
 import { diffTime } from "@/commons/addData/entities/diffTime";
 import DateGroup from "@/features/addData/components/DateGroup/DateGroup";
+import * as z from "zod";
 import { useForm, useWatch } from "react-hook-form";
 import {
   Field,
@@ -41,9 +42,10 @@ type Props = {
 
 const timeTextCn =
   "p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1";
-const TZ_OFFSET_JP = "09:00";
 
 /* 現状TimeZoneは日本のみを想定 */
+const TZ_OFFSET_JP = "09:00";
+
 const AddData = ({ labels }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
