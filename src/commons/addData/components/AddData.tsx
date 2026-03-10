@@ -19,6 +19,7 @@ import TaskBtn from "@/features/addData/components/TaskBtn/TaskBtn";
 import Image from "next/image";
 import TimeField from "@/features/addData/components/TimeField/TimeField";
 import Line from "@/commons/layout/components/Line/Line";
+import ToggleTabs from "@/features/addData/components/ToggleTabs/ToggleTabs";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -183,6 +184,18 @@ const AddData = ({ labels }: Props) => {
                       width={10}
                       height={10}
                       className="pb-0.5"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Line dashed />
+                  <div className="py-3 px-3.5 flex gap-2.5">
+                    <ToggleTabs />
+                    <Image
+                      src={"/arrow-right.svg"}
+                      alt="arrow"
+                      width={13}
+                      height={13}
                     />
                   </div>
                 </div>
