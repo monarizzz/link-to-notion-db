@@ -38,7 +38,7 @@ type Props = {
 
 const timeTextCn =
   "p-3.5 font-dm-mono text-[20px] text-foreground cursor-pointer flex-1";
-const TZ_OFFSET_JP = "00+09:00";
+const TZ_OFFSET_JP = "09:00";
 
 /* 現状TimeZoneは日本のみを想定 */
 const AddData = ({ labels }: Props) => {
@@ -71,8 +71,8 @@ const AddData = ({ labels }: Props) => {
         title: { title: [{ text: { content: data.title } }] },
         workTime: {
           date: {
-            start: `${data.sDate}T${data.sTime}:${TZ_OFFSET_JP}`,
-            end: `${data.eDate}T${data.eTime}:${TZ_OFFSET_JP}`,
+            start: `${data.sDate}T${data.sTime}:00+${TZ_OFFSET_JP}`,
+            end: `${data.eDate}T${data.eTime}:00+${TZ_OFFSET_JP}`,
           },
         },
         select: { select: { name: data.label } },
