@@ -31,13 +31,16 @@ const NumberStepper = ({ defaultValue, max, digits }: Props) => {
         type="text"
         inputMode="numeric"
         value={String(count).padStart(digits ?? 1, "0")}
+        // 修正案: 範囲チェックを追加
         onChange={(e) => {
           const val = Number(e.target.value);
-          if (!isNaN(val)) setCount(val);
+          if (!isNaN(val) && val >= 0 && (max === undefined || val <= max)) {
+            setCount(val);
+          }
         }}
         min={0}
         max={max}
-        className="font-dm-mono w-6.5 h-7.5 px-0 text-center border-none shadow-none focus-visible:ring-0 focus-visible:border-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none hover:bg-background-2"
+        className="font-dm-mono w-6.5 h-7.5 flex-none px-0 text-center border-none shadow-none focus-visible:ring-0 focus-visible:border-transparent hover:bg-background-2"
       />
       <Button
         variant="ghost"
