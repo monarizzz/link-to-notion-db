@@ -19,8 +19,9 @@ import TaskBtn from "@/features/addData/components/TaskBtn/TaskBtn";
 import Image from "next/image";
 import TimeField from "@/features/addData/components/TimeField/TimeField";
 import Line from "@/commons/layout/components/Line/Line";
-import ToggleTabs from "@/features/addData/components/ToggleTabs/ToggleTabs";
-import NumberStepper from "@/features/addData/components/NumberStepper/NumberStepper";
+import EditContainer from "@/features/addData/components/EditContainer/EditContainer";
+import EditBtn from "@/features/addData/components/EditBtn/EditBtn";
+import { useState } from "react";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -101,6 +102,7 @@ const AddData = ({ labels }: Props) => {
     if (date)
       setValue("sDate", dayjs(date).tz("Asia/Tokyo").format("YYYY-MM-DD"));
   };
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="w-full bg-background rounded-4xl border-[1.5px]">
@@ -179,37 +181,15 @@ const AddData = ({ labels }: Props) => {
                     <span className="font-dm-mono text-sm text-muted-foreground font-medium">
                       {workingTime}
                     </span>
-                    <Image
-                      src="/pen.svg"
-                      alt="pen"
-                      width={10}
-                      height={10}
-                      className="pb-0.5"
-                    />
+                    <EditBtn onClick={() => setIsEditing((prev) => !prev)} />
                   </div>
                 </div>
-                <div>
-                  <Line dashed />
-                  <div className="py-3 px-5 flex gap-2.5 justify-between overflow-hidden">
-                    <ToggleTabs />
-                    <Image
-                      src={"/arrow-right.svg"}
-                      alt="arrow"
-                      width={13}
-                      height={13}
-                    />
-                    <div className="flex gap-2.5 items-center">
-                      <NumberStepper defaultValue={0} digits={1} />
-                      <span className="text-2xs font-medium text-subtle-foreground">
-                        時間
-                      </span>
-                      <NumberStepper defaultValue={0} max={60} digits={2} />
-                      <span className="text-2xs font-medium uppercase text-subtle-foreground">
-                        分
-                      </span>
-                    </div>
+                {isEditing && (
+                  <div>
+                    <Line dashed />
+                    <EditContainer hours={2} minutes={0} />
                   </div>
-                </div>
+                )}
               </div>
             </Field>
           </FieldGroup>
