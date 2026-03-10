@@ -8,21 +8,27 @@ type Props = {
   defaultValue: number;
   max?: number;
   digits?: number;
+  onChange?: (value: number) => void;
 };
 
-const NumberStepper = ({ defaultValue, max, digits }: Props) => {
+const NumberStepper = ({ defaultValue, max, digits, onChange }: Props) => {
   const [count, setCount] = useState(defaultValue);
+
+  const handleChange = (newCount: number) => {
+    setCount(newCount);
+    onChange?.(newCount);
+  };
 
   return (
     <ButtonGroup
       orientation="horizontal"
-      aria-label="Media controls"
+      aria-label="Number input"
       className="h-fit border border-input rounded-md overflow-hidden bg-background"
     >
       <Button
         variant="ghost"
         size="icon-xs"
-        onClick={() => setCount((c) => (c > 0 ? c - 1 : c))}
+        onClick={() => handleChange(count > 0 ? count - 1 : count)}
         className="text-muted-foreground"
       >
         <MinusIcon />
@@ -31,11 +37,10 @@ const NumberStepper = ({ defaultValue, max, digits }: Props) => {
         type="text"
         inputMode="numeric"
         value={String(count).padStart(digits ?? 1, "0")}
-        // 修正案: 範囲チェックを追加
         onChange={(e) => {
           const val = Number(e.target.value);
           if (!isNaN(val) && val >= 0 && (max === undefined || val <= max)) {
-            setCount(val);
+            handleChange(val);
           }
         }}
         min={0}
@@ -46,7 +51,7 @@ const NumberStepper = ({ defaultValue, max, digits }: Props) => {
         variant="ghost"
         size="icon-xs"
         onClick={() =>
-          setCount((c) => (max !== undefined && c > max - 1 ? c : c + 1))
+          handleChange(max !== undefined && count > max - 1 ? count : count + 1)
         }
         className="text-muted-foreground"
       >
