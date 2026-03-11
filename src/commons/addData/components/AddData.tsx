@@ -224,7 +224,7 @@ const AddData = ({ labels }: Props) => {
             <div className="bg-background-2 w-[320px] min-h-113.25">
               <Field className="pt-6 px-5">
                 <FieldLabel htmlFor="date">日付</FieldLabel>
-                <DateGroup date={sDateValue} />
+                <DateGroup />
               </Field>
             </div>
           </div>
