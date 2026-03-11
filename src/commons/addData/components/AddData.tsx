@@ -16,8 +16,6 @@ import { Input } from "@/libs/shadcn/assets/ui/input";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import TaskBtn from "@/features/addData/components/TaskBtn/TaskBtn";
-
 import Image from "next/image";
 import TimeField from "@/features/addData/components/TimeField/TimeField";
 import Line from "@/commons/layout/components/Line/Line";
@@ -92,7 +90,6 @@ const AddData = ({ labels }: Props) => {
     handleSubmit,
     control,
     reset,
-    setValue,
     formState: { errors },
   } = useFormMethods;
 
@@ -119,18 +116,6 @@ const AddData = ({ labels }: Props) => {
     control,
     name: ["sTime", "eTime", "sDate", "eDate"],
   });
-  const labelValue = useWatch({ control, name: "label" });
-  console.log(labelValue);
-
-  const workingTime = diffTime(
-    `${sDateValue}T${sTimeValue}`,
-    `${eDateValue}T${eTimeValue}`,
-  );
-
-  const handleSetDate = (date: Date | undefined) => {
-    if (date)
-      setValue("sDate", dayjs(date).tz("Asia/Tokyo").format("YYYY-MM-DD"));
-  };
 
   return (
     <div className="w-full bg-background rounded-4xl border-[1.5px]">
@@ -163,14 +148,6 @@ const AddData = ({ labels }: Props) => {
                 <FieldLabel htmlFor="label">種類</FieldLabel>
                 <div className="gap-x-1.5 flex overflow-hidden mask-[linear-gradient(to_right,black_80%,transparent)]">
                   <TaskBtnGroup labels={labels} />
-                  {/* {labels.map((label) => (
-                    <TaskBtn
-                      key={label}
-                      label={label}
-                      setLabel={label === labelValue}
-                      onClick={() => setValue("label", label)}
-                    />
-                  ))} */}
                   {errors.label && (
                     <FieldError>種類を選択してください</FieldError>
                   )}
@@ -205,7 +182,10 @@ const AddData = ({ labels }: Props) => {
                     </div>
                     <div className="flex gap-5 items-center">
                       <span className="font-dm-mono text-sm text-muted-foreground font-medium">
-                        {workingTime}
+                        {diffTime(
+                          `${sDateValue}T${sTimeValue}`,
+                          `${eDateValue}T${eTimeValue}`,
+                        )}
                       </span>
                       <EditBtn onClick={handleEditToggle} />
                     </div>
