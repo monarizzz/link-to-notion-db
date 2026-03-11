@@ -7,25 +7,27 @@ import { Controller, useFormContext } from "react-hook-form";
 
 const DateGroup = () => {
   const { control } = useFormContext<AddDataForm>();
-  const dateObj = new Date();
   return (
     <Controller
       control={control}
       name="sDate"
-      render={({ field: { onChange } }) => (
-        <div className="w-fit!">
-          <div className="mb-3">
-            <div className="ml-1">
-              <DateDisplay date={dateObj} />
+      render={({ field: { value, onChange } }) => {
+        const dateObj = value ? new Date(value) : new Date();
+        return (
+          <div className="w-fit!">
+            <div className="mb-3">
+              <div className="ml-1">
+                <DateDisplay date={dateObj} />
+              </div>
+              <div className="my-1.5 ml-0.5">
+                <DateLabel date={dateObj} />
+              </div>
             </div>
-            <div className="my-1.5 ml-0.5">
-              <DateLabel date={dateObj} />
-            </div>
+            <Separator className="mb-2" />
+            <CalendarPicker date={dateObj} setDate={onChange} />
           </div>
-          <Separator className="mb-2" />
-          <CalendarPicker date={dateObj} setDate={onChange} />
-        </div>
-      )}
+        );
+      }}
     />
   );
 };
