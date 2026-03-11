@@ -24,6 +24,7 @@ import Line from "@/commons/layout/components/Line/Line";
 import EditContainer from "@/features/addData/components/EditContainer/EditContainer";
 import EditBtn from "@/features/addData/components/EditBtn/EditBtn";
 import { useState } from "react";
+import TaskBtnGroup from "@/features/addData/components/TaskBtnGroup/TaskBtnGroup";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -119,6 +120,7 @@ const AddData = ({ labels }: Props) => {
     name: ["sTime", "eTime", "sDate", "eDate"],
   });
   const labelValue = useWatch({ control, name: "label" });
+  console.log(labelValue);
 
   const workingTime = diffTime(
     `${sDateValue}T${sTimeValue}`,
@@ -160,18 +162,15 @@ const AddData = ({ labels }: Props) => {
               <Field>
                 <FieldLabel htmlFor="label">種類</FieldLabel>
                 <div className="gap-x-1.5 flex overflow-hidden mask-[linear-gradient(to_right,black_80%,transparent)]">
-                  <input
-                    type="hidden"
-                    {...register("label", { required: true })}
-                  />
-                  {labels.map((label) => (
+                  <TaskBtnGroup labels={labels} />
+                  {/* {labels.map((label) => (
                     <TaskBtn
                       key={label}
                       label={label}
                       setLabel={label === labelValue}
                       onClick={() => setValue("label", label)}
                     />
-                  ))}
+                  ))} */}
                   {errors.label && (
                     <FieldError>種類を選択してください</FieldError>
                   )}
