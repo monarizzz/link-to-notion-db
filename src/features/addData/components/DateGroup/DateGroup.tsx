@@ -4,6 +4,7 @@ import { Separator } from "@/libs/shadcn/assets/ui/separator";
 import DateLabel from "../DateLabel/DateLabel";
 import type { AddDataForm } from "@/commons/addData/components/AddData";
 import { Controller, useFormContext } from "react-hook-form";
+import dayjs from "dayjs";
 
 const DateGroup = () => {
   const { control } = useFormContext<AddDataForm>();
@@ -24,7 +25,13 @@ const DateGroup = () => {
               </div>
             </div>
             <Separator className="mb-2" />
-            <CalendarPicker date={dateObj} setDate={onChange} />
+            <CalendarPicker
+              date={dateObj}
+              setDate={(date) => {
+                if (date)
+                  onChange(dayjs(date).tz("Asia/Tokyo").format("YYYY-MM-DD"));
+              }}
+            />
           </div>
         );
       }}

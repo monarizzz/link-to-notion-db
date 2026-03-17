@@ -48,12 +48,12 @@ const TZ_OFFSET_JP = "09:00";
 
 /* バリデーション */
 const formSchema = z.object({
-  title: z.string(),
-  label: z.string(),
-  sDate: z.string(),
-  eDate: z.string(),
-  sTime: z.string(),
-  eTime: z.string(),
+  title: z.string().min(1, "作業内容を入力してください"),
+  label: z.string().min(1, "種類を選択してください"),
+  sDate: z.string().min(1, "開始日を入力してください"),
+  eDate: z.string().min(1, "終了日を入力してください"),
+  sTime: z.string().min(1, "開始時間を入力してください"),
+  eTime: z.string().min(1, "終了時間を入力してください"),
   hTotal: z.number(),
   mTotal: z.number(),
   isStart: z.boolean(),
@@ -136,7 +136,7 @@ const AddData = ({ labels }: Props) => {
                 <FieldLabel htmlFor="title">作業内容</FieldLabel>
                 <Input
                   id="title"
-                  {...register("title", { required: true })}
+                  {...register("title")}
                   placeholder="何をしていましたか？"
                   className="bg-background-2 text-sm py-5 px-3.25"
                 />
@@ -161,7 +161,7 @@ const AddData = ({ labels }: Props) => {
                     <input
                       type="time"
                       id="sTime"
-                      {...register("sTime", { required: true })}
+                      {...register("sTime")}
                       className={timeTextCn}
                     />
                   </div>
