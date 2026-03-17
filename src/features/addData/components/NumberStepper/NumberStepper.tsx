@@ -39,7 +39,7 @@ const NumberStepper = ({ name, defaultValue, max }: Props) => {
             type="number"
             inputMode="numeric"
             value={value}
-            onChange={onChange}
+            onChange={(e) => onChange(e.target.valueAsNumber)}
             className="font-dm-mono text-[13px]
               w-6.5 h-7.5 flex-none px-0 text-center border-none shadow-none focus-visible:ring-0 focus-visible:border-transparent hover:bg-background-2
               [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
