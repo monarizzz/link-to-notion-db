@@ -27,15 +27,6 @@ import TaskBtnGroup from "@/features/addData/components/TaskBtnGroup/TaskBtnGrou
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-type Form = {
-  title: string;
-  label: string;
-  sDate: string;
-  eDate: string;
-  sTime: string;
-  eTime: string;
-};
-
 type Props = {
   labels: string[];
 };
@@ -93,7 +84,7 @@ const AddData = ({ labels }: Props) => {
     formState: { errors },
   } = useFormMethods;
 
-  const onSubmit = async (data: Form) => {
+  const onSubmit = async (data: AddDataForm) => {
     try {
       const properties = {
         title: { title: [{ text: { content: data.title } }] },
@@ -171,7 +162,7 @@ const AddData = ({ labels }: Props) => {
                     <input
                       type="time"
                       id="eTime"
-                      {...register("eTime", { required: true })}
+                      {...register("eTime")}
                       className={timeTextCn}
                     />
                   </div>

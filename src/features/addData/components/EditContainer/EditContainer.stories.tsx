@@ -18,7 +18,9 @@ const meta = {
           eDate: "",
           sTime: "",
           eTime: "",
-          total: 0,
+          hTotal: 0,
+          mTotal: 0,
+          isStart: true,
         },
       });
       return (
