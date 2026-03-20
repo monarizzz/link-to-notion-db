@@ -41,7 +41,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${dmMono.variable} ${dmSans.variable} antialiased`}
         style={{ display: "flex" }}
       >
-        <Sidebar contents={contents} />
         <main style={{ marginLeft: "max(20vw, 200px)", flex: 1 }}>
           {children}
         </main>
