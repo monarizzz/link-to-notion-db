@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import CurrentDate from "./currentDate";
+import CurrentDate from "./CurrentDate";
 
 const meta = {
   component: CurrentDate,
