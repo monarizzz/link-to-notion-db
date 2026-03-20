@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getCurrentTime } from "../entities/getCurrentTime";
 
-const CurrentTime = ({}) => {
+const CurrentTime = () => {
   const [time, setTime] = useState(getCurrentTime());
 
   useEffect(() => {
