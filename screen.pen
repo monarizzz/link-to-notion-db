@@ -6082,27 +6082,27 @@
                 },
                 {
                   "type": "frame",
-                  "id": "HoI6O",
-                  "name": "inputGroup",
+                  "id": "rhJkz",
+                  "name": "field1",
                   "width": "fill_container",
                   "layout": "vertical",
                   "gap": 6,
                   "children": [
                     {
                       "type": "text",
-                      "id": "f44tE",
+                      "id": "m7nJQ",
                       "fill": "#6B6B70",
-                      "content": "データベースID",
+                      "content": "作業用 DB ID",
                       "fontFamily": "Inter",
                       "fontSize": 11,
                       "fontWeight": "500"
                     },
                     {
                       "type": "frame",
-                      "id": "wxlot",
-                      "name": "inputField",
+                      "id": "zACeX",
+                      "name": "input1",
                       "width": "fill_container",
-                      "height": 40,
+                      "height": 38,
                       "fill": "#1A1A1A",
                       "cornerRadius": 10,
                       "stroke": {
@@ -6118,7 +6118,7 @@
                       "children": [
                         {
                           "type": "text",
-                          "id": "AtfLQ",
+                          "id": "XANyL",
                           "fill": "#3A3A3A",
                           "content": "例: 32桁の英数字",
                           "fontFamily": "Inter",
@@ -6131,15 +6131,113 @@
                 },
                 {
                   "type": "frame",
-                  "id": "Em6bM",
-                  "name": "hintRow",
+                  "id": "s7pRT",
+                  "name": "field2",
                   "width": "fill_container",
-                  "gap": 5,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Nud0C",
+                      "fill": "#6B6B70",
+                      "content": "TODO用 DB ID",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NX3Zo",
+                      "name": "input2",
+                      "width": "fill_container",
+                      "height": 38,
+                      "fill": "#1A1A1A",
+                      "cornerRadius": 10,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FFFFFF10"
+                      },
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7lg8o",
+                          "fill": "#3A3A3A",
+                          "content": "例: 32桁の英数字",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OTs2N",
+                  "name": "field3",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5tfQe",
+                      "fill": "#6B6B70",
+                      "content": "Notion トークン",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fc3oX",
+                      "name": "input3",
+                      "width": "fill_container",
+                      "height": 38,
+                      "fill": "#1A1A1A",
+                      "cornerRadius": 10,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FFFFFF10"
+                      },
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "HNFuH",
+                          "fill": "#3A3A3A",
+                          "content": "secret_xxxx....",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "d7KR4",
+                  "name": "hint",
+                  "width": "fill_container",
+                  "gap": 4,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "E9tJq",
+                      "id": "Lcv0r",
                       "width": 12,
                       "height": 12,
                       "iconFontName": "info",
@@ -6148,7 +6246,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "nuosq",
+                      "id": "sHOVr",
                       "fill": "#555555",
                       "content": "URLの末尾32桁がID",
                       "fontFamily": "Inter",
