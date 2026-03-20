@@ -2,7 +2,7 @@ import TodoContent from "@/features/taskCard/components/TodoContent/TodoContent"
 import InputContent from "@/features/taskCard/components/InputContent/InputContent";
 
 type Props = {
-  isInput: "todo" | "input" | "status";
+  isInput: "todo" | "input" | "doing";
   todoDetail?: TodoDetail;
   labels: string[];
 };
