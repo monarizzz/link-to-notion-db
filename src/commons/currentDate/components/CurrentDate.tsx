@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { getCurrentDate } from "../entities/getCurrentDate";
 
-const CurrentDate = ({}) => {
-  const [date, setdate] = useState(getCurrentDate());
+const CurrentDate = () => {
+  const [date, setDate] = useState(getCurrentDate());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setdate(getCurrentDate());
+      setDate(getCurrentDate());
     }, 1000);
     return () => clearInterval(interval);
   }, []);
