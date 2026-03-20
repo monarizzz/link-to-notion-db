@@ -1,26 +1,48 @@
-import PriorityBadge from "@/commons/priorityBadge/components/PriorityBadge";
-import { Checkbox } from "@/libs/shadcn/assets/ui/checkbox";
+import Todo from "@/features/taskCard/components/Todo";
+import Image from "next/image";
+import LabelSelect from "@/commons/labelSelect/components/LabelSelect";
 
 type Props = {
+  isInput: boolean;
+  todoDetail?: TodoDetail;
+  labels: string[];
+};
+
+type TodoDetail = {
   time: string;
   work: string;
   priority?: "high" | "medium" | "low";
 };
 
-const TaskCard = ({ time, work, priority }: Props) => {
+const TaskCard = ({ isInput, todoDetail, labels }: Props) => {
   return (
-    <div className="flex items-center gap-3.5 bg-[#3A3A3A] py-3.5 px-4 rounded-3xl w-90">
-      <Checkbox className="size-5.5 rounded-[6px] border-[#909097]" />
-      <div>
-        <PriorityBadge priority={priority} />
-      </div>
-      <div className="flex flex-col gap-0.5 w-full">
-        <span className="text-[#FAFAF9] text-sm">{time}</span>
-        <span className="text-[#8E8E93] text-xs">{work}</span>
-      </div>
-      <div>
-        <div className="w-8 h-8 bg-[#4A4A50] rounded-3xl">→</div>
-      </div>
+    <div className="flex items-center gap-3 bg-[#3A3A3A] py-3.5 px-4 rounded-3xl w-90">
+      {!isInput && todoDetail ? (
+        <Todo
+          time={todoDetail.time}
+          work={todoDetail.work}
+          priority={todoDetail.priority}
+        />
+      ) : (
+        <>
+          <div className="bg-[#4A4A50] p-2.5 rounded-md">
+            <Image src="/pen.svg" width={16} height={16} alt="pen" />
+          </div>
+          <div className="flex flex-col gap-0.5 w-full">
+            <span className="text-[#6B6B70] text-[11px]">何をしますか？</span>
+            <div>
+              <LabelSelect
+                labels={labels}
+                placeholder="作業の種類"
+                selectLabel="種類"
+              />
+            </div>
+          </div>
+          <div className="bg-[#c2ef53ff] shadow-[0_0_12px_rgba(194,239,83,0.2)] p-3 rounded-3xl">
+            <Image src="/play.svg" width={16} height={16} alt="play" />
+          </div>
+        </>
+      )}
     </div>
   );
 };

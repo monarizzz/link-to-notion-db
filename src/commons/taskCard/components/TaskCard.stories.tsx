@@ -13,44 +13,55 @@ export default meta;
 
 type Story = StoryObj<typeof TaskCard>;
 
+const sampleLabels = ["仕事", "プライベート", "勉強", "健康"];
+
 export const All: Story = {
   render: () => (
     <div className="flex flex-col gap-2">
-      <TaskCard time="1h" work="デザインレビュー" priority="high" />
-      <TaskCard time="3h" work="実装作業" priority="medium" />
-      <TaskCard time="5h30m" work="ミーティング" priority="low" />
-      <TaskCard time="17h4m" work="ドキュメント整備" />
+      <TaskCard isInput={false} todoDetail={{ time: "1h", work: "デザインレビュー", priority: "high" }} labels={sampleLabels} />
+      <TaskCard isInput={false} todoDetail={{ time: "3h", work: "実装作業", priority: "medium" }} labels={sampleLabels} />
+      <TaskCard isInput={false} todoDetail={{ time: "5h30m", work: "ミーティング", priority: "low" }} labels={sampleLabels} />
+      <TaskCard isInput={false} todoDetail={{ time: "17h4m", work: "ドキュメント整備" }} labels={sampleLabels} />
+      <TaskCard isInput={true} labels={sampleLabels} />
     </div>
   ),
 };
 
 export const High: Story = {
   args: {
-    time: "1h",
-    work: "デザインレビュー",
-    priority: "high",
+    isInput: false,
+    todoDetail: { time: "1h", work: "デザインレビュー", priority: "high" },
+    labels: sampleLabels,
   },
 };
 
 export const Medium: Story = {
   args: {
-    time: "3h",
-    work: "実装作業",
-    priority: "medium",
+    isInput: false,
+    todoDetail: { time: "3h", work: "実装作業", priority: "medium" },
+    labels: sampleLabels,
   },
 };
 
 export const Low: Story = {
   args: {
-    time: "5h30m",
-    work: "ミーティング",
-    priority: "low",
+    isInput: false,
+    todoDetail: { time: "5h30m", work: "ミーティング", priority: "low" },
+    labels: sampleLabels,
   },
 };
 
 export const Empty: Story = {
   args: {
-    time: "17h4m",
-    work: "ドキュメント整備",
+    isInput: false,
+    todoDetail: { time: "17h4m", work: "ドキュメント整備" },
+    labels: sampleLabels,
+  },
+};
+
+export const Input: Story = {
+  args: {
+    isInput: true,
+    labels: sampleLabels,
   },
 };
