@@ -7,13 +7,13 @@ const BottomBar = () => {
   return (
     <div className="gap-8 flex bg-[#ffffff0a] rounded-[40px] py-3 px-7 w-fit border-[#FFFFFF25] border">
       <Link href="./">
-        <p className={text}>Todo</p>
+        <span className={text}>Todo</span>
       </Link>
       <Link href="./">
-        <p className={text}>Calendar</p>
+        <span className={text}>Calendar</span>
       </Link>
       <Link href="./">
-        <p className={text}>Board</p>
+        <span className={text}>Board</span>
       </Link>
     </div>
   );
