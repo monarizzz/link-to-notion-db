@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
