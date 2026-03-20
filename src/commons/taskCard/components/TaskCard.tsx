@@ -1,10 +1,14 @@
 import TodoContent from "@/features/taskCard/components/TodoContent/TodoContent";
 import InputContent from "@/features/taskCard/components/InputContent/InputContent";
+import DoingContent from "@/features/taskCard/components/doingContent/doingContent";
 
 type Props = {
   isInput: "todo" | "input" | "doing";
   todoDetail?: TodoDetail;
   labels: string[];
+
+  work?: string;
+  time: string;
 };
 
 type TodoDetail = {
@@ -13,7 +17,7 @@ type TodoDetail = {
   priority?: "high" | "medium" | "low";
 };
 
-const TaskCard = ({ isInput, todoDetail, labels }: Props) => {
+const TaskCard = ({ isInput, todoDetail, labels, work, time }: Props) => {
   const renderContent = () => {
     if (isInput === "todo" && todoDetail) {
       return (
@@ -27,7 +31,7 @@ const TaskCard = ({ isInput, todoDetail, labels }: Props) => {
     if (isInput === "input") {
       return <InputContent labels={labels} />;
     }
-    return null;
+    return <DoingContent work={work} time={time} />;
   };
 
   return (

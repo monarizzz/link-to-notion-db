@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import TaskCard from "./TaskCard";
+import DoingContent from "@/features/taskCard/components/doingContent/doingContent";
 
 const meta: Meta<typeof TaskCard> = {
   component: TaskCard,
@@ -39,6 +40,8 @@ export const All: Story = {
         labels={sampleLabels}
       />
       <TaskCard isInput="input" labels={sampleLabels} />
+      <TaskCard isInput="doing" time="00:12:34" work="デザイン修正" labels={sampleLabels} />
+      <TaskCard isInput="doing" time="00:12:34" labels={sampleLabels} />
     </div>
   ),
 };
@@ -82,9 +85,19 @@ export const Input: Story = {
   },
 };
 
-export const Status: Story = {
+export const Doing: Story = {
   args: {
     isInput: "doing",
+    time: "00:12:34",
+    work: "デザイン修正",
     labels: sampleLabels,
   },
+};
+
+export const DoingNoWork: Story = {
+  render: () => (
+    <div className="flex items-center gap-3 bg-[#3A3A3A] py-3.5 px-4 rounded-3xl w-90">
+      <DoingContent time="00:12:34" />
+    </div>
+  ),
 };
