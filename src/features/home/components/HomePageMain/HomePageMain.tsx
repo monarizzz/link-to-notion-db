@@ -12,7 +12,7 @@ const HomePageMain = ({ labels }: Props) => {
         <NowDisplay />
 
         <div className="m-14">
-          <TaskCard isInput={true} labels={labels} />
+          <TaskCard isInput="input" labels={labels} />
         </div>
         <div className="absolute bottom-5">
           <BottomBar />
