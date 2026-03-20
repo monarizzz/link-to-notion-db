@@ -9,7 +9,7 @@ const bgColor: Record<NonNullable<Props["priority"]>, string> = {
 };
 
 const PriorityBadge = ({ priority }: Props) => {
-  const style = priority ? bgColor[priority] : "border border-[#646464ff]";
+  const style = priority ? bgColor[priority] : "border border-[#646464]";
   return <div className={`w-2.5 h-2.5 rounded-[50%] ${style}`} />;
 };
 
