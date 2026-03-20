@@ -1,24 +1,10 @@
-import WorkLogCard from "@/commons/other/components/workLogCard/WorkLogCard";
-import { ToRecord } from "@/features/notion/types/toRecord";
-import styles from "./HomePageMain.module.css";
-import AddData from "@/commons/addData/components/AddData";
+import NowDisplay from "../NowDisplay/NowDisplay";
 
-type Props = {
-  labels: string[];
-  records: ToRecord[];
-};
-const HomePageMain = ({ labels, records }: Props) => {
+const HomePageMain = () => {
   return (
-    <div className={styles.root}>
-      <div className="w-[90%] my-6">
-        <AddData labels={labels} />
-      </div>
-      <div className={styles.card}>
-        {records.map((record) => (
-          <WorkLogCard key={record.id} record={record}></WorkLogCard>
-        ))}
-      </div>
-    </div>
+    <>
+      <NowDisplay />
+    </>
   );
 };
 

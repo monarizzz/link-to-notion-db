@@ -1,6 +1,6 @@
+import HomePageMain from "@/features/home/components/HomePageMain/HomePageMain";
 import toRecord from "@/features/notion/utils/toRecord";
 import getDBRecords from "@/infra/notion/repositories/getDBRecords";
-import HomePageMain from "@/features/home/components/HomePageMain/HomePageMain";
 import getDBSchema from "@/infra/notion/repositories/getDBSchema";
 
 const Home = async () => {
@@ -12,7 +12,7 @@ const Home = async () => {
     (option) => option.name,
   );
 
-  return <HomePageMain labels={labels} records={data} />;
+  return <HomePageMain />;
 };
 
 export default Home;
