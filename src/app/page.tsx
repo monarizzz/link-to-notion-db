@@ -12,7 +12,7 @@ const Home = async () => {
     (option) => option.name,
   );
 
-  return <HomePageMain />;
+  return <HomePageMain labels={labels} />;
 };
 
 export default Home;
