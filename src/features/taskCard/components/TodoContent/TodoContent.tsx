@@ -8,7 +8,7 @@ type Props = {
   priority?: "high" | "medium" | "low";
 };
 
-const Todo = ({ time, work, priority }: Props) => {
+const TodoContent = ({ time, work, priority }: Props) => {
   return (
     <>
       <Checkbox className="size-5.5 rounded-[6px] border-[#909097]" />
@@ -34,4 +34,4 @@ const Todo = ({ time, work, priority }: Props) => {
   );
 };
 
-export default Todo;
+export default TodoContent;
