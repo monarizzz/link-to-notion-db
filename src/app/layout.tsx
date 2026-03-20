@@ -39,9 +39,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${dmMono.variable} ${dmSans.variable} antialiased`}
         style={{ display: "flex" }}
       >
-        <main style={{ marginLeft: "max(20vw, 200px)", flex: 1 }}>
-          {children}
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );
