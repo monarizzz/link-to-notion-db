@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { getCurrentTime } from "../entities/getCurrentTime";
 
-const CurrentTime = () => {
+type Props = { isTimer: boolean };
+
+const CurrentTime = ({ isTimer }: Props) => {
   const [time, setTime] = useState(getCurrentTime());
 
   useEffect(() => {
@@ -15,7 +17,7 @@ const CurrentTime = () => {
 
   return (
     <span className="text-[120px] text-[#FAFAF9] font-bold -tracking-[4px]">
-      {time}
+      {isTimer ? <p>経過時間</p> : time}
     </span>
   );
 };

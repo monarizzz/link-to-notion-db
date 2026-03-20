@@ -1,10 +1,12 @@
 import CurrentDate from "@/commons/currentDate/components/CurrentDate";
 import CurrentTime from "@/commons/currentTime/components/CurrentTime";
 
-const NowDisplay = () => {
+type Props = { isTimer: boolean };
+
+const NowDisplay = ({ isTimer }: Props) => {
   return (
     <div className="flex gap-2 items-center flex-col">
-      <CurrentTime />
+      <CurrentTime isTimer={isTimer} />
       <CurrentDate />
     </div>
   );

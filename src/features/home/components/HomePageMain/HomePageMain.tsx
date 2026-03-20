@@ -13,7 +13,7 @@ const HomePageMain = ({ labels }: Props) => {
   return (
     <>
       <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-[#2C2C2C]">
-        <NowDisplay />
+        <NowDisplay isTimer={false} />
         <div className="m-14">
           <TaskCard isInput="input" labels={labels} work={work} time={time} />
         </div>
