@@ -14,7 +14,7 @@ type Props = {
   selectLabel: string;
 };
 
-//TODO:style修正 py-0 px-2.5
+//TODO:style修正
 const LabelSelect = ({ labels, placeholder, selectLabel }: Props) => {
   return (
     <Select>
