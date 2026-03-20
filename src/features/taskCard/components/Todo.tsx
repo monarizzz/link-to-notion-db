@@ -1,5 +1,6 @@
 import PriorityBadge from "@/commons/priorityBadge/components/PriorityBadge";
 import { Checkbox } from "@/libs/shadcn/assets/ui/checkbox";
+import Image from "next/image";
 
 type Props = {
   time: string;
@@ -19,7 +20,15 @@ const Todo = ({ time, work, priority }: Props) => {
         <span className="text-[#8E8E93] text-xs">{work}</span>
       </div>
       <div>
-        <div className="w-8 h-8 bg-[#4A4A50] rounded-3xl">→</div>
+        <div className="w-8 h-8 bg-[#4A4A50] rounded-3xl flex">
+          <Image
+            className="items-center m-auto"
+            src="/arrow-right.svg"
+            width={14}
+            height={14}
+            alt="arrow"
+          />
+        </div>
       </div>
     </>
   );
