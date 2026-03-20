@@ -1,4 +1,4 @@
-import Todo from "@/features/taskCard/components/Todo";
+import Todo from "@/features/taskCard/components/Todo/Todo";
 import Image from "next/image";
 import LabelSelect from "@/commons/labelSelect/components/LabelSelect";
 
