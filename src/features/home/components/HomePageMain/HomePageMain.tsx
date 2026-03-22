@@ -1,7 +1,9 @@
+"use client";
+
 import BottomBar from "@/commons/layout/components/BottomBar/BottomBar";
 import NowDisplay from "../NowDisplay/NowDisplay";
 import TaskCard from "@/commons/taskCard/components/TaskCard";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { SubmitHandler, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -11,6 +13,7 @@ type Props = {
 
 const formSchema = z.object({
   start: z.string().min(1, "開始日時を入力してください"),
+  label: z.string().optional(),
 });
 
 type UserData = z.infer<typeof formSchema>;
@@ -31,9 +34,9 @@ const HomePageMain = ({ labels }: Props) => {
 
   return (
     <>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-[#2C2C2C]">
+      <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-[#2C2C2C]">
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
             <NowDisplay isTimer={false} />
             <div className="m-14">
               <TaskCard
@@ -43,12 +46,13 @@ const HomePageMain = ({ labels }: Props) => {
                 time={time}
               />
             </div>
-            <div className="absolute bottom-5">
-              <BottomBar />
-            </div>
-          </div>
-        </form>
-      </FormProvider>
+            <input type="submit" />
+          </form>
+        </FormProvider>
+        <div className="absolute bottom-5">
+          <BottomBar />
+        </div>
+      </div>
     </>
   );
 };
