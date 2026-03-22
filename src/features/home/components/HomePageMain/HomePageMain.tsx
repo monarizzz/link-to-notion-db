@@ -9,19 +9,19 @@ type Props = {
   labels: string[];
 };
 
-const userSchema = z.object({
+const formSchema = z.object({
   start: z.string().min(1, "開始日時を入力してください"),
 });
 
-type UserData = z.infer<typeof userSchema>;
+type UserData = z.infer<typeof formSchema>;
 
-// TODO:仮置き
+// TODO:仮置き（タスク管理用DBから取得する予定）
 const time = "00:12:34";
 const work = "デザイン修正";
 
 const HomePageMain = ({ labels }: Props) => {
   const methods = useForm<UserData>({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(formSchema),
     mode: "onChange",
   });
 
