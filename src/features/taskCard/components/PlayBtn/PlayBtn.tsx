@@ -12,11 +12,9 @@ const PlayBtn = () => {
     <Controller
       control={control}
       name="start"
-      rules={{
-        required: true,
-      }}
       render={({ field: { onChange } }) => (
         <button
+          type="button"
           className="bg-[#c2ef53ff] shadow-[0_0_12px_rgba(194,239,83,0.2)] p-3 rounded-3xl"
           onClick={() => onChange(dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZ"))}
         >
