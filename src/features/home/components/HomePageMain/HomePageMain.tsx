@@ -37,16 +37,12 @@ const HomePageMain = ({ labels }: Props) => {
       <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-[#2C2C2C]">
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <NowDisplay isTimer={false} />
-            <div className="m-14">
-              <TaskCard
-                isInput="input"
-                labels={labels}
-                work={work}
-                time={time}
-              />
+            <div className="w-100 mx-auto">
+              <NowDisplay />
             </div>
-            <input type="submit" />
+            <div className="m-14 min-h-70">
+              <TaskCard isInput="input" labels={labels} time={time} />
+            </div>
           </form>
         </FormProvider>
         <div className="absolute bottom-5">
