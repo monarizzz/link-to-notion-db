@@ -20,7 +20,6 @@ type UserData = z.infer<typeof formSchema>;
 
 // TODO:仮置き（タスク管理用DBから取得する予定）
 const time = "00:12:34";
-const work = "デザイン修正";
 
 const HomePageMain = ({ labels }: Props) => {
   const methods = useForm<UserData>({
