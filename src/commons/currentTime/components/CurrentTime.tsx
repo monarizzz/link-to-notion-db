@@ -2,22 +2,30 @@
 
 import { useEffect, useState } from "react";
 import { getCurrentTime } from "../entities/getCurrentTime";
+import { useWatch } from "react-hook-form";
+import dayjs from "dayjs";
+import "@/libs/dayjs/config";
 
-type Props = { isTimer: boolean };
-
-const CurrentTime = ({ isTimer }: Props) => {
+const CurrentTime = () => {
   const [time, setTime] = useState(getCurrentTime());
+  const [, setTick] = useState(1);
+  const start = useWatch({ name: "start" });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getCurrentTime());
+      setTick((t) => t + 1);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <span className="text-[120px] text-[#FAFAF9] font-bold -tracking-[4px]">
-      {isTimer ? <p>経過時間</p> : time}
+      {start ? (
+        <p>{dayjs.duration(dayjs().diff(dayjs(start))).format("HH:mm")}</p>
+      ) : (
+        time
+      )}
     </span>
   );
 };
