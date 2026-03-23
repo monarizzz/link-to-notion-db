@@ -2,11 +2,11 @@
 
 import Line from "@/commons/layout/components/Line/Line";
 import { useFormContext, useWatch } from "react-hook-form";
-import Image from "next/image";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { Input } from "@/libs/shadcn/assets/ui/input";
 import ModalContents from "@/features/checkoutModal/components/ModalContents";
+import Plain from "@public/plain.svg";
 
 const CheckoutModal = () => {
   const [start, end] = useWatch({
@@ -38,7 +38,7 @@ const CheckoutModal = () => {
       <div className="pt-4 px-5 pb-5 flex gap-3 justify-between">
         <div className="bg-[#c2ef53] rounded-xl py-3.5 flex w-full">
           <div className="m-auto flex gap-3">
-            <Image src="/public/plain.svg" height={18} width={18} alt="plain" />
+            <Plain className="size-4.5 text-[#2c2c2e]" alt="submit" />
             <input
               type="submit"
               value="これでOK！"
