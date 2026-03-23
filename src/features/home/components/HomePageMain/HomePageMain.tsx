@@ -30,6 +30,7 @@ const HomePageMain = ({ labels }: Props) => {
 
   const onSubmit: SubmitHandler<UserData> = (data) => {
     console.log(data);
+    methods.reset();
   };
 
   return (
