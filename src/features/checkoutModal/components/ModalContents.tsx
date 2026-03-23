@@ -3,7 +3,7 @@ import Pen from "@public/pen.svg";
 
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
-import { Fragment } from "react/jsx-runtime";
+import { Fragment } from "react";
 
 const ModalContents = () => {
   const [start, end, label] = useWatch({
