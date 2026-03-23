@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useWatch } from "react-hook-form";
+import StopBtn from "../StopBtn/StopBtn";
 
 type Props = {
   time: string;
@@ -26,9 +27,7 @@ const DoingContent = ({ time }: Props) => {
           <span className="text-[#6B6B70] text-[11px]">{time}</span>
         </div>
       </div>
-      <div className="bg-[#357ff6ff] shadow-[0_0_12px_rgba(53,127,246,0.2)] p-[3.5px] rounded-3xl">
-        <Image src="/check.svg" width={39} height={39} alt="check" />
-      </div>
+      <StopBtn />
     </>
   );
 };
