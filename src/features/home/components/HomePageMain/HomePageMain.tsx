@@ -13,6 +13,7 @@ type Props = {
 
 const formSchema = z.object({
   start: z.string().min(1, "開始日時を入力してください"),
+  end: z.string().min(1, "終了日時を入力してください"),
   label: z.string().optional(),
 });
 
@@ -29,6 +30,7 @@ const HomePageMain = ({ labels }: Props) => {
 
   const onSubmit: SubmitHandler<UserData> = (data) => {
     console.log(data);
+    methods.reset();
   };
 
   return (
@@ -40,7 +42,7 @@ const HomePageMain = ({ labels }: Props) => {
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
-              <TaskCard isInput="input" labels={labels} time={time} />
+              <TaskCard isInput="timer" labels={labels} time={time} />
             </div>
             <input type="submit" />
           </form>
