@@ -1,6 +1,7 @@
 import LabelSelect from "@/commons/labelSelect/components/LabelSelect";
 import Image from "next/image";
 import PlayBtn from "../PlayBtn/PlayBtn";
+import Pen from "@public/pen.svg";
 
 type Props = {
   labels: string[];
@@ -10,7 +11,7 @@ const InputContent = ({ labels }: Props) => {
   return (
     <>
       <div className="bg-[#4A4A50] p-2.5 rounded-md">
-        <Image src="/pen.svg" width={16} height={16} alt="pen" />
+        <Pen className="size-4 text-[#FAFAF9]" alt="pen" />
       </div>
       <div className="flex flex-col gap-0.5 w-full">
         <span className="text-[#6B6B70] text-[11px]">何をしますか？</span>
