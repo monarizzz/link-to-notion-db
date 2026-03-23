@@ -8,13 +8,11 @@ import "@/libs/dayjs/config";
 
 const CurrentTime = () => {
   const [time, setTime] = useState(getCurrentTime());
-  const [, setTick] = useState(1);
   const start = useWatch({ name: "start" });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getCurrentTime());
-      setTick((t) => t + 1);
     }, 1000);
     return () => clearInterval(interval);
   }, []);

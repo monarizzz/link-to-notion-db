@@ -18,7 +18,7 @@ const formSchema = z.object({
 
 type UserData = z.infer<typeof formSchema>;
 
-// TODO:仮置き（タスク管理用DBから取得する予定）
+// TODO:仮置き
 const time = "00:12:34";
 
 const HomePageMain = ({ labels }: Props) => {
@@ -42,6 +42,7 @@ const HomePageMain = ({ labels }: Props) => {
             <div className="m-14 min-h-70">
               <TaskCard isInput="input" labels={labels} time={time} />
             </div>
+            <input type="submit" />
           </form>
         </FormProvider>
         <div className="absolute bottom-5">

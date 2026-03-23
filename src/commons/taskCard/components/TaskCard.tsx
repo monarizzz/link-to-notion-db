@@ -4,7 +4,7 @@ import DoingContent from "@/features/taskCard/components/doingContent/doingConte
 import { useWatch } from "react-hook-form";
 
 type Props = {
-  isInput: "todo" | "input" | "doing";
+  isInput: "todo" | "input";
   todoDetail?: TodoDetail;
   labels: string[];
   time: string;
