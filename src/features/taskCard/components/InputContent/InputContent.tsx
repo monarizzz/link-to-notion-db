@@ -1,5 +1,4 @@
 import LabelSelect from "@/commons/labelSelect/components/LabelSelect";
-import Image from "next/image";
 import PlayBtn from "../PlayBtn/PlayBtn";
 import Pen from "@public/pen.svg";
 
