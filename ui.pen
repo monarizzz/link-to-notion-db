@@ -6619,36 +6619,6 @@
         },
         {
           "type": "frame",
-          "id": "VnkCz",
-          "x": 792,
-          "y": 178,
-          "name": "cb1",
-          "width": 40,
-          "height": 40,
-          "fill": "#2c2c2e",
-          "cornerRadius": 35,
-          "stroke": {
-            "align": "inside",
-            "thickness": 2,
-            "fill": "#3a3a3c"
-          },
-          "layout": "none",
-          "children": [
-            {
-              "type": "icon_font",
-              "id": "4gy4l",
-              "x": 10,
-              "y": 10,
-              "width": 20,
-              "height": 20,
-              "iconFontName": "x",
-              "iconFontFamily": "lucide",
-              "fill": "#A0A0A8"
-            }
-          ]
-        },
-        {
-          "type": "frame",
           "id": "USS42",
           "x": 460,
           "y": 160,
@@ -7159,6 +7129,36 @@
               ]
             }
           ]
+        },
+        {
+          "type": "frame",
+          "id": "VnkCz",
+          "x": 788,
+          "y": 150,
+          "name": "cb1",
+          "width": 40,
+          "height": 40,
+          "fill": "#2c2c2e",
+          "cornerRadius": 35,
+          "stroke": {
+            "align": "inside",
+            "thickness": 2,
+            "fill": "#3a3a3c"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "4gy4l",
+              "x": 10,
+              "y": 10,
+              "width": 20,
+              "height": 20,
+              "iconFontName": "x",
+              "iconFontFamily": "lucide",
+              "fill": "#A0A0A8"
+            }
+          ]
         }
       ]
     },
@@ -7183,36 +7183,6 @@
           "fill": "#000000",
           "width": 1280,
           "height": 800
-        },
-        {
-          "type": "frame",
-          "id": "wh03t",
-          "x": 792,
-          "y": 178,
-          "name": "cb2",
-          "width": 40,
-          "height": 40,
-          "fill": "#2c2c2e",
-          "cornerRadius": 35,
-          "stroke": {
-            "align": "inside",
-            "thickness": 2,
-            "fill": "#3a3a3c"
-          },
-          "layout": "none",
-          "children": [
-            {
-              "type": "icon_font",
-              "id": "DSSGf",
-              "x": 10,
-              "y": 10,
-              "width": 20,
-              "height": 20,
-              "iconFontName": "x",
-              "iconFontFamily": "lucide",
-              "fill": "#A0A0A8"
-            }
-          ]
         },
         {
           "type": "frame",
@@ -7703,6 +7673,36 @@
               ]
             }
           ]
+        },
+        {
+          "type": "frame",
+          "id": "wh03t",
+          "x": 787,
+          "y": 117,
+          "name": "cb2",
+          "width": 40,
+          "height": 40,
+          "fill": "#2c2c2e",
+          "cornerRadius": 35,
+          "stroke": {
+            "align": "inside",
+            "thickness": 2,
+            "fill": "#3a3a3c"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "DSSGf",
+              "x": 10,
+              "y": 10,
+              "width": 20,
+              "height": 20,
+              "iconFontName": "x",
+              "iconFontFamily": "lucide",
+              "fill": "#A0A0A8"
+            }
+          ]
         }
       ]
     },
@@ -7727,36 +7727,6 @@
           "fill": "#000000",
           "width": 1280,
           "height": 800
-        },
-        {
-          "type": "frame",
-          "id": "vL8qg",
-          "x": 792,
-          "y": 178,
-          "name": "cb3",
-          "width": 40,
-          "height": 40,
-          "fill": "#2c2c2e",
-          "cornerRadius": 35,
-          "stroke": {
-            "align": "inside",
-            "thickness": 2,
-            "fill": "#3a3a3c"
-          },
-          "layout": "none",
-          "children": [
-            {
-              "type": "icon_font",
-              "id": "VRvay",
-              "x": 10,
-              "y": 10,
-              "width": 20,
-              "height": 20,
-              "iconFontName": "x",
-              "iconFontFamily": "lucide",
-              "fill": "#A0A0A8"
-            }
-          ]
         },
         {
           "type": "frame",
@@ -8245,6 +8215,36 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vL8qg",
+          "x": 792,
+          "y": 110,
+          "name": "cb3",
+          "width": 40,
+          "height": 40,
+          "fill": "#2c2c2e",
+          "cornerRadius": 35,
+          "stroke": {
+            "align": "inside",
+            "thickness": 2,
+            "fill": "#3a3a3c"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "VRvay",
+              "x": 10,
+              "y": 10,
+              "width": 20,
+              "height": 20,
+              "iconFontName": "x",
+              "iconFontFamily": "lucide",
+              "fill": "#A0A0A8"
             }
           ]
         }
