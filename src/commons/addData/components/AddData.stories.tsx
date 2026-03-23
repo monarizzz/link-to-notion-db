@@ -1,21 +1,22 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+// import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import AddData from "./AddData";
+// import AddData from "./AddData";
 
-const meta = {
-  component: AddData,
-  parameters: {
-    layout: "fullscreen",
-  },
-} satisfies Meta<typeof AddData>;
+// const meta = {
+//   component: AddData,
+//   parameters: {
+//     layout: "fullscreen",
+//   },
+// } satisfies Meta<typeof AddData>;
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+// export default meta;
+// type Story = StoryObj<typeof meta>;
 
-const defaultArgs = {
-  labels: ["開発", "インターン", "雑務"],
-};
+// const defaultArgs = {
+//   labels: ["開発", "インターン", "雑務"],
+// };
 
-export const Default: Story = {
-  args: defaultArgs,
-};
+// export const Default: Story = {
+//   args: defaultArgs,
+// };
+export default {};
