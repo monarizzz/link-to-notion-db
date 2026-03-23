@@ -17,7 +17,7 @@ type TodoDetail = {
 };
 
 const TaskCard = ({ isInput, todoDetail, labels, time }: Props) => {
-  const start = useWatch({ name: "start" });
+  const [start, end] = useWatch({ name: ["start", "end"] });
 
   const renderContent = () => {
     if (isInput === "todo" && todoDetail) {
@@ -30,7 +30,7 @@ const TaskCard = ({ isInput, todoDetail, labels, time }: Props) => {
       );
     }
     if (isInput === "timer") {
-      if (start) {
+      if (start && !end) {
         return <DoingContent time={time} />;
       }
       return <InputContent labels={labels} />;
