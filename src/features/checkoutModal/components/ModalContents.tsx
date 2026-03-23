@@ -12,8 +12,8 @@ const ModalContents = () => {
 
   const contents = [
     { name: "分類", detail: label },
-    { name: "開始時間", detail: dayjs(start).format("MM/DD HH:MM") },
-    { name: "終了時間", detail: dayjs(end).format("MM/DD HH:MM") },
+    { name: "開始時間", detail: dayjs(start).format("MM/DD HH:mm") },
+    { name: "終了時間", detail: dayjs(end).format("MM/DD HH:mm") },
   ];
 
   return (
