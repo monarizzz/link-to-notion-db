@@ -52,13 +52,6 @@ const CheckoutModal = () => {
           </button>
         </div>
       </div>
-      <button
-        type="button"
-        className="bg-amber-500"
-        onClick={() => window.close()}
-      >
-        閉じる
-      </button>
     </div>
   );
 };
