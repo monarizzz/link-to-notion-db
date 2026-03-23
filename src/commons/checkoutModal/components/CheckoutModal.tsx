@@ -1,24 +1,22 @@
 "use client";
 
 import Line from "@/commons/layout/components/Line/Line";
-import { Control, useWatch } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import Image from "next/image";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { Input } from "@/libs/shadcn/assets/ui/input";
+import ModalContents from "@/features/checkoutModal/components/ModalContents";
 
-type Props = {
-  control: Control;
-};
-
-const CheckoutModal = ({ control }: Props) => {
-  const [start, end, label, detail] = useWatch({
-    control,
-    name: ["start", "end", "label", "detail"],
+const CheckoutModal = () => {
+  const [start, end] = useWatch({
+    name: ["start", "end"],
   });
+  const { register } = useFormContext();
 
   const dur = dayjs.duration(dayjs(end).diff(dayjs(start)));
   const total = `${Math.floor(dur.asHours())}時間${dur.minutes()}分`;
+
   return (
     <div className="bg-[#2C2C2E] rounded-4xl overflow-hidden">
       <div className="flex flex-col p-6 gap-2.5">
@@ -29,37 +27,12 @@ const CheckoutModal = ({ control }: Props) => {
       </div>
       <Line />
       <div className="py-5 px-6 flex flex-col gap-4">
-        <span className="text-[#8A8A8E] text-[12px] font-semibold">
-          何をしましたか？
-        </span>
-        <Input className="py-3 px-3.5" />
-        <div>
-          <div className="flex justify-between p-2.5 text-[14px]">
-            <div className="text-[#8A8A8E]">分類</div>
-            <div className="flex gap-2">
-              <span className="text-[#F5F5F5]">{label}</span>
-              <Image src="/pen.svg" alt="pen" height={12} width={12} />
-            </div>
-          </div>
-          <div className="flex justify-between p-2.5 text-[14px]">
-            <div className="text-[#8A8A8E]">開始時間</div>
-            <div className="flex gap-2">
-              <span className="text-[#F5F5F5]">
-                {dayjs(start).format("MM/DD HH:MM")}
-              </span>
-              <Image src="/pen.svg" alt="pen" height={12} width={12} />
-            </div>
-          </div>
-          <div className="flex justify-between p-2.5 text-[14px]">
-            <div className="text-[#8A8A8E] ">終了時間</div>
-            <div className="flex gap-2">
-              <span className="text-[#F5F5F5]">
-                {dayjs(end).format("MM/DD HH:MM")}
-              </span>
-              <Image src="/pen.svg" alt="pen" height={12} width={12} />
-            </div>
-          </div>
-        </div>
+        <span className="text-[#8A8A8E] text-[12px]">何をしましたか？</span>
+        <Input
+          className="py-3 px-3.5 text-[#F5F5F5] text-[14px]"
+          {...register("detail")}
+        />
+        <ModalContents />
       </div>
       <Line />
       <div className="pt-4 px-5 pb-5 flex gap-3 justify-between">
@@ -79,6 +52,13 @@ const CheckoutModal = ({ control }: Props) => {
           </button>
         </div>
       </div>
+      <button
+        type="button"
+        className="bg-amber-500"
+        onClick={() => window.close()}
+      >
+        閉じる
+      </button>
     </div>
   );
 };
