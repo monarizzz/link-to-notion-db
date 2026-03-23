@@ -18,9 +18,8 @@ const formSchema = z.object({
 
 type UserData = z.infer<typeof formSchema>;
 
-// TODO:仮置き（タスク管理用DBから取得する予定）
+// TODO:仮置き
 const time = "00:12:34";
-const work = "デザイン修正";
 
 const HomePageMain = ({ labels }: Props) => {
   const methods = useForm<UserData>({
@@ -37,14 +36,11 @@ const HomePageMain = ({ labels }: Props) => {
       <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-[#2C2C2C]">
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <NowDisplay isTimer={false} />
-            <div className="m-14">
-              <TaskCard
-                isInput="input"
-                labels={labels}
-                work={work}
-                time={time}
-              />
+            <div className="w-100 mx-auto">
+              <NowDisplay />
+            </div>
+            <div className="m-14 min-h-70">
+              <TaskCard isInput="input" labels={labels} time={time} />
             </div>
             <input type="submit" />
           </form>

@@ -1,11 +1,13 @@
 import Image from "next/image";
+import { useWatch } from "react-hook-form";
 
 type Props = {
-  work?: string;
   time: string;
 };
 
-const DoingContent = ({ work, time }: Props) => {
+const DoingContent = ({ time }: Props) => {
+  const work = useWatch({ name: "label" });
+
   return (
     <>
       <div className="bg-[#357ff6ff] p-2.5 rounded-[10px]">

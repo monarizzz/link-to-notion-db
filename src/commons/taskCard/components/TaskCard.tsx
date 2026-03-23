@@ -1,13 +1,12 @@
 import TodoContent from "@/features/taskCard/components/TodoContent/TodoContent";
 import InputContent from "@/features/taskCard/components/InputContent/InputContent";
 import DoingContent from "@/features/taskCard/components/doingContent/doingContent";
+import { useWatch } from "react-hook-form";
 
 type Props = {
-  isInput: "todo" | "input" | "doing";
+  isInput: "todo" | "input";
   todoDetail?: TodoDetail;
   labels: string[];
-
-  work?: string;
   time: string;
 };
 
@@ -17,7 +16,9 @@ type TodoDetail = {
   priority?: "high" | "medium" | "low";
 };
 
-const TaskCard = ({ isInput, todoDetail, labels, work, time }: Props) => {
+const TaskCard = ({ isInput, todoDetail, labels, time }: Props) => {
+  const start = useWatch({ name: "start" });
+
   const renderContent = () => {
     if (isInput === "todo" && todoDetail) {
       return (
@@ -29,9 +30,11 @@ const TaskCard = ({ isInput, todoDetail, labels, work, time }: Props) => {
       );
     }
     if (isInput === "input") {
+      if (start) {
+        return <DoingContent time={time} />;
+      }
       return <InputContent labels={labels} />;
     }
-    return <DoingContent work={work} time={time} />;
   };
 
   return (
