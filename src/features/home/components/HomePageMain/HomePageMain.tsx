@@ -40,7 +40,7 @@ const HomePageMain = ({ labels }: Props) => {
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
-              <TaskCard isInput="input" labels={labels} time={time} />
+              <TaskCard isInput="timer" labels={labels} time={time} />
             </div>
             <input type="submit" />
           </form>
