@@ -8,11 +8,14 @@ import "@/libs/dayjs/config";
 
 const CurrentTime = () => {
   const [time, setTime] = useState(getCurrentTime());
+  const [, setTick] = useState(1);
+
   const start = useWatch({ name: "start" });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getCurrentTime());
+      setTick((t) => t + 1);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -20,7 +23,7 @@ const CurrentTime = () => {
   return (
     <span className="text-[120px] text-[#FAFAF9] font-bold -tracking-[4px]">
       {start ? (
-        <p>{dayjs.duration(dayjs().diff(dayjs(start))).format("HH:mm")}</p>
+        <p>{dayjs.duration(dayjs().diff(dayjs(start))).format("HH:mm:ss")}</p>
       ) : (
         time
       )}
