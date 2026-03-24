@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import pageDel from "../../utils/pageDel";
+import pageDel from "../utils/pageDel";
 
 type Props = {
   size: number;
