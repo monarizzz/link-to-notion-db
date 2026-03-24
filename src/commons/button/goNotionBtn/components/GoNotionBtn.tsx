@@ -5,7 +5,7 @@ type Props = {
   size: number;
 };
 
-const ToNotionBtn = ({ url, size }: Props) => {
+const GoNotionBtn = ({ url, size }: Props) => {
   return (
     <>
       <Link href={url}>
@@ -20,4 +20,4 @@ const ToNotionBtn = ({ url, size }: Props) => {
   );
 };
 
-export default ToNotionBtn;
+export default GoNotionBtn;

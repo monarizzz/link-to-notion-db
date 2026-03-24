@@ -3,7 +3,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { useState } from "react";
-import SubmitModal from "@/commons/submitModal/components/SubmitModal";
+import SubmitModal from "@/commons/modal/submitModal/components/SubmitModal";
 
 const StopBtn = () => {
   const { control } = useFormContext();

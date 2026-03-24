@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { FormProvider, useForm } from "react-hook-form";
 
-import DoingContent from "./doingContent";
+import DoingContent from "./DoingContent";
 
 const meta = {
   component: DoingContent,

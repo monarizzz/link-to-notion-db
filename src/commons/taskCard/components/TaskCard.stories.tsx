@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useForm, FormProvider } from "react-hook-form";
 
 import TaskCard from "./TaskCard";
-import DoingContent from "@/features/taskCard/components/doingContent/doingContent";
+import DoingContent from "@/features/taskCard/components/DoingContent/DoingContent";
 
 const meta: Meta<typeof TaskCard> = {
   component: TaskCard,
