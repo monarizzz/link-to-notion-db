@@ -1,4 +1,4 @@
-import LabelSelect from "@/features/modal/LabelSelect/LabelSelect";
+import LabelSelect from "@/features/modal/components/LabelSelect/LabelSelect";
 import PlayBtn from "../PlayBtn/PlayBtn";
 import Pen from "@public/pen.svg";
 
