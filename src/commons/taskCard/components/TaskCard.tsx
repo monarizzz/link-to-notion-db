@@ -30,7 +30,7 @@ const TaskCard = ({ isInput, todoDetail, labels, time }: Props) => {
       );
     }
     if (isInput === "timer") {
-      if (start && !end) {
+      if (start) {
         return <DoingContent time={time} />;
       }
       return <InputContent labels={labels} />;

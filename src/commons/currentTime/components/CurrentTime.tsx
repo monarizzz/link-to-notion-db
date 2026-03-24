@@ -17,12 +17,17 @@ const CurrentTime = () => {
       setTime(getCurrentTime());
       setTick((t) => t + 1);
     }, 1000);
+
+    if (end) {
+      clearInterval(interval);
+    }
+
     return () => clearInterval(interval);
-  }, []);
+  }, [end]);
 
   return (
     <span className="text-[120px] text-[#FAFAF9] font-bold -tracking-[4px]">
-      {start && !end ? (
+      {start ? (
         <p>{dayjs.duration(dayjs().diff(dayjs(start))).format("HH:mm:ss")}</p>
       ) : (
         time
