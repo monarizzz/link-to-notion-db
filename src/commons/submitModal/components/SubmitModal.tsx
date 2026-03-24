@@ -60,6 +60,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
               </div>
               <div className="bg-[#2A1515] rounded-xl px-4.5 py-3.5 shrink-0">
                 <button
+                  type="button"
                   className="font-semibold text-[14px] text-[#E05252] cursor-pointer whitespace-nowrap"
                   onClick={() => {
                     setValue("end", null);
