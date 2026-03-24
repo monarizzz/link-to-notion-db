@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useWatch } from "react-hook-form";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
-import { getCurrent } from "../../entities/getCurrent";
+import { getCurrent } from "../../utils/getCurrent";
 
 const CurrentTime = () => {
   const now = getCurrent("HH:mm");

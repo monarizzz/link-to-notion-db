@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getCurrent } from "../../entities/getCurrent";
+import { getCurrent } from "../../utils/getCurrent";
 
 const CurrentDate = () => {
   const now = getCurrent("YYYY.MM.DD");

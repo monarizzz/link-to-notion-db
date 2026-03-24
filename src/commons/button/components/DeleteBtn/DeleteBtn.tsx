@@ -1,6 +1,6 @@
 "use client";
 import DustBox from "@public/button/dustBox.svg";
-import pageDel from "../utils/pageDel";
+import pageDel from "../../utils/pageDel";
 
 type Props = {
   size: number;
