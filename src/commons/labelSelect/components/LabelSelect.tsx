@@ -24,7 +24,7 @@ const LabelSelect = ({ labels, placeholder, selectLabel }: Props) => {
       control={control}
       name="label"
       render={({ field: { value, onChange } }) => (
-        <Select value={value} onValueChange={onChange}>
+        <Select value={value ?? ""} onValueChange={onChange}>
           <SelectTrigger className="bg-[#252525] w-full text-xs border-none text-[#FAFAF9] focus-visible:ring-[1px] h-auto py-0 px-2.5">
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>

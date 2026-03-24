@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useForm, FormProvider } from "react-hook-form";
 
-import CheckoutModal from "./CheckoutModal";
+import SubmitModal from "./SubmitModal";
 
-const meta: Meta<typeof CheckoutModal> = {
-  component: CheckoutModal,
+const meta: Meta<typeof SubmitModal> = {
+  component: SubmitModal,
   parameters: {
     layout: "fullscreen",
   },
@@ -28,6 +28,6 @@ const meta: Meta<typeof CheckoutModal> = {
 
 export default meta;
 
-type Story = StoryObj<typeof CheckoutModal>;
+type Story = StoryObj<typeof SubmitModal>;
 
 export const Default: Story = {};

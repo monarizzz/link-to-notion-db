@@ -13,16 +13,19 @@ const CurrentTime = () => {
   const [start, end] = useWatch({ name: ["start", "end"] });
 
   useEffect(() => {
+    if (end) return;
+
     const interval = setInterval(() => {
       setTime(getCurrentTime());
       setTick((t) => t + 1);
     }, 1000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [end]);
 
   return (
     <span className="text-[120px] text-[#FAFAF9] font-bold -tracking-[4px]">
-      {start && !end ? (
+      {start ? (
         <p>{dayjs.duration(dayjs().diff(dayjs(start))).format("HH:mm:ss")}</p>
       ) : (
         time
