@@ -1,6 +1,6 @@
 "use client";
 
-import { addDataAction } from "@/commons/modal/submitModal/entities/addDataAction";
+import { addData } from "@/commons/modal/utils/addData";
 import BottomBar from "@/commons/layout/components/BottomBar/BottomBar";
 import NowDisplay from "../NowDisplay/NowDisplay";
 import WorkCard from "@/commons/workCard/components/WorkCard";
@@ -39,7 +39,7 @@ const HomePageMain = ({ labels }: Props) => {
         },
         ...(data.label && { select: { select: { name: data.label } } }),
       };
-      await addDataAction(properties);
+      await addData(properties);
       methods.reset();
     } catch (error) {
       console.error(error); // TODO:errorハンドリングを考える
