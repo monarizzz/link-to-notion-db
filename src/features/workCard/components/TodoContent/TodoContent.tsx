@@ -1,4 +1,4 @@
-import PriorityBadge from "@/commons/layout/components/priorityBadge/components/PriorityBadge";
+import PriorityBadge from "@/commons/layout/components/priorityBadge/PriorityBadge";
 import { Checkbox } from "@/libs/shadcn/assets/ui/checkbox";
 import Image from "next/image";
 
