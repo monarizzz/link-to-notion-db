@@ -1,6 +1,6 @@
 "use client";
 
-import Line from "@/commons/layout/components/Line/Line";
+import CommonSeparator from "@/commons/layout/components/commonSeparator/CommonSeparator";
 import { useFormContext, useWatch } from "react-hook-form";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
@@ -35,7 +35,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
                 {total}
               </span>
             </div>
-            <Line />
+            <CommonSeparator />
             <div className="py-5 px-6 flex flex-col gap-4">
               <span className="text-[#8A8A8E] text-[12px]">
                 何をしましたか？
@@ -46,7 +46,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
               />
               <ModalContents />
             </div>
-            <Line />
+            <CommonSeparator />
             <div className="pt-4 px-5 pb-5 flex gap-3 justify-between">
               <div className="bg-[#c2ef53] rounded-xl py-3.5 flex w-full">
                 <div className="m-auto flex gap-3">

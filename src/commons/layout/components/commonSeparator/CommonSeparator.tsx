@@ -5,7 +5,7 @@ type Props = {
   dashed?: boolean;
 };
 
-const Line = ({ vertical, dashed }: Props) => {
+const CommonSeparator = ({ vertical, dashed }: Props) => {
   const dashedClass = dashed
     ? vertical
       ? "bg-transparent border-l border-dashed border-border w-0"
@@ -22,4 +22,4 @@ const Line = ({ vertical, dashed }: Props) => {
   return <Separator className={dashedClass} />;
 };
 
-export default Line;
+export default CommonSeparator;
