@@ -15,7 +15,7 @@ type TodoDetail = {
   priority?: "high" | "medium" | "low";
 };
 
-const TaskCard = ({ isInput, todoDetail, labels }: Props) => {
+const WorkCard = ({ isInput, todoDetail, labels }: Props) => {
   const [start] = useWatch({ name: ["start"] });
 
   const renderContent = () => {
@@ -43,4 +43,4 @@ const TaskCard = ({ isInput, todoDetail, labels }: Props) => {
   );
 };
 
-export default TaskCard;
+export default WorkCard;

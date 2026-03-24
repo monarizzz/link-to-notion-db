@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useForm, FormProvider } from "react-hook-form";
 
-import TaskCard from "./TaskCard";
+import WorkCard from "./WorkCard";
 import DoingContent from "@/features/taskCard/components/DoingContent/DoingContent";
 
-const meta: Meta<typeof TaskCard> = {
-  component: TaskCard,
+const meta: Meta<typeof WorkCard> = {
+  component: WorkCard,
   parameters: {
     layout: "fullscreen",
   },
@@ -23,7 +23,7 @@ const meta: Meta<typeof TaskCard> = {
 
 export default meta;
 
-type Story = StoryObj<typeof TaskCard>;
+type Story = StoryObj<typeof WorkCard>;
 
 const sampleLabels = ["仕事", "プライベート", "勉強", "健康"];
 
@@ -42,31 +42,31 @@ const TimerDoingWrapper = ({ children }: { children: React.ReactNode }) => {
 export const All: Story = {
   render: () => (
     <div className="flex flex-col gap-2">
-      <TaskCard
+      <WorkCard
         isInput="todo"
         todoDetail={{ time: "1h", work: "デザインレビュー", priority: "high" }}
         labels={sampleLabels}
       />
-      <TaskCard
+      <WorkCard
         isInput="todo"
         todoDetail={{ time: "3h", work: "実装作業", priority: "medium" }}
         labels={sampleLabels}
       />
-      <TaskCard
+      <WorkCard
         isInput="todo"
         todoDetail={{ time: "5h30m", work: "ミーティング", priority: "low" }}
         labels={sampleLabels}
       />
-      <TaskCard
+      <WorkCard
         isInput="todo"
         todoDetail={{ time: "17h4m", work: "ドキュメント整備" }}
         labels={sampleLabels}
       />
       <TimerInputWrapper>
-        <TaskCard isInput="timer" labels={sampleLabels} />
+        <WorkCard isInput="timer" labels={sampleLabels} />
       </TimerInputWrapper>
       <TimerDoingWrapper>
-        <TaskCard isInput="timer" labels={sampleLabels} />
+        <WorkCard isInput="timer" labels={sampleLabels} />
       </TimerDoingWrapper>
     </div>
   ),

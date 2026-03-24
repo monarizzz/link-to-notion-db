@@ -3,7 +3,7 @@
 import { addDataAction } from "@/commons/modal/submitModal/entities/addDataAction";
 import BottomBar from "@/commons/layout/components/BottomBar/BottomBar";
 import NowDisplay from "../NowDisplay/NowDisplay";
-import TaskCard from "@/commons/taskCard/components/TaskCard";
+import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -55,7 +55,7 @@ const HomePageMain = ({ labels }: Props) => {
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
-              <TaskCard isInput="timer" labels={labels} />
+              <WorkCard isInput="timer" labels={labels} />
             </div>
           </form>
         </FormProvider>
