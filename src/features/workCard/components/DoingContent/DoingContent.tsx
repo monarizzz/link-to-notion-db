@@ -10,7 +10,7 @@ const DoingContent = () => {
   return (
     <>
       <div className="bg-[#357ff6ff] p-2.5 rounded-[10px]">
-        <Timer className="text-[#b0a89e] w-5 h-5" alt="timer" />
+        <Timer className="text-[#07275bff] w-5 h-5" alt="timer" />
       </div>
       <div className="flex flex-col gap-0.5 w-full">
         {label !== undefined ? (

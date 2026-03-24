@@ -21,7 +21,10 @@ const TodoContent = ({ time, work, priority }: Props) => {
       </div>
       <div>
         <div className="w-8 h-8 bg-[#4A4A50] rounded-3xl flex">
-          <ArrowRight className="items-center m-auto w-3.5 h-3.5" alt="arrow" />
+          <ArrowRight
+            className="items-center m-auto w-3.5 h-3.5 text-[#FAFAF9]"
+            alt="arrow"
+          />
         </div>
       </div>
     </>
