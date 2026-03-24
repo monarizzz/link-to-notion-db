@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useForm, FormProvider } from "react-hook-form";
 
-import CheckoutModal from "./CheckoutModal";
+import CheckoutModal from "./SubmitModal";
 
 const meta: Meta<typeof CheckoutModal> = {
   component: CheckoutModal,
