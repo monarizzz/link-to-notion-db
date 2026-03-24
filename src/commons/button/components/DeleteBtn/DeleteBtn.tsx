@@ -15,7 +15,11 @@ const DeleteBtn = ({ size, pageId }: Props) => {
 
   return (
     <button onClick={handleClick}>
-      <DustBox alt="delete" className={`text-[#1C274C] size-${size}`} />
+      <DustBox
+        alt="delete"
+        className="text-[#1C274C]"
+        style={{ width: size, height: size }}
+      />
     </button>
   );
 };
