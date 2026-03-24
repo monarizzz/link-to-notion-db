@@ -17,7 +17,7 @@ type TodoDetail = {
 };
 
 const TaskCard = ({ isInput, todoDetail, labels, time }: Props) => {
-  const [start, end] = useWatch({ name: ["start", "end"] });
+  const [start] = useWatch({ name: ["start"] });
 
   const renderContent = () => {
     if (isInput === "todo" && todoDetail) {
