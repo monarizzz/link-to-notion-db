@@ -5,8 +5,8 @@ import { useFormContext, useWatch } from "react-hook-form";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { Input } from "@/libs/shadcn/assets/ui/input";
-import ModalContents from "@/features/modal/components/ModalContents/ModalContents";
 import Plain from "@public/plain.svg";
+import ModalContents from "@/features/home/components/ModalContents/ModalContents";
 
 type Props = {
   isOpenModal: boolean;
