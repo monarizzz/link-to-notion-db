@@ -28,11 +28,6 @@ const HomePageMain = ({ labels }: Props) => {
     mode: "onChange",
   });
 
-  // const onSubmit: SubmitHandler<DataForm> = (data) => {
-  //   console.log(data);
-  //   methods.reset();
-  // };
-
   const onSubmit = async (data: DataForm) => {
     try {
       const properties = {
