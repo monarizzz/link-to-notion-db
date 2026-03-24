@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getCurrentDate } from "../entities/getCurrentDate";
+import { getCurrent } from "../../entities/getCurrent";
 
 const CurrentDate = () => {
-  const [date, setDate] = useState(getCurrentDate());
+  const now = getCurrent("YYYY.MM.DD");
+  const [date, setDate] = useState(now);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDate(getCurrentDate());
+      setDate(now);
     }, 1000);
     return () => clearInterval(interval);
   }, []);

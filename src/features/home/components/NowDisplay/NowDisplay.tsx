@@ -1,5 +1,5 @@
-import CurrentDate from "@/commons/date/currentDate/components/CurrentDate";
-import CurrentTime from "@/commons/date/currentTime/components/CurrentTime";
+import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
+import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 
 const NowDisplay = () => {
   return (
