@@ -1,6 +1,6 @@
 "use client";
 
-import CommonSeparator from "@/commons/layout/components/commonSeparator/CommonSeparator";
+import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
 import { useFormContext, useWatch } from "react-hook-form";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
