@@ -42,7 +42,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
               </span>
               <Input
                 className="py-3 px-3.5 text-[#F5F5F5] text-[14px]"
-                {...register("detail")}
+                {...register("title")}
               />
               <ModalContents />
             </div>
