@@ -3,7 +3,6 @@ import Pen from "@public/pen.svg";
 
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
-import { Fragment } from "react";
 
 const ModalContents = () => {
   const [start, end, label] = useWatch({
@@ -19,18 +18,19 @@ const ModalContents = () => {
   return (
     <div>
       {contents.map((content) => (
-        <Fragment key={content.name}>
-          <div className="flex py-2.5 justify-between text-[14px]">
-            <div className="text-[#8A8A8E]">{content.name}</div>
-            <div className="flex gap-2">
-              <span className="text-[#F5F5F5]">{content.detail}</span>
-              <button type="submit">
-                {/* あとで編集ボタンを追加する */}
-                <Pen className="size-4 text-[#4A79F5]" />
-              </button>
-            </div>
+        <div
+          className="flex py-2.5 justify-between text-[14px]"
+          key={content.name}
+        >
+          <div className="text-[#8A8A8E]">{content.name}</div>
+          <div className="flex gap-2">
+            <span className="text-[#F5F5F5]">{content.detail}</span>
+            <button type="button">
+              {/* あとで編集ボタンを追加する */}
+              <Pen className="size-4 text-[#4A79F5]" />
+            </button>
           </div>
-        </Fragment>
+        </div>
       ))}
     </div>
   );
