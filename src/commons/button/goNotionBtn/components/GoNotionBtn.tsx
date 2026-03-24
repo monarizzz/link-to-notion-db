@@ -1,4 +1,4 @@
-import Image from "next/image";
+import JumpURL from "@public/button/jumpURL.svg";
 import Link from "next/link";
 type Props = {
   url: string;
@@ -7,16 +7,14 @@ type Props = {
 
 const GoNotionBtn = ({ url, size }: Props) => {
   return (
-    <>
-      <Link href={url}>
-        <Image
-          src="junpURL.svg"
-          alt="go to notion"
-          width={size}
-          height={size}
-        />
-      </Link>
-    </>
+    <Link href={url}>
+      <JumpURL
+        alt="go to notion"
+        width={size}
+        height={size}
+        className="text-[#1C274C]"
+      />
+    </Link>
   );
 };
 

@@ -16,20 +16,6 @@ type Story = StoryObj<typeof GoNotionBtn>;
 export const Default: Story = {
   args: {
     url: "https://www.notion.so",
-    size: 32,
-  },
-};
-
-export const Small: Story = {
-  args: {
-    url: "https://www.notion.so",
-    size: 20,
-  },
-};
-
-export const Large: Story = {
-  args: {
-    url: "https://www.notion.so",
-    size: 48,
+    size: 100,
   },
 };
