@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Check from "@public/check.svg";
 import { Controller, useFormContext } from "react-hook-form";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
@@ -23,7 +23,7 @@ const StopBtn = () => {
             }}
             className="bg-[#357ff6ff] shadow-[0_0_12px_rgba(53,127,246,0.2)] p-[3.5px] rounded-3xl"
           >
-            <Image src="/check.svg" width={39} height={39} alt="check" />
+            <Check className="w-9.75 h-9.75" alt="check" />
           </button>
           <SubmitModal
             isOpenModal={isOpenModal}

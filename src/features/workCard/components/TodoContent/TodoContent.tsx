@@ -1,6 +1,6 @@
 import PriorityBadge from "@/commons/layout/components/PriorityBadge/PriorityBadge";
 import { Checkbox } from "@/libs/shadcn/assets/ui/checkbox";
-import Image from "next/image";
+import ArrowRight from "@public/arrow-right.svg";
 
 type Props = {
   time: string;
@@ -21,13 +21,7 @@ const TodoContent = ({ time, work, priority }: Props) => {
       </div>
       <div>
         <div className="w-8 h-8 bg-[#4A4A50] rounded-3xl flex">
-          <Image
-            className="items-center m-auto"
-            src="/arrow-right.svg"
-            width={14}
-            height={14}
-            alt="arrow"
-          />
+          <ArrowRight className="items-center m-auto w-3.5 h-3.5" alt="arrow" />
         </div>
       </div>
     </>
