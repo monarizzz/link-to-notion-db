@@ -109,16 +109,6 @@ export const Input: Story = {
     isInput: "timer",
     labels: sampleLabels,
   },
-  decorators: [
-    (Story) => {
-      const methods = useForm({ defaultValues: { start: false, end: false } });
-      return (
-        <FormProvider {...methods}>
-          <Story />
-        </FormProvider>
-      );
-    },
-  ],
 };
 
 export const Doing: Story = {
