@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import DustBox from "@public/button/dustBox.svg";
 import pageDel from "../utils/pageDel";
 
 type Props = {
@@ -15,7 +15,7 @@ const DeleteBtn = ({ size, pageId }: Props) => {
 
   return (
     <button onClick={handleClick}>
-      <Image src="/delete-btn.svg" alt="delete" width={size} height={size} />
+      <DustBox alt="delete" className={`text-[#1C274C] size-${size}`} />
     </button>
   );
 };

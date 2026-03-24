@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-  size: 10,
+  size: 100,
   pageId: "1",
 };
 
