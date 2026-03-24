@@ -1,9 +1,11 @@
 "use client";
 
+import { addDataAction } from "@/commons/addData/entities/addDataAction";
+
 import BottomBar from "@/commons/layout/components/BottomBar/BottomBar";
 import NowDisplay from "../NowDisplay/NowDisplay";
 import TaskCard from "@/commons/taskCard/components/TaskCard";
-import { SubmitHandler, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -15,23 +17,39 @@ const formSchema = z.object({
   start: z.string().min(1, "開始日時を入力してください"),
   end: z.string().min(1, "終了日時を入力してください"),
   label: z.string().optional(),
-  detail: z.string().optional(),
+  title: z.string().optional(),
 });
 
-type UserData = z.infer<typeof formSchema>;
-
-// TODO:仮置き
-const time = "00:12:34";
+type DataForm = z.infer<typeof formSchema>;
 
 const HomePageMain = ({ labels }: Props) => {
-  const methods = useForm<UserData>({
+  const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<UserData> = (data) => {
-    console.log(data);
-    methods.reset();
+  // const onSubmit: SubmitHandler<DataForm> = (data) => {
+  //   console.log(data);
+  //   methods.reset();
+  // };
+
+  const onSubmit = async (data: DataForm) => {
+    try {
+      const properties = {
+        title: { title: [{ text: { content: data.title ?? "" } }] },
+        workTime: {
+          date: {
+            start: data.start,
+            end: data.end,
+          },
+        },
+        ...(data.label && { select: { select: { name: data.label } } }),
+      };
+      await addDataAction(properties);
+      methods.reset();
+    } catch (error) {
+      console.error(error); // TODO:errorハンドリングを考える
+    }
   };
 
   return (
@@ -43,9 +61,8 @@ const HomePageMain = ({ labels }: Props) => {
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
-              <TaskCard isInput="timer" labels={labels} time={time} />
+              <TaskCard isInput="timer" labels={labels} />
             </div>
-            <input type="submit" />
           </form>
         </FormProvider>
         <div className="absolute bottom-5">
