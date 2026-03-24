@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Timer from "@public/timer.svg";
 import { useWatch } from "react-hook-form";
 import StopBtn from "../StopBtn/StopBtn";
 import dayjs from "dayjs";
@@ -10,7 +10,7 @@ const DoingContent = () => {
   return (
     <>
       <div className="bg-[#357ff6ff] p-2.5 rounded-[10px]">
-        <Image src="/timer.svg" width={20} height={20} alt="timer" />
+        <Timer className="text-[#b0a89e] w-5 h-5" alt="timer" />
       </div>
       <div className="flex flex-col gap-0.5 w-full">
         {label !== undefined ? (
