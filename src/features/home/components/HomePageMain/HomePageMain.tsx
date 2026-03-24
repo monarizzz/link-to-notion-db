@@ -1,7 +1,6 @@
 "use client";
 
-import { addDataAction } from "@/commons/addData/entities/addDataAction";
-
+import { addDataAction } from "@/commons/submitModal/entities/addDataAction";
 import BottomBar from "@/commons/layout/components/BottomBar/BottomBar";
 import NowDisplay from "../NowDisplay/NowDisplay";
 import TaskCard from "@/commons/taskCard/components/TaskCard";
