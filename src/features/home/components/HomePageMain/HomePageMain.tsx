@@ -22,9 +22,6 @@ const formSchema = z.object({
 
 type DataForm = z.infer<typeof formSchema>;
 
-// TODO:仮置き
-const time = "00:12:34";
-
 const HomePageMain = ({ labels }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
@@ -64,7 +61,7 @@ const HomePageMain = ({ labels }: Props) => {
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
-              <TaskCard isInput="timer" labels={labels} time={time} />
+              <TaskCard isInput="timer" labels={labels} />
             </div>
           </form>
         </FormProvider>

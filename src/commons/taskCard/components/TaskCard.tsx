@@ -7,7 +7,6 @@ type Props = {
   isInput: "todo" | "timer";
   todoDetail?: TodoDetail;
   labels: string[];
-  time: string;
 };
 
 type TodoDetail = {
@@ -16,7 +15,7 @@ type TodoDetail = {
   priority?: "high" | "medium" | "low";
 };
 
-const TaskCard = ({ isInput, todoDetail, labels, time }: Props) => {
+const TaskCard = ({ isInput, todoDetail, labels }: Props) => {
   const [start] = useWatch({ name: ["start"] });
 
   const renderContent = () => {
@@ -31,7 +30,7 @@ const TaskCard = ({ isInput, todoDetail, labels, time }: Props) => {
     }
     if (isInput === "timer") {
       if (start) {
-        return <DoingContent time={time} />;
+        return <DoingContent />;
       }
       return <InputContent labels={labels} />;
     }
