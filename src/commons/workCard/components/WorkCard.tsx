@@ -1,6 +1,6 @@
-import TodoContent from "@/features/taskCard/components/TodoContent/TodoContent";
-import InputContent from "@/features/taskCard/components/inputContent/InputContent";
-import DoingContent from "@/features/taskCard/components/DoingContent/DoingContent";
+import TodoContent from "@/features/workCard/components/TodoContent/TodoContent";
+import InputContent from "@/features/workCard/components/inputContent/InputContent";
+import DoingContent from "@/features/workCard/components/DoingContent/DoingContent";
 import { useWatch } from "react-hook-form";
 
 type Props = {
