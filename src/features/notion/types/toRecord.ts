@@ -4,6 +4,5 @@ export type ToRecord = {
   start: string;
   end: string;
   url: string;
-  detail: string;
   color: string;
 };

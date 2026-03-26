@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { FormProvider, useForm } from "react-hook-form";
-import NowDisplay from "./NowDisplay";
+
+import InputContent from "./InputContent";
 
 const meta = {
-  component: NowDisplay,
+  component: InputContent,
   parameters: {
     layout: "fullscreen",
   },
@@ -17,9 +18,13 @@ const meta = {
       );
     },
   ],
-} satisfies Meta<typeof NowDisplay>;
+} satisfies Meta<typeof InputContent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    labels: ["仕事", "プライベート", "勉強", "健康"],
+  },
+};
