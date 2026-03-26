@@ -7,8 +7,7 @@ import "@/libs/dayjs/config";
 import { getCurrent } from "../../utils/getCurrent";
 
 const CurrentTime = () => {
-  const now = getCurrent("HH:mm");
-  const [time, setTime] = useState(now);
+  const [time, setTime] = useState(getCurrent("HH:mm"));
   const [, setTick] = useState(1);
 
   const [start, end] = useWatch({ name: ["start", "end"] });
@@ -17,7 +16,7 @@ const CurrentTime = () => {
     if (end) return;
 
     const interval = setInterval(() => {
-      setTime(now);
+      setTime(getCurrent("HH:mm"));
       setTick((t) => t + 1);
     }, 1000);
 

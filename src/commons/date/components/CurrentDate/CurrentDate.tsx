@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 import { getCurrent } from "../../utils/getCurrent";
 
 const CurrentDate = () => {
-  const now = getCurrent("YYYY.MM.DD");
-  const [date, setDate] = useState(now);
+  const [date, setDate] = useState(getCurrent("YYYY.MM.DD"));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDate(now);
+      setDate(getCurrent("YYYY.MM.DD"));
     }, 1000);
     return () => clearInterval(interval);
   }, []);
