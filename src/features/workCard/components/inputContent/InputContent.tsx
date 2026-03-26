@@ -9,8 +9,8 @@ type Props = {
 const InputContent = ({ labels }: Props) => {
   return (
     <>
-      <div className="bg-[#4A4A50] p-2.5 rounded-md">
-        <Pen className="size-4 text-[#FAFAF9]" alt="pen" />
+      <div className="bg-primary p-2.5 rounded-md">
+        <Pen className="size-4 text-foreground" alt="pen" />
       </div>
       <div className="flex flex-col gap-0.5 w-full">
         <span className="text-[#6B6B70] text-[11px]">何をしますか？</span>

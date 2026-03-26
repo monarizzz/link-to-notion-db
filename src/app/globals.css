@@ -6,8 +6,8 @@
 
 @theme inline {
   --color-background: var(--background);
-  --color-background-2: var(--background-2);
   --color-foreground: var(--foreground);
+  --color-foreground-dark: var(--foreground-dark);
 
   /* font family */
   --font-sans: var(--font-dm-sans);
@@ -18,13 +18,13 @@
   --text-2xs: 0.625rem; /* 10px */
 
   /* badge colors */
-  --color-badge-today:     var(--badge-today);
+  --color-badge-today: var(--badge-today);
   --color-badge-yesterday: var(--badge-yesterday);
-  --color-badge-tomorrow:  var(--badge-tomorrow);
+  --color-badge-tomorrow: var(--badge-tomorrow);
   --color-badge-last-week: var(--badge-last-week);
   --color-badge-next-week: var(--badge-next-week);
-  --color-badge-past:      var(--badge-past);
-  --color-badge-future:    var(--badge-future);
+  --color-badge-past: var(--badge-past);
+  --color-badge-future: var(--badge-future);
 
   /* color */
   --color-sidebar-ring: var(--sidebar-ring);
@@ -76,45 +76,47 @@ a {
 
 :root {
   /* badge colors */
-  --badge-today:     #D4A853;
-  --badge-yesterday: #7A9E7E;
-  --badge-tomorrow:  #6B8FBF;
-  --badge-last-week: #B07AA8;
-  --badge-next-week: #C2714F;
-  --badge-past:      #9A9A9A;
-  --badge-future:    #9A9A9A;
+  --badge-today: #d4a853;
+  --badge-yesterday: #7a9e7e;
+  --badge-tomorrow: #6b8fbf;
+  --badge-last-week: #b07aa8;
+  --badge-next-week: #c2714f;
+  --badge-past: #9a9a9a;
+  --badge-future: #9a9a9a;
 
   --radius: 0.625rem;
-  --background: #ffffff;
-  --background-2: #f5f3ef;
 
-  /* text-primary */
-  --foreground: #1a1714;
+  --background: #2c2c2c;
+  --foreground: #f5f5f5;
+  --foreground-dark: #2c2c2e;
 
+  /* --background-2: #f5f3ef; */
+  /* 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.147 0.004 49.25);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.147 0.004 49.25);
+  --popover-foreground: oklch(0.147 0.004 49.25); */
 
-  --primary: #2c2c2c; /* accent */
-  --primary-foreground: oklch(0.985 0.001 106.423);
+  /* accent */
+  --primary: #4a4a50;
+  /* --primary-foreground: oklch(0.985 0.001 106.423);
   --secondary: oklch(0.97 0.001 106.424);
   --secondary-foreground: oklch(0.216 0.006 56.043);
-  --muted: oklch(0.97 0.001 106.424);
+  --muted: oklch(0.97 0.001 106.424); */
+  --muted-foreground: #4a4a50; /* placeholder のテキスト色など*/
 
-  --muted-foreground: #7a7268;
-  --subtle-foreground: #b0a89e;
-
+  /* --subtle-foreground: #b0a89e; カスタムトークン*/
+  /* 
   --accent: oklch(0.97 0.001 106.424);
   --accent-foreground: oklch(0.216 0.006 56.043);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.577 0.245 27.325); */
 
   /* border */
-  --border: #e2ddd6;
-  --border-hover: #c8c0b5;
+  --border: #3a3a3c;
+  /* --border-hover: #c8c0b5; */
 
-  --input: #e2ddd6;
-  --ring: oklch(0.709 0.01 56.259);
+  --input: #1c1c1e;
+  /* --ring: oklch(0.709 0.01 56.259);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -127,7 +129,7 @@ a {
   --sidebar-accent: oklch(0.97 0.001 106.424);
   --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --sidebar-border: oklch(0.923 0.003 48.717);
-  --sidebar-ring: oklch(0.709 0.01 56.259);
+  --sidebar-ring: oklch(0.709 0.01 56.259); */
 }
 
 .dark {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const text = "text-[13px] text-[#FAFAF9] italic font-semibold font-dm-sans";
+const text = "text-[13px] text-foreground italic font-semibold font-dm-sans";
 
 //TODO:Link先の設定
 const BottomBar = () => {
