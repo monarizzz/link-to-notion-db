@@ -48,7 +48,7 @@ const HomePageMain = ({ labels }: Props) => {
 
   return (
     <>
-      <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-[#2C2C2C]">
+      <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-background">
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <div className="w-100 mx-auto">

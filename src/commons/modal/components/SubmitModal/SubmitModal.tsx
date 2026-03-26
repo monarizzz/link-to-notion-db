@@ -28,7 +28,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-background w-125 rounded-4xl overflow-hidden">
             <div className="flex flex-col p-6 gap-2.5">
-              <span className="text-[11px] text-[#8A8A8E] font-semibold">
+              <span className="text-[11px] text-primary-foreground font-semibold">
                 作業時間
               </span>
               <span className="text-[32px] text-foreground font-bold">
@@ -37,7 +37,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
             </div>
             <CommonSeparator />
             <div className="py-5 px-6 flex flex-col gap-4">
-              <span className="text-[#8A8A8E] text-[12px]">
+              <span className="text-primary-foreground text-[12px]">
                 何をしましたか？
               </span>
               <Input
@@ -48,7 +48,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
             </div>
             <CommonSeparator />
             <div className="pt-4 px-5 pb-5 flex gap-3 justify-between">
-              <div className="bg-[#c2ef53] rounded-xl py-3.5 flex w-full">
+              <div className="bg-accent-lime rounded-xl py-3.5 flex w-full">
                 <div className="m-auto flex gap-3">
                   <Plain
                     className="size-4.5 text-foreground-dark"

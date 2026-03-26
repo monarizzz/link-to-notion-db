@@ -22,9 +22,9 @@ const ModalContents = () => {
           className="flex py-2.5 justify-between text-[14px]"
           key={content.name}
         >
-          <div className="text-[#8A8A8E]">{content.name}</div>
+          <div className="text-primary">{content.name}</div>
           <div className="flex gap-2">
-            <span className="text-[#F5F5F5]">{content.detail}</span>
+            <span className="text-foreground">{content.detail}</span>
             <button type="button">
               {/* あとで編集ボタンを追加する */}
               <Pen className="size-4 text-[#4A79F5]" />

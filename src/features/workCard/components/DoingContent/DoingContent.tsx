@@ -9,8 +9,8 @@ const DoingContent = () => {
 
   return (
     <>
-      <div className="bg-[#357ff6] p-2.5 rounded-[10px]">
-        <Timer className="text-[#07275b] w-5 h-5" alt="timer" />
+      <div className="bg-doing p-2.5 rounded-[10px]">
+        <Timer className="text-doing-foreground w-5 h-5" alt="timer" />
       </div>
       <div className="flex flex-col gap-0.5 w-full">
         {label !== undefined ? (
@@ -21,8 +21,8 @@ const DoingContent = () => {
           </span>
         )}
         <div className="flex gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-[50%] bg-[#357ff6] my-auto" />
-          <span className="text-[#6B6B70] text-[11px]">
+          <div className="w-1.5 h-1.5 rounded-[50%] bg-doing my-auto" />
+          <span className="text-primary-foreground text-[11px]">
             {dayjs(start).format("HH:mm")}~
           </span>
         </div>
