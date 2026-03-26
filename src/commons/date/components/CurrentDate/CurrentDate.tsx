@@ -14,7 +14,7 @@ const CurrentDate = () => {
   }, []);
 
   return (
-    <div className="text-[#8E8E93] font-dm-sans tracking-[2px] text-sm flex gap-2">
+    <div className="text-primary-foreground font-dm-sans tracking-[2px] text-sm flex gap-2">
       <span>DAY</span>
       <span>/</span>
       <span>{date}</span>

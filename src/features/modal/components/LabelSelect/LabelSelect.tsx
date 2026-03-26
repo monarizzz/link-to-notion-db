@@ -1,4 +1,4 @@
-import CommonSelect from "@/commons/layout/components/commonSelect/CommonSelect";
+import CommonSelect from "@/commons/layout/components/CommonSelect/CommonSelect";
 import { Controller, useFormContext } from "react-hook-form";
 
 type Props = {

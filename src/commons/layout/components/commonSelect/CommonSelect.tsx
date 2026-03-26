@@ -25,10 +25,10 @@ const CommonSelect = ({ labels, selectLabel, placeholder, form }: Props) => {
     : {};
   return (
     <Select {...selectProps}>
-      <SelectTrigger className="bg-[#252525] w-full text-xs border-none text-[#FAFAF9] focus-visible:ring-[1px] h-auto py-0 px-2.5">
+      <SelectTrigger className="bg-[#252525] w-full text-xs border-none text-foreground focus-visible:ring-[1px] h-auto py-0 px-2.5">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className="bg-[#252525] text-[#FAFAF9] text-xs">
+      <SelectContent className="bg-[#252525] text-foreground text-xs">
         <SelectGroup>
           <SelectLabel>{selectLabel}</SelectLabel>
           {labels.map((label) => (
