@@ -10,7 +10,7 @@ const InputContent = ({ labels }: Props) => {
   return (
     <>
       <div className="bg-primary p-2.5 rounded-md">
-        <Pen className="size-90 text-foreground" alt="pen" />
+        <Pen className="size-4 text-foreground" alt="pen" />
       </div>
       <div className="flex flex-col gap-1.25 w-full">
         <span className="text-primary-foreground text-[11px]">
