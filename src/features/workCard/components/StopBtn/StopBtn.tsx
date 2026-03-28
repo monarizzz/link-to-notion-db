@@ -23,7 +23,7 @@ const StopBtn = () => {
             }}
             className="bg-doing shadow-[0_0_12px_rgba(53,127,246,0.2)] p-[3.5px] rounded-3xl"
           >
-            <Check className="w-9.75 h-9.75 text-[#0B0B0E]" alt="check" />
+            <Check className="size-8 text-[#0B0B0E]" alt="check" />
           </button>
           <SubmitModal
             isOpenModal={isOpenModal}
