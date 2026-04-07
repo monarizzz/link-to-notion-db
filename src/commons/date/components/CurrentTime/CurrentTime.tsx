@@ -24,9 +24,14 @@ const CurrentTime = () => {
   }, [end]);
 
   return (
-    <span className="text-[120px] text-foreground font-bold -tracking-[4px]">
+    <span
+      className="text-foreground font-bold -tracking-[4px]"
+      style={{ fontSize: "clamp(6rem, 15vw, 8rem)" }}
+    >
       {start ? (
-        <p>{dayjs.duration(dayjs().diff(dayjs(start))).format("HH:mm:ss")}</p>
+        <span>
+          {dayjs.duration(dayjs().diff(dayjs(start))).format("HH:mm:ss")}
+        </span>
       ) : (
         time
       )}

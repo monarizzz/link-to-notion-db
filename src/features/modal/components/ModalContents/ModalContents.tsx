@@ -22,7 +22,7 @@ const ModalContents = () => {
           className="flex py-2.5 justify-between text-[14px]"
           key={content.name}
         >
-          <div className="text-primary">{content.name}</div>
+          <div className="text-primary-foreground">{content.name}</div>
           <div className="flex gap-2">
             <span className="text-foreground">{content.detail}</span>
             <button type="button">
