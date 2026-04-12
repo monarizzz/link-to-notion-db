@@ -1,6 +1,7 @@
 "use client";
 
 import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import jaLocale from "@fullcalendar/core/locales/ja";
@@ -28,7 +29,7 @@ const DayCalendar = ({ events }: Props) => {
     <div style={{ fontSize: "11px" }}>
       <FullCalendar
         height="100vh"
-        plugins={[timeGridPlugin, interactionPlugin]}
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridDay"
         events={events}
         eventMinHeight={15}
@@ -39,7 +40,7 @@ const DayCalendar = ({ events }: Props) => {
         headerToolbar={{
           left: "",
           center: "",
-          right: "timeGridWeek,timeGridDay,prev,today,next",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next",
         }}
         slotDuration="01:00:00"
         slotLabelFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
