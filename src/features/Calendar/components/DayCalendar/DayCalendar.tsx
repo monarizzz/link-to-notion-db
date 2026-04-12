@@ -26,7 +26,7 @@ const DayCalendar = ({ events }: Props) => {
   };
 
   return (
-    <div style={{ fontSize: "11px" }}>
+    <div className="text-[11px]">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridDay"
