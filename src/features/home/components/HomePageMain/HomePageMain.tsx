@@ -7,8 +7,14 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+<<<<<<< HEAD
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+=======
+import Calendar from "@/features/Calendar/components/Calendar/Calendar";
+import { NotionEvent } from "@/features/Calendar/type/notionEvent";
+import SideBar from "../SideBar/SideBar";
+>>>>>>> 82cbfde (feat sidebarでcurrenetDayを使用できるようにする)
 
 type Props = {
   labels: string[];
@@ -64,6 +70,15 @@ const HomePageMain = ({ labels, events }: Props) => {
               <BottomBar />
             </div>
           </div>
+<<<<<<< HEAD
+=======
+          <div className="bg-[#1A1A1A] h-screen">
+            <SideBar />
+            <div className="m-30">
+              <Calendar events={events} />
+            </div>
+          </div>
+>>>>>>> 82cbfde (feat sidebarでcurrenetDayを使用できるようにする)
         </form>
       </FormProvider>
       <div className="bg-[#1A1A1A]">
