@@ -15,7 +15,7 @@ type Props = {
   events?: NotionEvent[];
 };
 
-const DayCalendar = ({ events }: Props) => {
+const Calendar = ({ events }: Props) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { setValue } = useFormContext();
 
@@ -51,4 +51,4 @@ const DayCalendar = ({ events }: Props) => {
   );
 };
 
-export default DayCalendar;
+export default Calendar;

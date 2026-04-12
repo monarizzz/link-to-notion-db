@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import DayCalendar from "./DayCalendar";
+import DayCalendar from "./Calendar";
 import { useForm, FormProvider } from "react-hook-form";
 
 const WithFormProvider = (Story: React.ComponentType) => {
