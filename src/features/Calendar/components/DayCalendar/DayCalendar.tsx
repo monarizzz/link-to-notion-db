@@ -25,7 +25,7 @@ const DayCalendar = ({ events }: Props) => {
   };
 
   return (
-    <div>
+    <div style={{ fontSize: "11px" }}>
       <FullCalendar
         height="100vh"
         plugins={[timeGridPlugin, interactionPlugin]}
@@ -36,6 +36,11 @@ const DayCalendar = ({ events }: Props) => {
         selectable={true} // イベント追加用
         select={addEvent}
         locale={jaLocale} // 日本語化
+        headerToolbar={{
+          left: "",
+          center: "",
+          right: "timeGridWeek,timeGridDay,prev,today,next",
+        }}
       />
       <SubmitModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </div>
