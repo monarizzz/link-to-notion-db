@@ -9,6 +9,7 @@ type Props = {
   letterSpacingProps: string;
   format: "YYYY.MM.DD" | "M月 D日";
   home?: boolean;
+  bold?: boolean;
 };
 
 const CurrentDate = ({
@@ -17,6 +18,7 @@ const CurrentDate = ({
   letterSpacingProps,
   format,
   home,
+  bold,
 }: Props) => {
   const [date, setDate] = useState(getCurrent(format));
 
@@ -34,6 +36,7 @@ const CurrentDate = ({
         color: color,
         fontSize: fontSizeProps,
         letterSpacing: letterSpacingProps,
+        fontWeight: bold ? "bold" : undefined,
       }}
     >
       {home ? (
