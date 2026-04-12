@@ -189,6 +189,16 @@ a {
   border: none;
 }
 
+.fc .fc-timegrid-now-indicator-arrow {
+  border: none;
+  background-color: var(--fc-now-indicator-color);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  left: auto;
+  right: 2px;
+}
+
 .dark {
   --background: #2c2c2c;
   --foreground: oklch(0.985 0.001 106.423);
