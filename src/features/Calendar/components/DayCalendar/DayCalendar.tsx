@@ -41,6 +41,7 @@ const DayCalendar = ({ events }: Props) => {
           center: "",
           right: "timeGridWeek,timeGridDay,prev,today,next",
         }}
+        slotDuration="01:00:00"
       />
       <SubmitModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </div>
