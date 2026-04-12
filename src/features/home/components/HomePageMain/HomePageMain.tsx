@@ -60,7 +60,7 @@ const HomePageMain = ({ labels, events }: Props) => {
             <div className="m-14 min-h-70">
               <WorkCard isInput="timer" labels={labels} />
             </div>
-            <DayCalendar events={events} />;
+            <DayCalendar events={events} />
             <div className="absolute bottom-5">
               <BottomBar />
             </div>
