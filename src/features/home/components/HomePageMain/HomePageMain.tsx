@@ -64,7 +64,9 @@ const HomePageMain = ({ labels, events }: Props) => {
               <BottomBar />
             </div>
           </div>
-          <DayCalendar events={events} />
+          <div className="bg-[#1A1A1A]">
+            <DayCalendar events={events} />
+          </div>
         </form>
       </FormProvider>
     </>
