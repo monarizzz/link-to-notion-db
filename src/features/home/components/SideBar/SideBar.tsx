@@ -3,13 +3,13 @@ import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonS
 
 const SideBar = () => {
   return (
-    <div className="mix text-[34px] bg-[#ffffff0a] border-t border-r border-b border-[#ffffff25] py-5 px-7 gap-5 rounded-r-3xl min-w-[22vh] min-h-[70vh]">
+    <div className="text-[34px] bg-[#ffffff0a] border-t border-r border-b border-[#ffffff25] py-5 px-7 gap-5 rounded-r-3xl min-w-[22vh] min-h-[45vw]">
       <div>
         <span className="text-primary-foreground text-2xs font-semibold leading-0.5">
           TODAY
         </span>
         <CurrentDate
-          color={"foreground"}
+          color={"var(--foreground)"}
           fontSizeProps={"18px"}
           letterSpacingProps={"0px"}
           bold
