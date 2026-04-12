@@ -1,11 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import DayCalendar from "./DayCalendar";
+import { useForm, FormProvider } from "react-hook-form";
+
+const WithFormProvider = (Story: React.ComponentType) => {
+  const methods = useForm();
+  return (
+    <FormProvider {...methods}>
+      <Story />
+    </FormProvider>
+  );
+};
 
 const meta = {
   component: DayCalendar,
   parameters: {
     layout: "fullscreen",
   },
+  decorators: [WithFormProvider],
 } satisfies Meta<typeof DayCalendar>;
 
 export default meta;
