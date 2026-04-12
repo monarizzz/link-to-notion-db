@@ -43,6 +43,7 @@ const DayCalendar = ({ events }: Props) => {
         }}
         contentHeight="auto"
         slotDuration="01:00:00"
+        snapDuration="00:10:00"
         slotLabelFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
       />
       <SubmitModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
