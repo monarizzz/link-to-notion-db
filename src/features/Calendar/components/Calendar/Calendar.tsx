@@ -42,7 +42,7 @@ const Calendar = ({ events }: Props) => {
           right: "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next",
         }}
         contentHeight="auto"
-        slotDuration="01:00:00"
+        slotDuration="0:30:00"
         snapDuration="00:10:00"
         slotLabelFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
       />
