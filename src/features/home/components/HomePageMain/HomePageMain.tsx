@@ -9,6 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Calendar from "@/features/Calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/features/Calendar/type/notionEvent";
+import SideBar from "../SideBar/SideBar";
 
 type Props = {
   labels: string[];
@@ -64,8 +65,11 @@ const HomePageMain = ({ labels, events }: Props) => {
               <BottomBar />
             </div>
           </div>
-          <div className="bg-[#1A1A1A]">
-            <Calendar events={events} />
+          <div className="bg-[#1A1A1A] h-screen">
+            <SideBar />
+            <div className="m-30">
+              <Calendar events={events} />
+            </div>
           </div>
         </form>
       </FormProvider>
