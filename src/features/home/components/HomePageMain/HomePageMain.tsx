@@ -71,10 +71,18 @@ const HomePageMain = ({ labels, events }: Props) => {
             </div>
           </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           <div className="bg-[#1A1A1A] h-screen">
             <SideBar />
             <div className="m-30">
+=======
+          <div className="flex flex-row bg-[#1A1A1A] h-screen">
+            <div className="shrink-0 my-auto">
+              <SideBar />
+            </div>
+            <div className="mx-16 mt-10">
+>>>>>>> 5542e26 (feat sidebar作成)
               <Calendar events={events} />
             </div>
           </div>
