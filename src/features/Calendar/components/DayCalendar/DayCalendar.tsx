@@ -2,6 +2,7 @@
 
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 type event = {
   title: string;
@@ -17,11 +18,15 @@ const DayCalendar = ({ events }: Props) => {
   return (
     <FullCalendar
       height="100vh"
-      plugins={[timeGridPlugin]}
+      plugins={[timeGridPlugin, interactionPlugin]}
       initialView="timeGridDay"
       events={events}
       eventMinHeight={15}
       nowIndicator={true}
+      selectable={true}
+      select={function (info) {
+        alert("selected " + info.startStr + " to " + info.endStr);
+      }}
     />
   );
 };
