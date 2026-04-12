@@ -51,22 +51,22 @@ const HomePageMain = ({ labels, events }: Props) => {
 
   return (
     <>
-      <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-background">
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-background">
             <div className="w-100 mx-auto">
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
               <WorkCard isInput="timer" labels={labels} />
             </div>
-            <DayCalendar events={events} />
             <div className="absolute bottom-5">
               <BottomBar />
             </div>
-          </form>
-        </FormProvider>
-      </div>
+          </div>
+          <DayCalendar events={events} />
+        </form>
+      </FormProvider>
     </>
   );
 };

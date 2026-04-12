@@ -138,6 +138,19 @@ a {
   --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --sidebar-border: oklch(0.923 0.003 48.717);
   --sidebar-ring: oklch(0.709 0.01 56.259); */
+
+  /* fullCalendar */
+
+  --fc-border-color: #2a2a2a;
+  --fc-neutral-bg-color: #ffffff25;
+  --fc-today-bg-color: #1a1a1a;
+
+  --fc-event-text-color: #ffffff;
+  --fc-highlight-color: #c3ef531e;
+
+  --fc-button-bg-color: #ffffff0a;
+  --fc-now-indicator-color: #c2ef53;
+  /* --fc-event-bg-color: #ff0000; */
 }
 
 .dark {
