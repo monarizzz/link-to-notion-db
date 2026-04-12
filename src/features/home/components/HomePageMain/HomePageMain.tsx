@@ -7,7 +7,7 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import DayCalendar from "@/features/Calendar/components/DayCalendar/Calendar";
+import DayCalendar from "@/features/Calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/features/Calendar/type/notionEvent";
 
 type Props = {
