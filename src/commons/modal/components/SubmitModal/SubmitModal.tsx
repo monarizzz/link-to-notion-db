@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { Input } from "@/libs/shadcn/assets/ui/input";
 import Plain from "@public/plain.svg";
-import ModalContents from "@/features/modal/components/ModalContents/ModalContents";
+import ModalContents from "@/commons/modal/components/ModalContents/ModalContents";
 
 type Props = {
   isOpenModal: boolean;

@@ -30,4 +30,9 @@ export default meta;
 
 type Story = StoryObj<typeof SubmitModal>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    isOpenModal: true,
+    setIsOpenModal: () => {},
+  },
+};

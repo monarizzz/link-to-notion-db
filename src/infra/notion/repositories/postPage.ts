@@ -1,3 +1,5 @@
+"use server";
+
 import { notion } from "@/libs/notion/utils/client";
 import type { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
 
