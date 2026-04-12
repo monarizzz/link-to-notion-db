@@ -153,6 +153,10 @@ a {
   /* --fc-event-bg-color: #ff0000; */
 }
 
+.fc-timegrid-slot-label-cushion {
+  color: #444444;
+}
+
 .dark {
   --background: #2c2c2c;
   --foreground: oklch(0.985 0.001 106.423);
