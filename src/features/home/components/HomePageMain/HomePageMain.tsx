@@ -7,7 +7,7 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import DayCalendar from "@/features/Calendar/components/Calendar/Calendar";
+import Calendar from "@/features/Calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/features/Calendar/type/notionEvent";
 
 type Props = {
@@ -65,7 +65,7 @@ const HomePageMain = ({ labels, events }: Props) => {
             </div>
           </div>
           <div className="bg-[#1A1A1A]">
-            <DayCalendar events={events} />
+            <Calendar events={events} />
           </div>
         </form>
       </FormProvider>
