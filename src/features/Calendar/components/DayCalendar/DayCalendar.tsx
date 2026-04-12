@@ -28,7 +28,6 @@ const DayCalendar = ({ events }: Props) => {
   return (
     <div style={{ fontSize: "11px" }}>
       <FullCalendar
-        height="100vh"
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridDay"
         events={events}
@@ -42,6 +41,7 @@ const DayCalendar = ({ events }: Props) => {
           center: "",
           right: "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next",
         }}
+        contentHeight="auto"
         slotDuration="01:00:00"
         slotLabelFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
       />
