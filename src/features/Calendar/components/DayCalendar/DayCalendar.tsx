@@ -3,6 +3,7 @@
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import jaLocale from "@fullcalendar/core/locales/ja";
 import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
 import { useFormContext } from "react-hook-form";
@@ -34,6 +35,7 @@ const DayCalendar = ({ events }: Props) => {
         nowIndicator={true}
         selectable={true} // イベント追加用
         select={addEvent}
+        locale={jaLocale} // 日本語化
       />
       <SubmitModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </div>
