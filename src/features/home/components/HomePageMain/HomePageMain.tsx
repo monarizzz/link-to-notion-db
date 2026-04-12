@@ -7,7 +7,7 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import DayCalendar from "@/features/Calendar/components/DayCalendar/DayCalendar";
+import Calendar from "@/features/Calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/features/Calendar/type/notionEvent";
 
 type Props = {
@@ -51,22 +51,24 @@ const HomePageMain = ({ labels, events }: Props) => {
 
   return (
     <>
-      <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-background">
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-background">
             <div className="w-100 mx-auto">
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
               <WorkCard isInput="timer" labels={labels} />
             </div>
-            <DayCalendar events={events} />
             <div className="absolute bottom-5">
               <BottomBar />
             </div>
-          </form>
-        </FormProvider>
-      </div>
+          </div>
+          <div className="bg-[#1A1A1A]">
+            <Calendar events={events} />
+          </div>
+        </form>
+      </FormProvider>
     </>
   );
 };
