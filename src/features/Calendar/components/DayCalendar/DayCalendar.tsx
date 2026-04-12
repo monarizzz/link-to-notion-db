@@ -42,6 +42,7 @@ const DayCalendar = ({ events }: Props) => {
           right: "timeGridWeek,timeGridDay,prev,today,next",
         }}
         slotDuration="01:00:00"
+        slotLabelFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
       />
       <SubmitModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </div>
