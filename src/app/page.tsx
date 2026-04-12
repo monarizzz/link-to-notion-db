@@ -5,14 +5,14 @@ import getDBSchema from "@/infra/notion/repositories/getDBSchema";
 
 const Home = async () => {
   const allRecords = await getDBRecords();
-  const data = allRecords.results.map((record) => toRecord(record));
+  const events = allRecords.results.map((record) => toRecord(record));
   const allSchema = await getDBSchema();
 
   const labels = allSchema.properties.select.select.options.map(
     (option) => option.name,
   );
 
-  return <HomePageMain labels={labels} />;
+  return <HomePageMain labels={labels} events={events} />;
 };
 
 export default Home;

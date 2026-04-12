@@ -7,9 +7,12 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import DayCalendar from "@/features/Calendar/components/DayCalendar/DayCalendar";
+import { NotionEvent } from "@/features/Calendar/type/notionEvent";
 
 type Props = {
   labels: string[];
+  events: NotionEvent[];
 };
 
 const formSchema = z.object({
@@ -21,7 +24,7 @@ const formSchema = z.object({
 
 type DataForm = z.infer<typeof formSchema>;
 
-const HomePageMain = ({ labels }: Props) => {
+const HomePageMain = ({ labels, events }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -57,11 +60,12 @@ const HomePageMain = ({ labels }: Props) => {
             <div className="m-14 min-h-70">
               <WorkCard isInput="timer" labels={labels} />
             </div>
+            <DayCalendar events={events} />;
+            <div className="absolute bottom-5">
+              <BottomBar />
+            </div>
           </form>
         </FormProvider>
-        <div className="absolute bottom-5">
-          <BottomBar />
-        </div>
       </div>
     </>
   );
