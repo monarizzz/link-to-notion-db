@@ -88,7 +88,11 @@ const HomePageMain = ({ labels, events }: Props) => {
 =======
           <div className="flex flex-row bg-[#1A1A1A] h-screen">
             <div className="shrink-0 my-auto">
+<<<<<<< HEAD
               {/* <SideBar event={} />/ */}
+=======
+              <SideBar />
+>>>>>>> 5542e26 (feat sidebar作成)
             </div>
             <div className="mx-16 mt-10">
 >>>>>>> 5542e26 (feat sidebar作成)
