@@ -1,7 +1,9 @@
 import { notion } from "@/libs/notion/utils/client";
+import { QueryDataSourceParameters } from "@notionhq/client/build/src/api-endpoints";
 
-// TODO:型定義がSDKと合っていない問題
-const getDBRecords = async () => {
+type Filter = QueryDataSourceParameters["filter"];
+
+const getDBRecords = async (filter?: Filter) => {
   const response = await notion.dataSources.query({
     data_source_id: process.env.DATA_SOURCE_ID!,
     sorts: [
@@ -10,6 +12,7 @@ const getDBRecords = async () => {
         direction: "descending",
       },
     ],
+    ...(filter ? { filter: { ...filter } } : {}),
   });
   return response;
 };
