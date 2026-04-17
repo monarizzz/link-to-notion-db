@@ -8,11 +8,16 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 =======
 import Calendar from "@/features/Calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/features/Calendar/type/notionEvent";
+=======
+import Calendar from "@/commons/calendar/components/Calendar/Calendar";
+import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+>>>>>>> 8aacd58 (fix typo)
 import SideBar from "../SideBar/SideBar";
 >>>>>>> 82cbfde (feat sidebarでcurrenetDayを使用できるようにする)
 
@@ -79,7 +84,7 @@ const HomePageMain = ({ labels, events }: Props) => {
 =======
           <div className="flex flex-row bg-[#1A1A1A] h-screen">
             <div className="shrink-0 my-auto">
-              <SideBar />
+              <SideBar today={null} />
             </div>
             <div className="mx-16 mt-10">
 >>>>>>> 5542e26 (feat sidebar作成)
