@@ -30,8 +30,8 @@ const Calendar = ({ events, header }: Props) => {
 
   const handleDatesSet = (dateInfo: DatesSetArg) => {
     const params = new URLSearchParams({
-      s: dateInfo.startStr,
-      e: dateInfo.endStr,
+      s: dateInfo.startStr.split("T")[0],
+      e: dateInfo.endStr.split("T")[0],
     });
     router.push(`?${params.toString()}`, { scroll: false });
   };
@@ -51,7 +51,9 @@ const Calendar = ({ events, header }: Props) => {
         headerToolbar={{
           left: "",
           center: "",
-          right: header ? "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next" : "",
+          right: header
+            ? "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next"
+            : "",
         }}
         contentHeight="auto"
         slotDuration="00:30:00"
