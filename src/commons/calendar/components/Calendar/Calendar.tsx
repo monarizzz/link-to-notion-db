@@ -8,14 +8,16 @@ import jaLocale from "@fullcalendar/core/locales/ja";
 import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
 import { useFormContext } from "react-hook-form";
-import { DateSelectArg } from "@fullcalendar/core/index.js";
+import { DateSelectArg, DatesSetArg } from "@fullcalendar/core/index.js";
 import { NotionEvent } from "../../type/notionEvent";
+import { useRouter } from "next/navigation";
 
 type Props = {
   events?: NotionEvent[];
 };
 
 const Calendar = ({ events }: Props) => {
+  const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { setValue } = useFormContext();
 
@@ -25,11 +27,20 @@ const Calendar = ({ events }: Props) => {
     setValue("end", info.endStr);
   };
 
+  const handleDatesSet = (dateInfo: DatesSetArg) => {
+    const params = new URLSearchParams({
+      s: dateInfo.startStr,
+      e: dateInfo.endStr,
+    });
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
+
   return (
     <div className="text-[11px]">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridDay"
+        datesSet={handleDatesSet}
         events={events}
         eventMinHeight={15}
         nowIndicator={true}
