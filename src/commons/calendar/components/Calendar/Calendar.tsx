@@ -14,9 +14,10 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   events?: NotionEvent[];
+  header?: boolean;
 };
 
-const Calendar = ({ events }: Props) => {
+const Calendar = ({ events, header }: Props) => {
   const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { setValue } = useFormContext();
@@ -50,7 +51,7 @@ const Calendar = ({ events }: Props) => {
         headerToolbar={{
           left: "",
           center: "",
-          right: "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next",
+          right: header ? "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next" : "",
         }}
         contentHeight="auto"
         slotDuration="00:30:00"
