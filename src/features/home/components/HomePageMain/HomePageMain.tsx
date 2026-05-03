@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 <<<<<<< HEAD
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+<<<<<<< HEAD
 =======
 import Calendar from "@/features/Calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/features/Calendar/type/notionEvent";
@@ -20,6 +21,9 @@ import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 >>>>>>> 8aacd58 (fix typo)
 import SideBar from "../SideBar/SideBar";
 >>>>>>> 82cbfde (feat sidebarでcurrenetDayを使用できるようにする)
+=======
+import SideBar from "@/commons/sideBar/components/SideBar";
+>>>>>>> 6b17831 (feat SideBarをcommons/に移動してimportを更新)
 
 type Props = {
   labels: string[];
@@ -84,7 +88,7 @@ const HomePageMain = ({ labels, events }: Props) => {
 =======
           <div className="flex flex-row bg-[#1A1A1A] h-screen">
             <div className="shrink-0 my-auto">
-              <SideBar today={null} />
+              {/* <SideBar event={} />/ */}
             </div>
             <div className="mx-16 mt-10">
 >>>>>>> 5542e26 (feat sidebar作成)
