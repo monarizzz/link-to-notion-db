@@ -64,11 +64,15 @@ const HomePageMain = ({ labels, events }: Props) => {
               <BottomBar />
             </div>
           </div>
+
+          <div className="flex flex-row bg-[#1A1A1A] h-screen">
+            <div className="shrink-0 my-auto">{/* <SideBar /> */}</div>
+            <div className="mx-16 mt-10">
+              <Calendar events={events} />
+            </div>
+          </div>
         </form>
       </FormProvider>
-      <div className="bg-[#1A1A1A]">
-        <Calendar events={events} />
-      </div>
     </>
   );
 };
