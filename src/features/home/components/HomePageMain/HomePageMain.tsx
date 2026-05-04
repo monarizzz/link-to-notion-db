@@ -50,7 +50,7 @@ const HomePageMain = ({ labels, events }: Props) => {
           </div>
         </form>
       </FormProvider>
-      <div className="flex flex-row bg-[#1A1A1A]">
+      <div className="flex flex-row bg-[#1A1A1A] h-screen">
         <div className="shrink-0 my-auto">
           <SideBar />
         </div>
