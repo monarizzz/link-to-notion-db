@@ -15,6 +15,12 @@ const meta = {
   component: DayCalendar,
   parameters: {
     layout: "fullscreen",
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: "/",
+      },
+    },
   },
   decorators: [WithFormProvider],
 } satisfies Meta<typeof DayCalendar>;
@@ -26,6 +32,7 @@ export const Default: Story = {};
 
 export const WithEvents: Story = {
   args: {
+    initialDate: "2026-04-11",
     events: [
       {
         title: "朝会",
@@ -53,6 +60,7 @@ export const WithEvents: Story = {
 
 export const ShortEvents: Story = {
   args: {
+    initialDate: "2026-04-11",
     events: [
       {
         title: "短いミーティング",

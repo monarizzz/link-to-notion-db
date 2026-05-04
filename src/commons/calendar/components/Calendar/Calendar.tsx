@@ -15,9 +15,10 @@ import { useRouter } from "next/navigation";
 type Props = {
   events?: NotionEvent[];
   header?: boolean;
+  initialDate?: string;
 };
 
-const Calendar = ({ events, header }: Props) => {
+const Calendar = ({ events, header, initialDate }: Props) => {
   const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { setValue } = useFormContext();
@@ -30,8 +31,8 @@ const Calendar = ({ events, header }: Props) => {
 
   const handleDatesSet = (dateInfo: DatesSetArg) => {
     const params = new URLSearchParams({
-      s: dateInfo.startStr,
-      e: dateInfo.endStr,
+      s: dateInfo.startStr.split("T")[0],
+      e: dateInfo.endStr.split("T")[0],
     });
     router.push(`?${params.toString()}`, { scroll: false });
   };
@@ -41,6 +42,7 @@ const Calendar = ({ events, header }: Props) => {
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridDay"
+        initialDate={initialDate}
         datesSet={handleDatesSet}
         events={events}
         eventMinHeight={15}
@@ -51,7 +53,9 @@ const Calendar = ({ events, header }: Props) => {
         headerToolbar={{
           left: "",
           center: "",
-          right: header ? "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next" : "",
+          right: header
+            ? "dayGridMonth,timeGridWeek,timeGridDay,prev,today,next"
+            : "",
         }}
         contentHeight="auto"
         slotDuration="00:30:00"
