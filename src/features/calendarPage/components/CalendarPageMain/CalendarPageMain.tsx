@@ -1,17 +1,14 @@
 "use client";
 
-import { addData } from "@/commons/modal/utils/addData";
-import BottomBar from "@/commons/layout/components/BottomBar/BottomBar";
-import NowDisplay from "../NowDisplay/NowDisplay";
-import WorkCard from "@/commons/workCard/components/WorkCard";
-import { FormProvider, useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+import { addData } from "@/commons/modal/utils/addData";
+import SideBar from "@/features/home/components/SideBar/SideBar";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 
 type Props = {
-  labels: string[];
   events: NotionEvent[];
 };
 
@@ -21,10 +18,9 @@ const formSchema = z.object({
   label: z.string().optional(),
   title: z.string().optional(),
 });
-
 type DataForm = z.infer<typeof formSchema>;
 
-const HomePageMain = ({ labels, events }: Props) => {
+const CalendarPageMain = ({ events }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -50,27 +46,19 @@ const HomePageMain = ({ labels, events }: Props) => {
   };
 
   return (
-    <>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-background">
-            <div className="w-100 mx-auto">
-              <NowDisplay />
-            </div>
-            <div className="m-14 min-h-70">
-              <WorkCard isInput="timer" labels={labels} />
-            </div>
-            <div className="absolute bottom-5">
-              <BottomBar />
-            </div>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <div className="flex flex-row bg-[#1A1A1A] h-screen">
+          <div className="shrink-0 my-auto">
+            <SideBar today={null} />
           </div>
-        </form>
-      </FormProvider>
-      <div className="bg-[#1A1A1A]">
-        <Calendar events={events} />
-      </div>
-    </>
+          <div className="mx-16 mt-10">
+            <Calendar events={events} header />
+          </div>
+        </div>
+      </form>
+    </FormProvider>
   );
 };
 
-export default HomePageMain;
+export default CalendarPageMain;

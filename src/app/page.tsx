@@ -4,9 +4,18 @@ import getDBRecords from "@/infra/notion/repositories/getDBRecords";
 import getDBSchema from "@/infra/notion/repositories/getDBSchema";
 
 const Home = async () => {
-  const allRecords = await getDBRecords();
+  const filter = {
+    property: "workTime",
+    date: {
+      equals: "today",
+    },
+  };
+
+  const allRecords = await getDBRecords(filter);
   const events = allRecords.results.map((record) => toRecord(record));
   const allSchema = await getDBSchema();
+
+  // const todayRecords = await getDBRecords(filter);
 
   const labels = allSchema.properties.select.select.options.map(
     (option) => option.name,
