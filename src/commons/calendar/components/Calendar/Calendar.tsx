@@ -15,9 +15,10 @@ import { useRouter } from "next/navigation";
 type Props = {
   events?: NotionEvent[];
   header?: boolean;
+  initialDate?: string;
 };
 
-const Calendar = ({ events, header }: Props) => {
+const Calendar = ({ events, header, initialDate }: Props) => {
   const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { setValue } = useFormContext();
@@ -41,6 +42,7 @@ const Calendar = ({ events, header }: Props) => {
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridDay"
+        initialDate={initialDate}
         datesSet={handleDatesSet}
         events={events}
         eventMinHeight={15}
