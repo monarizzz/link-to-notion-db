@@ -1,5 +1,5 @@
 import HomePageMain from "@/features/home/components/HomePageMain/HomePageMain";
-import toRecord from "@/features/notion/utils/toRecord";
+import toRecord from "@/commons/notion/utils/toRecord";
 import getDBRecords from "@/infra/notion/repositories/getDBRecords";
 import getDBSchema from "@/infra/notion/repositories/getDBSchema";
 

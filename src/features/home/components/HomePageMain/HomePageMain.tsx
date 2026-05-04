@@ -7,22 +7,16 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
+import SideBar from "@/commons/sideBar/components/SideBar";
+import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
+import { submitProps } from "@/libs/forms/schema/submitProps";
 
 type Props = {
   labels: string[];
   events: NotionEvent[];
 };
-
-const formSchema = z.object({
-  start: z.string().min(1, "開始日時を入力してください"),
-  end: z.string().min(1, "終了日時を入力してください"),
-  label: z.string().optional(),
-  title: z.string().optional(),
-});
-
-type DataForm = z.infer<typeof formSchema>;
 
 const HomePageMain = ({ labels, events }: Props) => {
   const methods = useForm<DataForm>({
@@ -32,17 +26,7 @@ const HomePageMain = ({ labels, events }: Props) => {
 
   const onSubmit = async (data: DataForm) => {
     try {
-      const properties = {
-        title: { title: [{ text: { content: data.title ?? "" } }] },
-        workTime: {
-          date: {
-            start: data.start,
-            end: data.end,
-          },
-        },
-        ...(data.label && { select: { select: { name: data.label } } }),
-      };
-      await addData(properties);
+      await addData(submitProps(data));
       methods.reset();
     } catch (error) {
       console.error(error); // TODO:errorハンドリングを考える
@@ -64,15 +48,16 @@ const HomePageMain = ({ labels, events }: Props) => {
               <BottomBar />
             </div>
           </div>
-
-          <div className="flex flex-row bg-[#1A1A1A] h-screen">
-            <div className="shrink-0 my-auto">{/* <SideBar /> */}</div>
-            <div className="mx-16 mt-10">
-              <Calendar events={events} />
-            </div>
-          </div>
         </form>
       </FormProvider>
+      <div className="flex flex-row bg-[#1A1A1A]">
+        <div className="shrink-0 my-auto">
+          <SideBar />
+        </div>
+        <div className="mx-16 mt-10">
+          <CalendarForm events={events} />
+        </div>
+      </div>
     </>
   );
 };
