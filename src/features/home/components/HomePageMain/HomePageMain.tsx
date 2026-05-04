@@ -7,8 +7,8 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Calendar from "@/features/Calendar/components/Calendar/Calendar";
-import { NotionEvent } from "@/features/Calendar/type/notionEvent";
+import Calendar from "@/commons/calendar/components/Calendar/Calendar";
+import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 
 type Props = {
   labels: string[];
