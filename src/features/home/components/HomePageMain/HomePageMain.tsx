@@ -9,6 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
+import SideBar from "@/commons/sideBar/components/SideBar";
 
 type Props = {
   labels: string[];
@@ -66,10 +67,13 @@ const HomePageMain = ({ labels, events }: Props) => {
           </div>
         </form>
       </FormProvider>
-      <div className="flex flex-row bg-[#1A1A1A] h-screen">
-        <div className="shrink-0 my-auto">{/* <SideBar /> */}</div>
-        <div className="mx-16 mt-10" />
-        <CalendarForm events={events} />
+      <div className="flex flex-row bg-[#1A1A1A]">
+        <div className="shrink-0 my-auto">
+          <SideBar />
+        </div>
+        <div className="mx-16 mt-10">
+          <CalendarForm events={events} />
+        </div>
       </div>
     </>
   );
