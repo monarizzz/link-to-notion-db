@@ -64,11 +64,11 @@ const HomePageMain = ({ labels, events }: Props) => {
               <BottomBar />
             </div>
           </div>
-          <div className="bg-[#1A1A1A]">
-            <Calendar events={events} />
-          </div>
         </form>
       </FormProvider>
+      <div className="bg-[#1A1A1A]">
+        <Calendar events={events} />
+      </div>
     </>
   );
 };
