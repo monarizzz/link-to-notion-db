@@ -1,5 +1,5 @@
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
-import { ToRecord } from "@/features/notion/types/toRecord";
+import { ToRecord } from "@/commons/notion/types/toRecord";
 
 type Props = {
   event: ToRecord[];

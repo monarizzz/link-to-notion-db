@@ -1,6 +1,6 @@
 import { getCurrent } from "@/commons/date/utils/getCurrent";
 import CalendarPageMain from "@/features/calendarPage/components/CalendarPageMain/CalendarPageMain";
-import toRecord from "@/features/notion/utils/toRecord";
+import toRecord from "@/commons/notion/utils/toRecord";
 import getDBRecords from "@/infra/notion/repositories/getDBRecords";
 
 type Props = {
