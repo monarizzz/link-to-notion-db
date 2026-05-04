@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import { FormProvider, useForm } from "react-hook-form";
-import { DataForm, formSchema } from "@/libs/schema/forms/DataForm";
-import { submitProps } from "@/libs/schema/forms/submitProps";
+import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
+import { submitProps } from "@/libs/forms/schema/submitProps";
 
 type Props = {
   events: NotionEvent[];

@@ -10,8 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
 import SideBar from "@/commons/sideBar/components/SideBar";
-import { DataForm, formSchema } from "@/libs/schema/forms/DataForm";
-import { submitProps } from "@/libs/schema/forms/submitProps";
+import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
+import { submitProps } from "@/libs/forms/schema/submitProps";
 
 type Props = {
   labels: string[];
