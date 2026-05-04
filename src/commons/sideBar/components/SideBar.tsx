@@ -1,4 +1,3 @@
-import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
 import { ToRecord } from "@/features/notion/types/toRecord";
 
