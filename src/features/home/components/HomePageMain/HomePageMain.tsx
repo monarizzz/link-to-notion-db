@@ -7,29 +7,8 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
-<<<<<<< HEAD
-=======
-import Calendar from "@/features/Calendar/components/Calendar/Calendar";
-import { NotionEvent } from "@/features/Calendar/type/notionEvent";
-=======
-import Calendar from "@/commons/calendar/components/Calendar/Calendar";
-import { NotionEvent } from "@/commons/calendar/type/notionEvent";
->>>>>>> 8aacd58 (fix typo)
-import SideBar from "../SideBar/SideBar";
->>>>>>> 82cbfde (feat sidebarでcurrenetDayを使用できるようにする)
-=======
-import SideBar from "@/commons/sideBar/components/SideBar";
->>>>>>> 6b17831 (feat SideBarをcommons/に移動してimportを更新)
-=======
-import Calendar from "@/commons/calendar/components/Calendar/Calendar";
-import { NotionEvent } from "@/commons/calendar/type/notionEvent";
-import SideBar from "@/commons/sideBar/components/SideBar";
->>>>>>> 66523f1c5ff3dee5000b56e7e3f7d2975c014a0c
 
 type Props = {
   labels: string[];
@@ -85,34 +64,15 @@ const HomePageMain = ({ labels, events }: Props) => {
               <BottomBar />
             </div>
           </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-          <div className="bg-[#1A1A1A] h-screen">
-            <SideBar />
-            <div className="m-30">
-=======
-=======
->>>>>>> 66523f1c5ff3dee5000b56e7e3f7d2975c014a0c
+
           <div className="flex flex-row bg-[#1A1A1A] h-screen">
-            <div className="shrink-0 my-auto">
-              {/* <SideBar event={} />/ */}
-            </div>
+            <div className="shrink-0 my-auto">{/* <SideBar /> */}</div>
             <div className="mx-16 mt-10">
-<<<<<<< HEAD
->>>>>>> 5542e26 (feat sidebar作成)
-=======
->>>>>>> 66523f1c5ff3dee5000b56e7e3f7d2975c014a0c
               <Calendar events={events} />
             </div>
           </div>
->>>>>>> 82cbfde (feat sidebarでcurrenetDayを使用できるようにする)
         </form>
       </FormProvider>
-      <div className="bg-[#1A1A1A]">
-        <Calendar events={events} />
-      </div>
     </>
   );
 };
