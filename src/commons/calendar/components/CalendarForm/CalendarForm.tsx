@@ -1,0 +1,1 @@
+const CalendarForm = ({ events }) => {};
