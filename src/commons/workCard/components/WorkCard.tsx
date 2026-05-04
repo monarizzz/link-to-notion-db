@@ -1,7 +1,7 @@
 import TodoContent from "@/features/workCard/components/TodoContent/TodoContent";
-import InputContent from "@/features/workCard/components/InputContent/InputContent";
 import DoingContent from "@/features/workCard/components/DoingContent/DoingContent";
 import { useWatch } from "react-hook-form";
+import InputContent from "@/features/workCard/components/inputContent/InputContent";
 
 type Props = {
   isInput: "todo" | "timer";

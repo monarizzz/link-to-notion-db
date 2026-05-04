@@ -5,7 +5,6 @@ import BottomBar from "@/commons/layout/components/BottomBar/BottomBar";
 import NowDisplay from "../NowDisplay/NowDisplay";
 import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
