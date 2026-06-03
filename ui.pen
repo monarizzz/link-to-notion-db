@@ -1,5 +1,5 @@
 {
-  "version": "2.10",
+  "version": "2.11",
   "children": [
     {
       "type": "frame",
@@ -2725,7 +2725,7 @@
       "type": "frame",
       "id": "Vytzh",
       "x": 0,
-      "y": 1918,
+      "y": 1932,
       "name": "SP",
       "width": 480,
       "height": 1800,
@@ -9810,6 +9810,74 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "OeEU2",
+      "x": 713,
+      "y": 1932,
+      "name": "SP",
+      "width": 480,
+      "height": 1800,
+      "fill": "#141414",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "0ShYb",
+          "x": 0,
+          "y": 0,
+          "name": "Dark Header",
+          "width": 480,
+          "height": 900,
+          "fill": "#2C2C2C",
+          "layout": "none",
+          "children": [
+            {
+              "id": "mISSg",
+              "type": "ref",
+              "ref": "guZAx",
+              "x": 39,
+              "y": 48,
+              "flipX": false,
+              "flipY": false,
+              "width": "fit_content",
+              "height": "fit_content",
+              "textGrowth": "auto",
+              "descendants": {
+                "3RCSd": {
+                  "fontSize": 100,
+                  "enabled": false
+                },
+                "fqn7s": {
+                  "x": 0,
+                  "y": 0
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "m6trp",
+              "x": 239,
+              "y": 656,
+              "name": "Spacer",
+              "width": 1,
+              "height": 28
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "Y8R5k",
+          "x": 0,
+          "y": 900,
+          "name": "Wave",
+          "geometry": "M0 40c58-25 102-25 160 0 58 25 102 25 160 0 58-25 102-25 160 0l0-40-480 0z",
+          "fill": "#2C2C2C",
+          "width": 480,
+          "height": 80
         }
       ]
     }

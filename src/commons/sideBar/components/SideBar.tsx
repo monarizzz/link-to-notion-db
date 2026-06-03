@@ -1,13 +1,30 @@
+import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
-import { ToRecord } from "@/commons/notion/types/toRecord";
+import { getTime } from "date-fns";
 
 type Props = {
-  event: ToRecord[];
+  today: NotionEvent[];
 };
 
-const SideBar = ({ event }: Props) => {
-  console.log(event);
+const SideBar = ({ today }: Props) => {
+  const eventsWithTotal = today.map((events) => {
+    const start = new Date(events.start);
+    const end = new Date(events.end);
+
+    const total =
+      Math.round(((getTime(end) - getTime(start)) / (60 * 60 * 1000)) * 100) /
+      100;
+    console.log(total);
+
+    return { ...events, total };
+  });
+
+  const dayWorkTime = eventsWithTotal.reduce(
+    (acc, event) => acc + event.total,
+    0,
+  );
+
   return (
     <div className="text-[34px] bg-[#ffffff0a] border-t border-r border-b border-[#ffffff25] py-5 px-7 gap-5 rounded-r-3xl min-w-[15vw] min-h-[70vh]">
       <span className="text-primary-foreground text-2xs font-semibold leading-0.5">
@@ -20,15 +37,13 @@ const SideBar = ({ event }: Props) => {
         bold
         format="M月 D日"
       />
-      <span className="text-foreground"></span>
-
       <div className="p-2.5">
         <CommonSeparator />
       </div>
       <div>
         <span className="text-primary-foreground text-2xs">作業時間</span>
         <div className="text-[34px] -tracking-[1px] font-bold text-foreground">
-          {/* {total} */}
+          {dayWorkTime}
           {/* TODO:トータルの時間にする */}
         </div>
         <div className="p-2.5">

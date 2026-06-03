@@ -14,10 +14,10 @@ import { submitProps } from "@/libs/forms/schema/submitProps";
 
 type Props = {
   labels: string[];
-  events: NotionEvent[];
+  today: NotionEvent[];
 };
 
-const HomePageMain = ({ labels, events }: Props) => {
+const HomePageMain = ({ labels, today }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -51,10 +51,10 @@ const HomePageMain = ({ labels, events }: Props) => {
       </FormProvider>
       <div className="flex flex-row bg-[#1A1A1A] h-screen">
         <div className="shrink-0 my-auto">
-          <SideBar />
+          <SideBar today={today} />
         </div>
         <div className="mx-16 mt-10">
-          <CalendarForm events={events} />
+          <CalendarForm events={today} />
         </div>
       </div>
     </>

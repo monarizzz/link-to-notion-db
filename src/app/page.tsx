@@ -11,8 +11,8 @@ const Home = async () => {
     },
   };
 
-  const allRecords = await getDBRecords(filter);
-  const events = allRecords.results.map((record) => toRecord(record));
+  const todayRecords = await getDBRecords(filter);
+  const today = todayRecords.results.map((record) => toRecord(record));
   const allSchema = await getDBSchema();
 
   // const todayRecords = await getDBRecords(filter);
@@ -21,7 +21,7 @@ const Home = async () => {
     (option) => option.name,
   );
 
-  return <HomePageMain labels={labels} events={events} />;
+  return <HomePageMain labels={labels} today={today} />;
 };
 
 export default Home;
