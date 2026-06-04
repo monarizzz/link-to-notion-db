@@ -17,8 +17,11 @@ const Home = async () => {
 
   // const todayRecords = await getDBRecords(filter);
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: Notion SDK returns union type that doesn't expose .select directly
   const labels = allSchema.properties.select.select.options.map(
-    (option) => option.name,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (option: any) => option.name,
   );
 
   return <HomePageMain labels={labels} today={today} />;
