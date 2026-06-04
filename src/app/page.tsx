@@ -17,8 +17,12 @@ const Home = async () => {
 
   // const todayRecords = await getDBRecords(filter);
 
+  // TODO: Notion SDK が properties をユニオン型で返すため .select に直接アクセスできない。適切な型ガードに置き換える
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: Notion SDK returns union type that doesn't expose .select directly
   const labels = allSchema.properties.select.select.options.map(
-    (option) => option.name,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (option: any) => option.name,
   );
 
   return <HomePageMain labels={labels} today={today} />;
