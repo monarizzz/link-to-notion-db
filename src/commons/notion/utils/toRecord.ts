@@ -8,13 +8,17 @@ type NotionRecord = {
   };
 };
 
-const toRecord = (records: NotionRecord) => ({
-  id: records.id,
-  title: records.properties.title.title[0]?.plain_text,
-  start: records.properties.workTime.date?.start,
-  end: records.properties.workTime.date?.end,
-  url: records.url,
-  color: records.properties.select?.select?.color,
-});
+// TODO: SDK が properties をユニオン型で返すため unknown でキャストして回避中。適切な型ガードに置き換える
+const toRecord = (records: unknown) => {
+  const r = records as NotionRecord;
+  return {
+    id: r.id,
+    title: r.properties.title.title[0]?.plain_text,
+    start: r.properties.workTime.date?.start,
+    end: r.properties.workTime.date?.end,
+    url: r.url,
+    color: r.properties.select?.select?.color,
+  };
+};
 
 export default toRecord;

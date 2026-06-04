@@ -8,9 +8,10 @@ type Props = {
 };
 
 const SideBar = ({ today }: Props) => {
-  const eventsWithTotal = today.map((events) => {
-    const start = new Date(events.start);
-    const end = new Date(events.end);
+  // TODO: NotionEvent の start/end が SDK の型都合で optional になっている。本来は必須のため型を見直す
+  const eventsWithTotal = today.filter((e) => e.start && e.end).map((events) => {
+    const start = new Date(events.start!);
+    const end = new Date(events.end!);
 
     const total =
       Math.round(((getTime(end) - getTime(start)) / (60 * 60 * 1000)) * 100) /
