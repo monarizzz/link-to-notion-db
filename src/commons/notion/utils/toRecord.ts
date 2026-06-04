@@ -1,4 +1,14 @@
-const toRecord = (records) => ({
+type NotionRecord = {
+  id: string;
+  url: string;
+  properties: {
+    title: { title: { plain_text: string }[] };
+    workTime: { date?: { start?: string; end?: string } };
+    select?: { select?: { color?: string } };
+  };
+};
+
+const toRecord = (records: NotionRecord) => ({
   id: records.id,
   title: records.properties.title.title[0]?.plain_text,
   start: records.properties.workTime.date?.start,
