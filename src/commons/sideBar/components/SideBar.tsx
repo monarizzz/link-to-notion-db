@@ -47,8 +47,8 @@ const SideBar = ({ today }: Props) => {
       <div>
         <span className="text-primary-foreground text-2xs">作業時間</span>
         <div className="text-[34px] -tracking-[1px] font-bold text-foreground">
-          {dayWorkHours != 0 ? <p>{dayWorkHours}h </p> : null}
-          <p> {dayWorkMinutes}m</p>
+          {dayWorkHours != 0 ? <span>{dayWorkHours}h </span> : null}
+          <span> {dayWorkMinutes}m</span>
         </div>
         <div className="p-2.5">
           <CommonSeparator />
