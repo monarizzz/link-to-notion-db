@@ -9,23 +9,26 @@ type Props = {
 
 const SideBar = ({ today }: Props) => {
   // TODO: NotionEvent の start/end が SDK の型都合で optional になっている。本来は必須のため型を見直す
-  const eventsWithTotal = today.filter((e) => e.start && e.end).map((events) => {
-    const start = new Date(events.start!);
-    const end = new Date(events.end!);
+  const eventsWithTotal = today
+    .filter((e) => e.start && e.end)
+    .map((events) => {
+      const start = new Date(events.start!);
+      const end = new Date(events.end!);
 
-    const total =
-      Math.round(((getTime(end) - getTime(start)) / (60 * 60 * 1000)) * 100) /
-      100;
-    console.log(total);
+      const total =
+        Math.round(((getTime(end) - getTime(start)) / (60 * 60 * 1000)) * 100) /
+        100;
+      return { ...events, total };
+    });
 
-    return { ...events, total };
-  });
-
-  const dayWorkTime = eventsWithTotal.reduce(
+  const dayWorkTimeTotalHours = eventsWithTotal.reduce(
     (acc, event) => acc + event.total,
     0,
   );
-
+  const dayWorkHours = Math.floor(dayWorkTimeTotalHours);
+  const dayWorkMinutes = Math.round(
+    (dayWorkTimeTotalHours - dayWorkHours) * 60,
+  );
   return (
     <div className="text-[34px] bg-[#ffffff0a] border-t border-r border-b border-[#ffffff25] py-5 px-7 gap-5 rounded-r-3xl min-w-[15vw] min-h-[70vh]">
       <span className="text-primary-foreground text-2xs font-semibold leading-0.5">
@@ -44,8 +47,8 @@ const SideBar = ({ today }: Props) => {
       <div>
         <span className="text-primary-foreground text-2xs">作業時間</span>
         <div className="text-[34px] -tracking-[1px] font-bold text-foreground">
-          {dayWorkTime}
-          {/* TODO:トータルの時間にする */}
+          {dayWorkHours != 0 ? <p>{dayWorkHours}h </p> : null}
+          <p> {dayWorkMinutes}m</p>
         </div>
         <div className="p-2.5">
           <CommonSeparator />
