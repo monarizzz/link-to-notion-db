@@ -43,9 +43,7 @@ const HomePageMain = ({ labels, today }: Props) => {
             <div className="m-14 min-h-70">
               <WorkCard isInput="timer" labels={labels} />
             </div>
-            <div className="absolute bottom-5">
-              <BottomBar />
-            </div>
+            <div className="absolute bottom-5">{/* <BottomBar /> */}</div>
           </div>
         </form>
       </FormProvider>
