@@ -48,19 +48,20 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
             </div>
             <CommonSeparator />
             <div className="pt-4 px-5 pb-5 flex gap-3 justify-between">
-              <div className="bg-accent-lime rounded-xl py-3.5 flex w-full">
+              <button
+                type="submit"
+                className="bg-accent-lime rounded-xl py-3.5 flex w-full cursor-pointer"
+              >
                 <div className="m-auto flex gap-3">
                   <Plain
                     className="size-4.5 text-foreground-dark"
                     alt="submit"
                   />
-                  <input
-                    type="submit"
-                    value="これでOK！"
-                    className="text-foreground-dark text-[14px] font-bold cursor-pointer"
-                  />
+                  <span className="text-foreground-dark text-[14px] font-bold">
+                    これでOK！
+                  </span>
                 </div>
-              </div>
+              </button>
               <div className="bg-[#2A1515] rounded-xl px-4.5 py-3.5 shrink-0">
                 <button
                   type="button"
