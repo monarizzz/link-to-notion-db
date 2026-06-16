@@ -24,7 +24,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "作業記録アプリ",
+  title: "Chronotion",
   description: "Built with Next.js",
 };
 
