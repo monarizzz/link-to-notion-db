@@ -24,8 +24,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chronotion",
-  description: "Built with Next.js",
+  title: "ChroNotion: 作業時間をNotionへ記録",
+  description: "作業時間をNotionデータベースに自動記録するツール",
 };
 
 export default function RootLayout({
