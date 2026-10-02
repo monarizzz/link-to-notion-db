@@ -32,11 +32,18 @@ src/
 npm install
 ```
 
-`.env.local` を作成し、Notion の認証情報を設定してください:
+`.env.local` を作成し、Notion と Google ログインの認証情報を設定してください:
 
 ```env
 NOTION_API_KEY=your_notion_api_key
 NOTION_DATABASE_ID=your_database_id
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+# ログインを許可する Google アカウント（カンマ区切り）。未設定の場合は誰もログインできません
+ALLOWED_EMAILS=you@example.com,other@example.com
 ```
 
 ## 開発

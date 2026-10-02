@@ -1,2 +1,9 @@
 import withAuth from "next-auth/middleware";
-export const proxy = withAuth;
+import { isAllowedEmail } from "@/libs/auth/isAllowedEmail";
+
+// ログイン済みでも許可されていないアカウントのセッションは弾く
+export const proxy = withAuth({
+  callbacks: {
+    authorized: ({ token }) => isAllowedEmail(token?.email),
+  },
+});
