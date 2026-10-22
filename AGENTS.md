@@ -26,7 +26,7 @@
 ## コミット
 
 分け方の判断基準・並べる順序は [docs/workflow/git-commit-principles.md](docs/workflow/git-commit-principles.md) にまとめている。
-「コミットを分けて」「履歴を整理して」と頼まれたら、先にそれを読む。
+コミットを作るときは、頼まれ方にかかわらず先にそれを読む。
 
 ### 粒度
 
