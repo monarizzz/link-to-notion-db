@@ -19,6 +19,7 @@
 
 ## ブランチ
 
+- 作業を始める前に毎回 `git fetch` し、作業するブランチを `git pull` で最新にする
 - `main` から切り、PR も `main` 宛てに作成する
 - ブランチ名は `<種別>/<内容>`（例: `fix/restrict-allowed-emails`）。種別はコミットと同じ
 
