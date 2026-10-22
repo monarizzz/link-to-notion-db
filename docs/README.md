@@ -1,0 +1,12 @@
+# ドキュメント
+
+設計と開発の進め方をまとめた場所。作業ルールの要点は [AGENTS.md](../AGENTS.md) にある。
+
+## architecture/ — 設計
+
+- [directory-structure.md](architecture/directory-structure.md) … 層の責務・依存の向き・ディレクトリの粒度
+- [data-model.md](architecture/data-model.md) … Notion DB のプロパティとアプリ側の型の対応、Notion に依存している箇所
+
+## workflow/ — 開発の進め方
+
+- [git-commit-principles.md](workflow/git-commit-principles.md) … コミットの分け方と並べる順序
