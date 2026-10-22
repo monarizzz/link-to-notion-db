@@ -1,6 +1,6 @@
 ---
-name: 機能追加
-about: 新機能・改善の提案に使うテンプレートです
+name: 機能の追加・変更
+about: 機能の追加・既存機能の変更に使うテンプレートです
 title: ''
 labels: enhancement
 assignees: ''
