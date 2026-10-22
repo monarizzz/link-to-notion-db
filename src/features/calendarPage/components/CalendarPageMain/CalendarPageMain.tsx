@@ -10,8 +10,8 @@ type Props = {
 
 const CalendarPageMain = ({ events }: Props) => {
   return (
-    <div className="flex flex-row bg-[#1A1A1A] h-screen">
-      <div className="shrink-0 my-auto">
+    <div className="flex h-screen flex-row bg-[#1A1A1A]">
+      <div className="my-auto shrink-0">
         <SideBar today={[]} />
       </div>
       <div className="mx-16 mt-10">

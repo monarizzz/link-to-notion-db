@@ -14,7 +14,7 @@ const CommonSeparator = ({ vertical, dashed }: Props) => {
 
   if (vertical) {
     return (
-      <div className="self-stretch h-auto">
+      <div className="h-auto self-stretch">
         <Separator orientation="vertical" className={dashedClass} />
       </div>
     );

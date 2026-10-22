@@ -19,7 +19,7 @@ const ModalContents = () => {
     <div>
       {contents.map((content) => (
         <div
-          className="flex py-2.5 justify-between text-[14px]"
+          className="flex justify-between py-2.5 text-[14px]"
           key={content.name}
         >
           <div className="text-primary-foreground">{content.name}</div>

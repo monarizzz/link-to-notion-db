@@ -25,47 +25,47 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
   return (
     <>
       {isOpenModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background w-125 rounded-4xl overflow-hidden">
-            <div className="flex flex-col p-6 gap-2.5">
-              <span className="text-[11px] text-primary-foreground font-semibold">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="w-125 overflow-hidden rounded-4xl bg-background">
+            <div className="flex flex-col gap-2.5 p-6">
+              <span className="text-[11px] font-semibold text-primary-foreground">
                 作業時間
               </span>
-              <span className="text-[32px] text-foreground font-bold">
+              <span className="text-[32px] font-bold text-foreground">
                 {total}
               </span>
             </div>
             <CommonSeparator />
-            <div className="py-5 px-6 flex flex-col gap-4">
-              <span className="text-primary-foreground text-[12px]">
+            <div className="flex flex-col gap-4 px-6 py-5">
+              <span className="text-[12px] text-primary-foreground">
                 何をしましたか？
               </span>
               <Input
-                className="py-3 px-3.5 text-foreground text-[14px]"
+                className="px-3.5 py-3 text-[14px] text-foreground"
                 {...register("title")}
               />
               <ModalContents />
             </div>
             <CommonSeparator />
-            <div className="pt-4 px-5 pb-5 flex gap-3 justify-between">
+            <div className="flex justify-between gap-3 px-5 pt-4 pb-5">
               <button
                 type="submit"
-                className="bg-accent-lime rounded-xl py-3.5 flex w-full cursor-pointer"
+                className="flex w-full cursor-pointer rounded-xl bg-accent-lime py-3.5"
               >
                 <div className="m-auto flex gap-3">
                   <Plain
                     className="size-4.5 text-foreground-dark"
                     alt="submit"
                   />
-                  <span className="text-foreground-dark text-[14px] font-bold">
+                  <span className="text-[14px] font-bold text-foreground-dark">
                     これでOK！
                   </span>
                 </div>
               </button>
-              <div className="bg-[#2A1515] rounded-xl px-4.5 py-3.5 shrink-0">
+              <div className="shrink-0 rounded-xl bg-[#2A1515] px-4.5 py-3.5">
                 <button
                   type="button"
-                  className="font-semibold text-[14px] text-[#E05252] cursor-pointer whitespace-nowrap"
+                  className="cursor-pointer text-[14px] font-semibold whitespace-nowrap text-[#E05252]"
                   onClick={() => {
                     setValue("end", null);
                     setIsOpenModal(false);

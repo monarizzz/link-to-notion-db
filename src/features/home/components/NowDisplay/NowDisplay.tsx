@@ -3,7 +3,7 @@ import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 
 const NowDisplay = () => {
   return (
-    <div className="flex gap-2 items-center flex-col">
+    <div className="flex flex-col items-center gap-2">
       <CurrentTime />
       <CurrentDate
         color="var(--primary-foreground)"

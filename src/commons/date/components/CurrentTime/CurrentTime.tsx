@@ -25,7 +25,7 @@ const CurrentTime = () => {
 
   return (
     <span
-      className="text-foreground font-bold -tracking-[4px]"
+      className="font-bold -tracking-[4px] text-foreground"
       style={{ fontSize: "clamp(6rem, 15vw, 8rem)" }}
     >
       {start ? (
