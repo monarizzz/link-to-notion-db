@@ -1,0 +1,111 @@
+name: CI
+
+on: [pull_request]
+
+# 同一 PR に連続で push した場合、古い run を打ち切る
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+# 各ジョブが node_modules を直接キャッシュし、ヒット時は npm ci を丸ごとスキップする。
+# ジョブ間に依存関係は作らない。install 専用ジョブを前段に置くと、そこが落ちたときに
+# 後続が全てスキップされ「どこで落ちたか分からない」状態になるため。
+jobs:
+  typecheck:
+    name: Type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+      - if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+      - run: npm run typecheck
+
+  format:
+    name: Format check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+      - if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+      - run: npm run format:check
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+      - if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+      - run: npm run lint
+
+  # Playwright の Chromium を落とす必要があり実行時間が伸びるため、他のチェックとは
+  # 別ジョブに分離している。
+  storybook-test:
+    name: Storybook test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Restore node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+      - if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+      # node_modules キャッシュには playwright パッケージしか含まれず、
+      # ブラウザ本体 (~/.cache/ms-playwright) は別に復元する必要がある。
+      - name: Restore Playwright browsers
+        id: playwright
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+      - if: steps.playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+      # キャッシュヒット時はブラウザ本体だけ復元され、OS 側の依存ライブラリが
+      # 入らないため、そこだけ別途入れる。
+      - if: steps.playwright.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+      - run: npm run test:storybook
