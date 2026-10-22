@@ -40,12 +40,12 @@ const mockEvents = [
 
 export const Default: Story = {
   args: {
-    event: mockEvents,
+    today: mockEvents,
   },
 };
 
 export const Empty: Story = {
   args: {
-    event: [],
+    today: [],
   },
 };

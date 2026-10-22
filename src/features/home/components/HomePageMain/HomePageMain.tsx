@@ -36,8 +36,8 @@ const HomePageMain = ({ labels, today }: Props) => {
     <>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className="relative flex flex-col h-screen w-screen items-center justify-center bg-background">
-            <div className="w-100 mx-auto">
+          <div className="relative flex h-screen w-screen flex-col items-center justify-center bg-background">
+            <div className="mx-auto w-100">
               <NowDisplay />
             </div>
             <div className="m-14 min-h-70">
@@ -47,8 +47,8 @@ const HomePageMain = ({ labels, today }: Props) => {
           </div>
         </form>
       </FormProvider>
-      <div className="flex flex-row bg-[#1A1A1A] h-screen">
-        <div className="shrink-0 my-auto">
+      <div className="flex h-screen flex-row bg-[#1A1A1A]">
+        <div className="my-auto shrink-0">
           <SideBar today={today} />
         </div>
         <div className="mx-16 mt-10">

@@ -21,7 +21,7 @@ const StopBtn = () => {
               onChange(dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZ"));
               setIsOpenModal(true);
             }}
-            className="bg-doing shadow-[0_0_12px_rgba(53,127,246,0.2)] p-[3.5px] rounded-3xl"
+            className="rounded-3xl bg-doing p-[3.5px] shadow-[0_0_12px_rgba(53,127,246,0.2)]"
           >
             <Check className="size-8 text-[#0B0B0E]" alt="check" />
           </button>

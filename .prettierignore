@@ -1,0 +1,8 @@
+# Prettier は .gitignore も自動で参照するため、ここには
+# 「git 管理下だが整形したくないもの」と「gitignore に無いローカル生成物」だけを書く。
+
+# Markdown。日本語を含む表を Prettier が桁ズレさせるため整形対象にしない
+*.md
+
+# 自動生成・ロックファイル
+package-lock.json

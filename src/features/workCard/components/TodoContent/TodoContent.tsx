@@ -15,14 +15,14 @@ const TodoContent = ({ time, work, priority }: Props) => {
       <div>
         <PriorityBadge priority={priority} />
       </div>
-      <div className="flex flex-col gap-0.5 w-full">
-        <span className="text-foreground text-sm">{time}</span>
-        <span className="text-foreground text-xs">{work}</span>
+      <div className="flex w-full flex-col gap-0.5">
+        <span className="text-sm text-foreground">{time}</span>
+        <span className="text-xs text-foreground">{work}</span>
       </div>
       <div>
-        <div className="w-8 h-8 bg-primary rounded-3xl flex">
+        <div className="flex h-8 w-8 rounded-3xl bg-primary">
           <ArrowRight
-            className="items-center m-auto w-3.5 h-3.5 text-foreground"
+            className="m-auto h-3.5 w-3.5 items-center text-foreground"
             alt="arrow"
           />
         </div>

@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run --project node --passWithNoTests",
+    "test:storybook": "vitest run --project storybook",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.20",
@@ -52,6 +57,8 @@
     "eslint-config-next": "16.1.6",
     "eslint-plugin-storybook": "^10.2.8",
     "playwright": "^1.58.2",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "shadcn": "^3.8.5",
     "storybook": "^10.2.8",
     "tailwindcss": "^4",

@@ -9,11 +9,11 @@ type Props = {
 const InputContent = ({ labels }: Props) => {
   return (
     <>
-      <div className="bg-primary p-2.5 rounded-md">
+      <div className="rounded-md bg-primary p-2.5">
         <Pen className="size-4 text-foreground" alt="pen" />
       </div>
-      <div className="flex flex-col gap-1.25 w-full">
-        <span className="text-primary-foreground text-[11px]">
+      <div className="flex w-full flex-col gap-1.25">
+        <span className="text-[11px] text-primary-foreground">
           何をしますか？
         </span>
         <div>

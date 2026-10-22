@@ -9,20 +9,20 @@ const DoingContent = () => {
 
   return (
     <>
-      <div className="bg-doing p-2.5 rounded-[10px]">
-        <Timer className="text-doing-foreground w-5 h-5" alt="timer" />
+      <div className="rounded-[10px] bg-doing p-2.5">
+        <Timer className="h-5 w-5 text-doing-foreground" alt="timer" />
       </div>
-      <div className="flex flex-col gap-0.5 w-full">
+      <div className="flex w-full flex-col gap-0.5">
         {label !== undefined ? (
-          <span className="text-foreground text-[13px]">{label}</span>
+          <span className="text-[13px] text-foreground">{label}</span>
         ) : (
-          <span className="text-foreground text-[11px] ml-0.5 mb-0.5 italic">
+          <span className="mb-0.5 ml-0.5 text-[11px] text-foreground italic">
             未入力
           </span>
         )}
         <div className="flex gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-[50%] bg-doing my-auto" />
-          <span className="text-primary-foreground text-[11px]">
+          <div className="my-auto h-1.5 w-1.5 rounded-[50%] bg-doing" />
+          <span className="text-[11px] text-primary-foreground">
             {dayjs(start).format("HH:mm")}~
           </span>
         </div>

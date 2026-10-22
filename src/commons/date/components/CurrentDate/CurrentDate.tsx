@@ -31,7 +31,7 @@ const CurrentDate = ({
 
   return (
     <div
-      className="font-dm-sans tracking-[2px] text-sm flex gap-2"
+      className="flex gap-2 font-dm-sans text-sm tracking-[2px]"
       style={{
         color: color,
         fontSize: fontSizeProps,

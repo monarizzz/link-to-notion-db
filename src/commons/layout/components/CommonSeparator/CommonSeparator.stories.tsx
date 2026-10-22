@@ -15,7 +15,7 @@ type Story = StoryObj<typeof CommonSeparator>;
 
 export const Horizontal: Story = {
   render: () => (
-    <div className="p-4 w-64">
+    <div className="w-64 p-4">
       <CommonSeparator />
     </div>
   ),
@@ -23,7 +23,7 @@ export const Horizontal: Story = {
 
 export const HorizontalDashed: Story = {
   render: () => (
-    <div className="p-4 w-64">
+    <div className="w-64 p-4">
       <CommonSeparator dashed />
     </div>
   ),
@@ -31,7 +31,7 @@ export const HorizontalDashed: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <div className="p-4 flex h-16">
+    <div className="flex h-16 p-4">
       <CommonSeparator vertical />
     </div>
   ),
@@ -39,7 +39,7 @@ export const Vertical: Story = {
 
 export const VerticalDashed: Story = {
   render: () => (
-    <div className="p-4 flex h-16">
+    <div className="flex h-16 p-4">
       <CommonSeparator vertical dashed />
     </div>
   ),
