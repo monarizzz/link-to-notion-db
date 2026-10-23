@@ -1,9 +1,6 @@
 {
   "permissions": {
-    "allow": [
-      "Read",
-      "Bash(ls*)"
-    ],
+    "allow": ["Read", "Bash(ls*)"],
     "deny": [
       "Read(./.env)",
       "Read(./.env.local)",
