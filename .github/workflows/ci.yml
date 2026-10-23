@@ -79,6 +79,7 @@ jobs:
   storybook-test:
     name: Storybook test
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v7
       - name: Setup Node.js
