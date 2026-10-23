@@ -21,5 +21,6 @@ disable-model-invocation: true
    - 差分・コミット・Issue から判断できない節（レビュー観点・動作確認など）は推測で埋めず、作成前にユーザーに確認する
 5. `gh pr create --base main --title "<件名>" --body-file <本文ファイル>` で作成する
    - 件名は AGENTS.md の「メッセージ」と同じ `<種別> <内容>` の形式
-6. 関連 Issue にラベルが無い場合だけ、種別に合うラベルを `gh issue edit <番号> --add-label <ラベル>` で付ける
+6. 関連 Issue に AGENTS.md の種別ラベルが 1 つも無い場合だけ、種別に合うラベルを `gh issue edit <番号> --add-label <ラベル>` で付ける
+   - 優先度など種別以外のラベルしか無い場合も付ける
 7. 作成した PR の URL を返す
