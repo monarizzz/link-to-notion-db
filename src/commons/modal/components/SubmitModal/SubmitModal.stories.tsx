@@ -37,6 +37,14 @@ export const Default: Story = {
   },
 };
 
+// useForm は errors の参照が変わるたびに formState を更新するため、描画ごとに作り直さない
+const invalidTimeErrors = {
+  end: {
+    type: "custom",
+    message: "開始時間は終了時間より前にしてください",
+  },
+};
+
 export const InvalidTime: Story = {
   args: Default.args,
   decorators: [
@@ -47,12 +55,7 @@ export const InvalidTime: Story = {
           end: "2026-03-24T09:00:00.000+0900",
           label: "開発",
         },
-        errors: {
-          end: {
-            type: "custom",
-            message: "開始時間は終了時間より前にしてください",
-          },
-        },
+        errors: invalidTimeErrors,
       });
       return (
         <FormProvider {...methods}>
