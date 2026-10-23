@@ -32,6 +32,7 @@ type Story = StoryObj<typeof SubmitModal>;
 
 export const Default: Story = {
   args: {
+    labels: ["開発", "会議", "レビュー"],
     isOpenModal: true,
     setIsOpenModal: () => {},
   },

@@ -133,7 +133,7 @@ export const Doing: Story = {
 export const DoingNoWork: Story = {
   render: () => (
     <div className="flex w-90 items-center gap-3 rounded-3xl bg-[#3A3A3A] px-4 py-3.5">
-      <DoingContent />
+      <DoingContent labels={sampleLabels} />
     </div>
   ),
 };

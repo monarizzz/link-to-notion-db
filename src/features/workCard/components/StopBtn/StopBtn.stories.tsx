@@ -8,7 +8,7 @@ const WithFormProvider = () => {
   return (
     <FormProvider {...methods}>
       <form>
-        <StopBtn />
+        <StopBtn labels={["仕事", "プライベート", "勉強", "健康"]} />
       </form>
     </FormProvider>
   );

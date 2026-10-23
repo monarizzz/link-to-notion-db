@@ -9,11 +9,12 @@ import Plain from "@public/plain.svg";
 import ModalContents from "@/commons/modal/components/ModalContents/ModalContents";
 
 type Props = {
+  labels: string[];
   isOpenModal: boolean;
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
+const SubmitModal = ({ labels, isOpenModal, setIsOpenModal }: Props) => {
   const [start, end] = useWatch({
     name: ["start", "end"],
   });
@@ -48,7 +49,7 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
                 className="px-3.5 py-3 text-[14px] text-foreground"
                 {...register("title")}
               />
-              <ModalContents />
+              <ModalContents labels={labels} />
               {errors.end?.message && (
                 <p role="alert" className="text-[12px] text-[#E05252]">
                   {String(errors.end.message)}

@@ -4,7 +4,11 @@ import StopBtn from "../StopBtn/StopBtn";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 
-const DoingContent = () => {
+type Props = {
+  labels: string[];
+};
+
+const DoingContent = ({ labels }: Props) => {
   const [start, label] = useWatch({ name: ["start", "label"] });
 
   return (
@@ -27,7 +31,7 @@ const DoingContent = () => {
           </span>
         </div>
       </div>
-      <StopBtn />
+      <StopBtn labels={labels} />
     </>
   );
 };

@@ -9,12 +9,13 @@ import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
 import { submitProps } from "@/libs/forms/schema/submitProps";
 
 type Props = {
+  labels: string[];
   events: NotionEvent[];
   header?: boolean;
   initialDate?: string;
 };
 
-const CalendarForm = ({ events, header, initialDate }: Props) => {
+const CalendarForm = ({ labels, events, header, initialDate }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -32,7 +33,12 @@ const CalendarForm = ({ events, header, initialDate }: Props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Calendar events={events} header={header} initialDate={initialDate} />
+        <Calendar
+          labels={labels}
+          events={events}
+          header={header}
+          initialDate={initialDate}
+        />
       </form>
     </FormProvider>
   );
