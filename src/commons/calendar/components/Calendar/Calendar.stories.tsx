@@ -23,6 +23,9 @@ const meta = {
     },
   },
   decorators: [WithFormProvider],
+  args: {
+    labels: ["開発", "会議", "レビュー"],
+  },
 } satisfies Meta<typeof DayCalendar>;
 
 export default meta;

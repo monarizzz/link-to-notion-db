@@ -52,7 +52,7 @@ const HomePageMain = ({ labels, today }: Props) => {
           <SideBar today={today} />
         </div>
         <div className="mx-16 mt-10">
-          <CalendarForm events={today} />
+          <CalendarForm labels={labels} events={today} />
         </div>
       </div>
     </>

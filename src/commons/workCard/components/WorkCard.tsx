@@ -30,7 +30,7 @@ const WorkCard = ({ isInput, todoDetail, labels }: Props) => {
     }
     if (isInput === "timer") {
       if (start) {
-        return <DoingContent />;
+        return <DoingContent labels={labels} />;
       }
       return <InputContent labels={labels} />;
     }

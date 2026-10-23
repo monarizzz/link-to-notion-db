@@ -5,17 +5,18 @@ import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import SideBar from "@/commons/sideBar/components/SideBar";
 
 type Props = {
+  labels: string[];
   events: NotionEvent[];
 };
 
-const CalendarPageMain = ({ events }: Props) => {
+const CalendarPageMain = ({ labels, events }: Props) => {
   return (
     <div className="flex h-screen flex-row bg-[#1A1A1A]">
       <div className="my-auto shrink-0">
         <SideBar today={[]} />
       </div>
       <div className="mx-16 mt-10">
-        <CalendarForm events={events} header />
+        <CalendarForm labels={labels} events={events} header />
       </div>
     </div>
   );

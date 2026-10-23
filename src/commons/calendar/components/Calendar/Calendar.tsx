@@ -13,12 +13,13 @@ import { NotionEvent } from "../../type/notionEvent";
 import { useRouter } from "next/navigation";
 
 type Props = {
+  labels: string[];
   events?: NotionEvent[];
   header?: boolean;
   initialDate?: string;
 };
 
-const Calendar = ({ events, header, initialDate }: Props) => {
+const Calendar = ({ labels, events, header, initialDate }: Props) => {
   const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { setValue } = useFormContext();
@@ -62,7 +63,11 @@ const Calendar = ({ events, header, initialDate }: Props) => {
         snapDuration="00:10:00"
         slotLabelFormat={{ hour: "2-digit", minute: "2-digit", hour12: false }}
       />
-      <SubmitModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      <SubmitModal
+        labels={labels}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+      />
     </div>
   );
 };

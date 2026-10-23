@@ -5,7 +5,11 @@ import "@/libs/dayjs/config";
 import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
 
-const StopBtn = () => {
+type Props = {
+  labels: string[];
+};
+
+const StopBtn = ({ labels }: Props) => {
   const { control } = useFormContext();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -26,6 +30,7 @@ const StopBtn = () => {
             <Check className="size-8 text-[#0B0B0E]" alt="check" />
           </button>
           <SubmitModal
+            labels={labels}
             isOpenModal={isOpenModal}
             setIsOpenModal={setIsOpenModal}
           />
