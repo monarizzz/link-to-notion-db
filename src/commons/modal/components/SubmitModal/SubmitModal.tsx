@@ -17,7 +17,11 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
   const [start, end] = useWatch({
     name: ["start", "end"],
   });
-  const { register, setValue } = useFormContext();
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
 
   const dur = dayjs.duration(dayjs(end).diff(dayjs(start)));
   const total = `${Math.floor(dur.asHours())}時間${dur.minutes()}分`;
@@ -45,6 +49,11 @@ const SubmitModal = ({ isOpenModal, setIsOpenModal }: Props) => {
                 {...register("title")}
               />
               <ModalContents />
+              {errors.end?.message && (
+                <p role="alert" className="text-[12px] text-[#E05252]">
+                  {String(errors.end.message)}
+                </p>
+              )}
             </div>
             <CommonSeparator />
             <div className="flex justify-between gap-3 px-5 pt-4 pb-5">

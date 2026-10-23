@@ -36,3 +36,29 @@ export const Default: Story = {
     setIsOpenModal: () => {},
   },
 };
+
+export const InvalidTime: Story = {
+  args: Default.args,
+  decorators: [
+    (Story) => {
+      const methods = useForm({
+        defaultValues: {
+          start: "2026-03-24T11:00:00.000+0900",
+          end: "2026-03-24T09:00:00.000+0900",
+          label: "開発",
+        },
+        errors: {
+          end: {
+            type: "custom",
+            message: "開始時間は終了時間より前にしてください",
+          },
+        },
+      });
+      return (
+        <FormProvider {...methods}>
+          <Story />
+        </FormProvider>
+      );
+    },
+  ],
+};
