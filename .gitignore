@@ -47,3 +47,4 @@ storybook-static
 # claude
 .claude/*
 !.claude/skills/
+!.claude/settings.json
