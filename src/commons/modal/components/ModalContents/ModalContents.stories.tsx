@@ -28,9 +28,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    labels: ["開発", "会議", "レビュー"],
+  },
+};
 
 export const NoLabel: Story = {
+  args: Default.args,
   decorators: [
     (Story) => {
       const methods = useForm({
