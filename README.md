@@ -29,14 +29,14 @@ apps/
 └── server/         # Hono (Cloudflare Workers)
 ```
 
-npm workspaces で管理しています。`npm install` と `npm run` はリポジトリのルートで実行します。
+pnpm workspaces で管理しています。`pnpm install` と `pnpm <script>` はリポジトリのルートで実行します。
 
 ## セットアップ
 
-Node.js 24 系が必要です（`package.json` の `engines` で指定しています）。
+Node.js 24 系と pnpm が必要です（`package.json` の `engines` と `packageManager` で指定しています）。
 
 ```bash
-npm install
+pnpm install
 cp apps/web/.env.example apps/web/.env.local
 ```
 
@@ -46,10 +46,10 @@ cp apps/web/.env.example apps/web/.env.local
 
 ```bash
 # 開発サーバー起動
-npm run dev
+pnpm dev
 
 # Storybook 起動
-npm run storybook
+pnpm storybook
 ```
 
 アプリ: [http://localhost:3000](http://localhost:3000)
@@ -58,12 +58,12 @@ Storybook: [http://localhost:6006](http://localhost:6006)
 ## テスト
 
 ```bash
-npm run test
+pnpm test
 ```
 
 ## ビルド
 
 ```bash
-npm run build
-npm run start
+pnpm build
+pnpm start
 ```
