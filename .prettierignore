@@ -6,3 +6,7 @@
 
 # 自動生成・ロックファイル
 package-lock.json
+apps/server/worker-configuration.d.ts
+
+# Wrangler のローカル状態。apps/server/.gitignore はルートの Prettier から参照されない
+.wrangler/
