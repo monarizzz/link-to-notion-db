@@ -3,6 +3,13 @@
   "name": "server",
   "main": "src/index.ts",
   "compatibility_date": "2026-10-25",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "worklog",
+      "database_id": "local",
+    },
+  ],
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
