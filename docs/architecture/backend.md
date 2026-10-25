@@ -46,6 +46,7 @@ Notion をやめ、Hono の API と D1 に移行したあとの構成。**実装
 | API のデプロイ先 | Cloudflare Workers | 無料枠に収まる。Docker（コンテナの運用）の学習は今回のスコープ外 |
 | Web のデプロイ先 | Vercel（現状のまま） | 将来は Next.js から React への移行も考えている |
 | DB | D1 | 無料。Supabase は無料プランだと 1 週間使わないとプロジェクトが停止する |
+| ORM | 使わず SQL を直接書く。必要になったら Drizzle を検討する | SQL とマイグレーションを自分で書いて理解するため |
 | 認証 | クライアントで Google ログインし、取得した ID トークンを付けて API を呼ぶ。API はトークンを検証し、自分のアカウントだけ許可する | Web は公開し、個人データを HTML や静的ファイルに含めず、認証・認可済みの API からだけ返すため |
 | 既存のデータ | Notion に残し、必要に応じて D1 へ移す | |
 | 公開の方法 | README のスクリーンショット・GIF と、公開した Storybook | 本物のデータを公開しない |
@@ -64,7 +65,6 @@ packages/openapi  … openapi.json（API から出力し、各クライアント
 
 ## 未決定
 
-- ORM（Drizzle を使うか、SQL を直接書くか）
 - API の中の層の構成
 - API 設計（URL・エラーの形式・ページネーション）
 - テストと CI
