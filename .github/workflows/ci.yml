@@ -11,6 +11,7 @@ permissions:
   contents: read
 
 # 各ジョブが node_modules を直接キャッシュし、ヒット時は npm ci を丸ごとスキップする。
+# workspaces で依存のバージョンが食い違うと apps/*/node_modules にも入るため、両方をキャッシュする。
 # ジョブ間に依存関係は作らない。install 専用ジョブを前段に置くと、そこが落ちたときに
 # 後続が全てスキップされ「どこで落ちたか分からない」状態になるため。
 jobs:
@@ -28,7 +29,9 @@ jobs:
         id: node-modules
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            apps/*/node_modules
           key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: npm ci
@@ -48,7 +51,9 @@ jobs:
         id: node-modules
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            apps/*/node_modules
           key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: npm ci
@@ -68,7 +73,9 @@ jobs:
         id: node-modules
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            apps/*/node_modules
           key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: npm ci
@@ -91,7 +98,9 @@ jobs:
         id: node-modules
         uses: actions/cache@v4
         with:
-          path: node_modules
+          path: |
+            node_modules
+            apps/*/node_modules
           key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: npm ci
