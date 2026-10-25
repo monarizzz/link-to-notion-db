@@ -10,8 +10,8 @@ concurrency:
 permissions:
   contents: read
 
-# 各ジョブが node_modules を直接キャッシュし、ヒット時は npm ci を丸ごとスキップする。
-# workspaces で依存のバージョンが食い違うと apps/*/node_modules にも入るため、両方をキャッシュする。
+# 各ジョブが node_modules を直接キャッシュし、ヒット時は pnpm install を丸ごとスキップする。
+# pnpm は各ワークスペースの依存を apps/*/node_modules にシンボリックリンクで置くため、両方をキャッシュする。
 # ジョブ間に依存関係は作らない。install 専用ジョブを前段に置くと、そこが落ちたときに
 # 後続が全てスキップされ「どこで落ちたか分からない」状態になるため。
 jobs:
@@ -20,11 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
       - name: Restore node_modules
         id: node-modules
         uses: actions/cache@v4
@@ -32,21 +34,23 @@ jobs:
           path: |
             node_modules
             apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: npm ci
-      - run: npm run typecheck
+        run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
 
   format:
     name: Format check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
       - name: Restore node_modules
         id: node-modules
         uses: actions/cache@v4
@@ -54,21 +58,23 @@ jobs:
           path: |
             node_modules
             apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: npm ci
-      - run: npm run format:check
+        run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
 
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
       - name: Restore node_modules
         id: node-modules
         uses: actions/cache@v4
@@ -76,10 +82,10 @@ jobs:
           path: |
             node_modules
             apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: npm ci
-      - run: npm run lint
+        run: pnpm install --frozen-lockfile
+      - run: pnpm lint
 
   # Playwright の Chromium を落とす必要があり実行時間が伸びるため、他のチェックとは
   # 別ジョブに分離している。
@@ -89,11 +95,13 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v7
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
       - name: Restore node_modules
         id: node-modules
         uses: actions/cache@v4
@@ -101,9 +109,9 @@ jobs:
           path: |
             node_modules
             apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: npm ci
+        run: pnpm install --frozen-lockfile
       # node_modules キャッシュには playwright パッケージしか含まれず、
       # ブラウザ本体 (~/.cache/ms-playwright) は別に復元する必要がある。
       - name: Restore Playwright browsers
@@ -111,11 +119,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
       - if: steps.playwright.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
+        run: pnpm --filter web exec playwright install --with-deps chromium
       # キャッシュヒット時はブラウザ本体だけ復元され、OS 側の依存ライブラリが
       # 入らないため、そこだけ別途入れる。
       - if: steps.playwright.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
-      - run: npm run test:storybook
+        run: pnpm --filter web exec playwright install-deps chromium
+      - run: pnpm test:storybook
