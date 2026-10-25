@@ -2,22 +2,20 @@
   "name": "link-to-notion-db",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.9.0",
   "engines": {
     "node": "24.x"
   },
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
-    "dev": "npm run dev -w web",
-    "build": "npm run build -w web",
-    "start": "npm run start -w web",
-    "lint": "npm run lint -w web",
-    "storybook": "npm run storybook -w web",
-    "build-storybook": "npm run build-storybook -w web",
-    "typecheck": "npm run typecheck -w web",
-    "test": "npm run test -w web",
-    "test:storybook": "npm run test:storybook -w web",
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "start": "pnpm --filter web start",
+    "lint": "pnpm --filter web lint",
+    "storybook": "pnpm --filter web storybook",
+    "build-storybook": "pnpm --filter web build-storybook",
+    "typecheck": "pnpm --filter web typecheck",
+    "test": "pnpm --filter web test",
+    "test:storybook": "pnpm --filter web test:storybook",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

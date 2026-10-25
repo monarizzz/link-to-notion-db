@@ -14,7 +14,7 @@
 
 ### 型チェックが通る単位で切る
 
-- 各コミットの時点で `npm run typecheck` が通ること
+- 各コミットの時点で `pnpm typecheck` が通ること
 - 理由: `git bisect` で壊れたコミットを特定できるようにするため
 - やむを得ず途中のコミットが壊れる場合は、そのことを本文に書く
 
@@ -28,7 +28,7 @@
 ### 生成物と手書きを分ける
 
 - shadcn CLI が生成したコンポーネント（`apps/web/src/libs/shadcn/`）は、手書きのコードと別のコミットにする
-- 例外: `package-lock.json` は `package.json` と同じコミットにする。食い違うと `npm ci` が止まる
+- 例外: `pnpm-lock.yaml` は `package.json` と同じコミットにする。食い違うと `pnpm install --frozen-lockfile` が止まる
 
 ### デザインファイルとコードを分ける
 
