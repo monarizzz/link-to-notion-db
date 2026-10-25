@@ -65,4 +65,39 @@ app.get("/work-records", async (c) => {
   return c.json(workRecords, 200);
 });
 
+app.post("/work-records", async (c) => {
+  const { title, started_at, ended_at } = await c.req.json<{
+    title: string;
+    started_at: string;
+    ended_at: string;
+  }>();
+  const id = crypto.randomUUID();
+  const now = Date.now();
+
+  await c.env.DB.prepare(
+    "INSERT INTO work_records (id, title, started_at, ended_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+  )
+    .bind(
+      id,
+      title,
+      new Date(started_at).getTime(),
+      new Date(ended_at).getTime(),
+      now,
+      now,
+    )
+    .run();
+
+  return c.json(
+    {
+      id,
+      title,
+      started_at,
+      ended_at: null,
+      now: new Date(now).toISOString(),
+      updated_at: new Date(now).toISOString(),
+    },
+    201,
+  );
+});
+
 export default app;
