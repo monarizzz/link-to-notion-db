@@ -2,7 +2,7 @@
 
 CREATE TABLE work_records (
   id TEXT PRIMARY KEY,
-  title TEXT NOT NULL,
+  title TEXT,
   started_at INTEGER NOT NULL,
   ended_at INTEGER NOT NULL CHECK (ended_at > started_at),
   created_at INTEGER NOT NULL,
