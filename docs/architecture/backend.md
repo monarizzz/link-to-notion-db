@@ -18,7 +18,7 @@ Notion をやめ、Hono の API と D1 に移行したあとの構成。**実装
 ```
 [Web: Next.js / Vercel]   [Mac アプリ: Swift（将来）]
           │                        │
-          └── HTTPS + API キー ─────┘
+          └── HTTPS + ID トークン ──┘
                  契約: openapi.json
                        │
           [API: Hono / Cloudflare Workers]
@@ -33,12 +33,12 @@ Notion をやめ、Hono の API と D1 に移行したあとの構成。**実装
 | 移行の進め方 | API と新しい DB を同時に作り、Web の接続先を一度に切り替える | 短期間で Notion をやめるため、Notion につなぐ仮の API を作るコストが見合わない |
 | API | Hono | インターンで触って興味を持った。TypeScript のまま書けるので、言語ではなく BE の設計の学習に集中できる |
 | API 定義 | `@hono/zod-openapi` で `openapi.json` を出力する | Swift のクライアントを生成するため。Web も同じ仕様から生成し、仕様のファイルを FE と BE の境界にする |
-| Web からの呼び出し | `openapi.json` から生成したクライアントを使う（Hono RPC は使わない） | Web と Swift を同じ立場のクライアントにし、Web が API の実装に依存しないようにする |
+| Web からの呼び出し | ブラウザから、`openapi.json` から生成したクライアントで API を直接呼ぶ（Hono RPC は使わない） | Web と Swift を同じ立場のクライアントにし、Web が API の実装に依存しないようにする |
 | リポジトリ | モノレポ | `openapi.json` を 1 か所に置き、Web からも Swift からも直接読める |
 | API のデプロイ先 | Cloudflare Workers | 無料枠に収まる。Docker（コンテナの運用）の学習は今回のスコープ外 |
 | Web のデプロイ先 | Vercel（現状のまま） | 将来は Next.js から React への移行も考えている |
 | DB | D1 | 無料。Supabase は無料プランだと 1 週間使わないとプロジェクトが停止する |
-| 認証 | API はすべて API キーで守る。Web のログインは next-auth のまま | 利用者が 1 人のうちは十分。本格的な認証は後で作る |
+| 認証 | クライアントで Google ログインし、取得した ID トークンを付けて API を呼ぶ。API はトークンを検証し、自分のアカウントだけ許可する | Web は公開し、個人データを HTML や静的ファイルに含めず、認証・認可済みの API からだけ返すため |
 | 既存のデータ | Notion に残し、必要に応じて D1 へ移す | |
 | 公開の方法 | README のスクリーンショット・GIF と、公開した Storybook | 本物のデータを公開しない |
 
@@ -51,7 +51,7 @@ packages/openapi  … openapi.json（API から出力し、各クライアント
 ```
 
 - Mac アプリは作るときに `apps/` へ追加する
-- API キーは Next.js のサーバー側だけで扱い、ブラウザに渡さない
+- Web は未ログインのときログイン画面だけを表示する
 
 ## 未決定
 
@@ -59,5 +59,5 @@ packages/openapi  … openapi.json（API から出力し、各クライアント
 - API の中の層の構成
 - API 設計（URL・エラーの形式・ページネーション）
 - テストと CI
-- 本格的な認証
+- 認証まわりの改善（ログインの維持・期限切れ時の再認証・Swift での対応）
 - デモ環境（Wrangler の `[env.demo]` で、別の Worker と D1 を立てる案）
