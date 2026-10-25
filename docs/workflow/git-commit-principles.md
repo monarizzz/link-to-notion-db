@@ -14,7 +14,7 @@
 
 ### 型チェックが通る単位で切る
 
-- 各コミットの時点で `npx tsc --noEmit` が通ること
+- 各コミットの時点で `npm run typecheck` が通ること
 - 理由: `git bisect` で壊れたコミットを特定できるようにするため
 - やむを得ず途中のコミットが壊れる場合は、そのことを本文に書く
 
@@ -27,7 +27,7 @@
 
 ### 生成物と手書きを分ける
 
-- shadcn CLI が生成したコンポーネント（`src/libs/shadcn/`）は、手書きのコードと別のコミットにする
+- shadcn CLI が生成したコンポーネント（`apps/web/src/libs/shadcn/`）は、手書きのコードと別のコミットにする
 - 例外: `package-lock.json` は `package.json` と同じコミットにする。食い違うと `npm ci` が止まる
 
 ### デザインファイルとコードを分ける
@@ -49,11 +49,11 @@
 ### 依存の下から上へ
 
 1. ツール・設定（`package.json`、ESLint 設定、`.github/workflows/`）
-2. 汎用ライブラリ・設定（`src/libs/`）
-3. 外部サービス連携（`src/infra/`）
-4. 共通コンポーネント（`src/commons/`）
-5. 機能コンポーネント（`src/features/`）
-6. ルーティングの結線（`src/app/`）
+2. 汎用ライブラリ・設定（`apps/web/src/libs/`）
+3. 外部サービス連携（`apps/web/src/infra/`）
+4. 共通コンポーネント（`apps/web/src/commons/`）
+5. 機能コンポーネント（`apps/web/src/features/`）
+6. ルーティングの結線（`apps/web/src/app/`）
 7. ドキュメント（`AGENTS.md`、`README.md`、`docs/`）
 
 各コミットが、それより前のコミットだけに依存するように並べる。
@@ -68,4 +68,4 @@
 - ❌ `git add -A && git commit -m "fix"` — 何が入ったか分からない
 - ❌ 「WIP」「一旦ここまで」コミット — PR を出す前に整理する
 - ❌ リファクタ・バグ修正・機能追加が入った巨大コミット — 後から分けられない
-- ❌ `src/app/` の結線を、結線先のコンポーネントより前にコミットする
+- ❌ `apps/web/src/app/` の結線を、結線先のコンポーネントより前にコミットする

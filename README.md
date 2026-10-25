@@ -18,13 +18,18 @@ Notion データベースと連携する作業管理アプリケーションで�
 ## ディレクトリ構成
 
 ```
-src/
-├── app/        # Next.js App Router (ページ・レイアウト)
-├── commons/    # 共通コンポーネント・ユーティリティ
-├── features/   # 機能単位のモジュール
-├── infra/      # 外部API・インフラ層 (Notion クライアントなど)
-└── libs/       # 汎用ライブラリ・ヘルパー
+apps/
+├── web/            # Next.js
+│   └── src/
+│       ├── app/        # Next.js App Router (ページ・レイアウト)
+│       ├── commons/    # 共通コンポーネント・ユーティリティ
+│       ├── features/   # 機能単位のモジュール
+│       ├── infra/      # 外部API・インフラ層 (Notion クライアントなど)
+│       └── libs/       # 汎用ライブラリ・ヘルパー
+└── server/         # Hono (Cloudflare Workers)
 ```
+
+npm workspaces で管理しています。`npm install` と `npm run` はリポジトリのルートで実行します。
 
 ## セットアップ
 
@@ -32,10 +37,10 @@ Node.js 24 系が必要です（`package.json` の `engines` で指定してい�
 
 ```bash
 npm install
-cp .env.example .env.local
+cp apps/web/.env.example apps/web/.env.local
 ```
 
-`.env.local` に Notion と Google ログインの認証情報を設定してください。各変数の意味は `.env.example` のコメントを参照してください。
+`apps/web/.env.local` に Notion と Google ログインの認証情報を設定してください。各変数の意味は `.env.example` のコメントを参照してください。
 
 ## 開発
 
