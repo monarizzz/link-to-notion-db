@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // apps/ の各アプリは自分の設定でチェックする
+    "apps/**",
   ]),
   ...storybook.configs["flat/recommended"],
 ]);
