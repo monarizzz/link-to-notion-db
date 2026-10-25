@@ -12,7 +12,7 @@ type WorkRecordRow = {
   id: string;
   title: string;
   started_at: number;
-  ended_at: number | null;
+  ended_at: number;
   created_at: number;
   updated_at: number;
 };
@@ -54,8 +54,7 @@ app.get("/work-records", async (c) => {
   const workRecords = (records.results as WorkRecordRow[]).map((row) => ({
     ...row,
     started_at: new Date(row.started_at).toISOString(),
-    ended_at:
-      row.ended_at === null ? null : new Date(row.ended_at).toISOString(),
+    ended_at: new Date(row.ended_at).toISOString(),
     created_at: new Date(row.created_at).toISOString(),
     updated_at: new Date(row.updated_at).toISOString(),
     labels: (recordLabels.results as WorkRecordLabelRow[])
@@ -63,6 +62,59 @@ app.get("/work-records", async (c) => {
       .map(({ id, name, color }) => ({ id, name, color })),
   }));
   return c.json(workRecords, 200);
+});
+
+app.post("/work-records", async (c) => {
+  const {
+    title,
+    started_at,
+    ended_at,
+    label_ids = [],
+  } = await c.req.json<{
+    title: string;
+    started_at: string;
+    ended_at: string;
+    label_ids?: string[];
+  }>();
+  const id = crypto.randomUUID();
+  const now = Date.now();
+
+  await c.env.DB.batch([
+    c.env.DB.prepare(
+      "INSERT INTO work_records (id, title, started_at, ended_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+    ).bind(
+      id,
+      title,
+      new Date(started_at).getTime(),
+      new Date(ended_at).getTime(),
+      now,
+      now,
+    ),
+    ...label_ids.map((labelId) =>
+      c.env.DB.prepare(
+        "INSERT INTO work_record_labels (work_record_id, label_id) VALUES (?, ?)",
+      ).bind(id, labelId),
+    ),
+  ]);
+
+  const { results: labels } = await c.env.DB.prepare(
+    "SELECT labels.id, labels.name, labels.color FROM work_record_labels JOIN labels ON labels.id = work_record_labels.label_id WHERE work_record_labels.work_record_id = ? ORDER BY labels.created_at",
+  )
+    .bind(id)
+    .all();
+
+  return c.json(
+    {
+      id,
+      title,
+      started_at,
+      ended_at,
+      created_at: new Date(now).toISOString(),
+      updated_at: new Date(now).toISOString(),
+      labels,
+    },
+    201,
+  );
 });
 
 export default app;
