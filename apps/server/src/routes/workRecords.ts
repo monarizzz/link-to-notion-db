@@ -2,7 +2,7 @@ import { Hono } from "hono";
 
 type WorkRecordRow = {
   id: string;
-  title: string;
+  title: string | null;
   started_at: number;
   ended_at: number;
   created_at: number;
@@ -45,12 +45,12 @@ export const workRecordsRouters = new Hono<{
   /* 作業記録の追加 */
   .post("/", async (c) => {
     const {
-      title,
+      title = null,
       started_at,
       ended_at,
       label_ids = [],
     } = await c.req.json<{
-      title: string;
+      title?: string | null;
       started_at: string;
       ended_at: string;
       label_ids?: string[];
