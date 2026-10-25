@@ -16,7 +16,7 @@ erDiagram
 
     work_records {
         TEXT id PK "UUID"
-        TEXT title "NOT NULL"
+        TEXT title "NULL 可"
         INTEGER started_at "NOT NULL, INDEX"
         INTEGER ended_at "NOT NULL, CHECK ended_at > started_at"
         INTEGER created_at "NOT NULL"
@@ -40,7 +40,7 @@ erDiagram
 - 削除は物理削除。誤削除は D1 の Time Travel で戻す
 - 1 件の作業記録にラベルを複数付けられる（`work_record_labels`）
 - 作業記録は終了してから作る。計測中の状態はサーバーに保存しない
-- `title` は空文字を許可する（フォームで任意入力のため）
+- `title` は NULL を許可する（フォームで任意入力のため）
 - `color` はアプリ独自の色の値（`#3b82f6` など）
 - 利用者は 1 人なので `user_id` は持たない
 
