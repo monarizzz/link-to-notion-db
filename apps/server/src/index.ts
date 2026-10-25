@@ -65,11 +65,16 @@ app.get("/work-records", async (c) => {
 });
 
 app.post("/work-records", async (c) => {
-  const { title, started_at, ended_at, label_ids } = await c.req.json<{
+  const {
+    title,
+    started_at,
+    ended_at,
+    label_ids = [],
+  } = await c.req.json<{
     title: string;
     started_at: string;
     ended_at: string;
-    label_ids: string[];
+    label_ids?: string[];
   }>();
   const id = crypto.randomUUID();
   const now = Date.now();
