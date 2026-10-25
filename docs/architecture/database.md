@@ -36,7 +36,7 @@ erDiagram
 
 - 日時は UTC の UNIX 時刻（ミリ秒）で保存する
   - 日の区切りはクライアントが計算し、API には時点（`from` / `to`）で渡す
-  - API の JSON では ISO 8601（`2026-10-25T01:00:00Z`）で返す
+  - API の JSON では ISO 8601（`2026-10-25T01:00:00.000Z`）で返す
 - 削除は物理削除。誤削除は D1 の Time Travel で戻す
 - 1 件の作業記録にラベルを複数付けられる（`work_record_labels`）
 - 計測中の作業記録は `ended_at` を NULL にする
