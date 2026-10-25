@@ -18,7 +18,7 @@ erDiagram
         TEXT id PK "UUID"
         TEXT title "NOT NULL"
         INTEGER started_at "NOT NULL, INDEX"
-        INTEGER ended_at "NOT NULL, CHECK ended_at > started_at"
+        INTEGER ended_at "計測中のみ NULL 可, CHECK ended_at > started_at"
         INTEGER created_at "NOT NULL"
         INTEGER updated_at "NOT NULL"
     }
@@ -39,6 +39,7 @@ erDiagram
   - API の JSON では ISO 8601（`2026-10-25T01:00:00Z`）で返す
 - 削除は物理削除。誤削除は D1 の Time Travel で戻す
 - 1 件の作業記録にラベルを複数付けられる（`work_record_labels`）
+- 計測中の作業記録は `ended_at` を NULL にする
 - `title` は空文字を許可する（フォームで任意入力のため）
 - `color` はアプリ独自の色の値（`#3b82f6` など）
 - 利用者は 1 人なので `user_id` は持たない
