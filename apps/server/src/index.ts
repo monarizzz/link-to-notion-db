@@ -12,7 +12,7 @@ type WorkRecordRow = {
   id: string;
   title: string;
   started_at: number;
-  ended_at: number | null;
+  ended_at: number;
   created_at: number;
   updated_at: number;
 };
@@ -54,8 +54,7 @@ app.get("/work-records", async (c) => {
   const workRecords = (records.results as WorkRecordRow[]).map((row) => ({
     ...row,
     started_at: new Date(row.started_at).toISOString(),
-    ended_at:
-      row.ended_at === null ? null : new Date(row.ended_at).toISOString(),
+    ended_at: new Date(row.ended_at).toISOString(),
     created_at: new Date(row.created_at).toISOString(),
     updated_at: new Date(row.updated_at).toISOString(),
     labels: (recordLabels.results as WorkRecordLabelRow[])

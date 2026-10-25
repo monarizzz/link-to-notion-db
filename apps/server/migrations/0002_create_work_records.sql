@@ -4,7 +4,7 @@ CREATE TABLE work_records (
   id TEXT PRIMARY KEY,
   title TEXT NOT NULL,
   started_at INTEGER NOT NULL,
-  ended_at INTEGER CHECK (ended_at > started_at),
+  ended_at INTEGER NOT NULL CHECK (ended_at > started_at),
   created_at INTEGER NOT NULL,
   updated_at INTEGER NOT NULL
 );
