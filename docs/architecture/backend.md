@@ -53,7 +53,7 @@ Notion をやめ、Hono の API と D1 に移行したあとの構成。**実装
 ## ディレクトリ構成
 
 ```
-apps/web          … Next.js（現在の src/ を移す）
+apps/web          … Next.js
 apps/server       … Hono（API・認証など、サーバー側の処理）
 packages/openapi  … openapi.json（API から出力し、各クライアントはここから型を生成する）
 ```

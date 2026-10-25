@@ -46,8 +46,8 @@ Notion DB は別の DB へ移行する予定。移行時はこのファイルの
 
 | 場所 | 依存している内容 |
 | --- | --- |
-| `src/infra/notion/` | Notion API の呼び出し |
-| `src/libs/notion/` | Notion クライアント、色名の変換表 |
-| `src/commons/notion/` | Notion のレスポンスから `ToRecord` への変換、スキーマからのラベル一覧の取り出し |
-| `src/libs/forms/schema/submitProps.ts` | フォームの値から Notion のプロパティへの変換 |
-| `src/app/page.tsx`、`src/app/Calendar/page.tsx` | Notion のフィルタ記法での絞り込み |
+| `apps/web/src/infra/notion/` | Notion API の呼び出し |
+| `apps/web/src/libs/notion/` | Notion クライアント、色名の変換表 |
+| `apps/web/src/commons/notion/` | Notion のレスポンスから `ToRecord` への変換、スキーマからのラベル一覧の取り出し |
+| `apps/web/src/libs/forms/schema/submitProps.ts` | フォームの値から Notion のプロパティへの変換 |
+| `apps/web/src/app/page.tsx`、`apps/web/src/app/Calendar/page.tsx` | Notion のフィルタ記法での絞り込み |
