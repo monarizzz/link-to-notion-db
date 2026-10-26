@@ -21,7 +21,7 @@ export const errorResponse = (
 ) => c.json({ error: { code, message, fields } }, status);
 
 /* Zod の issue を項目名ごとにまとめる。余分なキーはそのキー名に付ける */
-export const toErrorFields = (error: z.ZodError): ErrorFields => {
+export const toErrorFields = (error: z.core.$ZodError): ErrorFields => {
   const fields: ErrorFields = {};
   const add = (key: string, message: string) => {
     (fields[key] ??= []).push(message);
