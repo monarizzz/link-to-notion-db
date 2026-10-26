@@ -1,19 +1,19 @@
 import { z } from "zod";
 
 /* タイムゾーンの無い日時は日本時間として扱う */
-const dateTime = (label: string) =>
+const dateTime = (fieldName: string) =>
   z
     .string({
       error: (issue) =>
         issue.input === undefined
-          ? `${label}は必須です`
-          : `${label}は文字列で指定してください`,
+          ? `${fieldName}は必須です`
+          : `${fieldName}は文字列で指定してください`,
     })
     .pipe(
       z.iso.datetime({
         offset: true,
         local: true,
-        error: `${label}は ISO 8601 形式の日時で指定してください`,
+        error: `${fieldName}は ISO 8601 形式の日時で指定してください`,
       }),
     )
     .transform((value) =>
