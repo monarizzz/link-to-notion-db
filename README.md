@@ -59,6 +59,9 @@ Storybook: [http://localhost:6006](http://localhost:6006)
 
 ```bash
 pnpm test
+
+# apps/server のテスト
+pnpm test:server
 ```
 
 ## ビルド

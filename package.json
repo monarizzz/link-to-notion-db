@@ -16,6 +16,7 @@
     "typecheck": "pnpm --filter web typecheck",
     "test": "pnpm --filter web test",
     "test:storybook": "pnpm --filter web test:storybook",
+    "test:server": "pnpm --filter server test",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
