@@ -3,6 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
+    "seed": "wrangler d1 migrations apply worklog --local && wrangler d1 execute worklog --local --file=seed.sql",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "test": "vitest run --passWithNoTests",
