@@ -3,6 +3,12 @@ pnpm install
 pnpm dev
 ```
 
+ローカルの D1 にマイグレーションを当て、開発用の初期データ（`seed.sql`）を入れる:
+
+```txt
+pnpm seed
+```
+
 ```txt
 pnpm run deploy
 ```
