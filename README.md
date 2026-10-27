@@ -12,6 +12,8 @@ Notion データベースと連携する作業管理アプリケーションで�
 - **UIコンポーネント**: shadcn/ui (Radix UI)
 - **フォーム**: React Hook Form + Zod
 - **外部連携**: Notion API (`@notionhq/client`)
+- **API**: [Hono](https://hono.dev) (Cloudflare Workers)
+- **DB**: Cloudflare D1 (SQLite)
 - **テスト**: Vitest
 - **Storybook**: コンポーネント開発・ドキュメント
 
