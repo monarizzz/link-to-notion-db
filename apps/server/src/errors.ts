@@ -3,11 +3,7 @@ import type { ContentfulStatusCode } from "hono/utils/http-status";
 import type { z } from "zod";
 
 export type ErrorCode =
-  | "UNSUPPORTED_MEDIA_TYPE"
-  | "INVALID_JSON"
-  | "VALIDATION_ERROR"
-  | "INVALID_TIME_RANGE"
-  | "LABEL_NOT_FOUND";
+  "VALIDATION_ERROR" | "INVALID_TIME_RANGE" | "LABEL_NOT_FOUND";
 
 /* fields は項目名をキーにして、フォームの各項目にそのまま表示できるようにする */
 export type ErrorFields = Record<string, string[]>;

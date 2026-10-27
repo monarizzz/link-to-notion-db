@@ -76,22 +76,20 @@ describe("POST /api/work-records", () => {
     });
   });
 
-  it("Content-Type が JSON でなければ 415 を返す", async () => {
+  it("Content-Type が JSON でなければボディを空として扱い 400 を返す", async () => {
     const res = await post(JSON.stringify(validBody), "text/plain");
-
-    expect(res.status).toBe(415);
-    expect(await res.json()).toMatchObject({
-      error: { code: "UNSUPPORTED_MEDIA_TYPE" },
-    });
-  });
-
-  it("JSON として読めなければ 400 を返す", async () => {
-    const res = await post("{");
 
     expect(res.status).toBe(400);
     expect(await res.json()).toMatchObject({
-      error: { code: "INVALID_JSON" },
+      error: { code: "VALIDATION_ERROR" },
     });
+  });
+
+  it("JSON として読めなければ Hono 標準のテキストで 400 を返す", async () => {
+    const res = await post("{");
+
+    expect(res.status).toBe(400);
+    expect(await res.text()).toBe("Malformed JSON in request body");
   });
 
   it("型が違う項目があれば 400 を返す", async () => {
