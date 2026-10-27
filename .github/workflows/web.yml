@@ -1,4 +1,4 @@
-name: CI
+name: web
 
 on: [pull_request]
 
@@ -15,8 +15,8 @@ permissions:
 # ジョブ間に依存関係は作らない。install 専用ジョブを前段に置くと、そこが落ちたときに
 # 後続が全てスキップされ「どこで落ちたか分からない」状態になるため。
 jobs:
-  web-typecheck:
-    name: web / Type check
+  typecheck:
+    name: Type check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -39,32 +39,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
 
-  format:
-    name: Format check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-      - name: Restore node_modules
-        id: node-modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-      - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-
-  web-lint:
-    name: web / Lint
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -89,8 +65,8 @@ jobs:
 
   # Playwright の Chromium を落とす必要があり実行時間が伸びるため、他のチェックとは
   # 別ジョブに分離している。
-  web-storybook-test:
-    name: web / Storybook test
+  storybook-test:
+    name: Storybook test
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -127,29 +103,3 @@ jobs:
       - if: steps.playwright.outputs.cache-hit == 'true'
         run: pnpm --filter web exec playwright install-deps chromium
       - run: pnpm test:storybook
-
-  # server のチェックはどれも軽いため、install を 1 回で済ませるよう 1 ジョブにまとめる。
-  server:
-    name: server
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-      - name: Restore node_modules
-        id: node-modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-      - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - run: pnpm typecheck:server
-      - run: pnpm test:server
