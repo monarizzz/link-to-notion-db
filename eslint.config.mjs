@@ -4,6 +4,7 @@ import storybook from "eslint-plugin-storybook";
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import tseslint from "typescript-eslint";
 
 const eslintConfig = defineConfig([
   // Override default ignores of eslint-config-next.
@@ -15,6 +16,8 @@ const eslintConfig = defineConfig([
     "apps/web/next-env.d.ts",
     // 生成物・ローカル状態
     "apps/web/storybook-static/**",
+    "apps/server/.wrangler/**",
+    "apps/server/worker-configuration.d.ts",
   ]),
   {
     files: ["apps/web/**"],
@@ -22,6 +25,10 @@ const eslintConfig = defineConfig([
     settings: {
       next: { rootDir: "apps/web/" },
     },
+  },
+  {
+    files: ["apps/server/**"],
+    extends: [tseslint.configs.recommended],
   },
 ]);
 
