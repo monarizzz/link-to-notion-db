@@ -4,7 +4,7 @@
 
 ## architecture/ — 設計
 
-- [directory-structure.md](architecture/directory-structure.md) … 層の責務・依存の向き・ディレクトリの粒度
+- [web-layers.md](architecture/web-layers.md) … 層の責務・依存の向き・ディレクトリの粒度
 - [data-model.md](architecture/data-model.md) … Notion DB のプロパティとアプリ側の型の対応、Notion に依存している箇所
 - [backend.md](architecture/backend.md) … Hono・D1 へ移行したあとの構成と決定事項（実装前）
 - [database.md](architecture/database.md) … 移行後の D1 のテーブル設計（実装前）
