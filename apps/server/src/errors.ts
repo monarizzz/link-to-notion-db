@@ -22,7 +22,8 @@ export const errorResponse = (
 
 /* Zod の issue を項目名ごとにまとめる。余分なキーはそのキー名に付ける */
 export const toErrorFields = (error: z.core.$ZodError): ErrorFields => {
-  const fields: ErrorFields = {};
+  /* キーはクライアントが決めるので、toString などの継承プロパティと衝突しないようにする */
+  const fields: ErrorFields = Object.create(null);
   const add = (key: string, message: string) => {
     (fields[key] ??= []).push(message);
   };

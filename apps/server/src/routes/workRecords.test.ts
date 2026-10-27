@@ -119,6 +119,23 @@ describe("POST /api/work-records", () => {
     });
   });
 
+  it.each(["toString", "constructor", "__proto__"])(
+    "余分なキーが %s でも 400 を返す",
+    async (key) => {
+      const res = await post(
+        JSON.stringify(validBody).replace(/}$/, `,"${key}":"x"}`),
+      );
+
+      expect(res.status).toBe(400);
+      const body = (await res.json()) as {
+        error: { fields: Record<string, unknown> };
+      };
+      expect(
+        Object.getOwnPropertyDescriptor(body.error.fields, key)?.value,
+      ).toEqual(["この項目は指定できません"]);
+    },
+  );
+
   it("started_at が ended_at 以降なら 422 を返す", async () => {
     const res = await postJson({
       started_at: validBody.ended_at,
