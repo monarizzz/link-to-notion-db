@@ -1,4 +1,4 @@
-name: CI
+name: web
 
 on: [pull_request]
 
@@ -38,31 +38,6 @@ jobs:
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
-      - run: pnpm typecheck:server
-
-  format:
-    name: Format check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-      - name: Restore node_modules
-        id: node-modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-      - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
 
   lint:
     name: Lint
@@ -128,27 +103,3 @@ jobs:
       - if: steps.playwright.outputs.cache-hit == 'true'
         run: pnpm --filter web exec playwright install-deps chromium
       - run: pnpm test:storybook
-
-  server-test:
-    name: Server test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-      - name: Restore node_modules
-        id: node-modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-      - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - run: pnpm test:server
