@@ -38,6 +38,7 @@ jobs:
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
+      - run: pnpm typecheck:server
 
   format:
     name: Format check
