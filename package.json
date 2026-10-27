@@ -14,6 +14,7 @@
     "storybook": "pnpm --filter web storybook",
     "build-storybook": "pnpm --filter web build-storybook",
     "typecheck": "pnpm --filter web typecheck",
+    "typecheck:server": "pnpm --filter server typecheck",
     "test": "pnpm --filter web test",
     "test:storybook": "pnpm --filter web test:storybook",
     "test:server": "pnpm --filter server test",
