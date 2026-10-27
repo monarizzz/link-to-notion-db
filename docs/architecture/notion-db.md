@@ -1,4 +1,4 @@
-# データモデル（Notion DB）
+# Notion DB
 
 作業記録を保存している Notion DB の構造と、アプリ側の型との対応。
 Notion DB は別の DB へ移行する予定。移行時はこのファイルの「Notion に依存している箇所」を置き換える。
