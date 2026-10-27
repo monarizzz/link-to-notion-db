@@ -1,7 +1,5 @@
 # テーブル設計（D1）
 
-移行後の D1 のテーブル。**実装前の設計**。現状の Notion DB は [data-model.md](data-model.md) にある。
-
 ## ER 図
 
 ```mermaid
