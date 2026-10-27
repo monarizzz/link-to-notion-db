@@ -122,4 +122,26 @@ export const workRecordsRouters = new Hono<{
         201,
       );
     },
-  );
+  )
+
+  /* 作業記録の削除 */
+  .delete("/:id", async (c) => {
+    const id = c.req.param("id");
+
+    const { meta } = await c.env.DB.prepare(
+      "DELETE FROM work_records WHERE id = ?",
+    )
+      .bind(id)
+      .run();
+
+    if (meta.changes === 0) {
+      return errorResponse(
+        c,
+        404,
+        "WORK_RECORD_NOT_FOUND",
+        "作業記録が見つかりません",
+      );
+    }
+
+    return c.body(null, 204);
+  });

@@ -16,16 +16,16 @@ const validBody = {
   ended_at: "2026-10-26T11:00:00+09:00",
 };
 
-describe("POST /api/work-records", () => {
-  beforeAll(async () => {
-    const createdAt = Date.UTC(2026, 9, 26, 1, 0, 0);
-    await env.DB.prepare(
-      "INSERT INTO labels (id, name, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
-    )
-      .bind("label-1", "開発", "#3b82f6", createdAt, createdAt)
-      .run();
-  });
+beforeAll(async () => {
+  const createdAt = Date.UTC(2026, 9, 26, 1, 0, 0);
+  await env.DB.prepare(
+    "INSERT INTO labels (id, name, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
+  )
+    .bind("label-1", "開発", "#3b82f6", createdAt, createdAt)
+    .run();
+});
 
+describe("POST /api/work-records", () => {
   describe("正常なボディ", () => {
     it("作業記録を作成して 201 を返す", async () => {
       const res = await postJson({
@@ -161,6 +161,56 @@ describe("POST /api/work-records", () => {
       error: {
         code: "LABEL_NOT_FOUND",
         fields: { label_ids: ["存在しないラベルが含まれています"] },
+      },
+    });
+  });
+});
+
+describe("DELETE /api/work-records/:id", () => {
+  const del = (id: string) =>
+    app.request(`/api/work-records/${id}`, { method: "DELETE" }, env);
+
+  it("作業記録を削除して 204 を返す", async () => {
+    const { id } = (await (
+      await postJson({ ...validBody, label_ids: ["label-1"] })
+    ).json()) as { id: string };
+
+    const res = await del(id);
+
+    expect(res.status).toBe(204);
+    expect(await res.text()).toBe("");
+    expect(
+      await env.DB.prepare("SELECT id FROM work_records WHERE id = ?")
+        .bind(id)
+        .first(),
+    ).toBeNull();
+  });
+
+  it("ラベルとの紐付けも削除する", async () => {
+    const { id } = (await (
+      await postJson({ ...validBody, label_ids: ["label-1"] })
+    ).json()) as { id: string };
+
+    await del(id);
+
+    expect(
+      await env.DB.prepare(
+        "SELECT work_record_id FROM work_record_labels WHERE work_record_id = ?",
+      )
+        .bind(id)
+        .first(),
+    ).toBeNull();
+  });
+
+  it("存在しない id なら 404 を返す", async () => {
+    const res = await del("missing");
+
+    expect(res.status).toBe(404);
+    expect(await res.json()).toEqual({
+      error: {
+        code: "WORK_RECORD_NOT_FOUND",
+        message: "作業記録が見つかりません",
+        fields: {},
       },
     });
   });
