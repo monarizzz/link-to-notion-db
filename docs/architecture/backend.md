@@ -1,6 +1,6 @@
 # バックエンド構成
 
-Notion をやめ、Hono の API と D1 に移行したあとの構成。**実装前の設計**であり、現状のコードはまだ [data-model.md](data-model.md) の Notion 構成のまま。
+Hono の API と D1 によるバックエンドの構成。
 
 ## 背景
 
@@ -60,13 +60,14 @@ packages/openapi  … openapi.json（API から出力し、各クライアント
 ```
 
 - Mac アプリは作るときに `apps/` へ追加する
-- `apps/` の各アプリは自分の `package.json`・`tsconfig.json` を持つ。ルートの TypeScript・ESLint の設定は Next.js 用で、`apps/` を対象にしない
+- `apps/` の各アプリは自分の `package.json`・`tsconfig.json` を持つ
+- ESLint の設定はルートに 1 つ置き、`apps/` ごとに適用するルールを分ける
 - Web は未ログインのときログイン画面だけを表示する
 
 ## 未決定
 
 - API の中の層の構成
-- API 設計（URL・エラーの形式・ページネーション）
+- API 設計（URL・ページネーション）。エラーの形式は [apps/server/README.md](../../apps/server/README.md#エラーレスポンス) にある
 - テストと CI
 - 認証まわりの改善（ログインの維持・期限切れ時の再認証・Swift での対応）
 - デモ環境（Wrangler の `[env.demo]` で、別の Worker と D1 を立てる案）
