@@ -1,4 +1,7 @@
 import { Hono } from "hono";
+import { zValidator } from "@hono/zod-validator";
+import { errorResponse, toErrorFields } from "../errors";
+import { createWorkRecordSchema } from "../schemas/workRecords";
 
 type WorkRecordRow = {
   id: string;
@@ -43,55 +46,80 @@ export const workRecordsRouters = new Hono<{
   })
 
   /* 作業記録の追加 */
-  .post("/", async (c) => {
-    const {
-      title = null,
-      started_at,
-      ended_at,
-      label_ids = [],
-    } = await c.req.json<{
-      title?: string | null;
-      started_at: string;
-      ended_at: string;
-      label_ids?: string[];
-    }>();
-    const id = crypto.randomUUID();
-    const now = Date.now();
+  .post(
+    "/",
+    zValidator("json", createWorkRecordSchema, (result, c) => {
+      if (!result.success) {
+        return errorResponse(
+          c,
+          400,
+          "VALIDATION_ERROR",
+          "入力内容に誤りがあります",
+          toErrorFields(result.error),
+        );
+      }
+    }),
+    async (c) => {
+      const { title, started_at, ended_at, label_ids } = c.req.valid("json");
 
-    await c.env.DB.batch([
-      c.env.DB.prepare(
-        "INSERT INTO work_records (id, title, started_at, ended_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
-      ).bind(
-        id,
-        title,
-        new Date(started_at).getTime(),
-        new Date(ended_at).getTime(),
-        now,
-        now,
-      ),
-      ...label_ids.map((labelId) =>
+      if (started_at >= ended_at) {
+        return errorResponse(
+          c,
+          422,
+          "INVALID_TIME_RANGE",
+          "入力内容に誤りがあります",
+          { ended_at: ["終了日時は開始日時より後にしてください"] },
+        );
+      }
+
+      if (label_ids.length > 0) {
+        const { results: existingLabels } = await c.env.DB.prepare(
+          `SELECT id FROM labels WHERE id IN (${label_ids.map(() => "?").join(", ")})`,
+        )
+          .bind(...label_ids)
+          .all<{ id: string }>();
+        if (existingLabels.length !== label_ids.length) {
+          return errorResponse(
+            c,
+            422,
+            "LABEL_NOT_FOUND",
+            "入力内容に誤りがあります",
+            { label_ids: ["存在しないラベルが含まれています"] },
+          );
+        }
+      }
+
+      const id = crypto.randomUUID();
+      const now = Date.now();
+
+      await c.env.DB.batch([
         c.env.DB.prepare(
-          "INSERT INTO work_record_labels (work_record_id, label_id) VALUES (?, ?)",
-        ).bind(id, labelId),
-      ),
-    ]);
+          "INSERT INTO work_records (id, title, started_at, ended_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+        ).bind(id, title, started_at, ended_at, now, now),
+        ...label_ids.map((labelId) =>
+          c.env.DB.prepare(
+            "INSERT INTO work_record_labels (work_record_id, label_id) VALUES (?, ?)",
+          ).bind(id, labelId),
+        ),
+      ]);
 
-    const { results: labels } = await c.env.DB.prepare(
-      "SELECT labels.id, labels.name, labels.color FROM work_record_labels JOIN labels ON labels.id = work_record_labels.label_id WHERE work_record_labels.work_record_id = ? ORDER BY labels.created_at",
-    )
-      .bind(id)
-      .all();
+      const { results: labels } = await c.env.DB.prepare(
+        "SELECT labels.id, labels.name, labels.color FROM work_record_labels JOIN labels ON labels.id = work_record_labels.label_id WHERE work_record_labels.work_record_id = ? ORDER BY labels.created_at",
+      )
+        .bind(id)
+        .all();
 
-    return c.json(
-      {
-        id,
-        title,
-        started_at,
-        ended_at,
-        created_at: new Date(now).toISOString(),
-        updated_at: new Date(now).toISOString(),
-        labels,
-      },
-      201,
-    );
-  });
+      return c.json(
+        {
+          id,
+          title,
+          started_at: new Date(started_at).toISOString(),
+          ended_at: new Date(ended_at).toISOString(),
+          created_at: new Date(now).toISOString(),
+          updated_at: new Date(now).toISOString(),
+          labels,
+        },
+        201,
+      );
+    },
+  );
