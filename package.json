@@ -10,7 +10,7 @@
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
     "start": "pnpm --filter web start",
-    "lint": "pnpm --filter web lint",
+    "lint": "eslint",
     "storybook": "pnpm --filter web storybook",
     "build-storybook": "pnpm --filter web build-storybook",
     "typecheck": "pnpm --filter web typecheck",
@@ -22,6 +22,9 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "^16.4.3",
+    "eslint-plugin-storybook": "^10.6.3",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1"
   }
