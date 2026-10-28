@@ -7,9 +7,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/libs/shadcn/assets/ui/select";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
-  labels: string[];
+  labels: Label[];
   placeholder: string;
   selectLabel: string;
   form?: {
@@ -32,8 +33,8 @@ const CommonSelect = ({ labels, selectLabel, placeholder, form }: Props) => {
         <SelectGroup>
           <SelectLabel>{selectLabel}</SelectLabel>
           {labels.map((label) => (
-            <SelectItem className="text-xs" key={label} value={label}>
-              {label}
+            <SelectItem className="text-xs" key={label.id} value={label.name}>
+              {label.name}
             </SelectItem>
           ))}
         </SelectGroup>

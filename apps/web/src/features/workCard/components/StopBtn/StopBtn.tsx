@@ -4,9 +4,10 @@ import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
-  labels: string[];
+  labels: Label[];
 };
 
 const StopBtn = ({ labels }: Props) => {

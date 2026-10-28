@@ -8,7 +8,38 @@ const WithFormProvider = () => {
   return (
     <FormProvider {...methods}>
       <form>
-        <StopBtn labels={["仕事", "プライベート", "勉強", "健康"]} />
+        <StopBtn
+          labels={[
+            {
+              id: "1",
+              name: "仕事",
+              color: "#4A90D9",
+              created_at: "2026-05-01T00:00:00.000Z",
+              updated_at: "2026-05-01T00:00:00.000Z",
+            },
+            {
+              id: "2",
+              name: "プライベート",
+              color: "#E5A04B",
+              created_at: "2026-05-01T00:00:00.000Z",
+              updated_at: "2026-05-01T00:00:00.000Z",
+            },
+            {
+              id: "3",
+              name: "勉強",
+              color: "#5BB98C",
+              created_at: "2026-05-01T00:00:00.000Z",
+              updated_at: "2026-05-01T00:00:00.000Z",
+            },
+            {
+              id: "4",
+              name: "健康",
+              color: "#D9534F",
+              created_at: "2026-05-01T00:00:00.000Z",
+              updated_at: "2026-05-01T00:00:00.000Z",
+            },
+          ]}
+        />
       </form>
     </FormProvider>
   );
