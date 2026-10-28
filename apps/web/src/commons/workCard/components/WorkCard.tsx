@@ -2,11 +2,12 @@ import TodoContent from "@/features/workCard/components/TodoContent/TodoContent"
 import DoingContent from "@/features/workCard/components/DoingContent/DoingContent";
 import { useWatch } from "react-hook-form";
 import InputContent from "@/features/workCard/components/inputContent/InputContent";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
   isInput: "todo" | "timer";
   todoDetail?: TodoDetail;
-  labels: string[];
+  labels: Label[];
 };
 
 type TodoDetail = {

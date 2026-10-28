@@ -1,9 +1,8 @@
 import { getCurrent } from "@/commons/date/utils/getCurrent";
 import CalendarPageMain from "@/features/calendarPage/components/CalendarPageMain/CalendarPageMain";
 import toRecord from "@/commons/notion/utils/toRecord";
-import toLabels from "@/commons/notion/utils/toLabels";
 import getDBRecords from "@/infra/notion/repositories/getDBRecords";
-import getDBSchema from "@/infra/notion/repositories/getDBSchema";
+import getLabels from "@/infra/api/getLabels";
 
 type Props = {
   searchParams?: {
@@ -28,7 +27,7 @@ const CalendarPage = async (props: Props) => {
 
   const allRecords = await getDBRecords(filter);
   const events = allRecords.results.map((record) => toRecord(record));
-  const labels = toLabels(await getDBSchema());
+  const labels = await getLabels();
 
   return <CalendarPageMain labels={labels} events={events} />;
 };

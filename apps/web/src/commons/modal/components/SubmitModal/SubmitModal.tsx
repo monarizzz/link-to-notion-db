@@ -7,9 +7,10 @@ import "@/libs/dayjs/config";
 import { Input } from "@/libs/shadcn/assets/ui/input";
 import Plain from "@public/plain.svg";
 import ModalContents from "@/commons/modal/components/ModalContents/ModalContents";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
-  labels: string[];
+  labels: Label[];
   isOpenModal: boolean;
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };

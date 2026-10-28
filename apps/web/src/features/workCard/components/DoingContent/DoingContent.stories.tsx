@@ -30,7 +30,29 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    labels: ["デザインレビュー", "開発", "会議"],
+    labels: [
+      {
+        id: "1",
+        name: "デザインレビュー",
+        color: "#4A90D9",
+        created_at: "2026-05-01T00:00:00.000Z",
+        updated_at: "2026-05-01T00:00:00.000Z",
+      },
+      {
+        id: "2",
+        name: "開発",
+        color: "#E5A04B",
+        created_at: "2026-05-01T00:00:00.000Z",
+        updated_at: "2026-05-01T00:00:00.000Z",
+      },
+      {
+        id: "3",
+        name: "会議",
+        color: "#5BB98C",
+        created_at: "2026-05-01T00:00:00.000Z",
+        updated_at: "2026-05-01T00:00:00.000Z",
+      },
+    ],
   },
 };
 

@@ -32,7 +32,29 @@ type Story = StoryObj<typeof SubmitModal>;
 
 export const Default: Story = {
   args: {
-    labels: ["開発", "会議", "レビュー"],
+    labels: [
+      {
+        id: "1",
+        name: "開発",
+        color: "#4A90D9",
+        created_at: "2026-05-01T00:00:00.000Z",
+        updated_at: "2026-05-01T00:00:00.000Z",
+      },
+      {
+        id: "2",
+        name: "会議",
+        color: "#E5A04B",
+        created_at: "2026-05-01T00:00:00.000Z",
+        updated_at: "2026-05-01T00:00:00.000Z",
+      },
+      {
+        id: "3",
+        name: "レビュー",
+        color: "#5BB98C",
+        created_at: "2026-05-01T00:00:00.000Z",
+        updated_at: "2026-05-01T00:00:00.000Z",
+      },
+    ],
     isOpenModal: true,
     setIsOpenModal: () => {},
   },

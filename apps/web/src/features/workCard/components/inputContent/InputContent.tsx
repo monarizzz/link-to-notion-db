@@ -1,9 +1,10 @@
 import LabelSelect from "@/commons/modal/components/LabelSelect/LabelSelect";
 import PlayBtn from "../PlayBtn/PlayBtn";
 import Pen from "@public/pen.svg";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
-  labels: string[];
+  labels: Label[];
 };
 
 const InputContent = ({ labels }: Props) => {

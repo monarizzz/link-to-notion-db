@@ -11,9 +11,10 @@ import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarFor
 import SideBar from "@/commons/sideBar/components/SideBar";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
 import { submitProps } from "@/libs/forms/schema/submitProps";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
-  labels: string[];
+  labels: Label[];
   today: NotionEvent[];
 };
 

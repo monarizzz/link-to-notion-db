@@ -1,8 +1,9 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { cn } from "@/libs/shadcn/assets/lib/utils";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
-  labels: string[];
+  labels: Label[];
 };
 
 const LabelChips = ({ labels }: Props) => {
@@ -23,13 +24,13 @@ const LabelChips = ({ labels }: Props) => {
       render={({ field: { value, onChange } }) => (
         <div className="flex flex-wrap gap-2 px-3 pt-2.5 pb-3">
           {labels.map((label) => {
-            const isSelected = label === value;
+            const isSelected = label.name === value;
             return (
               <button
                 type="button"
-                key={label}
+                key={label.id}
                 aria-pressed={isSelected}
-                onClick={() => onChange(label)}
+                onClick={() => onChange(label.name)}
                 className={cn(
                   "cursor-pointer rounded-[20px] px-3.5 py-2 text-[13px]",
                   isSelected
@@ -37,7 +38,7 @@ const LabelChips = ({ labels }: Props) => {
                     : "bg-[#3A3A3C] text-foreground",
                 )}
               >
-                {label}
+                {label.name}
               </button>
             );
           })}

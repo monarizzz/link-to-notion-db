@@ -3,9 +3,10 @@ import { useWatch } from "react-hook-form";
 import StopBtn from "../StopBtn/StopBtn";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
+import { Label } from "@/infra/api/types/label";
 
 type Props = {
-  labels: string[];
+  labels: Label[];
 };
 
 const DoingContent = ({ labels }: Props) => {
