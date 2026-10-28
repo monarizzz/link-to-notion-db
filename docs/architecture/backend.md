@@ -25,9 +25,10 @@ Hono の API と D1 によるバックエンドの構成。
 
 ```
 [Web: Next.js / Vercel]   [Mac アプリ: Swift（将来）]
+   サーバー側から呼ぶ          │
+   型: Hono RPC              型: openapi.json
           │                        │
           └── HTTPS + ID トークン ──┘
-                 契約: openapi.json
                        │
           [API: Hono / Cloudflare Workers]
                        │
@@ -40,9 +41,9 @@ Hono の API と D1 によるバックエンドの構成。
 | --- | --- | --- |
 | 移行の進め方 | API と新しい DB を同時に作り、Web の接続先を一度に切り替える | 短期間で Notion をやめるため、Notion につなぐ仮の API を作るコストが見合わない |
 | API | Hono | インターンで触って興味を持った。TypeScript のまま書けるので、言語ではなく BE の設計の学習に集中できる |
-| API 定義 | `@hono/zod-openapi` で `openapi.json` を出力する | Swift のクライアントを生成するため。Web も同じ仕様から生成し、仕様のファイルを FE と BE の境界にする |
-| Web からの呼び出し | ブラウザから、`openapi.json` から生成したクライアントで API を直接呼ぶ（Hono RPC は使わない） | Web と Swift を同じ立場のクライアントにし、Web が API の実装に依存しないようにする |
-| リポジトリ | モノレポ | `openapi.json` を 1 か所に置き、Web からも Swift からも直接読める |
+| API 定義 | 値の検証は Zod（`zValidator`）で行う。Swift のクライアントを作るときに `@hono/zod-openapi` を導入し、`openapi.json` を出力する | Swift のクライアントの生成には OpenAPI が要る。`OpenAPIHono` も `hc` で呼べるので、Web を書き直さずに両立できる |
+| Web からの呼び出し | 当面は Next.js のサーバー（Server Component / Server Actions）から、Hono RPC（`hc<AppType>()`）で呼ぶ。将来的にブラウザから呼ぶ形にし、その際に CORS も対応する | 今の Web はサーバー側でデータを取得しており、ブラウザから呼ぶ形にすると変更が大きい。Web で RPC、Swift で OpenAPI を使い、両方を比べる |
+| リポジトリ | モノレポ | Web から API の型（`AppType`）を import でき、`openapi.json` も 1 か所に置いて Swift から読める |
 | API のデプロイ先 | Cloudflare Workers | 無料枠に収まる。Docker（コンテナの運用）の学習は今回のスコープ外 |
 | Web のデプロイ先 | Vercel（現状のまま） | 将来は Next.js から React への移行も考えている |
 | DB | D1 | 無料。Supabase は無料プランだと 1 週間使わないとプロジェクトが停止する |
@@ -56,8 +57,10 @@ Hono の API と D1 によるバックエンドの構成。
 ```
 apps/web          … Next.js
 apps/server       … Hono（API・認証など、サーバー側の処理）
-packages/openapi  … openapi.json（API から出力し、各クライアントはここから型を生成する）
+packages/openapi  … openapi.json（API から出力し、Swift のクライアントはここから型を生成する）
 ```
+
+- `packages/openapi` は Swift のクライアントを作るときに追加する
 
 - Mac アプリは作るときに `apps/` へ追加する
 - `apps/` の各アプリは自分の `package.json`・`tsconfig.json` を持つ
