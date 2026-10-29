@@ -77,12 +77,6 @@ git worktree remove <パス>
 git worktree list
 ```
 
-## ハマりどころ
-
-- Notion SDK は `properties` をユニオン型で返すため、プロパティへ直接アクセスすると型エラーになる。
-  既存コードは `unknown` へのキャストや `@ts-ignore` で回避している（TODO あり）
-- レコードの取得は `DATA_SOURCE_ID`、作成は `DATABASE_ID` を使う（Notion API の data source 対応）
-
 ## Storybook
 
 - Story を書く際は `parameters.layout` に基本的に `"fullscreen"` を設定すること（レビュー指摘としては不要）
