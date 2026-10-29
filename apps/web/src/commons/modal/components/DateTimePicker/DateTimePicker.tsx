@@ -64,9 +64,9 @@ const DateTimePicker = ({ name }: Props) => {
             <div className="flex flex-col items-center gap-1.5">
               <button
                 type="button"
-                aria-label={`${column.label}を増やす`}
+                aria-label={`${column.label}を減らす`}
                 className="cursor-pointer"
-                onClick={() => shift(1, column.unit)}
+                onClick={() => shift(-1, column.unit)}
               >
                 <ChevronUpIcon className="size-5 text-[#4A79F5]" />
               </button>
@@ -75,9 +75,9 @@ const DateTimePicker = ({ name }: Props) => {
               </span>
               <button
                 type="button"
-                aria-label={`${column.label}を減らす`}
+                aria-label={`${column.label}を増やす`}
                 className="cursor-pointer"
-                onClick={() => shift(-1, column.unit)}
+                onClick={() => shift(1, column.unit)}
               >
                 <ChevronDownIcon className="size-5 text-[#4A79F5]" />
               </button>
