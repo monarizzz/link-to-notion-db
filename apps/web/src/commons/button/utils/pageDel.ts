@@ -1,10 +1,10 @@
 "use server";
 
-import patchPage from "@/infra/notion/repositories/patchPage";
+import deleteWorkRecord from "@/infra/api/deleteWorkRecord";
 import { revalidatePath } from "next/cache";
 
 const pageDel = async (pageId: string) => {
-  await patchPage(pageId, true);
+  await deleteWorkRecord(pageId);
   revalidatePath("/");
 };
 
