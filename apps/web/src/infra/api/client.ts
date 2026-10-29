@@ -1,15 +1,14 @@
-export const apiClient = async (path: string, init?: RequestInit) => {
+import { hc } from "hono/client";
+import type { AppType } from "server/src";
+
+export const apiClient = () => {
   const baseUrl = process.env.API_BASE_URL;
 
   if (!baseUrl) {
     throw new Error("API_BASE_URL が設定されていません");
   }
 
-  const response = await fetch(new URL(path, baseUrl), init);
-
-  if (!response.ok) {
-    throw new Error(`API の取得に失敗しました (${response.status})`);
-  }
-
-  return response.json();
+  return hc<AppType>(baseUrl);
 };
+
+export type ApiClient = ReturnType<typeof apiClient>;

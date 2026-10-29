@@ -1,18 +1,12 @@
-import { Label } from "@/infra/api/types/label";
+import type { InferRequestType, InferResponseType } from "hono/client";
 
-export type WorkRecord = {
-  id: string;
-  title: string | null;
-  started_at: string;
-  ended_at: string;
-  created_at: string;
-  updated_at: string;
-  labels: Pick<Label, "id" | "name" | "color">[];
-};
+import type { ApiClient } from "@/infra/api/client";
 
-export type CreateWorkRecordInput = {
-  title?: string | null;
-  started_at: string;
-  ended_at: string;
-  label_ids?: string[];
-};
+export type WorkRecord = InferResponseType<
+  ApiClient["api"]["work-records"]["$get"],
+  200
+>[number];
+
+export type CreateWorkRecordInput = InferRequestType<
+  ApiClient["api"]["work-records"]["$post"]
+>["json"];
