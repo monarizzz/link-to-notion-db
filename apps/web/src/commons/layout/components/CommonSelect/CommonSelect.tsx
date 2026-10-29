@@ -33,7 +33,7 @@ const CommonSelect = ({ labels, selectLabel, placeholder, form }: Props) => {
         <SelectGroup>
           <SelectLabel>{selectLabel}</SelectLabel>
           {labels.map((label) => (
-            <SelectItem className="text-xs" key={label.id} value={label.name}>
+            <SelectItem className="text-xs" key={label.id} value={label.id}>
               {label.name}
             </SelectItem>
           ))}

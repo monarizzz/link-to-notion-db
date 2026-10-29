@@ -12,7 +12,7 @@ const meta = {
     (Story) => {
       const methods = useForm({
         defaultValues: {
-          label: "会議",
+          label: "3",
         },
       });
       return (

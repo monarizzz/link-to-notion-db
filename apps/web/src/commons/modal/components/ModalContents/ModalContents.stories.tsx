@@ -13,7 +13,7 @@ const meta = {
         defaultValues: {
           start: "2026-03-24T09:00:00.000+0900",
           end: "2026-03-24T11:00:00.000+0900",
-          label: "開発",
+          label: "1",
         },
       });
       return (
