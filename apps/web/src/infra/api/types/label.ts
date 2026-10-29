@@ -1,7 +1,8 @@
-export type Label = {
-  id: string;
-  name: string;
-  color: string;
-  created_at: string;
-  updated_at: string;
-};
+import type { InferResponseType } from "hono/client";
+
+import type { ApiClient } from "@/infra/api/client";
+
+export type Label = InferResponseType<
+  ApiClient["api"]["labels"]["$get"],
+  200
+>[number];
