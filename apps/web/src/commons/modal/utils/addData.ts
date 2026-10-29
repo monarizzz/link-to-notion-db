@@ -1,12 +1,15 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import postPage from "@/infra/notion/repositories/postPage";
-import type { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
+import postWorkRecord from "@/infra/api/postWorkRecord";
+import type { DataForm } from "@/libs/forms/schema/DataForm";
 
-export const addData = async (
-  properties: CreatePageParameters["properties"],
-) => {
-  await postPage(properties);
+export const addData = async (data: DataForm) => {
+  await postWorkRecord({
+    title: data.title,
+    started_at: data.start,
+    ended_at: data.end,
+    label_ids: data.label ? [data.label] : [],
+  });
   revalidatePath("/");
 };

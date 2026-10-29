@@ -10,7 +10,6 @@ import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
 import SideBar from "@/commons/sideBar/components/SideBar";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
-import { submitProps } from "@/libs/forms/schema/submitProps";
 import type { Label } from "@/infra/api/client";
 
 type Props = {
@@ -26,7 +25,7 @@ const HomePageMain = ({ labels, today }: Props) => {
 
   const onSubmit = async (data: DataForm) => {
     try {
-      await addData(submitProps(data));
+      await addData(data);
       methods.reset();
     } catch (error) {
       console.error(error); // TODO:errorハンドリングを考える

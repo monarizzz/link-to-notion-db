@@ -32,7 +32,7 @@ const ModalContents = ({ labels }: Props) => {
     {
       field: "label",
       name: "分類",
-      detail: label ? label : "---",
+      detail: labels.find(({ id }) => id === label)?.name ?? "---",
       editor: <LabelChips labels={labels} />,
     },
     {

@@ -24,13 +24,13 @@ const LabelChips = ({ labels }: Props) => {
       render={({ field: { value, onChange } }) => (
         <div className="flex flex-wrap gap-2 px-3 pt-2.5 pb-3">
           {labels.map((label) => {
-            const isSelected = label.name === value;
+            const isSelected = label.id === value;
             return (
               <button
                 type="button"
                 key={label.id}
                 aria-pressed={isSelected}
-                onClick={() => onChange(label.name)}
+                onClick={() => onChange(label.id)}
                 className={cn(
                   "cursor-pointer rounded-[20px] px-3.5 py-2 text-[13px]",
                   isSelected
