@@ -7,4 +7,7 @@ const app = new Hono<{ Bindings: CloudflareBindings }>()
   .route("/work-records", workRecordsRouters)
   .route("/labels", labelsRouters);
 
+/* Hono RPC */
+export type AppType = typeof app;
+
 export default app;
