@@ -1,6 +1,6 @@
 import CommonSelect from "@/commons/layout/components/CommonSelect/CommonSelect";
 import { Controller, useFormContext } from "react-hook-form";
-import { Label } from "@/infra/api/types/label";
+import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];

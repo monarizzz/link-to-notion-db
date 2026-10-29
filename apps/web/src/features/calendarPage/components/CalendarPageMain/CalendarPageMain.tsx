@@ -3,7 +3,7 @@
 import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
 import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import SideBar from "@/commons/sideBar/components/SideBar";
-import { Label } from "@/infra/api/types/label";
+import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];

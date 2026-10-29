@@ -11,7 +11,7 @@ import { useFormContext } from "react-hook-form";
 import { DateSelectArg, DatesSetArg } from "@fullcalendar/core/index.js";
 import { NotionEvent } from "../../type/notionEvent";
 import { useRouter } from "next/navigation";
-import { Label } from "@/infra/api/types/label";
+import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];
