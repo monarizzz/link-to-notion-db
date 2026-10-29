@@ -53,7 +53,6 @@ export default defineConfig({
             "radix-ui",
             "clsx",
             "tailwind-merge",
-            "@notionhq/client",
           ],
         },
         test: {
