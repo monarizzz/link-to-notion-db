@@ -9,7 +9,7 @@ import { cn } from "@/libs/shadcn/assets/lib/utils";
 
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
-import { Label } from "@/infra/api/types/label";
+import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];

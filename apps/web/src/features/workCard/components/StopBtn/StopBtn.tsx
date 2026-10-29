@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
-import { Label } from "@/infra/api/types/label";
+import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];

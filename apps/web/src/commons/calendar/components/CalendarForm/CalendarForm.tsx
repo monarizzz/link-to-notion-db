@@ -7,7 +7,7 @@ import { NotionEvent } from "@/commons/calendar/type/notionEvent";
 import { FormProvider, useForm } from "react-hook-form";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
 import { submitProps } from "@/libs/forms/schema/submitProps";
-import { Label } from "@/infra/api/types/label";
+import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];

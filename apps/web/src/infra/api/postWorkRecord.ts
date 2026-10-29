@@ -1,7 +1,7 @@
 import "server-only";
 
 import { apiClient } from "@/infra/api/client";
-import { CreateWorkRecordInput } from "@/infra/api/types/workRecord";
+import type { CreateWorkRecordInput } from "@/infra/api/client";
 
 const postWorkRecord = async (input: CreateWorkRecordInput) => {
   const response = await apiClient().api["work-records"].$post({
