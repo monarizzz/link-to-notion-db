@@ -6,6 +6,7 @@ export type ErrorCode =
   | "VALIDATION_ERROR"
   | "INVALID_TIME_RANGE"
   | "LABEL_NOT_FOUND"
+  | "LABEL_NAME_CONFLICT"
   | "WORK_RECORD_NOT_FOUND";
 
 /* fields は項目名をキーにして、フォームの各項目にそのまま表示できるようにする */
