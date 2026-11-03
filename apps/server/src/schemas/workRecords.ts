@@ -45,4 +45,26 @@ export const createWorkRecordSchema = z.strictObject(
   },
 );
 
+/* 範囲の端（エポックミリ秒）を数値にする */
+const epochMillis = (fieldName: string) =>
+  z
+    .string({
+      error: (issue) =>
+        issue.input === undefined
+          ? `${fieldName}は必須です`
+          : `${fieldName}は1つだけ指定してください`,
+    })
+    .regex(/^\d+$/, {
+      error: `${fieldName}は 0 以上の整数（エポックミリ秒）で指定してください`,
+    })
+    .transform((value) => Number(value))
+    .refine((value) => Number.isSafeInteger(value), {
+      error: `${fieldName}が大きすぎます`,
+    });
+
+export const workRecordsRangeQuerySchema = z.object({
+  from: epochMillis("範囲の始まり"),
+  to: epochMillis("範囲の終わり"),
+});
+
 export type CreateWorkRecordInput = z.infer<typeof createWorkRecordSchema>;
