@@ -25,6 +25,158 @@ beforeAll(async () => {
     .run();
 });
 
+describe("GET /api/work-records", () => {
+  const get = (query: string) =>
+    app.request(`/api/work-records${query}`, {}, env);
+
+  /* 日本時間の日時をエポックミリ秒にする */
+  const jst = (dateTime: string) => new Date(`${dateTime}+09:00`).getTime();
+
+  const from = jst("2030-01-10T00:00");
+  const to = jst("2030-01-11T00:00");
+
+  beforeAll(async () => {
+    const records = [
+      ["range-inside", "2030-01-10T10:00", "2030-01-10T11:00"],
+      ["range-cross-from", "2030-01-09T23:00", "2030-01-10T01:00"],
+      ["range-cross-to", "2030-01-10T23:00", "2030-01-11T01:00"],
+      ["range-cover", "2030-01-09T12:00", "2030-01-11T12:00"],
+      ["range-end-at-from", "2030-01-09T22:00", "2030-01-10T00:00"],
+      ["range-start-at-to", "2030-01-11T00:00", "2030-01-11T01:00"],
+    ] as const;
+    const createdAt = Date.UTC(2026, 9, 26, 1, 0, 0);
+
+    await env.DB.batch([
+      ...records.map(([id, startedAt, endedAt]) =>
+        env.DB.prepare(
+          "INSERT INTO work_records (id, title, started_at, ended_at, created_at, updated_at) VALUES (?, NULL, ?, ?, ?, ?)",
+        ).bind(id, jst(startedAt), jst(endedAt), createdAt, createdAt),
+      ),
+      env.DB.prepare(
+        "INSERT INTO work_record_labels (work_record_id, label_id) VALUES (?, ?)",
+      ).bind("range-inside", "label-1"),
+    ]);
+  });
+
+  describe("正常なクエリ", () => {
+    it("範囲と重なる作業記録を started_at の降順で返す", async () => {
+      const res = await get(`?from=${from}&to=${to}`);
+
+      expect(res.status).toBe(200);
+      const body = (await res.json()) as { id: string }[];
+      expect(body.map(({ id }) => id)).toEqual([
+        "range-cross-to",
+        "range-inside",
+        "range-cross-from",
+        "range-cover",
+      ]);
+    });
+
+    it("ちょうど from に終わる記録と、ちょうど to に始まる記録は返さない", async () => {
+      const res = await get(`?from=${from}&to=${to}`);
+
+      const body = (await res.json()) as { id: string }[];
+      expect(body.map(({ id }) => id)).not.toContain("range-end-at-from");
+      expect(body.map(({ id }) => id)).not.toContain("range-start-at-to");
+    });
+
+    it("各記録に紐付いたラベルを含める", async () => {
+      const res = await get(`?from=${from}&to=${to}`);
+
+      expect(await res.json()).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: "range-inside",
+            labels: [{ id: "label-1", name: "開発", color: "#3b82f6" }],
+          }),
+          expect.objectContaining({ id: "range-cross-to", labels: [] }),
+        ]),
+      );
+    });
+
+    it("余分なクエリは無視する", async () => {
+      const res = await get(`?from=${from}&to=${to}&_=1`);
+
+      expect(res.status).toBe(200);
+    });
+  });
+
+  it("from と to が無ければ 400 を返す", async () => {
+    const res = await get("");
+
+    expect(res.status).toBe(400);
+    expect(await res.json()).toEqual({
+      error: {
+        code: "VALIDATION_ERROR",
+        message: "入力内容に誤りがあります",
+        fields: {
+          from: ["範囲の始まりは必須です"],
+          to: ["範囲の終わりは必須です"],
+        },
+      },
+    });
+  });
+
+  it.each(["-1", "1.5", "1e12", "0x10", "abc", ""])(
+    "from が %s なら 400 を返す",
+    async (value) => {
+      const res = await get(`?from=${value}&to=${to}`);
+
+      expect(res.status).toBe(400);
+      expect(await res.json()).toMatchObject({
+        error: {
+          code: "VALIDATION_ERROR",
+          fields: {
+            from: [
+              "範囲の始まりは 0 以上の整数（エポックミリ秒）で指定してください",
+            ],
+          },
+        },
+      });
+    },
+  );
+
+  it("Number.MAX_SAFE_INTEGER を超えれば 400 を返す", async () => {
+    const res = await get(`?from=${from}&to=9007199254740992`);
+
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({
+      error: {
+        code: "VALIDATION_ERROR",
+        fields: { to: ["範囲の終わりが大きすぎます"] },
+      },
+    });
+  });
+
+  it("同じパラメータが複数あれば 400 を返す", async () => {
+    const res = await get(`?from=${from}&from=${from}&to=${to}`);
+
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({
+      error: {
+        code: "VALIDATION_ERROR",
+        fields: { from: ["範囲の始まりは1つだけ指定してください"] },
+      },
+    });
+  });
+
+  it.each([
+    ["from と to が同じ", to],
+    ["from が to より後", to + 1],
+  ])("%s なら 422 を返す", async (_, value) => {
+    const res = await get(`?from=${value}&to=${to}`);
+
+    expect(res.status).toBe(422);
+    expect(await res.json()).toEqual({
+      error: {
+        code: "INVALID_TIME_RANGE",
+        message: "入力内容に誤りがあります",
+        fields: { to: ["範囲の終わりは範囲の始まりより後にしてください"] },
+      },
+    });
+  });
+});
+
 describe("POST /api/work-records", () => {
   describe("正常なボディ", () => {
     it("作業記録を作成して 201 を返す", async () => {
