@@ -1,6 +1,10 @@
 name: server
 
-on: [pull_request]
+on:
+  pull_request:
+  # main で保存したキャッシュだけが各 PR から読めるため、main でも実行してキャッシュを作る
+  push:
+    branches: [main]
 
 # 同一 PR に連続で push した場合、古い run を打ち切る
 concurrency:
