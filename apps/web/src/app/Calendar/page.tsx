@@ -1,6 +1,6 @@
 import CalendarPageMain from "@/features/calendarPage/components/CalendarPageMain/CalendarPageMain";
 import { toCalendarEvent } from "@/commons/calendar/utils/toCalendarEvent";
-import { getJstDayRange } from "@/commons/date/utils/getJstDayRange";
+import { getJstTodayRange } from "@/commons/date/utils/getJstTodayRange";
 import getLabels from "@/infra/api/getLabels";
 import getWorkRecords from "@/infra/api/getWorkRecords";
 
@@ -20,7 +20,7 @@ const CalendarPage = async (props: Props) => {
   const { from, to } =
     isEpochMillis(searchParams.from) && isEpochMillis(searchParams.to)
       ? { from: Number(searchParams.from), to: Number(searchParams.to) }
-      : getJstDayRange();
+      : getJstTodayRange();
   const [labels, workRecords] = await Promise.all([
     getLabels(),
     getWorkRecords(from, to),
