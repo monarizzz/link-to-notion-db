@@ -5,16 +5,17 @@ import { getTime } from "date-fns";
 
 type Props = {
   today: CalendarEvent[];
+  /* 集計する範囲（エポックミリ秒、to は含まない）。範囲の外にはみ出した分は数えない */
+  range: { from: number; to: number };
 };
 
-const SideBar = ({ today }: Props) => {
+const SideBar = ({ today, range }: Props) => {
   const eventsWithTotal = today.map((events) => {
-    const start = new Date(events.start);
-    const end = new Date(events.end);
+    const start = Math.max(getTime(new Date(events.start)), range.from);
+    const end = Math.min(getTime(new Date(events.end)), range.to);
 
     const total =
-      Math.round(((getTime(end) - getTime(start)) / (60 * 60 * 1000)) * 100) /
-      100;
+      Math.round((Math.max(end - start, 0) / (60 * 60 * 1000)) * 100) / 100;
     return { ...events, total };
   });
 
