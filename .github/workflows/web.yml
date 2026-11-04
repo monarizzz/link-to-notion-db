@@ -41,7 +41,7 @@ jobs:
           key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
-      - run: pnpm typecheck
+      - run: pnpm typecheck:web
 
   # Playwright の Chromium を落とす必要があり実行時間が伸びるため、他のチェックとは
   # 別ジョブに分離している。
