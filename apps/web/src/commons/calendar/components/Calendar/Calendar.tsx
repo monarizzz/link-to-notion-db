@@ -32,9 +32,10 @@ const Calendar = ({ labels, events, header, initialDate }: Props) => {
   };
 
   const handleDatesSet = (dateInfo: DatesSetArg) => {
+    /* 作業記録の一覧取得 API と同じ形（エポックミリ秒、to は含まない）にする */
     const params = new URLSearchParams({
-      s: dateInfo.startStr.split("T")[0],
-      e: dateInfo.endStr.split("T")[0],
+      from: String(dateInfo.start.getTime()),
+      to: String(dateInfo.end.getTime()),
     });
     router.push(`?${params.toString()}`, { scroll: false });
   };
