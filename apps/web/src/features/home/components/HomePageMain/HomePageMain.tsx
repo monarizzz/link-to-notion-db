@@ -15,9 +15,11 @@ import type { Label } from "@/infra/api/client";
 type Props = {
   labels: Label[];
   today: CalendarEvent[];
+  /* today を取得した範囲（エポックミリ秒、to は含まない） */
+  todayRange: { from: number; to: number };
 };
 
-const HomePageMain = ({ labels, today }: Props) => {
+const HomePageMain = ({ labels, today, todayRange }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -49,7 +51,7 @@ const HomePageMain = ({ labels, today }: Props) => {
       </FormProvider>
       <div className="flex h-screen flex-row bg-[#1A1A1A]">
         <div className="my-auto shrink-0">
-          <SideBar today={today} />
+          <SideBar today={today} range={todayRange} />
         </div>
         <div className="mx-16 mt-10">
           <CalendarForm labels={labels} events={today} />
