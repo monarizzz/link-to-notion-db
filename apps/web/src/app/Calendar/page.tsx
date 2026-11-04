@@ -6,18 +6,21 @@ import getWorkRecords from "@/infra/api/getWorkRecords";
 
 type Props = {
   searchParams: Promise<{
-    s?: string | string[];
-    e?: string | string[];
+    from?: string | string[];
+    to?: string | string[];
   }>;
 };
 
+const isEpochMillis = (value?: string | string[]): value is string =>
+  typeof value === "string" && /^\d+$/.test(value);
+
 const CalendarPage = async (props: Props) => {
-  const { s, e } = await props.searchParams;
-  /* s・e はカレンダーの表示期間（e は含まない）。複数指定は不正な値として扱う */
-  const { from, to } = getJstDayRange(
-    typeof s === "string" ? s : undefined,
-    typeof e === "string" ? e : undefined,
-  );
+  const searchParams = await props.searchParams;
+  /* from・to はカレンダーの表示期間。無い（初回表示）か不正なら今日にする */
+  const { from, to } =
+    isEpochMillis(searchParams.from) && isEpochMillis(searchParams.to)
+      ? { from: Number(searchParams.from), to: Number(searchParams.to) }
+      : getJstDayRange();
   const [labels, workRecords] = await Promise.all([
     getLabels(),
     getWorkRecords(from, to),
