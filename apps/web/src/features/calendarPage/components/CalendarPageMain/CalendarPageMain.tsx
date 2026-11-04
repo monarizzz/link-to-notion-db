@@ -1,13 +1,13 @@
 "use client";
 
 import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
-import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
 import SideBar from "@/commons/sideBar/components/SideBar";
 import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];
-  events: NotionEvent[];
+  events: CalendarEvent[];
 };
 
 const CalendarPageMain = ({ labels, events }: Props) => {

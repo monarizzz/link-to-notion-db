@@ -48,8 +48,6 @@ export const Default: Story = {
         title: "朝会",
         start: "2026-05-03T09:00:00",
         end: "2026-05-03T09:30:00",
-        url: "https://notion.so/1",
-        color: "#4A90D9",
       },
     ],
   },

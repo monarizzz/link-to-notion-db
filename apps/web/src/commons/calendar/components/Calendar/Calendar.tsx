@@ -9,13 +9,13 @@ import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
 import { useFormContext } from "react-hook-form";
 import { DateSelectArg, DatesSetArg } from "@fullcalendar/core/index.js";
-import { NotionEvent } from "../../type/notionEvent";
+import { CalendarEvent } from "../../types/calendarEvent";
 import { useRouter } from "next/navigation";
 import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];
-  events?: NotionEvent[];
+  events?: CalendarEvent[];
   header?: boolean;
   initialDate?: string;
 };

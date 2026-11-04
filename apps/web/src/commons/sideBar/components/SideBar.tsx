@@ -1,25 +1,22 @@
-import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
 import { getTime } from "date-fns";
 
 type Props = {
-  today: NotionEvent[];
+  today: CalendarEvent[];
 };
 
 const SideBar = ({ today }: Props) => {
-  // TODO: NotionEvent の start/end が SDK の型都合で optional になっている。本来は必須のため型を見直す
-  const eventsWithTotal = today
-    .filter((e) => e.start && e.end)
-    .map((events) => {
-      const start = new Date(events.start!);
-      const end = new Date(events.end!);
+  const eventsWithTotal = today.map((events) => {
+    const start = new Date(events.start);
+    const end = new Date(events.end);
 
-      const total =
-        Math.round(((getTime(end) - getTime(start)) / (60 * 60 * 1000)) * 100) /
-        100;
-      return { ...events, total };
-    });
+    const total =
+      Math.round(((getTime(end) - getTime(start)) / (60 * 60 * 1000)) * 100) /
+      100;
+    return { ...events, total };
+  });
 
   const dayWorkTimeTotalHours = eventsWithTotal.reduce(
     (acc, event) => acc + event.total,

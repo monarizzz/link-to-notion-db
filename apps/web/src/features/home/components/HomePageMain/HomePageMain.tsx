@@ -6,7 +6,7 @@ import NowDisplay from "../NowDisplay/NowDisplay";
 import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
 import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
 import SideBar from "@/commons/sideBar/components/SideBar";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
@@ -14,7 +14,7 @@ import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];
-  today: NotionEvent[];
+  today: CalendarEvent[];
 };
 
 const HomePageMain = ({ labels, today }: Props) => {
