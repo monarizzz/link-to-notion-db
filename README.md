@@ -46,6 +46,9 @@ cp apps/web/.env.example apps/web/.env.local
 
 ## 開発
 
+`dev` `build` `typecheck` `test` は web と server の両方を対象にする。
+片方だけ動かす場合は `:web` / `:server` を付ける（例: `pnpm dev:web`）。
+
 ```bash
 # 開発サーバー起動
 pnpm dev
@@ -55,20 +58,20 @@ pnpm storybook
 ```
 
 アプリ: [http://localhost:3000](http://localhost:3000)
+API: [http://localhost:8787](http://localhost:8787)
 Storybook: [http://localhost:6006](http://localhost:6006)
 
 ## テスト
 
 ```bash
 pnpm test
-
-# apps/server のテスト
-pnpm test:server
 ```
 
 ## ビルド
 
 ```bash
 pnpm build
+
+# web の本番サーバー起動
 pnpm start
 ```
