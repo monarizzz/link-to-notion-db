@@ -1,7 +1,6 @@
 ---
 name: pr
-description: 現在のブランチから main 宛ての PR を、AGENTS.md の PR ルールとテンプレートに沿って作成する
-disable-model-invocation: true
+description: 現在のブランチから main 宛ての PR を、AGENTS.md の PR ルールとテンプレートに沿って作成する。「PR 作って」と頼まれたときや、Issue の解決で PR を作るときに使う
 ---
 
 # /pr
