@@ -67,9 +67,6 @@ export default defineConfig({
         },
       },
       {
-        resolve: {
-          alias: { "@": path.join(dirname, "src") },
-        },
         test: {
           name: "node",
           include: ["src/**/*.test.ts"],
