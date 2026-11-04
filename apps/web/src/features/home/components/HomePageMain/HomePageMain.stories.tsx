@@ -48,9 +48,11 @@ export const Default: Story = {
         title: "朝会",
         start: "2026-05-03T09:00:00",
         end: "2026-05-03T09:30:00",
-        url: "https://notion.so/1",
-        color: "#4A90D9",
       },
     ],
+    todayRange: {
+      from: new Date("2026-05-03T00:00:00+09:00").getTime(),
+      to: new Date("2026-05-04T00:00:00+09:00").getTime(),
+    },
   },
 };

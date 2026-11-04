@@ -1,10 +1,23 @@
 import HomePageMain from "@/features/home/components/HomePageMain/HomePageMain";
+import { toCalendarEvent } from "@/commons/calendar/utils/toCalendarEvent";
+import { getJstTodayRange } from "@/commons/date/utils/getJstTodayRange";
 import getLabels from "@/infra/api/getLabels";
+import getWorkRecords from "@/infra/api/getWorkRecords";
 
 const Home = async () => {
-  const labels = await getLabels();
+  const todayRange = getJstTodayRange();
+  const [labels, workRecords] = await Promise.all([
+    getLabels(),
+    getWorkRecords(todayRange.from, todayRange.to),
+  ]);
 
-  return <HomePageMain labels={labels} today={[]} />;
+  return (
+    <HomePageMain
+      labels={labels}
+      today={workRecords.map(toCalendarEvent)}
+      todayRange={todayRange}
+    />
+  );
 };
 
 export default Home;

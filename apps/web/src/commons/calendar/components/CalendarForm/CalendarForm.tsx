@@ -3,14 +3,14 @@
 import { addData } from "@/commons/modal/utils/addData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
-import { NotionEvent } from "@/commons/calendar/type/notionEvent";
+import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
 import { FormProvider, useForm } from "react-hook-form";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
 import type { Label } from "@/infra/api/client";
 
 type Props = {
   labels: Label[];
-  events: NotionEvent[];
+  events: CalendarEvent[];
   header?: boolean;
   initialDate?: string;
 };

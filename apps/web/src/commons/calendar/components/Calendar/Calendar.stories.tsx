@@ -60,21 +60,25 @@ export const WithEvents: Story = {
     initialDate: "2026-04-11",
     events: [
       {
+        id: "1",
         title: "朝会",
         start: "2026-04-11T09:00:00",
         end: "2026-04-11T09:30:00",
       },
       {
+        id: "2",
         title: "開発作業",
         start: "2026-04-11T10:00:00",
         end: "2026-04-11T12:00:00",
       },
       {
+        id: "3",
         title: "ランチ",
         start: "2026-04-11T12:00:00",
         end: "2026-04-11T13:00:00",
       },
       {
+        id: "4",
         title: "コードレビュー",
         start: "2026-04-11T15:00:00",
         end: "2026-04-11T15:15:00",
@@ -88,11 +92,13 @@ export const ShortEvents: Story = {
     initialDate: "2026-04-11",
     events: [
       {
+        id: "5",
         title: "短いミーティング",
         start: "2026-04-11T10:00:00",
         end: "2026-04-11T10:05:00",
       },
       {
+        id: "6",
         title: "5分タスク",
         start: "2026-04-11T14:00:00",
         end: "2026-04-11T14:03:00",
