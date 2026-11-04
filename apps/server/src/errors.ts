@@ -1,5 +1,8 @@
 import type { Context } from "hono";
-import type { ContentfulStatusCode } from "hono/utils/http-status";
+import type {
+  ClientErrorStatusCode,
+  ServerErrorStatusCode,
+} from "hono/utils/http-status";
 import type { z } from "zod";
 
 export type ErrorCode =
@@ -12,9 +15,10 @@ export type ErrorCode =
 /* fields は項目名をキーにして、フォームの各項目にそのまま表示できるようにする */
 export type ErrorFields = Record<string, string[]>;
 
+/* status をエラーのステータス（4xx・5xx）に限り、RPC の型でエラーが 200 の body に混ざらないようにする */
 export const errorResponse = (
   c: Context,
-  status: ContentfulStatusCode,
+  status: ClientErrorStatusCode | ServerErrorStatusCode,
   code: ErrorCode,
   message: string,
   fields: ErrorFields = {},
