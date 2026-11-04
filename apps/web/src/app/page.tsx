@@ -5,14 +5,18 @@ import getLabels from "@/infra/api/getLabels";
 import getWorkRecords from "@/infra/api/getWorkRecords";
 
 const Home = async () => {
-  const { from, to } = getJstTodayRange();
+  const todayRange = getJstTodayRange();
   const [labels, workRecords] = await Promise.all([
     getLabels(),
-    getWorkRecords(from, to),
+    getWorkRecords(todayRange.from, todayRange.to),
   ]);
 
   return (
-    <HomePageMain labels={labels} today={workRecords.map(toCalendarEvent)} />
+    <HomePageMain
+      labels={labels}
+      today={workRecords.map(toCalendarEvent)}
+      todayRange={todayRange}
+    />
   );
 };
 
