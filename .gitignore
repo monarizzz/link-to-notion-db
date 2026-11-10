@@ -48,3 +48,9 @@ storybook-static
 .claude/*
 !.claude/skills/
 !.claude/settings.json
+
+# cloudflare (OpenNext / wrangler)
+.open-next/
+.wrangler/
+.dev.vars*
+!.dev.vars.example

@@ -75,3 +75,23 @@ pnpm build
 # web の本番サーバー起動
 pnpm start
 ```
+
+## Cloudflare Workers で web を動かす
+
+web は Vercel に加えて、[OpenNext](https://opennext.js.org/cloudflare) で Cloudflare Workers でも動かせる。
+`next build` の出力を Workers 用に変換するため、Vercel 向けのビルドはそのまま使える。
+
+```bash
+cp apps/web/.dev.vars.example apps/web/.dev.vars
+
+# Workers のローカル環境（workerd）で http://localhost:3000 に起動する
+pnpm --filter web preview:cf
+
+# Cloudflare にデプロイする（事前に `pnpm --filter web exec wrangler login`）
+pnpm --filter web deploy:cf
+```
+
+- ビルド時に `/` を事前レンダリングするため、API（`pnpm dev:server`）を起動しておく
+- `NEXTAUTH_URL` と Google のリダイレクト URI に合わせて 3000 番で起動する。`pnpm dev:web` とは同時に動かせない
+- 環境変数は `.env.local` から読み込まれる。`.dev.vars` の `NEXTJS_ENV` で読み込む `.env` ファイルを選ぶ
+- 認証（Cloudflare Access）を設定するまで公開しないよう、`wrangler.jsonc` で `*.workers.dev` とプレビュー URL を無効にしている
