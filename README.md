@@ -91,7 +91,8 @@ pnpm --filter web preview:cf
 pnpm --filter web deploy:cf
 ```
 
-- ビルド時に `/` を事前レンダリングするため、API（`pnpm dev:server`）を起動しておく
+- API（`apps/server`）は公開 URL を持たず、Workers 上では Service Binding で呼ぶ。プレビューでは `pnpm dev:server` を起動しておくと、そこへつながる
+- `next dev`・Vercel では、これまでどおり `API_BASE_URL` へ fetch する
 - `NEXTAUTH_URL` と Google のリダイレクト URI に合わせて 3000 番で起動する。`pnpm dev:web` とは同時に動かせない
 - 環境変数は `.env.local` から読み込まれる。`.dev.vars` の `NEXTJS_ENV` で読み込む `.env` ファイルを選ぶ
-- 認証（Cloudflare Access）を設定するまで公開しないよう、`wrangler.jsonc` で `*.workers.dev` とプレビュー URL を無効にしている
+- web は `*.workers.dev` で公開し、Cloudflare Access を設定するまでは NextAuth で保護する。プレビュー URL は無効にしている
