@@ -11,4 +11,6 @@
   // 認証（Cloudflare Access）を設定するまで、*.workers.dev で公開しない
   "workers_dev": false,
   "preview_urls": false,
+  // API（apps/server）は公開 URL を持たないため、Service Binding で呼ぶ
+  "services": [{ "binding": "API", "service": "server" }],
 }
