@@ -42,7 +42,9 @@ pnpm install
 cp apps/web/.env.example apps/web/.env.local
 ```
 
-`apps/web/.env.local` に Notion と Google ログインの認証情報を設定してください。各変数の意味は `.env.example` のコメントを参照してください。
+`apps/web/.env.local` に必要な値を設定してください。各変数の意味は `.env.example` のコメントを参照してください。
+
+本番の認証は Cloudflare Access（Google ログイン・許可したメールアドレスのみ）が行うため、アプリ側にログイン処理はありません。ローカルでは認証なしで動きます。
 
 ## 開発
 
@@ -93,6 +95,6 @@ pnpm --filter web deploy:cf
 
 - API（`apps/server`）は公開 URL を持たず、Workers 上では Service Binding で呼ぶ。プレビューでは `pnpm dev:server` を起動しておくと、そこへつながる
 - `next dev`・Vercel では、これまでどおり `API_BASE_URL` へ fetch する
-- `NEXTAUTH_URL` と Google のリダイレクト URI に合わせて 3000 番で起動する。`pnpm dev:web` とは同時に動かせない
+- API（8787 番）とぶつからないよう 3000 番で起動する。`pnpm dev:web` とは同時に動かせない
 - 環境変数は `.env.local` から読み込まれる。`.dev.vars` の `NEXTJS_ENV` で読み込む `.env` ファイルを選ぶ
-- web は独自ドメイン（`work.monelog.me`）で公開し、Cloudflare Access を設定するまでは NextAuth で保護する。`*.workers.dev` とプレビュー URL は無効にしている
+- web は独自ドメイン（`work.monelog.me`）で公開し、Cloudflare Access で保護する。`*.workers.dev` とプレビュー URL は無効にしている

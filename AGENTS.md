@@ -63,7 +63,7 @@
 ## レビューの観点
 
 - バグや不具合につながる実装
-- セキュリティ上の懸念（認証・`ALLOWED_EMAILS` の判定・環境変数の扱い）
+- セキュリティ上の懸念（Cloudflare Access を通らずに Web・API に届く経路・環境変数の扱い）
 - 層の依存の向きを破っていないか（[docs/architecture/web-layers.md](docs/architecture/web-layers.md)）
 - Notion 固有の構造を `infra` / `libs/notion` 以外へ広げていないか
 - テストの不足
