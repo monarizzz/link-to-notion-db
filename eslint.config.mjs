@@ -17,6 +17,8 @@ const eslintConfig = defineConfig([
     // 生成物・ローカル状態
     "apps/web/storybook-static/**",
     "apps/server/.wrangler/**",
+    "apps/web/.wrangler/**",
+    "apps/web/.open-next/**",
     "apps/server/worker-configuration.d.ts",
   ]),
   {
