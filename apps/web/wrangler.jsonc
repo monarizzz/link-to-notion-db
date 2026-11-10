@@ -9,7 +9,7 @@
     "binding": "ASSETS",
   },
   // 独自ドメインで公開する。Access を設定するまでは NextAuth（ALLOWED_EMAILS）で保護する
-  "routes": [{ "pattern": "worklog.monelog.me", "custom_domain": true }],
+  "routes": [{ "pattern": "work.monelog.me", "custom_domain": true }],
   "workers_dev": false,
   "preview_urls": false,
   // API（apps/server）は公開 URL を持たないため、Service Binding で呼ぶ
