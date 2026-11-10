@@ -3,11 +3,16 @@
   "name": "server",
   "main": "src/index.ts",
   "compatibility_date": "2026-10-25",
+  // 公開 URL を持たせず、Web の Worker から Service Binding でだけ呼べるようにする
+  "workers_dev": false,
+  "preview_urls": false,
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "worklog",
-      "database_id": "local",
+      "database_id": "8f00ae7f-8c48-49ef-b6fb-7acee0faf89c",
+      // ローカル（wrangler dev・--local）はこの ID でデータを保存する。本番の ID に変える前と同じ保存先を使う
+      "preview_database_id": "local",
     },
   ],
   // "compatibility_flags": [
