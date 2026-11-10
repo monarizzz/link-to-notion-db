@@ -95,4 +95,4 @@ pnpm --filter web deploy:cf
 - `next dev`・Vercel では、これまでどおり `API_BASE_URL` へ fetch する
 - `NEXTAUTH_URL` と Google のリダイレクト URI に合わせて 3000 番で起動する。`pnpm dev:web` とは同時に動かせない
 - 環境変数は `.env.local` から読み込まれる。`.dev.vars` の `NEXTJS_ENV` で読み込む `.env` ファイルを選ぶ
-- web は `*.workers.dev` で公開し、Cloudflare Access を設定するまでは NextAuth で保護する。プレビュー URL は無効にしている
+- web は独自ドメイン（`worklog.monelog.me`）で公開し、Cloudflare Access を設定するまでは NextAuth で保護する。`*.workers.dev` とプレビュー URL は無効にしている
