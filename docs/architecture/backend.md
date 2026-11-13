@@ -24,7 +24,7 @@ Hono の API と D1 によるバックエンドの構成。
 ## 全体構成
 
 ```
-[Web: Next.js / Vercel]   [Mac アプリ: Swift（将来）]
+[Web: Next.js / Workers]  [Mac アプリ: Swift（将来）]
    サーバー側から呼ぶ          │
    型: Hono RPC              型: openapi.json
           │                        │
@@ -45,7 +45,7 @@ Hono の API と D1 によるバックエンドの構成。
 | Web からの呼び出し | 当面は Next.js のサーバー（Server Component / Server Actions）から、Hono RPC（`hc<AppType>()`）で呼ぶ。将来的にブラウザから呼ぶ形にし、その際に CORS も対応する | 今の Web はサーバー側でデータを取得しており、ブラウザから呼ぶ形にすると変更が大きい。Web で RPC、Swift で OpenAPI を使い、両方を比べる |
 | リポジトリ | モノレポ | Web から API の型（`AppType`）を import でき、`openapi.json` も 1 か所に置いて Swift から読める |
 | API のデプロイ先 | Cloudflare Workers | 無料枠に収まる。Docker（コンテナの運用）の学習は今回のスコープ外 |
-| Web のデプロイ先 | Vercel（現状のまま） | 将来は Next.js から React への移行も考えている |
+| Web のデプロイ先 | Cloudflare Workers（OpenNext） | Cloudflare Access で認証し、API を Service Binding で呼べる。将来は Next.js から React への移行も考えている |
 | DB | D1 | 無料。Supabase は無料プランだと 1 週間使わないとプロジェクトが停止する |
 | ORM | 使わず SQL を直接書く。必要になったら Drizzle を検討する | SQL とマイグレーションを自分で書いて理解するため |
 | 認証 | クライアントで Google ログインし、取得した ID トークンを付けて API を呼ぶ。API はトークンを検証し、自分のアカウントだけ許可する | Web は公開し、個人データを HTML や静的ファイルに含めず、認証・認可済みの API からだけ返すため |
