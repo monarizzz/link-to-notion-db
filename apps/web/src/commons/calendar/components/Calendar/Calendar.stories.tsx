@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import DayCalendar from "./Calendar";
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
 const WithFormProvider = (Story: React.ComponentType) => {
@@ -23,7 +24,19 @@ const meta = {
     },
   },
   decorators: [WithFormProvider],
+  render: function Render(args) {
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    return (
+      <DayCalendar
+        {...args}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+      />
+    );
+  },
   args: {
+    isOpenModal: false,
+    setIsOpenModal: () => {},
     labels: [
       {
         id: "1",

@@ -4,6 +4,7 @@ import { addData } from "@/commons/modal/utils/addData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Calendar from "@/commons/calendar/components/Calendar/Calendar";
 import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
 import type { Label } from "@/infra/api/client";
@@ -20,11 +21,14 @@ const CalendarForm = ({ labels, events, header, initialDate }: Props) => {
     resolver: zodResolver(formSchema),
     mode: "onChange",
   });
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const onSubmit = async (data: DataForm) => {
     try {
       await addData(data);
       methods.reset();
+      /* 登録できたときだけ閉じる。失敗時は入力を残すため開いたままにする */
+      setIsOpenModal(false);
     } catch (error) {
       console.error(error); // TODO:errorハンドリングを考える
     }
@@ -38,6 +42,8 @@ const CalendarForm = ({ labels, events, header, initialDate }: Props) => {
           events={events}
           header={header}
           initialDate={initialDate}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
         />
       </form>
     </FormProvider>
