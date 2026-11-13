@@ -5,7 +5,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import jaLocale from "@fullcalendar/core/locales/ja";
-import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
 import { useFormContext } from "react-hook-form";
 import { DateSelectArg, DatesSetArg } from "@fullcalendar/core/index.js";
@@ -18,11 +17,19 @@ type Props = {
   events?: CalendarEvent[];
   header?: boolean;
   initialDate?: string;
+  isOpenModal: boolean;
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Calendar = ({ labels, events, header, initialDate }: Props) => {
+const Calendar = ({
+  labels,
+  events,
+  header,
+  initialDate,
+  isOpenModal,
+  setIsOpenModal,
+}: Props) => {
   const router = useRouter();
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const { setValue } = useFormContext();
 
   const addEvent = (info: DateSelectArg) => {
