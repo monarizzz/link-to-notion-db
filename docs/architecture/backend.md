@@ -28,7 +28,7 @@ Hono の API と D1 によるバックエンドの構成。
    サーバー側から呼ぶ          │
    型: Hono RPC              型: openapi.json
           │                        │
-          └── HTTPS + ID トークン ──┘
+          └── Cloudflare Access ───┘
                        │
           [API: Hono / Cloudflare Workers]
                        │
@@ -48,7 +48,7 @@ Hono の API と D1 によるバックエンドの構成。
 | Web のデプロイ先 | Cloudflare Workers（OpenNext） | Cloudflare Access で認証し、API を Service Binding で呼べる。将来は Next.js から React への移行も考えている |
 | DB | D1 | 無料。Supabase は無料プランだと 1 週間使わないとプロジェクトが停止する |
 | ORM | 使わず SQL を直接書く。必要になったら Drizzle を検討する | SQL とマイグレーションを自分で書いて理解するため |
-| 認証 | クライアントで Google ログインし、取得した ID トークンを付けて API を呼ぶ。API はトークンを検証し、自分のアカウントだけ許可する | Web は公開し、個人データを HTML や静的ファイルに含めず、認証・認可済みの API からだけ返すため |
+| 認証 | Web の前に Cloudflare Access（Google ログイン・許可したメールアドレスのみ）を置き、アプリ側にはログイン処理を持たない。API は公開 URL を持たず、Web から Service Binding でだけ呼ぶ | ログイン処理を自前で持たず、Access を通らない限り Web にも API にも届かないようにするため |
 | 既存のデータ | Notion に残し、必要に応じて D1 へ移す | |
 | 公開の方法 | README のスクリーンショット・GIF と、公開した Storybook | 本物のデータを公開しない |
 
@@ -65,12 +65,12 @@ packages/openapi  … openapi.json（API から出力し、Swift のクライア
 - Mac アプリは作るときに `apps/` へ追加する
 - `apps/` の各アプリは自分の `package.json`・`tsconfig.json` を持つ
 - ESLint の設定はルートに 1 つ置き、`apps/` ごとに適用するルールを分ける
-- Web は未ログインのときログイン画面だけを表示する
+- 未ログインのときは Cloudflare Access のログイン画面が表示され、Web には届かない
 
 ## 未決定
 
 - API の中の層の構成
 - API 設計（URL・ページネーション）。エラーの形式は [apps/server/README.md](../../apps/server/README.md#エラーレスポンス) にある
 - テストと CI
-- 認証まわりの改善（ログインの維持・期限切れ時の再認証・Swift での対応）
+- 認証まわりの改善（API 側での Access の JWT 検証・Swift での対応）
 - デモ環境（Wrangler の `[env.demo]` で、別の Worker と D1 を立てる案）
