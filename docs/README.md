@@ -2,6 +2,10 @@
 
 設計と開発の進め方をまとめた場所。作業ルールの要点は [AGENTS.md](../AGENTS.md) にある。
 
+## product/ — プロダクト
+
+- [design-doc.md](product/design-doc.md) … 誰の何をどうするか・背景・ユーザーストーリー・未決定事項
+
 ## architecture/ — 設計
 
 - [web-layers.md](architecture/web-layers.md) … 層の責務・依存の向き・ディレクトリの粒度
