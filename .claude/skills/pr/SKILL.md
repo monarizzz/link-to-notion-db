@@ -19,7 +19,13 @@ description: 現在のブランチから main 宛ての PR を、AGENTS.md の P
    - 見出しはすべて残し、HTML コメントは消す
    - 差分・コミット・Issue から判断できない節（レビュー観点・動作確認など）は推測で埋めず、作成前にユーザーに確認する
 5. `gh pr create --base main --title "<件名>" --body-file <本文ファイル>` で作成する
-   - 件名は AGENTS.md の「メッセージ」と同じ `<種別> <内容>` の形式
+   - 件名の形式は AGENTS.md の「PR」節に従う
 6. 関連 Issue に AGENTS.md の種別ラベルが 1 つも無い場合だけ、種別に合うラベルを `gh issue edit <番号> --add-label <ラベル>` で付ける
    - 優先度など種別以外のラベルしか無い場合も付ける
 7. 作成した PR の URL を返す
+
+## 既存 PR を更新するとき
+
+1. `gh pr view <番号>` と `gh pr diff <番号>` で今の本文と差分を確認する
+2. 変更のあった節だけ書き直し、それ以外の節はそのまま残す
+3. `gh pr edit <番号> --title "<件名>" --body-file <本文ファイル>` で更新し、URL を返す

@@ -56,8 +56,12 @@
 
 ## PR
 
-- テンプレート（`.github/PULL_REQUEST_TEMPLATE.md`）の節をすべて埋める
-- 「関連 Issue」には、閉じる Issue を `Close #123`、関連するだけの Issue を `Refs #123` と書く。無ければ「なし」
+- 件名はコミットと同じ `<種別> <内容>` の形式で、72 文字以内
+- テンプレート（`.github/PULL_REQUEST_TEMPLATE.md`）の節をすべて埋める。当てはまらない節は `N/A` と書く
+- 本文は箇条書きで、1 項目に 1 つの変更。各項目は体言止め（例: `- ログイン失敗時のリトライ処理を追加`）
+- フォーマット修正・lockfile などの機械的な変更は 1 項目にまとめる
+- 差分に無い変更・影響・確認内容を書かない
+- 「関連 Issue」には、閉じる Issue を `Close #123`、関連するだけの Issue を `Refs #123` と書く。無ければ `N/A`
 - Issue には種別に合うラベル（`enhancement` / `bug` / `refactor` / `documentation` / `ci` / `chore`）を付ける
 
 ## レビューの観点
