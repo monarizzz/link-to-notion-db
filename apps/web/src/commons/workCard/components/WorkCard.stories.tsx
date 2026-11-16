@@ -72,30 +72,26 @@ export const All: Story = {
   render: () => (
     <div className="flex flex-col gap-2">
       <WorkCard
-        isInput="todo"
         todoDetail={{ time: "1h", work: "デザインレビュー", priority: "high" }}
         labels={sampleLabels}
       />
       <WorkCard
-        isInput="todo"
         todoDetail={{ time: "3h", work: "実装作業", priority: "medium" }}
         labels={sampleLabels}
       />
       <WorkCard
-        isInput="todo"
         todoDetail={{ time: "5h30m", work: "ミーティング", priority: "low" }}
         labels={sampleLabels}
       />
       <WorkCard
-        isInput="todo"
         todoDetail={{ time: "17h4m", work: "ドキュメント整備" }}
         labels={sampleLabels}
       />
       <TimerInputWrapper>
-        <WorkCard isInput="timer" labels={sampleLabels} />
+        <WorkCard labels={sampleLabels} />
       </TimerInputWrapper>
       <TimerDoingWrapper>
-        <WorkCard isInput="timer" labels={sampleLabels} />
+        <WorkCard labels={sampleLabels} />
       </TimerDoingWrapper>
     </div>
   ),
@@ -103,7 +99,6 @@ export const All: Story = {
 
 export const High: Story = {
   args: {
-    isInput: "todo",
     todoDetail: { time: "1h", work: "デザインレビュー", priority: "high" },
     labels: sampleLabels,
   },
@@ -111,7 +106,6 @@ export const High: Story = {
 
 export const Medium: Story = {
   args: {
-    isInput: "todo",
     todoDetail: { time: "3h", work: "実装作業", priority: "medium" },
     labels: sampleLabels,
   },
@@ -119,7 +113,6 @@ export const Medium: Story = {
 
 export const Low: Story = {
   args: {
-    isInput: "todo",
     todoDetail: { time: "5h30m", work: "ミーティング", priority: "low" },
     labels: sampleLabels,
   },
@@ -127,7 +120,6 @@ export const Low: Story = {
 
 export const NoPriority: Story = {
   args: {
-    isInput: "todo",
     todoDetail: { time: "17h4m", work: "ドキュメント整備" },
     labels: sampleLabels,
   },
@@ -135,14 +127,12 @@ export const NoPriority: Story = {
 
 export const Input: Story = {
   args: {
-    isInput: "timer",
     labels: sampleLabels,
   },
 };
 
 export const Doing: Story = {
   args: {
-    isInput: "timer",
     labels: sampleLabels,
   },
   decorators: [

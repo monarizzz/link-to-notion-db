@@ -53,9 +53,7 @@ const SideBar = ({ today, range }: Props) => {
         </div>
       </div>
       <div>
-        <span className="text-2xs leading-0.5 font-semibold text-primary-foreground">
-          {/* {todo} */}
-        </span>
+        <span className="text-2xs leading-0.5 font-semibold text-primary-foreground"></span>
       </div>
     </div>
   );
