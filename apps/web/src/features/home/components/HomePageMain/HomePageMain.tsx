@@ -43,7 +43,6 @@ const HomePageMain = ({ labels, today, todayRange }: Props) => {
               fontSizeProps={"14px"}
               letterSpacingProps={"2px"}
               format="YYYY.MM.DD"
-              home={true}
             />
             <div className="p-10">
               <WorkCard labels={labels} />

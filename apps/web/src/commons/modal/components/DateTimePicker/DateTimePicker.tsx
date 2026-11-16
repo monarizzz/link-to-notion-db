@@ -6,7 +6,7 @@ import {
   ChevronUpIcon,
 } from "lucide-react";
 import dayjs, { ManipulateType } from "dayjs";
-import "@/libs/dayjs/config";
+import { DATETIME_FORMAT } from "@/libs/dayjs/config";
 
 type Props = {
   name: "start" | "end";
@@ -20,7 +20,7 @@ const DateTimePicker = ({ name }: Props) => {
   const date = dayjs(value);
 
   const shift = (amount: number, unit: ManipulateType) => {
-    setValue(name, date.add(amount, unit).format("YYYY-MM-DDTHH:mm:ss.SSSZ"));
+    setValue(name, date.add(amount, unit).format(DATETIME_FORMAT));
     // 前後関係のエラーは end に付くため、start を変えたときも end を検証し直す
     trigger("end");
   };

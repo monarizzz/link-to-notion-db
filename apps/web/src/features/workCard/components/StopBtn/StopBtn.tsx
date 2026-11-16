@@ -1,7 +1,7 @@
 import Check from "@public/check.svg";
 import { Controller, useFormContext } from "react-hook-form";
 import dayjs from "dayjs";
-import "@/libs/dayjs/config";
+import { DATETIME_FORMAT } from "@/libs/dayjs/config";
 import { useState } from "react";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
 import type { Label } from "@/infra/api/client";
@@ -23,7 +23,7 @@ const StopBtn = ({ labels }: Props) => {
           <button
             type="button"
             onClick={() => {
-              onChange(dayjs().format("YYYY-MM-DDTHH:mm:ss.SSSZ"));
+              onChange(dayjs().format(DATETIME_FORMAT));
               setIsOpenModal(true);
             }}
             className="rounded-3xl bg-doing p-[3.5px] shadow-[0_0_12px_rgba(53,127,246,0.2)]"

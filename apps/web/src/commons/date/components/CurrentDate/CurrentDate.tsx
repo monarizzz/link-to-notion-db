@@ -8,7 +8,6 @@ type Props = {
   fontSizeProps: string;
   letterSpacingProps: string;
   format: "YYYY.MM.DD" | "M月 D日";
-  home?: boolean;
   bold?: boolean;
 };
 

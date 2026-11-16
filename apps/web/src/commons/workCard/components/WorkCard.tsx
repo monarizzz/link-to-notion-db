@@ -1,17 +1,10 @@
 import DoingContent from "@/features/workCard/components/DoingContent/DoingContent";
 import { useWatch } from "react-hook-form";
-import InputContent from "@/features/workCard/components/inputContent/InputContent";
+import InputContent from "@/features/workCard/components/InputContent/InputContent";
 import type { Label } from "@/infra/api/client";
 
 type Props = {
-  todoDetail?: TodoDetail;
   labels: Label[];
-};
-
-type TodoDetail = {
-  time: string;
-  work: string;
-  priority?: "high" | "medium" | "low";
 };
 
 const WorkCard = ({ labels }: Props) => {

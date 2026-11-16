@@ -1,7 +1,6 @@
 import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
-import { getTime } from "date-fns";
 
 type Props = {
   today: CalendarEvent[];
@@ -11,8 +10,8 @@ type Props = {
 
 const SideBar = ({ today, range }: Props) => {
   const eventsWithTotal = today.map((events) => {
-    const start = Math.max(getTime(new Date(events.start)), range.from);
-    const end = Math.min(getTime(new Date(events.end)), range.to);
+    const start = Math.max(Date.parse(events.start), range.from);
+    const end = Math.min(Date.parse(events.end), range.to);
 
     const total =
       Math.round((Math.max(end - start, 0) / (60 * 60 * 1000)) * 100) / 100;
