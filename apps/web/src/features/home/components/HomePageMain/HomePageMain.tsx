@@ -1,20 +1,19 @@
 "use client";
 
 import { addData } from "@/commons/modal/utils/addData";
-import NowDisplay from "../NowDisplay/NowDisplay";
 import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
-import CalendarForm from "@/commons/calendar/components/CalendarForm/CalendarForm";
 import SideBar from "@/commons/sideBar/components/SideBar";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
 import type { Label } from "@/infra/api/client";
+import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
+import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 
 type Props = {
   labels: Label[];
   today: CalendarEvent[];
-  /* today を取得した範囲（エポックミリ秒、to は含まない） */
   todayRange: { from: number; to: number };
 };
 
@@ -37,11 +36,15 @@ const HomePageMain = ({ labels, today, todayRange }: Props) => {
     <>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className="relative flex h-screen w-screen flex-col items-center justify-center bg-background">
-            <div className="mx-auto w-100">
-              <NowDisplay />
-            </div>
-            <div className="m-14 min-h-70">
+          <div className="flex min-h-dvh flex-col items-center justify-center bg-background pb-[10dvh]">
+            <CurrentTime />
+            <CurrentDate
+              color="var(--primary-foreground)"
+              fontSizeProps={"14px"}
+              letterSpacingProps={"2px"}
+              format="YYYY.MM.DD"
+            />
+            <div className="p-10">
               <WorkCard labels={labels} />
             </div>
           </div>
@@ -50,9 +53,6 @@ const HomePageMain = ({ labels, today, todayRange }: Props) => {
       <div className="flex h-screen flex-row bg-[#1A1A1A]">
         <div className="my-auto shrink-0">
           <SideBar today={today} range={todayRange} />
-        </div>
-        <div className="mx-16 mt-10">
-          <CalendarForm labels={labels} events={today} />
         </div>
       </div>
     </>

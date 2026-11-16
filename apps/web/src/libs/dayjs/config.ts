@@ -6,3 +6,6 @@ import duration from "dayjs/plugin/duration";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(duration);
+
+/* フォームで扱う日時の形式。API へもこの形で送る */
+export const DATETIME_FORMAT = "YYYY-MM-DDTHH:mm:ss.SSSZ";
