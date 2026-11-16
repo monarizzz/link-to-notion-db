@@ -3,13 +3,13 @@ import { useWatch } from "react-hook-form";
 import { CheckIcon } from "lucide-react";
 import Pen from "@public/pen.svg";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
-import LabelChips from "@/commons/modal/components/LabelChips/LabelChips";
-import DateTimePicker from "@/commons/modal/components/DateTimePicker/DateTimePicker";
 import { cn } from "@/libs/shadcn/assets/lib/utils";
 
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import type { Label } from "@/infra/api/client";
+import LabelChips from "../LabelChips/LabelChips";
+import DateTimePicker from "../DateTimePicker/DateTimePicker";
 
 type Props = {
   labels: Label[];
