@@ -17,7 +17,6 @@ const CurrentDate = ({
   fontSizeProps,
   letterSpacingProps,
   format,
-  home,
   bold,
 }: Props) => {
   const [date, setDate] = useState(getCurrent(format));
@@ -31,7 +30,7 @@ const CurrentDate = ({
 
   return (
     <div
-      className="flex gap-2 font-dm-sans text-sm tracking-[2px]"
+      className="font-dm-sans text-sm tracking-[2px]"
       style={{
         color: color,
         fontSize: fontSizeProps,
@@ -39,13 +38,6 @@ const CurrentDate = ({
         fontWeight: bold ? "bold" : undefined,
       }}
     >
-      {home ? (
-        <>
-          <span>DAY</span>
-          <span>/</span>
-        </>
-      ) : null}
-
       <span>{date}</span>
     </div>
   );
