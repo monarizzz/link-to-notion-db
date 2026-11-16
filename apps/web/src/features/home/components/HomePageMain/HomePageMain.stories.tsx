@@ -46,8 +46,11 @@ export const Default: Story = {
       {
         id: "1",
         title: "朝会",
-        start: "2026-05-03T09:00:00",
-        end: "2026-05-03T09:30:00",
+        started_at: "2026-05-03T09:00:00",
+        ended_at: "2026-05-03T09:30:00",
+        created_at: "2026-05-01T00:00:00.000Z",
+        updated_at: "2026-05-01T00:00:00.000Z",
+        labels: [],
       },
     ],
     todayRange: {

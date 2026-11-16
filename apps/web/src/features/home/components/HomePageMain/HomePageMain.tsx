@@ -4,16 +4,15 @@ import { addData } from "@/commons/modal/utils/addData";
 import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
 import SideBar from "@/commons/sideBar/components/SideBar";
 import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
-import type { Label } from "@/infra/api/client";
+import type { Label, WorkRecord } from "@/infra/api/client";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 
 type Props = {
   labels: Label[];
-  today: CalendarEvent[];
+  today: WorkRecord[];
   todayRange: { from: number; to: number };
 };
 

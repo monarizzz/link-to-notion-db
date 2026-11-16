@@ -1,21 +1,21 @@
-import { CalendarEvent } from "@/commons/calendar/types/calendarEvent";
+import type { WorkRecord } from "@/infra/api/client";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
 
 type Props = {
-  today: CalendarEvent[];
+  today: WorkRecord[];
   /* 集計する範囲（エポックミリ秒、to は含まない）。範囲の外にはみ出した分は数えない */
   range: { from: number; to: number };
 };
 
 const SideBar = ({ today, range }: Props) => {
-  const eventsWithTotal = today.map((events) => {
-    const start = Math.max(Date.parse(events.start), range.from);
-    const end = Math.min(Date.parse(events.end), range.to);
+  const eventsWithTotal = today.map((record) => {
+    const start = Math.max(Date.parse(record.started_at), range.from);
+    const end = Math.min(Date.parse(record.ended_at), range.to);
 
     const total =
       Math.round((Math.max(end - start, 0) / (60 * 60 * 1000)) * 100) / 100;
-    return { ...events, total };
+    return { ...record, total };
   });
 
   const dayWorkTimeTotalHours = eventsWithTotal.reduce(

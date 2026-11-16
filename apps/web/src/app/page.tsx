@@ -1,5 +1,4 @@
 import HomePageMain from "@/features/home/components/HomePageMain/HomePageMain";
-import { toCalendarEvent } from "@/commons/calendar/utils/toCalendarEvent";
 import { getJstTodayRange } from "@/commons/date/utils/getJstTodayRange";
 import getLabels from "@/infra/api/getLabels";
 import getWorkRecords from "@/infra/api/getWorkRecords";
@@ -15,11 +14,7 @@ const Home = async () => {
   ]);
 
   return (
-    <HomePageMain
-      labels={labels}
-      today={workRecords.map(toCalendarEvent)}
-      todayRange={todayRange}
-    />
+    <HomePageMain labels={labels} today={workRecords} todayRange={todayRange} />
   );
 };
 
