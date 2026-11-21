@@ -15,6 +15,12 @@
       "preview_database_id": "local",
     },
   ],
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+    },
+  },
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
@@ -43,8 +49,4 @@
   // "ai": {
   //   "binding": "AI"
   // },
-  // "observability": {
-  //   "enabled": true,
-  //   "head_sampling_rate": 1
-  // }
 }
