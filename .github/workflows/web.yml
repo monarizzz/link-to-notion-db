@@ -1,10 +1,19 @@
 name: web
 
 on:
+  # web は server の型（AppType など）を参照するため、server の変更でも型チェックする
   pull_request:
+    paths: &paths
+      - "apps/web/**"
+      - "apps/server/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/web.yml"
   # main で保存したキャッシュだけが各 PR から読めるため、main でも実行してキャッシュを作る
   push:
     branches: [main]
+    paths: *paths
 
 # 同一 PR に連続で push した場合、古い run を打ち切る
 concurrency:
