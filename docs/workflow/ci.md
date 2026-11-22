@@ -33,7 +33,7 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 
 - Dependabot が GitHub Actions と npm の依存を毎週確認し、それぞれ 1 つの PR にまとめて更新する（[.github/dependabot.yml](../../.github/dependabot.yml)）
 - `dependabot` ワークフローが、その PR の件名を `<種別> <内容>` の日本語に書き換え、本文の先頭に更新内容の表を足す。種別は GitHub Actions が `ci`、npm が `chore`
-- Dependabot から受け取ったメタデータが想定と違う形のときは、書き換えずにジョブを失敗させる
+- 本文とコミットメッセージから読み取った依存が食い違うなど、Dependabot の出力が想定と違う形のときは、書き換えずにジョブを失敗させる
 
 ## CI で動かしていないもの
 
