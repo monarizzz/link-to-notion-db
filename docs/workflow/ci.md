@@ -12,7 +12,7 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 | `server` | Type check（`pnpm typecheck:server`）・Test（`pnpm test:server`） | `apps/server/**`・共通ファイル |
 | `Claude Code` | `@claude` への応答 | Issue の本文・タイトル、Issue・PR のコメント、PR のレビューに `@claude` があるとき |
 
-- 共通ファイルは `package.json`・`pnpm-lock.yaml`・`pnpm-workspace.yaml` と、そのワークフロー自身
+- 共通ファイルは `package.json`・`pnpm-lock.yaml`・`pnpm-workspace.yaml`・`.github/actions/setup/**` と、そのワークフロー自身
 - `web` は server の型（`AppType` など）を参照するため、server の変更でも型チェックする
 - `repo`・`web`・`storybook`・`server` は PR と main への push で動く。main で作ったキャッシュしか PR から読めないため
 - main に必須チェックは無い。動かなかったワークフローがあっても、PR のマージは止まらない
@@ -21,7 +21,8 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 
 - 同じ PR に続けて push したときは、古い実行を打ち切る（`concurrency`）
 - 権限は `contents: read` のみ
-- 各ジョブが `node_modules`（ルートと `apps/*`）を自分でキャッシュする。キーは `pnpm-lock.yaml` のハッシュで、ヒットしたときは `pnpm install` を飛ばす
+- pnpm・Node.js の準備と依存の用意は [.github/actions/setup](../../.github/actions/setup/action.yml) にまとめ、各ジョブがそれを呼ぶ
+- 各ジョブが `node_modules`（ルートと `apps/*`）を自分でキャッシュする。キーは `pnpm-lock.yaml` のハッシュで、ヒットしたときは `pnpm install` を飛ばす。pnpm の store はキャッシュしない
 - install 専用の前段ジョブは置かず、ジョブ間に依存関係を作らない
 - `storybook` は Playwright のブラウザ本体（`~/.cache/ms-playwright`）も別にキャッシュする
 
@@ -33,8 +34,3 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 
 - web の単体テスト（`pnpm test:web`）
 - ビルド（`pnpm build:web`・`pnpm build:server`）
-
-## 改善の予定
-
-- pnpm の store のキャッシュを外す（#241）
-- セットアップ手順を composite action にまとめる（#242）
