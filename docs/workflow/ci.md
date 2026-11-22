@@ -25,6 +25,10 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 - install 専用の前段ジョブは置かず、ジョブ間に依存関係を作らない
 - `storybook` は Playwright のブラウザ本体（`~/.cache/ms-playwright`）も別にキャッシュする
 
+## 依存の更新
+
+- Dependabot が GitHub Actions と npm の依存を毎週確認し、それぞれ 1 つの PR にまとめて更新する（[.github/dependabot.yml](../../.github/dependabot.yml)）
+
 ## CI で動かしていないもの
 
 - web の単体テスト（`pnpm test:web`）
@@ -34,4 +38,3 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 
 - pnpm の store のキャッシュを外す（#241）
 - セットアップ手順を composite action にまとめる（#242）
-- Dependabot で GitHub Actions のバージョンを上げる（#243）

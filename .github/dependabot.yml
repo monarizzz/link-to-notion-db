@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ["*"]
+
+  # pnpm のワークスペースは、ルートと各アプリの package.json をそれぞれ対象にする
+  - package-ecosystem: npm
+    directories:
+      - /
+      - /apps/*
+    schedule:
+      interval: weekly
+    groups:
+      npm:
+        patterns: ["*"]
