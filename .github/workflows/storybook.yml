@@ -35,15 +35,15 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
       - name: Restore node_modules
         id: node-modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             node_modules
@@ -55,7 +55,7 @@ jobs:
       # ブラウザ本体 (~/.cache/ms-playwright) は別に復元する必要がある。
       - name: Restore Playwright browsers
         id: playwright
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
