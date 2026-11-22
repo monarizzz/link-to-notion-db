@@ -11,7 +11,30 @@
   // 独自ドメインで公開し、Cloudflare Access（Google ログイン・許可したメールアドレスのみ）で保護する
   "routes": [{ "pattern": "work.monelog.me", "custom_domain": true }],
   "workers_dev": false,
-  "preview_urls": false,
+  // ブランチごとのプレビュー（wrangler preview）に workers.dev の URL を付ける。Cloudflare Access で保護する
+  "preview_urls": true,
   // API（apps/server）は公開 URL を持たないため、Service Binding で呼ぶ
   "services": [{ "binding": "API", "service": "server" }],
+  // wrangler preview（Workers Builds のプレビュー）はこの項目が無いと失敗する。バインディングはトップレベルから引き継がれない
+  "previews": {
+    "services": [{ "binding": "API", "service": "server" }],
+    "observability": {
+      "enabled": false,
+      "head_sampling_rate": 1,
+      "issues": {
+        "enabled": false,
+      },
+      "logs": {
+        "enabled": false,
+        "head_sampling_rate": 1,
+        "invocation_logs": true,
+        "persist": true,
+      },
+      "traces": {
+        "enabled": false,
+        "head_sampling_rate": 1,
+        "persist": true,
+      },
+    },
+  },
 }
