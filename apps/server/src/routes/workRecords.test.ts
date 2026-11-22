@@ -1,11 +1,16 @@
 import { env } from "cloudflare:workers";
 import { beforeAll, describe, expect, it } from "vitest";
+import { accessHeaders } from "../../test/accessJwt";
 import app from "../index";
 
 const post = (body: string, contentType = "application/json") =>
   app.request(
     "/api/work-records",
-    { method: "POST", headers: { "Content-Type": contentType }, body },
+    {
+      method: "POST",
+      headers: { ...accessHeaders, "Content-Type": contentType },
+      body,
+    },
     env,
   );
 
@@ -27,7 +32,7 @@ beforeAll(async () => {
 
 describe("GET /api/work-records", () => {
   const get = (query: string) =>
-    app.request(`/api/work-records${query}`, {}, env);
+    app.request(`/api/work-records${query}`, { headers: accessHeaders }, env);
 
   /* 日本時間の日時をエポックミリ秒にする */
   const jst = (dateTime: string) => new Date(`${dateTime}+09:00`).getTime();
@@ -320,7 +325,11 @@ describe("POST /api/work-records", () => {
 
 describe("DELETE /api/work-records/:id", () => {
   const del = (id: string) =>
-    app.request(`/api/work-records/${id}`, { method: "DELETE" }, env);
+    app.request(
+      `/api/work-records/${id}`,
+      { method: "DELETE", headers: accessHeaders },
+      env,
+    );
 
   it("作業記録を削除して 204 を返す", async () => {
     const { id } = (await (

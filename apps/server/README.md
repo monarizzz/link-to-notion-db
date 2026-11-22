@@ -52,6 +52,7 @@ const app = new Hono<{ Bindings: CloudflareBindings }>()
 
 | `code` | ステータス | 条件 |
 | --- | --- | --- |
+| `UNAUTHORIZED` | 401 | `Cf-Access-Jwt-Assertion` が無い・Access の JWT として検証できない |
 | `VALIDATION_ERROR` | 400 | 型が違う・必須項目が無い・余分なキーがある・日時の形式が不正 |
 | `INVALID_TIME_RANGE` | 422 | 開始日時が終了日時以降 |
 | `LABEL_NOT_FOUND` | 422 | 存在しないラベル ID が含まれる |

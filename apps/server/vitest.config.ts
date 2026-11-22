@@ -16,7 +16,7 @@ export default defineConfig(async () => {
       }),
     ],
     test: {
-      setupFiles: ["./test/applyMigrations.ts"],
+      setupFiles: ["./test/applyMigrations.ts", "./test/mockAccessCerts.ts"],
     },
   };
 });
