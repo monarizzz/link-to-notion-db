@@ -30,7 +30,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: pnpm
       - name: Restore node_modules
         id: node-modules
         uses: actions/cache@v4
@@ -54,7 +53,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: pnpm
       - name: Restore node_modules
         id: node-modules
         uses: actions/cache@v4
