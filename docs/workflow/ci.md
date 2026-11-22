@@ -21,7 +21,7 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 
 - 同じ PR に続けて push したときは、古い実行を打ち切る（`concurrency`）
 - 権限は `contents: read` のみ
-- 各ジョブが `node_modules`（ルートと `apps/*`）を自分でキャッシュする。キーは `pnpm-lock.yaml` のハッシュで、ヒットしたときは `pnpm install` を飛ばす
+- 各ジョブが `node_modules`（ルートと `apps/*`）を自分でキャッシュする。キーは `pnpm-lock.yaml` のハッシュで、ヒットしたときは `pnpm install` を飛ばす。pnpm の store はキャッシュしない
 - install 専用の前段ジョブは置かず、ジョブ間に依存関係を作らない
 - `storybook` は Playwright のブラウザ本体（`~/.cache/ms-playwright`）も別にキャッシュする
 
@@ -36,5 +36,4 @@ GitHub Actions のワークフローと、それぞれが動く条件・やる�
 
 ## 改善の予定
 
-- pnpm の store のキャッシュを外す（#241）
 - セットアップ手順を composite action にまとめる（#242）
