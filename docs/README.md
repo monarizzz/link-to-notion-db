@@ -16,3 +16,4 @@
 ## workflow/ — 開発の進め方
 
 - [git-commit-principles.md](workflow/git-commit-principles.md) … コミットの分け方と並べる順序
+- [ci.md](workflow/ci.md) … CI のワークフローと動く条件・やること

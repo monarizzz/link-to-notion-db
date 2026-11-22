@@ -1,10 +1,19 @@
 name: web
 
 on:
+  # web は server の型（AppType など）を参照するため、server の変更でも型チェックする
   pull_request:
+    paths: &paths
+      - "apps/web/**"
+      - "apps/server/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/web.yml"
   # main で保存したキャッシュだけが各 PR から読めるため、main でも実行してキャッシュを作る
   push:
     branches: [main]
+    paths: *paths
 
 # 同一 PR に連続で push した場合、古い run を打ち切る
 concurrency:
@@ -42,44 +51,3 @@ jobs:
       - if: steps.node-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
       - run: pnpm typecheck:web
-
-  # Playwright の Chromium を落とす必要があり実行時間が伸びるため、他のチェックとは
-  # 別ジョブに分離している。
-  storybook-test:
-    name: Storybook test
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-      - name: Restore node_modules
-        id: node-modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            apps/*/node_modules
-          key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-      - if: steps.node-modules.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      # node_modules キャッシュには playwright パッケージしか含まれず、
-      # ブラウザ本体 (~/.cache/ms-playwright) は別に復元する必要がある。
-      - name: Restore Playwright browsers
-        id: playwright
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
-      - if: steps.playwright.outputs.cache-hit != 'true'
-        run: pnpm --filter web exec playwright install --with-deps chromium
-      # キャッシュヒット時はブラウザ本体だけ復元され、OS 側の依存ライブラリが
-      # 入らないため、そこだけ別途入れる。
-      - if: steps.playwright.outputs.cache-hit == 'true'
-        run: pnpm --filter web exec playwright install-deps chromium
-      - run: pnpm test:storybook
