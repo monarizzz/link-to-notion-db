@@ -15,56 +15,19 @@ jobs:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v2
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: .github/scripts
       - name: Rewrite title and body
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           PR: ${{ github.event.pull_request.number }}
-          ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
-          DEPS: ${{ steps.metadata.outputs.updated-dependencies-json }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
-          # Dependabot のメタデータの形が想定と違うときは、壊れた件名にせず失敗させる
-          case "$ECOSYSTEM" in
-            github_actions) type=ci;    label="GitHub Actions" ;;
-            npm_and_yarn)   type=chore; label="npm" ;;
-            *) echo "::error::想定していない package-ecosystem: $ECOSYSTEM"; exit 1 ;;
-          esac
-          if ! jq -e '
-            type == "array" and length > 0 and
-            all(.[]; [.dependencyName, .prevVersion, .newVersion, .directory]
-                     | all(type == "string" and length > 0))
-          ' <<<"$DEPS" >/dev/null; then
-            echo "::error::updated-dependencies-json が想定と違う形: $DEPS"
-            exit 1
-          fi
-
-          # 同じ依存が複数ディレクトリで更新される場合は 1 件と数える
-          count=$(jq '[.[].dependencyName] | unique | length' <<<"$DEPS")
-          if [ "$count" -eq 1 ]; then
-            title=$(jq -r --arg t "$type" '.[0] | "\($t) \(.dependencyName) を \(.prevVersion) から \(.newVersion) に更新する"' <<<"$DEPS")
-          else
-            title="$type $label の依存 $count 件を更新する"
-          fi
-
-          summary=$(jq -r '
-            "<!-- ja-summary -->",
-            "## 更新内容",
-            "",
-            "| 依存 | 更新前 | 更新後 | ディレクトリ |",
-            "| --- | --- | --- | --- |",
-            (.[] | "| `\(.dependencyName)` | \(.prevVersion) | \(.newVersion) | `\(.directory)` |"),
-            "",
-            "以下は Dependabot が作成した本文。",
-            "<!-- /ja-summary -->",
-            ""
-          ' <<<"$DEPS")
-
-          # rebase のたびに動くため、前回足した要約を消してから足し直す
-          body=$(gh pr view "$PR" --json body -q .body |
-            awk '/<!-- ja-summary -->/{skip=1} !skip{print} /<!-- \/ja-summary -->/{skip=0}' |
-            sed '/./,$!d')
-
-          gh pr edit "$PR" --title "$title" --body "$(printf '%s\n\n%s' "$summary" "$body")"
+          gh pr view "$PR" --json body -q .body > body.md
+          gh api "repos/$GH_REPO/pulls/$PR/commits" -q '.[0].commit.message' > commit.txt
+          python3 .github/scripts/localize_dependabot_pr.py "$BRANCH" body.md commit.txt > result.json
+          gh pr edit "$PR" \
+            --title "$(jq -r .title result.json)" \
+            --body "$(jq -r .body result.json)"
