@@ -10,7 +10,8 @@ export type ErrorCode =
   | "INVALID_TIME_RANGE"
   | "LABEL_NOT_FOUND"
   | "LABEL_NAME_CONFLICT"
-  | "WORK_RECORD_NOT_FOUND";
+  | "WORK_RECORD_NOT_FOUND"
+  | "UNAUTHORIZED";
 
 /* fields は項目名をキーにして、フォームの各項目にそのまま表示できるようにする */
 export type ErrorFields = Record<string, string[]>;

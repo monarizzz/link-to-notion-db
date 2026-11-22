@@ -15,6 +15,10 @@
       "preview_database_id": "local",
     },
   ],
+  "vars": {
+    "ACCESS_TEAM_DOMAIN": "https://monelog.cloudflareaccess.com",
+    "ACCESS_AUD": "c5f92ae8da54bed31c8cf4ba152a0e76589b33f47374c08c5184c7a3feee4df2",
+  },
   "observability": {
     "logs": {
       "enabled": true,
