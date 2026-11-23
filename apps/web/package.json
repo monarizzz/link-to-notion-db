@@ -16,11 +16,6 @@
     "test:storybook": "vitest run --project storybook"
   },
   "dependencies": {
-    "@fullcalendar/core": "^7.1.5",
-    "@fullcalendar/daygrid": "^6.1.22",
-    "@fullcalendar/interaction": "^6.1.22",
-    "@fullcalendar/react": "^7.1.5",
-    "@fullcalendar/timegrid": "^6.1.22",
     "@hookform/resolvers": "^7.0.7",
     "@opennextjs/cloudflare": "1.20.17",
     "class-variance-authority": "^0.7.1",
