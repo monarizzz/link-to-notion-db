@@ -16,8 +16,10 @@ updates:
     schedule:
       interval: weekly
     groups:
+      # メジャー更新は破壊的変更を含むため、まとめずに 1 つずつ PR にする
       npm:
         patterns: ["*"]
+        update-types: ["minor", "patch"]
     ignore:
       # typescript-eslint が TypeScript 7 に未対応で、Lint が起動しなくなるため
       - dependency-name: typescript
