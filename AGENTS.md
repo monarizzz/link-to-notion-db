@@ -1,7 +1,5 @@
 # AGENTS.md
 
-このリポジトリで作業するコーディングエージェント共通の指示。
-指示はこのファイルに集約する。`CLAUDE.md` は本ファイルを読み込むだけで、内容を持たない。
 設計の詳細は [docs/](docs/README.md) にある。
 
 ## 基本ルール
@@ -64,11 +62,6 @@
 ## worktree
 
 作業用に worktree を作った場合、その作業が終わった時点で削除する。ブランチは残す。
-
-```bash
-git worktree remove <パス>
-git worktree list
-```
 
 ## Storybook
 
