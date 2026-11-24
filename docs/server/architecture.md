@@ -69,7 +69,7 @@ packages/openapi  … openapi.json（API から出力し、Swift のクライア
 ## 未決定
 
 - API の中の層の構成
-- API 設計（URL・ページネーション）。エラーの形式は [apps/server/README.md](../../apps/server/README.md#エラーレスポンス) にある
+- API 設計（URL・ページネーション）
 - テストと CI
 - 認証まわりの改善（Swift での対応）
 - デモ環境（Wrangler の `[env.demo]` で、別の Worker と D1 を立てる案）
