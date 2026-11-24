@@ -6,16 +6,16 @@
 
 - [design-doc.md](product/design-doc.md) … 誰の何をどうするか・背景・ユーザーストーリー・未決定事項
 
-## architecture/ — 設計
+## web/ — Web（`apps/web`）
 
-- [web-layers.md](architecture/web-layers.md) … 層の責務・依存の向き・ディレクトリの粒度
-- [notion-db.md](architecture/notion-db.md) … Notion DB のプロパティとアプリ側の型の対応、Notion に依存している箇所
-- [backend.md](architecture/backend.md) … Hono・D1 によるバックエンドの構成と決定事項
-- [database.md](architecture/database.md) … D1 のテーブル設計
+- [layers.md](web/layers.md) … 層の責務・依存の向き・ディレクトリの粒度
+- [notion-db.md](web/notion-db.md) … Notion DB のプロパティとアプリ側の型の対応、Notion に依存している箇所
 
-## api/ — API
+## server/ — API（`apps/server`）
 
-- [conventions.md](api/conventions.md) … 全エンドポイントに共通する日時・エラーレスポンスの形式
+- [architecture.md](server/architecture.md) … Web・API・DB の全体構成と決定事項
+- [database.md](server/database.md) … D1 のテーブル設計
+- [api.md](server/api.md) … 全エンドポイントに共通する日時・エラーレスポンスの形式
 
 ## workflow/ — 開発の進め方
 
