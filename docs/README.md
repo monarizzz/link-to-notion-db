@@ -13,6 +13,10 @@
 - [backend.md](architecture/backend.md) … Hono・D1 によるバックエンドの構成と決定事項
 - [database.md](architecture/database.md) … D1 のテーブル設計
 
+## api/ — API
+
+- [conventions.md](api/conventions.md) … 全エンドポイントに共通する日時・エラーレスポンスの形式
+
 ## workflow/ — 開発の進め方
 
 - [git-commit-principles.md](workflow/git-commit-principles.md) … コミットの分け方と並べる順序
