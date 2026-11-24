@@ -9,13 +9,16 @@
 ## web/ — Web（`apps/web`）
 
 - [layers.md](web/layers.md) … 層の責務・依存の向き・ディレクトリの粒度
-- [notion-db.md](web/notion-db.md) … Notion DB のプロパティとアプリ側の型の対応、Notion に依存している箇所
 
 ## server/ — API（`apps/server`）
 
 - [architecture.md](server/architecture.md) … Web・API・DB の全体構成と決定事項
 - [database.md](server/database.md) … D1 のテーブル設計
 - [api.md](server/api.md) … 全エンドポイントに共通する日時・エラーレスポンスの形式
+
+## legacy/ — 移行前の記録
+
+- [notion-db.md](legacy/notion-db.md) … 移行前に使っていた Notion DB のプロパティとアプリ側の型の対応
 
 ## workflow/ — 開発の進め方
 
