@@ -11,8 +11,6 @@
 
 ## プロジェクトの前提
 
-- データの保存先は Notion DB だが、**別の DB へ移行する予定**。Notion 固有の構造をアプリ全体に広げない。
-  Notion に依存している箇所は [docs/legacy/notion-db.md](docs/legacy/notion-db.md) にまとめている
 - `.pen` ファイル（`ui.pen` など）の UI デザインは**確定ではない**。
   デザインより先に実装する機能も、デザインにあっても実装しない機能もある。
   デザインと実装が食い違っていても、それだけで実装をデザインに合わせない
@@ -71,7 +69,6 @@
 - バグや不具合につながる実装
 - セキュリティ上の懸念（Cloudflare Access を通らずに Web・API に届く経路・環境変数の扱い）
 - 層の依存の向きを破っていないか（[docs/web/layers.md](docs/web/layers.md)）
-- Notion 固有の構造を `infra` / `libs/notion` 以外へ広げていないか
 - テストの不足
 
 ## worktree
