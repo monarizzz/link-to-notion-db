@@ -22,5 +22,6 @@
 
 ## workflow/ — 開発の進め方
 
-- [git-commit-principles.md](workflow/git-commit-principles.md) … コミットの分け方と並べる順序
+- [git-commit-principles.md](workflow/git-commit-principles.md) … コミットの分け方・並べる順序・メッセージ
+- [pull-request.md](workflow/pull-request.md) … PR・Issue の件名と本文の書き方
 - [ci.md](workflow/ci.md) … CI のワークフローと動く条件・やること
