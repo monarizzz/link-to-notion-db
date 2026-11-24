@@ -18,7 +18,7 @@
 
 - 作業を始める前に毎回 `git fetch --prune` し、作業するブランチを `git pull` で最新にする
 - リモートで削除済み（`git branch -vv` で `gone`）のローカルブランチは `git branch -d` で削除する
-- `main` から切り、PR も `main` 宛てに作成する
+- `release` は本番デプロイ用。作業ブランチは `main` から切り、基本PRは `main` 宛てに作成する
 - ブランチ名は `<種別>/<内容>`（例: `fix/restrict-allowed-emails`）。種別はコミットと同じ
 
 ## コミット
