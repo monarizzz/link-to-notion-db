@@ -25,7 +25,7 @@ Hono の API と D1 によるバックエンドの構成。
 
 ```
 [Web: Next.js / Workers]  [Mac アプリ: Swift（将来）]
-   サーバー側から呼ぶ          │
+   ブラウザから呼ぶ            │
    型: Hono RPC              型: openapi.json
           │                        │
           └── Cloudflare Access ───┘
@@ -42,13 +42,13 @@ Hono の API と D1 によるバックエンドの構成。
 | 移行の進め方 | API と新しい DB を同時に作り、Web の接続先を一度に切り替える | 短期間で Notion をやめるため、Notion につなぐ仮の API を作るコストが見合わない |
 | API | Hono | インターンで触って興味を持った。TypeScript のまま書けるので、言語ではなく BE の設計の学習に集中できる |
 | API 定義 | 値の検証は Zod（`zValidator`）で行う。Swift のクライアントを作るときに `@hono/zod-openapi` を導入し、`openapi.json` を出力する | Swift のクライアントの生成には OpenAPI が要る。`OpenAPIHono` も `hc` で呼べるので、Web を書き直さずに両立できる |
-| Web からの呼び出し | 当面は Next.js のサーバー（Server Component / Server Actions）から、Hono RPC（`hc<AppType>()`）で呼ぶ。将来的にブラウザから呼ぶ形にし、その際に CORS も対応する | 今の Web はサーバー側でデータを取得しており、ブラウザから呼ぶ形にすると変更が大きい。Web で RPC、Swift で OpenAPI を使い、両方を比べる |
+| Web からの呼び出し | ブラウザから Hono RPC（`hc<AppType>()`）で `/api/*` を呼ぶ。Web と API は同じオリジン（`work.monelog.me`）に置く | 認証を API に集めるため、Web のサーバー側を経由しない。Web で RPC、Swift で OpenAPI を使い、両方を比べる |
 | リポジトリ | モノレポ | Web から API の型（`AppType`）を import でき、`openapi.json` も 1 か所に置いて Swift から読める |
 | API のデプロイ先 | Cloudflare Workers | 無料枠に収まる。Docker（コンテナの運用）の学習は今回のスコープ外 |
-| Web のデプロイ先 | Cloudflare Workers（OpenNext） | Cloudflare Access で認証し、API を Service Binding で呼べる。将来は Next.js から React への移行も考えている |
+| Web のデプロイ先 | Cloudflare Workers（OpenNext） | API と同じドメインに置ける。将来は Next.js から React への移行も考えている |
 | DB | D1 | 無料。Supabase は無料プランだと 1 週間使わないとプロジェクトが停止する |
 | ORM | 使わず SQL を直接書く。必要になったら Drizzle を検討する | SQL とマイグレーションを自分で書いて理解するため |
-| 認証 | Web の前に Cloudflare Access（Google ログイン・許可したメールアドレスのみ）を置き、アプリ側にはログイン処理を持たない。API は公開 URL を持たず、Web から Service Binding でだけ呼ぶ | ログイン処理を自前で持たず、Access を通らない限り Web にも API にも届かないようにするため |
+| 認証 | Cloudflare Access（Google ログイン・許可したメールアドレスのみ）を API（`work.monelog.me/api/*`）にだけ掛ける。Hono は Access の JWT（`Cf-Access-Jwt-Assertion`）を検証し、Access を通ってきたかを確かめる。アプリ側にはログイン処理を持たない | Web 以外のクライアントからも使うため、画面ではなく API で守る。ログイン処理は自前で持たない |
 | 既存のデータ | Notion に残し、必要に応じて D1 へ移す | |
 | 公開の方法 | README のスクリーンショット・GIF と、公開した Storybook | 本物のデータを公開しない |
 
@@ -65,12 +65,11 @@ packages/openapi  … openapi.json（API から出力し、Swift のクライア
 - Mac アプリは作るときに `apps/` へ追加する
 - `apps/` の各アプリは自分の `package.json`・`tsconfig.json` を持つ
 - ESLint の設定はルートに 1 つ置き、`apps/` ごとに適用するルールを分ける
-- 未ログインのときは Cloudflare Access のログイン画面が表示され、Web には届かない
 
 ## 未決定
 
 - API の中の層の構成
 - API 設計（URL・ページネーション）。エラーの形式は [apps/server/README.md](../../apps/server/README.md#エラーレスポンス) にある
 - テストと CI
-- 認証まわりの改善（API 側での Access の JWT 検証・Swift での対応）
+- 認証まわりの改善（Swift での対応）
 - デモ環境（Wrangler の `[env.demo]` で、別の Worker と D1 を立てる案）
