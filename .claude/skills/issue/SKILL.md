@@ -29,5 +29,5 @@ description: docs/workflow/pull-request.md と .github/ISSUE_TEMPLATE/ に沿っ
 ## 「決めること」が決まったとき
 
 1. `gh issue view <番号>` で今の本文を確認する
-2. 決まった項目にチェックを付け、決定内容と誰が決めたか（ユーザー / エージェント）を「詳細」の直下に文章で書く
+2. 決まった項目にチェックを付け、決定内容を「詳細」の直下に文章で書く
 3. それ以外の節はそのまま残し、`gh issue edit <番号> --body-file <本文ファイル>` で更新して URL を返す
