@@ -15,6 +15,9 @@ const request = (token?: string) =>
     env,
   );
 
+const requestWithSkip = (skip: string) =>
+  app.request("/", {}, { ...env, SKIP_ACCESS_JWT: skip });
+
 const expectUnauthorized = async (res: Response) => {
   expect(res.status).toBe(401);
   expect(await res.json()).toEqual({
@@ -32,6 +35,17 @@ describe("accessJwt", () => {
 
   it("ヘッダーが無ければ 401 を返す", async () => {
     await expectUnauthorized(await request());
+  });
+
+  it("SKIP_ACCESS_JWT が true なら JWT が無くても通す", async () => {
+    const res = await requestWithSkip("true");
+
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe("ok");
+  });
+
+  it("SKIP_ACCESS_JWT が true 以外なら検証する", async () => {
+    await expectUnauthorized(await requestWithSkip("false"));
   });
 
   it("JWT として読めない値なら 401 を返す", async () => {

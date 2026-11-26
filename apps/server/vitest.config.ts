@@ -12,7 +12,13 @@ export default defineConfig(async () => {
     plugins: [
       cloudflareTest({
         wrangler: { configPath: "./wrangler.jsonc" },
-        miniflare: { bindings: { TEST_MIGRATIONS: migrations } },
+        miniflare: {
+          bindings: {
+            TEST_MIGRATIONS: migrations,
+            // 手元の .dev.vars で検証を外していても、テストでは検証する
+            SKIP_ACCESS_JWT: "",
+          },
+        },
       }),
     ],
     test: {

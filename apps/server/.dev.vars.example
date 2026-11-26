@@ -1,0 +1,2 @@
+# Access を通らないローカル開発で、JWT の検証を外す。本番・プレビューには設定しない
+SKIP_ACCESS_JWT=true

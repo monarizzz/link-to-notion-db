@@ -5,6 +5,8 @@ import { errorResponse } from "../errors";
 /* Cloudflare Access を通ってきたリクエストかを確かめる */
 export const accessJwt = createMiddleware<{ Bindings: CloudflareBindings }>(
   async (c, next) => {
+    if (c.env.SKIP_ACCESS_JWT === "true") return await next();
+
     const token = c.req.header("Cf-Access-Jwt-Assertion");
 
     if (!token) {
