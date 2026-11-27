@@ -1,10 +1,11 @@
 "use client";
 
 import useSWR from "swr";
+
+import { getJstTodayRange } from "@/commons/date/utils/getJstTodayRange";
 import HomePageMain from "@/features/home/components/HomePageMain/HomePageMain";
 import getLabels from "@/infra/api/getLabels";
 import getWorkRecords from "@/infra/api/getWorkRecords";
-import { getJstTodayRange } from "@/commons/date/utils/getJstTodayRange";
 
 const Home = () => {
   const todayRange = getJstTodayRange();
