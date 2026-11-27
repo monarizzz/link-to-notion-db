@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
-import DailyCalendar from "@/commons/calendar/components/DailyCalendar/DailyCalendar";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 import SideBar from "@/commons/sideBar/components/SideBar";
@@ -12,6 +11,7 @@ import type { Label, WorkRecord } from "@/infra/client";
 import { DataForm, formSchema } from "@/libs/zod/workRecordSchema";
 
 import { saveWorkRecord } from "../../utils/saveWorkRecord";
+import CalendarSection from "../CalendarSection/CalendarSection";
 
 type Props = {
   labels: Label[];
@@ -65,7 +65,12 @@ const HomePageMain = ({ labels, today, todayRange, onCreated }: Props) => {
           <SideBar today={today} range={todayRange} />
         </div>
         <div className="px-4 md:my-auto md:ml-14 md:max-h-full md:max-w-[851px] md:flex-1 md:overflow-y-auto md:px-0">
-          <DailyCalendar records={today} range={todayRange} />
+          <CalendarSection
+            labels={labels}
+            records={today}
+            range={todayRange}
+            onCreated={onCreated}
+          />
         </div>
       </div>
     </>
