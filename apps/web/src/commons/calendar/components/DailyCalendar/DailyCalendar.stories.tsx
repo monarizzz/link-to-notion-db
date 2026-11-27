@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, fireEvent, fn, within } from "storybook/test";
 
 import DailyCalendar from "./DailyCalendar";
 
@@ -66,4 +67,87 @@ export const AcrossMidnight: Story = {
 
 export const OtherDay: Story = {
   args: { now: Date.parse("2026-11-29T10:00:00+09:00") },
+};
+
+/* ドラッグ（タッチはタップ）で時間帯を選べる */
+export const Selectable: Story = {
+  args: { onSelect: fn() },
+  play: async ({ args, canvasElement }) => {
+    const area = canvasElement.querySelector<HTMLElement>(".cursor-pointer");
+    if (!area) throw new Error("選択できる範囲がありません");
+    const top = area.getBoundingClientRect().top;
+
+    /* 記録の上でも、選択できる範囲に操作が届く */
+    const recordRect = within(canvasElement)
+      .getByText("履修登録")
+      .getBoundingClientRect();
+    await expect(
+      document.elementFromPoint(
+        recordRect.left + recordRect.width / 2,
+        recordRect.top + recordRect.height / 2,
+      ),
+    ).toBe(area);
+    const pointer = { button: 0, pointerId: 1, pointerType: "mouse" };
+    const hour = (h: number) => from + h * 60 * 60 * 1000;
+
+    /* 7:00 の枠から 9:30 の枠までドラッグすると 7:00 - 9:45 */
+    await fireEvent.pointerDown(area, {
+      ...pointer,
+      clientY: top + 7 * 32 + 2,
+    });
+    await fireEvent.pointerMove(area, { ...pointer, clientY: top + 9.6 * 32 });
+    await fireEvent.pointerUp(area, { ...pointer, clientY: top + 9.6 * 32 });
+    await expect(args.onSelect).toHaveBeenLastCalledWith({
+      start: hour(7),
+      end: hour(9.75),
+    });
+
+    /* 上へドラッグしても開始と終了が入れ替わる */
+    await fireEvent.pointerDown(area, {
+      ...pointer,
+      clientY: top + 3 * 32 + 2,
+    });
+    await fireEvent.pointerUp(area, { ...pointer, clientY: top + 2 * 32 + 2 });
+    await expect(args.onSelect).toHaveBeenLastCalledWith({
+      start: hour(2),
+      end: hour(3.25),
+    });
+
+    /* タップは指を離した位置の 1 枠 */
+    const touch = { ...pointer, pointerId: 2, pointerType: "touch" };
+    await fireEvent.pointerDown(area, { ...touch, clientY: top + 12 * 32 + 2 });
+    await fireEvent.pointerUp(area, { ...touch, clientY: top + 12 * 32 + 4 });
+    await expect(args.onSelect).toHaveBeenLastCalledWith({
+      start: hour(12),
+      end: hour(12.25),
+    });
+
+    /* 指が動いたらスクロールとみなして選ばない */
+    await fireEvent.pointerDown(area, { ...touch, clientY: top + 14 * 32 });
+    await fireEvent.pointerUp(area, { ...touch, clientY: top + 15 * 32 });
+    await expect(args.onSelect).toHaveBeenCalledTimes(3);
+  },
+};
+
+/* 登録モーダルを開いている間は、選んだ時間帯を示したままにする */
+export const Pending: Story = {
+  args: {
+    pending: {
+      start: Date.parse("2026-11-28T11:00:00+09:00"),
+      end: Date.parse("2026-11-28T12:45:00+09:00"),
+    },
+  },
+};
+
+/* 選んだ時間帯が表示する日と重ならなければ示さない */
+export const PendingOutOfRange: Story = {
+  args: {
+    pending: {
+      start: Date.parse("2026-11-27T11:00:00+09:00"),
+      end: Date.parse("2026-11-27T12:45:00+09:00"),
+    },
+  },
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).queryByText(/12:45/)).toBeNull();
+  },
 };

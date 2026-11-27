@@ -13,16 +13,16 @@ import "@/libs/dayjs/config";
 type Props = {
   labels: Label[];
   isOpenModal: boolean;
-  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  /* 「閉じる」を押したときに呼ぶ */
+  onClose: () => void;
 };
 
-const SubmitModal = ({ labels, isOpenModal, setIsOpenModal }: Props) => {
+const SubmitModal = ({ labels, isOpenModal, onClose }: Props) => {
   const [start, end] = useWatch({
     name: ["start", "end"],
   });
   const {
     register,
-    setValue,
     formState: { errors },
   } = useFormContext();
 
@@ -83,10 +83,7 @@ const SubmitModal = ({ labels, isOpenModal, setIsOpenModal }: Props) => {
                 <button
                   type="button"
                   className="cursor-pointer text-[14px] font-semibold whitespace-nowrap text-[#E05252]"
-                  onClick={() => {
-                    setValue("end", null);
-                    setIsOpenModal(false);
-                  }}
+                  onClick={onClose}
                 >
                   閉じる
                 </button>
