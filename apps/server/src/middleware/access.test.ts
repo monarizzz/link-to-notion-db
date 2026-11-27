@@ -1,8 +1,9 @@
 import { env } from "cloudflare:workers";
 import { Hono } from "hono";
 import { describe, expect, it } from "vitest";
-import { otherKey, signAccessJwt } from "../../test/accessJwt";
+
 import { accessJwt } from "./access";
+import { otherKey, signAccessJwt } from "../../test/accessJwt";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
   .use(accessJwt)

@@ -1,3 +1,4 @@
+import type { Label } from "@/infra/client";
 import {
   Select,
   SelectContent,
@@ -7,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/libs/shadcn/ui/select";
-import type { Label } from "@/infra/client";
 
 type Props = {
   labels: Label[];

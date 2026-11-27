@@ -1,5 +1,6 @@
 import { env } from "cloudflare:workers";
 import { beforeAll, describe, expect, it } from "vitest";
+
 import { accessHeaders } from "../../test/accessJwt";
 import app from "../index";
 

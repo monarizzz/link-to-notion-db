@@ -1,7 +1,8 @@
 import { Hono } from "hono";
-import { workRecordsRouters } from "./routes/workRecords";
-import { labelsRouters } from "./routes/labels";
+
 import { accessJwt } from "./middleware/access";
+import { labelsRouters } from "./routes/labels";
+import { workRecordsRouters } from "./routes/workRecords";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
   .basePath("/api")

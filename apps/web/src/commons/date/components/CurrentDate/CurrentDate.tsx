@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { getCurrent } from "../../utils/getCurrent";
 
 type Props = {

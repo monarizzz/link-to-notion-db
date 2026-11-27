@@ -1,6 +1,6 @@
-import type { WorkRecord } from "@/infra/client";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
+import type { WorkRecord } from "@/infra/client";
 
 type Props = {
   today: WorkRecord[];

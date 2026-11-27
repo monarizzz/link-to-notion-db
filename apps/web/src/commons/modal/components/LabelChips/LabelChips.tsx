@@ -1,6 +1,7 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { cn } from "@/libs/shadcn/utils";
+
 import type { Label } from "@/infra/client";
+import { cn } from "@/libs/shadcn/utils";
 
 type Props = {
   labels: Label[];
