@@ -8,9 +8,10 @@ import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 import SideBar from "@/commons/sideBar/components/SideBar";
 import WorkCard from "@/commons/workCard/components/WorkCard";
-import postWorkRecord from "@/infra/api/postWorkRecord";
 import type { Label, WorkRecord } from "@/infra/client";
 import { DataForm, formSchema } from "@/libs/zod/workRecordSchema";
+
+import { saveWorkRecord } from "../../utils/saveWorkRecord";
 
 type Props = {
   labels: Label[];
@@ -28,12 +29,7 @@ const HomePageMain = ({ labels, today, todayRange, onCreated }: Props) => {
 
   const onSubmit = async (data: DataForm) => {
     try {
-      await postWorkRecord({
-        title: data.title,
-        started_at: data.start,
-        ended_at: data.end,
-        label_ids: data.label ? [data.label] : [],
-      });
+      await saveWorkRecord(data);
     } catch (error) {
       console.error(error);
       methods.setError("root.save", {
