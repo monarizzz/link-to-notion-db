@@ -1,5 +1,7 @@
 import { env } from "cloudflare:workers";
 import { beforeAll, describe, expect, it } from "vitest";
+
+import { accessHeaders } from "../../test/accessJwt";
 import app from "../index";
 
 const postJson = (body: unknown) =>
@@ -7,7 +9,7 @@ const postJson = (body: unknown) =>
     "/api/labels",
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { ...accessHeaders, "Content-Type": "application/json" },
       body: JSON.stringify(body),
     },
     env,

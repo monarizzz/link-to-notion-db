@@ -1,9 +1,11 @@
-import Timer from "@public/timer.svg";
-import { useWatch } from "react-hook-form";
-import StopBtn from "../StopBtn/StopBtn";
 import dayjs from "dayjs";
+import { useWatch } from "react-hook-form";
+
+import type { Label } from "@/infra/client";
+import Timer from "@public/timer.svg";
 import "@/libs/dayjs/config";
-import type { Label } from "@/infra/api/client";
+
+import StopBtn from "../StopBtn/StopBtn";
 
 type Props = {
   labels: Label[];

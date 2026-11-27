@@ -1,10 +1,11 @@
-import Check from "@public/check.svg";
-import { Controller, useFormContext } from "react-hook-form";
 import dayjs from "dayjs";
-import { DATETIME_FORMAT } from "@/libs/dayjs/config";
 import { useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
-import type { Label } from "@/infra/api/client";
+import type { Label } from "@/infra/client";
+import { DATETIME_FORMAT } from "@/libs/dayjs/config";
+import Check from "@public/check.svg";
 
 type Props = {
   labels: Label[];

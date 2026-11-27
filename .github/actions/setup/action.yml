@@ -1,0 +1,25 @@
+name: Setup
+description: pnpm・Node.js を準備し、node_modules をキャッシュから復元する。ヒットしなければ pnpm install する
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+    # ヒット時は pnpm install を丸ごとスキップする。
+    # pnpm は各ワークスペースの依存を apps/*/node_modules にシンボリックリンクで置くため、両方をキャッシュする。
+    - name: Restore node_modules
+      id: node-modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          apps/*/node_modules
+        key: ${{ runner.os }}-node24-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
+    - if: steps.node-modules.outputs.cache-hit != 'true'
+      run: pnpm install --frozen-lockfile
+      shell: bash

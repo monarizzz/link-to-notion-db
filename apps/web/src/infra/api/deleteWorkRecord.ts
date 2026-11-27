@@ -1,6 +1,4 @@
-import "server-only";
-
-import { apiClient } from "@/infra/api/client";
+import { apiClient } from "@/infra/client";
 
 const deleteWorkRecord = async (id: string) => {
   const response = await apiClient().api["work-records"][":id"].$delete({

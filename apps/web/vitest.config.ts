@@ -1,11 +1,8 @@
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
+import { playwright } from "@vitest/browser-playwright";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-
 import { defineConfig } from "vitest/config";
-
-import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
-
-import { playwright } from "@vitest/browser-playwright";
 
 const dirname =
   typeof __dirname !== "undefined"
@@ -44,11 +41,6 @@ export default defineConfig({
             "dayjs/plugin/timezone",
             "dayjs/plugin/duration",
             "date-fns",
-            "@fullcalendar/react",
-            "@fullcalendar/daygrid",
-            "@fullcalendar/timegrid",
-            "@fullcalendar/interaction",
-            "@fullcalendar/core/locales/ja",
             "lucide-react",
             "radix-ui",
             "clsx",

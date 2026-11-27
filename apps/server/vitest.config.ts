@@ -1,5 +1,5 @@
-import path from "node:path";
 import { cloudflareTest, readD1Migrations } from "@cloudflare/vitest-plugin";
+import path from "node:path";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig(async () => {
@@ -12,11 +12,17 @@ export default defineConfig(async () => {
     plugins: [
       cloudflareTest({
         wrangler: { configPath: "./wrangler.jsonc" },
-        miniflare: { bindings: { TEST_MIGRATIONS: migrations } },
+        miniflare: {
+          bindings: {
+            TEST_MIGRATIONS: migrations,
+            // 手元の .dev.vars で検証を外していても、テストでは検証する
+            SKIP_ACCESS_JWT: "",
+          },
+        },
       }),
     ],
     test: {
-      setupFiles: ["./test/applyMigrations.ts"],
+      setupFiles: ["./test/applyMigrations.ts", "./test/mockAccessCerts.ts"],
     },
   };
 });

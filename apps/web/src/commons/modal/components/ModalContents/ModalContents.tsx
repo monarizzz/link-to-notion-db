@@ -1,15 +1,16 @@
+import dayjs from "dayjs";
+import { CheckIcon } from "lucide-react";
 import { useState } from "react";
 import { useWatch } from "react-hook-form";
-import { CheckIcon } from "lucide-react";
-import Pen from "@public/pen.svg";
-import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
-import { cn } from "@/libs/shadcn/assets/lib/utils";
 
-import dayjs from "dayjs";
+import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
+import type { Label } from "@/infra/client";
+import { cn } from "@/libs/shadcn/utils";
+import Pen from "@public/pen.svg";
 import "@/libs/dayjs/config";
-import type { Label } from "@/infra/api/client";
-import LabelChips from "../LabelChips/LabelChips";
+
 import DateTimePicker from "../DateTimePicker/DateTimePicker";
+import LabelChips from "../LabelChips/LabelChips";
 
 type Props = {
   labels: Label[];

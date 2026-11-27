@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
 import { Separator as SeparatorPrimitive } from "radix-ui";
+import * as React from "react";
 
-import { cn } from "@/libs/shadcn/assets/lib/utils";
+import { cn } from "@/libs/shadcn/utils";
 
 function Separator({
   className,

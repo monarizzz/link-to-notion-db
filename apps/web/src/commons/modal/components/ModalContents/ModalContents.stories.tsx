@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { FormProvider, useForm } from "react-hook-form";
+
 import ModalContents from "./ModalContents";
 
 const meta = {

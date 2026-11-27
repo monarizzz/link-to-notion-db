@@ -1,15 +1,15 @@
 ---
 name: pr
-description: 現在のブランチから main 宛ての PR を、AGENTS.md の PR ルールとテンプレートに沿って作成する。「PR 作って」と頼まれたときや、Issue の解決で PR を作るときに使う
+description: 現在のブランチから main 宛ての PR を、docs/workflow/pull-request.md とテンプレートに沿って作成する。「PR 作って」と頼まれたときや、Issue の解決で PR を作るときに使う
 ---
 
 # /pr
 
-ルールは [AGENTS.md の「PR」節](../../../AGENTS.md#pr) に従う。ここには手順だけを書く。
+ルールは [docs/workflow/pull-request.md](../../../docs/workflow/pull-request.md) に従う。ここには手順だけを書く。
 
 ## 手順
 
-1. AGENTS.md の「PR」節と `.github/PULL_REQUEST_TEMPLATE.md` を読む
+1. docs/workflow/pull-request.md と `.github/PULL_REQUEST_TEMPLATE.md` を読む
 2. 差分とコミット履歴を確認する
    - `git fetch` のうえ `git log --oneline origin/main..HEAD` と `git diff origin/main...HEAD`
    - 未 push のコミットがあれば `git push -u origin HEAD`
@@ -19,9 +19,8 @@ description: 現在のブランチから main 宛ての PR を、AGENTS.md の P
    - 見出しはすべて残し、HTML コメントは消す
    - 差分・コミット・Issue から判断できない節（レビュー観点・動作確認など）は推測で埋めず、作成前にユーザーに確認する
 5. `gh pr create --base main --title "<件名>" --body-file <本文ファイル>` で作成する
-   - 件名の形式は AGENTS.md の「PR」節に従う
-6. 関連 Issue に AGENTS.md の種別ラベルが 1 つも無い場合だけ、種別に合うラベルを `gh issue edit <番号> --add-label <ラベル>` で付ける
-   - 優先度など種別以外のラベルしか無い場合も付ける
+   - 件名の形式は docs/workflow/pull-request.md に従う
+6. 関連 Issue に種別ラベル（[対応表](../../../docs/workflow/git-commit-principles.md#種別)）が無ければ `gh issue edit <番号> --add-label <ラベル>` で付ける
 7. 作成した PR の URL を返す
 
 ## 既存 PR を更新するとき

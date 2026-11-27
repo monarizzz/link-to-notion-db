@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+
 import HomePageMain from "./HomePageMain";
 
 const meta = {
@@ -57,5 +58,6 @@ export const Default: Story = {
       from: new Date("2026-05-03T00:00:00+09:00").getTime(),
       to: new Date("2026-05-04T00:00:00+09:00").getTime(),
     },
+    onCreated: () => {},
   },
 };
