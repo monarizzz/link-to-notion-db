@@ -57,7 +57,7 @@ const HomePageMain = ({ labels, today, todayRange, onCreated }: Props) => {
               letterSpacingProps={"2px"}
               format="YYYY.MM.DD"
             />
-            <div className="p-10">
+            <div className="flex w-full justify-center px-4 py-10 md:p-10">
               <WorkCard labels={labels} />
             </div>
           </div>

@@ -19,7 +19,7 @@ const WorkCard = ({ labels }: Props) => {
   };
 
   return (
-    <div className="flex w-90 items-center gap-3 rounded-3xl bg-[#3A3A3A] px-4 py-3.5">
+    <div className="flex w-full max-w-90 items-center gap-3 rounded-3xl bg-[#3A3A3A] px-4 py-3.5">
       {renderContent()}
     </div>
   );
