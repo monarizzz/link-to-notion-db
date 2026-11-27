@@ -12,3 +12,7 @@ export const MIN_EVENT_HEIGHT = 16;
 export const LABEL_HEIGHT = 16;
 export const MINUTE_MS = 60 * 1000;
 export const TZ = "Asia/Tokyo";
+/* ドラッグで選ぶ時間帯の刻み（分）。クリック・タップだけならこの長さで選ぶ */
+export const SNAP_MINUTES = 15;
+/* タップとみなす指の移動量の上限（px）。これより動いたらスクロールとみなす */
+export const TAP_TOLERANCE = 8;

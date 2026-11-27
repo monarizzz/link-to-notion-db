@@ -5,13 +5,16 @@ import {
   MINUTE_MS,
   PADDING_BOTTOM,
   PADDING_TOP,
+  SNAP_MINUTES,
 } from "@/commons/calendar/constants/dailyCalendar";
 import { toY } from "@/commons/calendar/utils/toY";
 import { useNow } from "@/commons/calendar/utils/useNow";
+import { useSlotSelection } from "@/commons/calendar/utils/useSlotSelection";
 import type { WorkRecord } from "@/infra/client";
 
 import NowLabel from "../NowLabel/NowLabel";
 import RecordBlock from "../RecordBlock/RecordBlock";
+import SelectionBlock from "../SelectionBlock/SelectionBlock";
 import TimeGrid from "../TimeGrid/TimeGrid";
 
 type Props = {
@@ -20,12 +23,22 @@ type Props = {
   range: { from: number; to: number };
   /* 現在時刻（エポックミリ秒）。省略すると 1 分ごとに更新する */
   now?: number;
+  /* 渡すと、ドラッグ（タッチはタップ）で選んだ時間帯（エポックミリ秒）を受け取れる */
+  onSelect?: (selected: { start: number; end: number }) => void;
 };
 
-const DailyCalendar = ({ records, range, now: fixedNow }: Props) => {
+const DailyCalendar = ({ records, range, now: fixedNow, onSelect }: Props) => {
   const now = useNow(fixedNow);
   const hours = Math.round((range.to - range.from) / (60 * MINUTE_MS));
   const showNow = range.from <= now && now < range.to;
+
+  const slotToTime = (slot: number) =>
+    range.from + slot * SNAP_MINUTES * MINUTE_MS;
+  const { selected, handlers } = useSlotSelection(
+    (hours * 60) / SNAP_MINUTES,
+    ({ start, end }) =>
+      onSelect?.({ start: slotToTime(start), end: slotToTime(end) }),
+  );
 
   return (
     <div
@@ -36,9 +49,23 @@ const DailyCalendar = ({ records, range, now: fixedNow }: Props) => {
         hours={hours}
         hiddenNearY={showNow ? toY(now, range.from) : undefined}
       />
+      {onSelect && (
+        <div
+          className="absolute right-0 left-17.5 cursor-pointer select-none"
+          style={{ top: PADDING_TOP, height: hours * HOUR_HEIGHT }}
+          {...handlers}
+        />
+      )}
       {records.map((record) => (
         <RecordBlock key={record.id} record={record} range={range} />
       ))}
+      {onSelect && selected && (
+        <SelectionBlock
+          start={slotToTime(selected.start)}
+          end={slotToTime(selected.end)}
+          from={range.from}
+        />
+      )}
       {showNow && <NowLabel now={now} from={range.from} />}
     </div>
   );
