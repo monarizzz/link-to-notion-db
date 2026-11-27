@@ -1,4 +1,4 @@
-import { apiClient } from "@/infra/api/client";
+import { apiClient } from "@/infra/client";
 
 /* from・to はエポックミリ秒。範囲と重なる記録を返す */
 const getWorkRecords = async (from: number, to: number) => {

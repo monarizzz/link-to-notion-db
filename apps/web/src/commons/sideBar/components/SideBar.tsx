@@ -1,4 +1,4 @@
-import type { WorkRecord } from "@/infra/api/client";
+import type { WorkRecord } from "@/infra/client";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import SideBar from "./SideBar";
-import type { WorkRecord } from "@/infra/api/client";
+import type { WorkRecord } from "@/infra/client";
 
 const meta: Meta<typeof SideBar> = {
   component: SideBar,

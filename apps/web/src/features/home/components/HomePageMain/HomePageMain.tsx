@@ -5,8 +5,8 @@ import WorkCard from "@/commons/workCard/components/WorkCard";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SideBar from "@/commons/sideBar/components/SideBar";
-import { DataForm, formSchema } from "@/libs/forms/schema/DataForm";
-import type { Label, WorkRecord } from "@/infra/api/client";
+import { DataForm, formSchema } from "@/libs/zod/workRecordSchema";
+import type { Label, WorkRecord } from "@/infra/client";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 

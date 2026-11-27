@@ -3,7 +3,7 @@ import { useWatch } from "react-hook-form";
 import StopBtn from "../StopBtn/StopBtn";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
-import type { Label } from "@/infra/api/client";
+import type { Label } from "@/infra/client";
 
 type Props = {
   labels: Label[];

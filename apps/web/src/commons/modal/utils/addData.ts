@@ -1,7 +1,7 @@
 "use server";
 
 import postWorkRecord from "@/infra/api/postWorkRecord";
-import type { DataForm } from "@/libs/forms/schema/DataForm";
+import type { DataForm } from "@/libs/zod/workRecordSchema";
 
 export const addData = async (data: DataForm) => {
   await postWorkRecord({

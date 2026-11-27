@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formSchema } from "./DataForm";
+import { formSchema } from "./workRecordSchema";
 
 describe("formSchema", () => {
   it("開始時間が終了時間より前なら通る", () => {
