@@ -3,21 +3,18 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 
+import {
+  HOUR_HEIGHT,
+  LABEL_HEIGHT,
+  MIN_EVENT_HEIGHT,
+  MINUTE_MS,
+  PADDING_BOTTOM,
+  PADDING_TOP,
+  STACK_MIN_HEIGHT,
+  TZ,
+} from "@/commons/calendar/constants/dailyCalendar";
 import type { WorkRecord } from "@/infra/client";
 import "@/libs/dayjs/config";
-
-/* 1 時間あたりの高さ（px） */
-const HOUR_HEIGHT = 32;
-/* 0:00 の線より上・24:00 の線より下の余白（px） */
-const PADDING_TOP = 24;
-const PADDING_BOTTOM = 8;
-/* これより低い予定は、時刻とタイトルを横に並べる */
-const STACK_MIN_HEIGHT = 40;
-const MIN_EVENT_HEIGHT = 16;
-/* text-xs の時刻ラベル 1 行の高さ（px） */
-const LABEL_HEIGHT = 16;
-const MINUTE_MS = 60 * 1000;
-const TZ = "Asia/Tokyo";
 
 type Props = {
   records: WorkRecord[];
