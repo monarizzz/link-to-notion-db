@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import dayjs from "dayjs";
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 
 import DailyCalendar from "@/commons/calendar/components/DailyCalendar/DailyCalendar";
 import SubmitModal from "@/commons/modal/components/SubmitModal/SubmitModal";
@@ -30,6 +30,16 @@ const CalendarSection = ({ labels, records, range, onCreated }: Props) => {
   });
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  /* モーダルで開始・終了を直しても追従するよう、フォームの値から示す */
+  const [start, end] = useWatch({
+    control: methods.control,
+    name: ["start", "end"],
+  });
+  const pending =
+    isOpenModal && Date.parse(start) < Date.parse(end)
+      ? { start: Date.parse(start), end: Date.parse(end) }
+      : null;
+
   const onSelect = ({ start, end }: { start: number; end: number }) => {
     methods.reset({
       start: dayjs(start).format(DATETIME_FORMAT),
@@ -55,7 +65,12 @@ const CalendarSection = ({ labels, records, range, onCreated }: Props) => {
 
   return (
     <>
-      <DailyCalendar records={records} range={range} onSelect={onSelect} />
+      <DailyCalendar
+        records={records}
+        range={range}
+        onSelect={onSelect}
+        pending={pending}
+      />
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <SubmitModal

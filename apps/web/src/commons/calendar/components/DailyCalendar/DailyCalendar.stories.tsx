@@ -117,3 +117,13 @@ export const Selectable: Story = {
     await expect(args.onSelect).toHaveBeenCalledTimes(3);
   },
 };
+
+/* 登録モーダルを開いている間は、選んだ時間帯を示したままにする */
+export const Pending: Story = {
+  args: {
+    pending: {
+      start: Date.parse("2026-11-28T11:00:00+09:00"),
+      end: Date.parse("2026-11-28T12:45:00+09:00"),
+    },
+  },
+};

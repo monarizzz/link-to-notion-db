@@ -25,9 +25,17 @@ type Props = {
   now?: number;
   /* 渡すと、ドラッグ（タッチはタップ）で選んだ時間帯（エポックミリ秒）を受け取れる */
   onSelect?: (selected: { start: number; end: number }) => void;
+  /* 選んだあとも示しておく時間帯（エポックミリ秒）。登録モーダルを開いている間に使う */
+  pending?: { start: number; end: number } | null;
 };
 
-const DailyCalendar = ({ records, range, now: fixedNow, onSelect }: Props) => {
+const DailyCalendar = ({
+  records,
+  range,
+  now: fixedNow,
+  onSelect,
+  pending,
+}: Props) => {
   const now = useNow(fixedNow);
   const hours = Math.round((range.to - range.from) / (60 * MINUTE_MS));
   const showNow = range.from <= now && now < range.to;
@@ -59,12 +67,21 @@ const DailyCalendar = ({ records, range, now: fixedNow, onSelect }: Props) => {
       {records.map((record) => (
         <RecordBlock key={record.id} record={record} range={range} />
       ))}
-      {onSelect && selected && (
+      {pending ? (
         <SelectionBlock
-          start={slotToTime(selected.start)}
-          end={slotToTime(selected.end)}
+          start={Math.max(pending.start, range.from)}
+          end={Math.min(pending.end, range.to)}
           from={range.from}
         />
+      ) : (
+        onSelect &&
+        selected && (
+          <SelectionBlock
+            start={slotToTime(selected.start)}
+            end={slotToTime(selected.end)}
+            from={range.from}
+          />
+        )
       )}
       {showNow && <NowLabel now={now} from={range.from} />}
     </div>
