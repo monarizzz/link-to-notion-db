@@ -8,10 +8,9 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS",
   },
-  // 独自ドメインで公開し、Cloudflare Access（Google ログイン・許可したメールアドレスのみ）で保護する
   "routes": [{ "pattern": "work.monelog.me", "custom_domain": true }],
   "workers_dev": false,
-  // ブランチごとのプレビュー（wrangler preview）に workers.dev の URL を付ける。Cloudflare Access で保護する
+  // ブランチごとのプレビュー（wrangler preview）に workers.dev の URL を付ける
   "preview_urls": true,
   // wrangler preview（Workers Builds のプレビュー）はこの項目が無いと失敗する。バインディングはトップレベルから引き継がれない
   "previews": {
