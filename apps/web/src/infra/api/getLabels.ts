@@ -1,4 +1,4 @@
-import { apiClient } from "@/infra/api/client";
+import { apiClient } from "@/infra/client";
 
 const getLabels = async () => {
   const response = await apiClient().api.labels.$get();

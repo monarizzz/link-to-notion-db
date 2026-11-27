@@ -7,7 +7,7 @@ import { cn } from "@/libs/shadcn/utils";
 
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
-import type { Label } from "@/infra/api/client";
+import type { Label } from "@/infra/client";
 import LabelChips from "../LabelChips/LabelChips";
 import DateTimePicker from "../DateTimePicker/DateTimePicker";
 

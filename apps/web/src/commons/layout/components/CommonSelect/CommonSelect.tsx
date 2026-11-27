@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/libs/shadcn/ui/select";
-import type { Label } from "@/infra/api/client";
+import type { Label } from "@/infra/client";
 
 type Props = {
   labels: Label[];

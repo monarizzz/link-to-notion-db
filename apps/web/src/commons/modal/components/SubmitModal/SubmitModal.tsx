@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import "@/libs/dayjs/config";
 import { Input } from "@/libs/shadcn/ui/input";
 import Plain from "@public/plain.svg";
-import type { Label } from "@/infra/api/client";
+import type { Label } from "@/infra/client";
 import ModalContents from "@/commons/modal/components/ModalContents/ModalContents";
 
 type Props = {
