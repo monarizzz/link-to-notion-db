@@ -57,6 +57,11 @@ const SubmitModal = ({ labels, isOpenModal, setIsOpenModal }: Props) => {
                   {String(errors.end.message)}
                 </p>
               )}
+              {errors.root?.save?.message && (
+                <p role="alert" className="text-[12px] text-[#E05252]">
+                  {errors.root.save.message}
+                </p>
+              )}
             </div>
             <CommonSeparator />
             <div className="flex justify-between gap-3 px-5 pt-4 pb-5">

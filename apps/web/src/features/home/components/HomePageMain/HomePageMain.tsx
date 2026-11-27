@@ -5,9 +5,9 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
-import { addData } from "@/commons/modal/utils/addData";
 import SideBar from "@/commons/sideBar/components/SideBar";
 import WorkCard from "@/commons/workCard/components/WorkCard";
+import postWorkRecord from "@/infra/api/postWorkRecord";
 import type { Label, WorkRecord } from "@/infra/client";
 import { DataForm, formSchema } from "@/libs/zod/workRecordSchema";
 
@@ -15,9 +15,11 @@ type Props = {
   labels: Label[];
   today: WorkRecord[];
   todayRange: { from: number; to: number };
+  /* 作成に成功したあとに呼ぶ。一覧の再取得に使う */
+  onCreated: () => void;
 };
 
-const HomePageMain = ({ labels, today, todayRange }: Props) => {
+const HomePageMain = ({ labels, today, todayRange, onCreated }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -25,11 +27,22 @@ const HomePageMain = ({ labels, today, todayRange }: Props) => {
 
   const onSubmit = async (data: DataForm) => {
     try {
-      await addData(data);
-      methods.reset();
+      await postWorkRecord({
+        title: data.title,
+        started_at: data.start,
+        ended_at: data.end,
+        label_ids: data.label ? [data.label] : [],
+      });
     } catch (error) {
-      console.error(error); // TODO:errorハンドリングを考える
+      console.error(error);
+      methods.setError("root.save", {
+        message: "作業記録を保存できませんでした。もう一度お試しください。",
+      });
+      return;
     }
+
+    methods.reset();
+    onCreated();
   };
 
   return (

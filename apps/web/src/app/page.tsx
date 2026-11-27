@@ -11,16 +11,24 @@ const Home = () => {
   const todayRange = getJstTodayRange();
 
   const { data: labels, error: labelsErr } = useSWR("labels", getLabels);
-  const { data: workRecords, error: workRecordsErr } = useSWR(
-    ["workRecords", todayRange],
-    () => getWorkRecords(todayRange.from, todayRange.to),
+  const {
+    data: workRecords,
+    error: workRecordsErr,
+    mutate: mutateWorkRecords,
+  } = useSWR(["workRecords", todayRange], () =>
+    getWorkRecords(todayRange.from, todayRange.to),
   );
 
   if (labelsErr || workRecordsErr) return <div>エラーです</div>;
   if (!labels || !workRecords) return <div>読み込み中...</div>;
 
   return (
-    <HomePageMain labels={labels} today={workRecords} todayRange={todayRange} />
+    <HomePageMain
+      labels={labels}
+      today={workRecords}
+      todayRange={todayRange}
+      onCreated={() => mutateWorkRecords()}
+    />
   );
 };
 
