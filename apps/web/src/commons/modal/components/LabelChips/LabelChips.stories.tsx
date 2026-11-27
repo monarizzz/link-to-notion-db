@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { FormProvider, useForm } from "react-hook-form";
+import { expect, userEvent, within } from "storybook/test";
 
 import LabelChips from "./LabelChips";
 
@@ -73,6 +74,20 @@ export const Default: Story = {
         updated_at: "2026-05-01T00:00:00.000Z",
       },
     ],
+  },
+};
+
+export const ToggleSelection: Story = {
+  args: Default.args,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const meeting = canvas.getByRole("button", { name: "会議" });
+
+    await userEvent.click(meeting);
+    await expect(meeting).toHaveAttribute("aria-pressed", "false");
+
+    await userEvent.click(meeting);
+    await expect(meeting).toHaveAttribute("aria-pressed", "true");
   },
 };
 
