@@ -13,11 +13,8 @@
   "workers_dev": false,
   // ブランチごとのプレビュー（wrangler preview）に workers.dev の URL を付ける。Cloudflare Access で保護する
   "preview_urls": true,
-  // API（apps/server）は公開 URL を持たないため、Service Binding で呼ぶ
-  "services": [{ "binding": "API", "service": "server" }],
   // wrangler preview（Workers Builds のプレビュー）はこの項目が無いと失敗する。バインディングはトップレベルから引き継がれない
   "previews": {
-    "services": [{ "binding": "API", "service": "server" }],
     "observability": {
       "enabled": false,
       "head_sampling_rate": 1,
