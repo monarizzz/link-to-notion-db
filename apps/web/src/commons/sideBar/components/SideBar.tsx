@@ -27,7 +27,7 @@ const SideBar = ({ today, range }: Props) => {
     (dayWorkTimeTotalHours - dayWorkHours) * 60,
   );
   return (
-    <div className="min-h-[70vh] min-w-[15vw] gap-5 rounded-r-3xl border-t border-r border-b border-[#ffffff25] bg-[#ffffff0a] px-7 py-5 text-[34px]">
+    <div className="min-w-[15vw] gap-5 rounded-r-3xl border-t border-r border-b border-[#ffffff25] bg-[#ffffff0a] px-7 py-5 text-[34px] md:min-h-[70vh]">
       <span className="text-2xs leading-0.5 font-semibold text-primary-foreground">
         TODAY
       </span>
