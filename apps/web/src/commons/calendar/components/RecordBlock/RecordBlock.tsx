@@ -12,7 +12,7 @@ type Props = {
   range: { from: number; to: number };
 };
 
-/* 作業記録 1 件を、開始から終了の長さで描く */
+/* 作業記録 1 件を、開始から終了の長さで描く。表示だけなので、下の時間帯の選択に操作を通す */
 const RecordBlock = ({ record, range }: Props) => {
   const start = Math.max(Date.parse(record.started_at), range.from);
   const end = Math.min(Date.parse(record.ended_at), range.to);
@@ -25,7 +25,7 @@ const RecordBlock = ({ record, range }: Props) => {
 
   return (
     <div
-      className="absolute right-4 left-22 flex overflow-hidden rounded-lg bg-[#323e4bcc]"
+      className="pointer-events-none absolute right-4 left-22 flex overflow-hidden rounded-lg bg-[#323e4bcc]"
       style={{ top, height }}
     >
       {color && (

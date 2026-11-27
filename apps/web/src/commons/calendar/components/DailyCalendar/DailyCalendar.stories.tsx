@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, fireEvent, fn } from "storybook/test";
+import { expect, fireEvent, fn, within } from "storybook/test";
 
 import DailyCalendar from "./DailyCalendar";
 
@@ -76,6 +76,17 @@ export const Selectable: Story = {
     const area = canvasElement.querySelector<HTMLElement>(".cursor-pointer");
     if (!area) throw new Error("選択できる範囲がありません");
     const top = area.getBoundingClientRect().top;
+
+    /* 記録の上でも、選択できる範囲に操作が届く */
+    const recordRect = within(canvasElement)
+      .getByText("履修登録")
+      .getBoundingClientRect();
+    await expect(
+      document.elementFromPoint(
+        recordRect.left + recordRect.width / 2,
+        recordRect.top + recordRect.height / 2,
+      ),
+    ).toBe(area);
     const pointer = { button: 0, pointerId: 1, pointerType: "mouse" };
     const hour = (h: number) => from + h * 60 * 60 * 1000;
 
@@ -125,5 +136,18 @@ export const Pending: Story = {
       start: Date.parse("2026-11-28T11:00:00+09:00"),
       end: Date.parse("2026-11-28T12:45:00+09:00"),
     },
+  },
+};
+
+/* 選んだ時間帯が表示する日と重ならなければ示さない */
+export const PendingOutOfRange: Story = {
+  args: {
+    pending: {
+      start: Date.parse("2026-11-27T11:00:00+09:00"),
+      end: Date.parse("2026-11-27T12:45:00+09:00"),
+    },
+  },
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).queryByText(/12:45/)).toBeNull();
   },
 };

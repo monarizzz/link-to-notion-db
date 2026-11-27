@@ -48,6 +48,12 @@ const DailyCalendar = ({
       onSelect?.({ start: slotToTime(start), end: slotToTime(end) }),
   );
 
+  /* 表示する日の中に切る。重ならなければ示さない */
+  const shownPending = pending && {
+    start: Math.max(pending.start, range.from),
+    end: Math.min(pending.end, range.to),
+  };
+
   return (
     <div
       className="relative w-full bg-(--background-2)"
@@ -67,22 +73,22 @@ const DailyCalendar = ({
       {records.map((record) => (
         <RecordBlock key={record.id} record={record} range={range} />
       ))}
-      {pending ? (
-        <SelectionBlock
-          start={Math.max(pending.start, range.from)}
-          end={Math.min(pending.end, range.to)}
-          from={range.from}
-        />
-      ) : (
-        onSelect &&
-        selected && (
-          <SelectionBlock
-            start={slotToTime(selected.start)}
-            end={slotToTime(selected.end)}
-            from={range.from}
-          />
-        )
-      )}
+      {shownPending
+        ? shownPending.start < shownPending.end && (
+            <SelectionBlock
+              start={shownPending.start}
+              end={shownPending.end}
+              from={range.from}
+            />
+          )
+        : onSelect &&
+          selected && (
+            <SelectionBlock
+              start={slotToTime(selected.start)}
+              end={slotToTime(selected.end)}
+              from={range.from}
+            />
+          )}
       {showNow && <NowLabel now={now} from={range.from} />}
     </div>
   );
