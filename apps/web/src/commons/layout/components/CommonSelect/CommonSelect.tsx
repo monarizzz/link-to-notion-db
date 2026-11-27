@@ -6,7 +6,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/libs/shadcn/assets/ui/select";
+} from "@/libs/shadcn/ui/select";
 import type { Label } from "@/infra/api/client";
 
 type Props = {

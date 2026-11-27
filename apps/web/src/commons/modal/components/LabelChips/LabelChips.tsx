@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { cn } from "@/libs/shadcn/assets/lib/utils";
+import { cn } from "@/libs/shadcn/utils";
 import type { Label } from "@/infra/api/client";
 
 type Props = {

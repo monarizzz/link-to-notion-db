@@ -3,7 +3,7 @@ import { useWatch } from "react-hook-form";
 import { CheckIcon } from "lucide-react";
 import Pen from "@public/pen.svg";
 import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonSeparator";
-import { cn } from "@/libs/shadcn/assets/lib/utils";
+import { cn } from "@/libs/shadcn/utils";
 
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";

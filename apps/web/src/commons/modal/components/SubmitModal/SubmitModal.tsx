@@ -4,7 +4,7 @@ import CommonSeparator from "@/commons/layout/components/CommonSeparator/CommonS
 import { useFormContext, useWatch } from "react-hook-form";
 import dayjs from "dayjs";
 import "@/libs/dayjs/config";
-import { Input } from "@/libs/shadcn/assets/ui/input";
+import { Input } from "@/libs/shadcn/ui/input";
 import Plain from "@public/plain.svg";
 import type { Label } from "@/infra/api/client";
 import ModalContents from "@/commons/modal/components/ModalContents/ModalContents";

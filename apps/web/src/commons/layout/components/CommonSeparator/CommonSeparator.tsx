@@ -1,4 +1,4 @@
-import { Separator } from "@/libs/shadcn/assets/ui/separator";
+import { Separator } from "@/libs/shadcn/ui/separator";
 
 type Props = {
   vertical?: boolean;
