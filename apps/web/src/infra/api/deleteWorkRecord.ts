@@ -1,5 +1,3 @@
-import "server-only";
-
 import { apiClient } from "@/infra/api/client";
 
 const deleteWorkRecord = async (id: string) => {
