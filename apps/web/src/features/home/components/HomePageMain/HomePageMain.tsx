@@ -14,9 +14,11 @@ type Props = {
   labels: Label[];
   today: WorkRecord[];
   todayRange: { from: number; to: number };
+  /* 作成に成功したあとに呼ぶ。一覧の再取得に使う */
+  onCreated: () => void;
 };
 
-const HomePageMain = ({ labels, today, todayRange }: Props) => {
+const HomePageMain = ({ labels, today, todayRange, onCreated }: Props) => {
   const methods = useForm<DataForm>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
@@ -39,6 +41,7 @@ const HomePageMain = ({ labels, today, todayRange }: Props) => {
     }
 
     methods.reset();
+    onCreated();
   };
 
   return (
