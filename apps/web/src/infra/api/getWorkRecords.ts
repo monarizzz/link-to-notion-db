@@ -1,5 +1,3 @@
-import "server-only";
-
 import { apiClient } from "@/infra/api/client";
 
 /* from・to はエポックミリ秒。範囲と重なる記録を返す */

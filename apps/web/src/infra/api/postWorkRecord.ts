@@ -1,5 +1,3 @@
-import "server-only";
-
 import { apiClient } from "@/infra/api/client";
 import type { CreateWorkRecordInput } from "@/infra/api/client";
 
