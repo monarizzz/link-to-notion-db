@@ -55,7 +55,7 @@ const DailyCalendar = ({
   };
 
   return (
-    <div ref={ref} className="relative h-dvh w-full bg-(--background-2)">
+    <div ref={ref} className="relative h-[80dvh] w-full bg-(--background-2)">
       <TimeGrid
         hours={hours}
         hourHeight={hourHeight}
