@@ -34,7 +34,10 @@ const StopBtn = ({ labels }: Props) => {
           <SubmitModal
             labels={labels}
             isOpenModal={isOpenModal}
-            setIsOpenModal={setIsOpenModal}
+            onClose={() => {
+              onChange(null);
+              setIsOpenModal(false);
+            }}
           />
         </>
       )}

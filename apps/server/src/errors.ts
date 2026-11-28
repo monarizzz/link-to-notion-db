@@ -26,7 +26,7 @@ export const errorResponse = (
 ) => c.json({ error: { code, message, fields } }, status);
 
 /* Zod の issue を項目名ごとにまとめる。余分なキーはそのキー名に付ける */
-export const toErrorFields = (error: z.core.$ZodError): ErrorFields => {
+const toErrorFields = (error: z.core.$ZodError): ErrorFields => {
   /* キーはクライアントが決めるので、toString などの継承プロパティと衝突しないようにする */
   const fields: ErrorFields = Object.create(null);
   const add = (key: string, message: string) => {
@@ -40,4 +40,19 @@ export const toErrorFields = (error: z.core.$ZodError): ErrorFields => {
     }
   }
   return fields;
+};
+
+export const handleValidationResult = (
+  result: { success: true } | { success: false; error: z.core.$ZodError },
+  c: Context,
+) => {
+  if (!result.success) {
+    return errorResponse(
+      c,
+      400,
+      "VALIDATION_ERROR",
+      "入力内容に誤りがあります",
+      toErrorFields(result.error),
+    );
+  }
 };

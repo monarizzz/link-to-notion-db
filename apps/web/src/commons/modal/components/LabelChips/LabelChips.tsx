@@ -31,7 +31,7 @@ const LabelChips = ({ labels }: Props) => {
                 type="button"
                 key={label.id}
                 aria-pressed={isSelected}
-                onClick={() => onChange(label.id)}
+                onClick={() => onChange(isSelected ? "" : label.id)}
                 className={cn(
                   "cursor-pointer rounded-[20px] px-3.5 py-2 text-[13px]",
                   isSelected

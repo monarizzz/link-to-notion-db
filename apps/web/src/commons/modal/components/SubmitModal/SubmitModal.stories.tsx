@@ -56,7 +56,7 @@ export const Default: Story = {
       },
     ],
     isOpenModal: true,
-    setIsOpenModal: () => {},
+    onClose: () => {},
   },
 };
 

@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useForm, FormProvider } from "react-hook-form";
 
 import WorkCard from "./WorkCard";
-import DoingContent from "../../../features/workCard/components/DoingContent/DoingContent";
+import DoingContent from "../DoingContent/DoingContent";
 
 const meta: Meta<typeof WorkCard> = {
+  title: "commons/workCard/components/WorkCard",
   component: WorkCard,
   parameters: {
     layout: "fullscreen",
