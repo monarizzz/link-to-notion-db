@@ -72,3 +72,49 @@ describe("POST /api/labels", () => {
     });
   });
 });
+
+describe("DELETE /api/labels/:id", () => {
+  const del = (id: string) =>
+    app.request(
+      `/api/labels/${id}`,
+      { method: "DELETE", headers: accessHeaders },
+      env,
+    );
+
+  it("ラベルを削除して 204 を返す", async () => {
+    const { id } = (await (
+      await postJson({ name: "削除用", color: "#111111" })
+    ).json()) as { id: string };
+
+    const res = await del(id);
+
+    expect(res.status).toBe(204);
+    expect(await res.text()).toBe("");
+    expect(
+      await env.DB.prepare("SELECT id FROM labels WHERE id = ?")
+        .bind(id)
+        .first(),
+    ).toBeNull();
+  });
+
+  it("ラベルが無ければ 404 を返す", async () => {
+    const res = await del(crypto.randomUUID());
+
+    expect(res.status).toBe(404);
+    expect(await res.json()).toMatchObject({
+      error: { code: "LABEL_NOT_FOUND" },
+    });
+  });
+
+  it("ID が UUID でなければ 400 を返す", async () => {
+    const res = await del("missing");
+
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({
+      error: {
+        code: "VALIDATION_ERROR",
+        fields: { id: ["ラベル ID の形式が正しくありません"] },
+      },
+    });
+  });
+});
