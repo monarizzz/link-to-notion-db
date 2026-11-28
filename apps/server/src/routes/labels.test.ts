@@ -15,6 +15,33 @@ const postJson = (body: unknown) =>
     env,
   );
 
+describe("GET /api/labels", () => {
+  beforeAll(async () => {
+    const insert = env.DB.prepare(
+      "INSERT INTO labels (id, name, color, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
+    );
+    await env.DB.batch([
+      insert.bind("get-later", "後に作成", "#222222", 2000, 2000),
+      insert.bind("get-earlier", "先に作成", "#111111", 1000, 1000),
+    ]);
+  });
+
+  it("作成順に id・name・color だけを返す", async () => {
+    const res = await app.request(
+      "/api/labels",
+      { headers: accessHeaders },
+      env,
+    );
+
+    expect(res.status).toBe(200);
+    const labels = (await res.json()) as { id: string }[];
+    expect(labels.filter((l) => l.id.startsWith("get-"))).toEqual([
+      { id: "get-earlier", name: "先に作成", color: "#111111" },
+      { id: "get-later", name: "後に作成", color: "#222222" },
+    ]);
+  });
+});
+
 describe("POST /api/labels", () => {
   beforeAll(async () => {
     const createdAt = Date.UTC(2026, 9, 26, 1, 0, 0);
