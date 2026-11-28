@@ -26,6 +26,7 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   title: "作業記録",
   description: "作業記録するアプリ",
+  icons: { icon: "/icon.png" },
 };
 
 export default function RootLayout({
