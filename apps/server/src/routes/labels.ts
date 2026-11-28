@@ -1,7 +1,7 @@
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 
-import { errorResponse, toErrorFields } from "../errors";
+import { errorResponse, handleValidationResult } from "../errors";
 import { createLabelSchema } from "../schemas/labels";
 
 type LabelRow = {
@@ -15,7 +15,7 @@ type LabelRow = {
 export const labelsRouters = new Hono<{
   Bindings: CloudflareBindings;
 }>()
-  /* 作業に付与するラベルの全件取得 */
+  /* 全件取得 */
   .get("/", async (c) => {
     const { results } = await c.env.DB.prepare(
       "SELECT id, name, color, created_at, updated_at FROM labels ORDER BY created_at",
@@ -31,17 +31,7 @@ export const labelsRouters = new Hono<{
   /* ラベルの追加 */
   .post(
     "/",
-    zValidator("json", createLabelSchema, (result, c) => {
-      if (!result.success) {
-        return errorResponse(
-          c,
-          400,
-          "VALIDATION_ERROR",
-          "入力内容に誤りがあります",
-          toErrorFields(result.error),
-        );
-      }
-    }),
+    zValidator("json", createLabelSchema, handleValidationResult),
     async (c) => {
       const { name, color } = c.req.valid("json");
 
