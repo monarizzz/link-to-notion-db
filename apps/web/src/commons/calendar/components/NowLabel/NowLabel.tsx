@@ -4,13 +4,14 @@ import { toY } from "@/commons/calendar/utils/toY";
 type Props = {
   now: number;
   from: number;
+  hourHeight: number;
 };
 
 /* 現在時刻の位置に出す時刻ラベル */
-const NowLabel = ({ now, from }: Props) => (
+const NowLabel = ({ now, from, hourHeight }: Props) => (
   <span
     className="absolute left-2 -translate-y-1/2 bg-(--background-2) text-xs text-accent-lime"
-    style={{ top: toY(now, from) }}
+    style={{ top: toY(now, from, hourHeight) }}
   >
     {formatTime(now)}
   </span>

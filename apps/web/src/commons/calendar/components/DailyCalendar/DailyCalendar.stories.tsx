@@ -75,7 +75,9 @@ export const Selectable: Story = {
   play: async ({ args, canvasElement }) => {
     const area = canvasElement.querySelector<HTMLElement>(".cursor-pointer");
     if (!area) throw new Error("選択できる範囲がありません");
-    const top = area.getBoundingClientRect().top;
+    const { top, height } = area.getBoundingClientRect();
+    /* 1 時間あたりの高さ（px）。画面の高さで変わる */
+    const h = height / 24;
 
     /* 記録の上でも、選択できる範囲に操作が届く */
     const recordRect = within(canvasElement)
@@ -93,10 +95,10 @@ export const Selectable: Story = {
     /* 7:00 の枠から 9:30 の枠までドラッグすると 7:00 - 9:45 */
     await fireEvent.pointerDown(area, {
       ...pointer,
-      clientY: top + 7 * 32 + 2,
+      clientY: top + 7 * h + 2,
     });
-    await fireEvent.pointerMove(area, { ...pointer, clientY: top + 9.6 * 32 });
-    await fireEvent.pointerUp(area, { ...pointer, clientY: top + 9.6 * 32 });
+    await fireEvent.pointerMove(area, { ...pointer, clientY: top + 9.6 * h });
+    await fireEvent.pointerUp(area, { ...pointer, clientY: top + 9.6 * h });
     await expect(args.onSelect).toHaveBeenLastCalledWith({
       start: hour(7),
       end: hour(9.75),
@@ -105,9 +107,9 @@ export const Selectable: Story = {
     /* 上へドラッグしても開始と終了が入れ替わる */
     await fireEvent.pointerDown(area, {
       ...pointer,
-      clientY: top + 3 * 32 + 2,
+      clientY: top + 3 * h + 2,
     });
-    await fireEvent.pointerUp(area, { ...pointer, clientY: top + 2 * 32 + 2 });
+    await fireEvent.pointerUp(area, { ...pointer, clientY: top + 2 * h + 2 });
     await expect(args.onSelect).toHaveBeenLastCalledWith({
       start: hour(2),
       end: hour(3.25),
@@ -115,16 +117,16 @@ export const Selectable: Story = {
 
     /* タップは指を離した位置の 1 枠 */
     const touch = { ...pointer, pointerId: 2, pointerType: "touch" };
-    await fireEvent.pointerDown(area, { ...touch, clientY: top + 12 * 32 + 2 });
-    await fireEvent.pointerUp(area, { ...touch, clientY: top + 12 * 32 + 4 });
+    await fireEvent.pointerDown(area, { ...touch, clientY: top + 12 * h + 2 });
+    await fireEvent.pointerUp(area, { ...touch, clientY: top + 12 * h + 4 });
     await expect(args.onSelect).toHaveBeenLastCalledWith({
       start: hour(12),
       end: hour(12.25),
     });
 
     /* 指が動いたらスクロールとみなして選ばない */
-    await fireEvent.pointerDown(area, { ...touch, clientY: top + 14 * 32 });
-    await fireEvent.pointerUp(area, { ...touch, clientY: top + 15 * 32 });
+    await fireEvent.pointerDown(area, { ...touch, clientY: top + 14 * h });
+    await fireEvent.pointerUp(area, { ...touch, clientY: top + 15 * h });
     await expect(args.onSelect).toHaveBeenCalledTimes(3);
   },
 };

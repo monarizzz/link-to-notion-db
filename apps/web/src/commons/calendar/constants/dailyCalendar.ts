@@ -1,7 +1,7 @@
 /* DailyCalendar の寸法・時間の定数 */
 
-/* 1 時間あたりの高さ（px） */
-export const HOUR_HEIGHT = 32;
+/* 高さを測るまでの 1 時間あたりの高さ（px）。測ったあとはカレンダーの高さに 1 日分を収める */
+export const DEFAULT_HOUR_HEIGHT = 32;
 /* 0:00 の線より上・24:00 の線より下の余白（px） */
 export const PADDING_TOP = 24;
 export const PADDING_BOTTOM = 8;
