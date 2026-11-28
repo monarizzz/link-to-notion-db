@@ -1,8 +1,9 @@
 import { useWatch } from "react-hook-form";
 
-import DoingContent from "@/features/workCard/components/DoingContent/DoingContent";
-import InputContent from "@/features/workCard/components/InputContent/InputContent";
 import type { Label } from "@/infra/client";
+
+import DoingContent from "../DoingContent/DoingContent";
+import InputContent from "../InputContent/InputContent";
 
 type Props = {
   labels: Label[];

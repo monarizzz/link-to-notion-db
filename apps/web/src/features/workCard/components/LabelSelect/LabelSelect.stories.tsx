@@ -13,6 +13,7 @@ const FormDecorator = (Story: React.ComponentType) => {
 };
 
 const meta: Meta<typeof LabelSelect> = {
+  title: "features/modal/components/LabelSelect",
   component: LabelSelect,
   decorators: [FormDecorator],
   parameters: {
