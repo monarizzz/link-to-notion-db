@@ -6,7 +6,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import CurrentDate from "@/commons/date/components/CurrentDate/CurrentDate";
 import CurrentTime from "@/commons/date/components/CurrentTime/CurrentTime";
 import SideBar from "@/commons/sideBar/components/SideBar";
-import WorkCard from "@/commons/workCard/components/WorkCard";
+import WorkCard from "@/features/workCard/components/WorkCard/WorkCard";
 import type { Label, WorkRecord } from "@/infra/client";
 import { DataForm, formSchema } from "@/libs/zod/workRecordSchema";
 

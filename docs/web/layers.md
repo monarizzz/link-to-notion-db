@@ -22,11 +22,6 @@ app → features → commons → infra → libs
 - 同じ層の中の import はよい
 - `app` はどの層も import してよい
 
-### 既知の例外
-
-- `commons/workCard/components/WorkCard.tsx` が `features/workCard/` を import している（逆向き）。
-  新しいコードでは真似しない
-
 ## 粒度
 
 各層の下は、ドメイン（`calendar`、`notion` など）ごとのディレクトリに分け、その中を種類で分ける。

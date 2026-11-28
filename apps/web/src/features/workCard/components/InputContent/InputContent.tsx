@@ -1,7 +1,7 @@
-import LabelSelect from "@/features/modal/components/LabelSelect/LabelSelect";
 import type { Label } from "@/infra/client";
 import Pen from "@public/pen.svg";
 
+import LabelSelect from "../LabelSelect/LabelSelect";
 import PlayBtn from "../PlayBtn/PlayBtn";
 
 type Props = {
