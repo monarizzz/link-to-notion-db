@@ -24,8 +24,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ChroNotion: 作業時間をNotionへ記録",
-  description: "作業時間をNotionデータベースに自動記録するツール",
+  title: "作業記録",
+  description: "作業記録するアプリ",
 };
 
 export default function RootLayout({
