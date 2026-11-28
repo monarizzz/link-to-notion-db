@@ -28,7 +28,7 @@ export const labelsRouters = new Hono<{
     return c.json(labels, 200);
   })
 
-  /* ラベルの追加 */
+  /* ラベル追加 */
   .post(
     "/",
     zValidator("json", createLabelSchema, handleValidationResult),
