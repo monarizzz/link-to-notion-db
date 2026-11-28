@@ -1,7 +1,7 @@
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 
-import { errorResponse, toErrorFields } from "../errors";
+import { errorResponse, handleValidationResult } from "../errors";
 import {
   createWorkRecordSchema,
   workRecordsRangeQuerySchema,
@@ -29,17 +29,7 @@ export const workRecordsRouters = new Hono<{
   /* 範囲と重なる作業記録の取得 */
   .get(
     "/",
-    zValidator("query", workRecordsRangeQuerySchema, (result, c) => {
-      if (!result.success) {
-        return errorResponse(
-          c,
-          400,
-          "VALIDATION_ERROR",
-          "入力内容に誤りがあります",
-          toErrorFields(result.error),
-        );
-      }
-    }),
+    zValidator("query", workRecordsRangeQuerySchema, handleValidationResult),
     async (c) => {
       const { from, to } = c.req.valid("query");
 
@@ -78,17 +68,7 @@ export const workRecordsRouters = new Hono<{
   /* 作業記録の追加 */
   .post(
     "/",
-    zValidator("json", createWorkRecordSchema, (result, c) => {
-      if (!result.success) {
-        return errorResponse(
-          c,
-          400,
-          "VALIDATION_ERROR",
-          "入力内容に誤りがあります",
-          toErrorFields(result.error),
-        );
-      }
-    }),
+    zValidator("json", createWorkRecordSchema, handleValidationResult),
     async (c) => {
       const { title, started_at, ended_at, label_ids } = c.req.valid("json");
 
