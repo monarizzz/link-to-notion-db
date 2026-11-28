@@ -32,3 +32,7 @@ export const createLabelSchema = z.strictObject(
 );
 
 export type CreateLabelInput = z.infer<typeof createLabelSchema>;
+
+export const labelIdParamSchema = z.object({
+  id: z.uuid({ error: "ラベル ID の形式が正しくありません" }),
+});

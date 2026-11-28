@@ -2,7 +2,7 @@ import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 
 import { errorResponse, handleValidationResult } from "../errors";
-import { createLabelSchema } from "../schemas/labels";
+import { createLabelSchema, labelIdParamSchema } from "../schemas/labels";
 
 type LabelRow = {
   id: string;
@@ -69,5 +69,29 @@ export const labelsRouters = new Hono<{
         },
         201,
       );
+    },
+  )
+
+  /* ラベル削除。作業記録との紐付けは ON DELETE CASCADE で消える */
+  .delete(
+    "/:id",
+    zValidator("param", labelIdParamSchema, handleValidationResult),
+    async (c) => {
+      const { id } = c.req.valid("param");
+
+      const { meta } = await c.env.DB.prepare("DELETE FROM labels WHERE id = ?")
+        .bind(id)
+        .run();
+
+      if (meta.changes === 0) {
+        return errorResponse(
+          c,
+          404,
+          "LABEL_NOT_FOUND",
+          "ラベルが見つかりません",
+        );
+      }
+
+      return c.body(null, 204);
     },
   );
