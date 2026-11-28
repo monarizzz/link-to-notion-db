@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-import {
-  HOUR_HEIGHT,
-  SNAP_MINUTES,
-  TAP_TOLERANCE,
-} from "@/commons/calendar/constants/dailyCalendar";
+import { TAP_TOLERANCE } from "@/commons/calendar/constants/dailyCalendar";
 
 type PointerEvent = React.PointerEvent<HTMLElement>;
 
@@ -23,12 +19,11 @@ export const useSlotSelection = (
   const [anchor, setAnchor] = useState<number | null>(null);
   const [tapY, setTapY] = useState<number | null>(null);
 
+  /* 要素の高さを slots 等分した枠のうち、ポインタのある枠 */
   const toSlot = (e: PointerEvent) => {
-    const minutes =
-      ((e.clientY - e.currentTarget.getBoundingClientRect().top) /
-        HOUR_HEIGHT) *
-      60;
-    return Math.min(Math.max(Math.floor(minutes / SNAP_MINUTES), 0), slots - 1);
+    const rect = e.currentTarget.getBoundingClientRect();
+    const slot = Math.floor(((e.clientY - rect.top) / rect.height) * slots);
+    return Math.min(Math.max(slot, 0), slots - 1);
   };
 
   const between = (a: number, b: number): SlotRange => ({

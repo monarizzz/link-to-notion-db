@@ -1,13 +1,12 @@
 "use client";
 
 import {
-  HOUR_HEIGHT,
   MINUTE_MS,
-  PADDING_BOTTOM,
   PADDING_TOP,
   SNAP_MINUTES,
 } from "@/commons/calendar/constants/dailyCalendar";
 import { toY } from "@/commons/calendar/utils/toY";
+import { useHourHeight } from "@/commons/calendar/utils/useHourHeight";
 import { useNow } from "@/commons/calendar/utils/useNow";
 import { useSlotSelection } from "@/commons/calendar/utils/useSlotSelection";
 import type { WorkRecord } from "@/infra/client";
@@ -39,6 +38,7 @@ const DailyCalendar = ({
   const now = useNow(fixedNow);
   const hours = Math.round((range.to - range.from) / (60 * MINUTE_MS));
   const showNow = range.from <= now && now < range.to;
+  const { ref, hourHeight } = useHourHeight(hours);
 
   const slotToTime = (slot: number) =>
     range.from + slot * SNAP_MINUTES * MINUTE_MS;
@@ -55,23 +55,26 @@ const DailyCalendar = ({
   };
 
   return (
-    <div
-      className="relative w-full bg-(--background-2)"
-      style={{ height: PADDING_TOP + hours * HOUR_HEIGHT + PADDING_BOTTOM }}
-    >
+    <div ref={ref} className="relative h-dvh w-full bg-(--background-2)">
       <TimeGrid
         hours={hours}
-        hiddenNearY={showNow ? toY(now, range.from) : undefined}
+        hourHeight={hourHeight}
+        hiddenNearY={showNow ? toY(now, range.from, hourHeight) : undefined}
       />
       {onSelect && (
         <div
           className="absolute right-0 left-17.5 cursor-pointer select-none"
-          style={{ top: PADDING_TOP, height: hours * HOUR_HEIGHT }}
+          style={{ top: PADDING_TOP, height: hours * hourHeight }}
           {...handlers}
         />
       )}
       {records.map((record) => (
-        <RecordBlock key={record.id} record={record} range={range} />
+        <RecordBlock
+          key={record.id}
+          record={record}
+          range={range}
+          hourHeight={hourHeight}
+        />
       ))}
       {shownPending
         ? shownPending.start < shownPending.end && (
@@ -79,6 +82,7 @@ const DailyCalendar = ({
               start={shownPending.start}
               end={shownPending.end}
               from={range.from}
+              hourHeight={hourHeight}
             />
           )
         : onSelect &&
@@ -87,9 +91,12 @@ const DailyCalendar = ({
               start={slotToTime(selected.start)}
               end={slotToTime(selected.end)}
               from={range.from}
+              hourHeight={hourHeight}
             />
           )}
-      {showNow && <NowLabel now={now} from={range.from} />}
+      {showNow && (
+        <NowLabel now={now} from={range.from} hourHeight={hourHeight} />
+      )}
     </div>
   );
 };

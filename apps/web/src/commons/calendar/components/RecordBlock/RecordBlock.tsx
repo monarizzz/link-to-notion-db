@@ -10,16 +10,20 @@ type Props = {
   record: WorkRecord;
   /* 表示する範囲（エポックミリ秒）。はみ出す部分は切って描く */
   range: { from: number; to: number };
+  hourHeight: number;
 };
 
 /* 作業記録 1 件を、開始から終了の長さで描く。表示だけなので、下の時間帯の選択に操作を通す */
-const RecordBlock = ({ record, range }: Props) => {
+const RecordBlock = ({ record, range, hourHeight }: Props) => {
   const start = Math.max(Date.parse(record.started_at), range.from);
   const end = Math.min(Date.parse(record.ended_at), range.to);
   if (start >= end) return null;
 
-  const top = toY(start, range.from);
-  const height = Math.max(toY(end, range.from) - top, MIN_EVENT_HEIGHT);
+  const top = toY(start, range.from, hourHeight);
+  const height = Math.max(
+    toY(end, range.from, hourHeight) - top,
+    MIN_EVENT_HEIGHT,
+  );
   const stacked = height >= STACK_MIN_HEIGHT;
   const color = record.labels[0]?.color;
 

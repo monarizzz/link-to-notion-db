@@ -1,19 +1,19 @@
 import {
-  HOUR_HEIGHT,
   LABEL_HEIGHT,
   PADDING_TOP,
 } from "@/commons/calendar/constants/dailyCalendar";
 
 type Props = {
   hours: number;
+  hourHeight: number;
   /* この y 座標（px）と重なる時刻ラベルは隠す。現在時刻のラベル用 */
   hiddenNearY?: number;
 };
 
 /* 時刻ラベルと 1 時間ごとの区切り線 */
-const TimeGrid = ({ hours, hiddenNearY }: Props) =>
+const TimeGrid = ({ hours, hourHeight, hiddenNearY }: Props) =>
   Array.from({ length: hours + 1 }, (_, i) => {
-    const y = PADDING_TOP + i * HOUR_HEIGHT;
+    const y = PADDING_TOP + i * hourHeight;
     const isEdge = i === 0 || i === hours;
     const hidden =
       hiddenNearY !== undefined && Math.abs(y - hiddenNearY) < LABEL_HEIGHT;
