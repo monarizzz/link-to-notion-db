@@ -45,7 +45,7 @@ const SideBar = ({ today, range }: Props) => {
         <span className="text-2xs font-bold text-primary-foreground">
           作業時間
         </span>
-        <div className="text-[34px] font-bold -tracking-[1px] text-foreground">
+        <div className="text-[34px] font-bold tracking-[-1px] text-foreground">
           {dayWorkHours !== 0 ? <span>{dayWorkHours}h </span> : null}
           <span> {dayWorkMinutes}m</span>
         </div>
